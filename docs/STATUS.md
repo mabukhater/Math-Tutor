@@ -9,10 +9,14 @@
 
 ## Milestones
 - [~] **M0 — Scaffold.** Repo + schema + RLS + indexes written. Skill ladder
-      (74 CCSS skills, grades 3–5) authored as JSON + seed script.
+      (75 CCSS skills, grades 3–5) authored as JSON + seed script.
       **BLOCKED on a dedicated Supabase project** — see below. Nothing applied
       to a live DB yet.
-- [ ] **M1 — Question bank.** Generator → draft → vet ~10–15/skill.
+- [~] **M1 — Question bank.** Generator + vetting CLI written (code-complete).
+      `generator/generate_questions.py` (Anthropic `claude-opus-4-8`, structured
+      outputs → draft rows) and `generator/vet_questions.py` (human vet/retire).
+      **Not yet run** — needs the live DB + ANTHROPIC_API_KEY. Run once the
+      dedicated Supabase project is connected.
 - [ ] **M2 — Web onboarding.** Auth → add child → adaptive placement → result.
 - [ ] **M3 — Telegram core.** Linking → scheduler → daily set → MCQ → SR updates.
 - [ ] **M4 — Parent dashboard.** Level, mastery map, streak, 7-day stats.
