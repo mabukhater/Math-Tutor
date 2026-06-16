@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { MarketingShell } from "@/components/MarketingShell";
+import { ARTICLES } from "@/content/articles";
 
 /* --- inline SVG icons (no emoji as UI icons) --- */
 const S = (p: { size?: number; children: React.ReactNode }) => (
@@ -66,20 +68,11 @@ export default async function Landing() {
   if (user) redirect("/dashboard");
 
   return (
-    <div className="lp">
-      <span className="blob blob-1" />
-      <span className="blob blob-2" />
-      <span className="blob blob-3" />
-
-      <nav className="lp-nav">
-        <div className="lp-brand">
-          <LogoMark />
-          Math Tutor
-        </div>
-        <Link href="/login" className="lp-login">
-          Sign in
-        </Link>
-      </nav>
+    <MarketingShell>
+      <div className="lp">
+        <span className="blob blob-1" />
+        <span className="blob blob-2" />
+        <span className="blob blob-3" />
 
       <section className="hero">
         <span className="eyebrow">
@@ -182,15 +175,34 @@ export default async function Landing() {
         </div>
       </section>
 
-      <section className="cta-band">
-        <h2>Start your child today</h2>
-        <p>Free during the trial. No card required.</p>
-        <Link href="/login" className="btn-cta">
-          Create a free account <ArrowIcon size={18} />
-        </Link>
-      </section>
+        <section className="section">
+          <h2>From the blog</h2>
+          <p className="sub-c">Parent-friendly reads on early math, curricula, and habits.</p>
+          <div className="blog-grid">
+            {ARTICLES.slice(0, 3).map((a) => (
+              <Link key={a.slug} href={`/blog/${a.slug}`} className="blog-card">
+                <span className="blog-cat">{a.category}</span>
+                <h3>{a.title}</h3>
+                <p className="muted">{a.excerpt}</p>
+                <span className="blog-meta">{a.readMinutes} min read</span>
+              </Link>
+            ))}
+          </div>
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            <Link href="/blog" className="muted">
+              All articles →
+            </Link>
+          </p>
+        </section>
 
-      <p className="lp-foot">Math Tutor · curriculum-aligned practice for grades 3–5</p>
-    </div>
+        <section className="cta-band">
+          <h2>Start your child today</h2>
+          <p>Free during the trial. No card required.</p>
+          <Link href="/login" className="btn-cta">
+            Create a free account <ArrowIcon size={18} />
+          </Link>
+        </section>
+      </div>
+    </MarketingShell>
   );
 }

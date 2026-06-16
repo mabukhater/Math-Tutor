@@ -67,6 +67,13 @@ export default async function ChildDashboard({
     .eq("sequence_position", student.current_skill_index ?? 0)
     .maybeSingle();
 
+  // Cross-curriculum: where this child's working level lands in every system.
+  const { data: allCurricula } = await supabase
+    .from("curricula")
+    .select("code, name, grade_noun, grade_offset")
+    .order("name");
+  const workingLevel = curSkill?.grade ?? student.nominal_grade;
+
   const { data: progress } = await supabase
     .from("student_skill_progress")
     .select("box, total_attempts, total_correct, skills(code, name, domain, sequence_position)")
@@ -160,6 +167,20 @@ export default async function ChildDashboard({
           <div className="stat-card">
             <div className="v">{mastered}</div>
             <div className="k">skills mastered</div>
+          </div>
+        </div>
+
+        <div className="xcurric">
+          <div className="muted" style={{ fontSize: "0.82rem", fontWeight: 700, marginBottom: "0.6rem" }}>
+            Across curricula — where {student.display_name} stands
+          </div>
+          <div className="xc-row">
+            {(allCurricula ?? []).map((c) => (
+              <div className="xc-item" key={c.code}>
+                <div className="xc-sys">{c.name}</div>
+                <div className="xc-lvl">{gradeLabel(c.grade_noun, c.grade_offset, workingLevel)}</div>
+              </div>
+            ))}
           </div>
         </div>
 
