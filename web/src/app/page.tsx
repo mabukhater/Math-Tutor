@@ -83,7 +83,7 @@ export default async function Landing() {
 
       <section className="hero">
         <span className="eyebrow">
-          <BookIcon size={15} /> US Common Core · Grades 3–5
+          <BookIcon size={15} /> US · UK · Singapore curricula
         </span>
         <h1>
           Math that <span className="pop-green">follows</span> your child
@@ -115,6 +115,25 @@ export default async function Landing() {
           <span className="streak-chip">
             <FlameIcon size={14} /> 5-day streak
           </span>
+        </div>
+      </section>
+
+      <section className="section">
+        <h2>Built for your child’s real curriculum</h2>
+        <p className="sub-c">Not a one-size-fits-all syllabus — pick the system they’re actually in.</p>
+        <div className="curricula-row">
+          <div className="curr-card c1">
+            <div className="curr-name">US Common Core</div>
+            <div className="curr-lvl">Grades 3–5</div>
+          </div>
+          <div className="curr-card c2">
+            <div className="curr-name">UK National Curriculum</div>
+            <div className="curr-lvl">Years 4–6</div>
+          </div>
+          <div className="curr-card c3">
+            <div className="curr-name">Singapore Math</div>
+            <div className="curr-lvl">Primary 3–5</div>
+          </div>
         </div>
       </section>
 
