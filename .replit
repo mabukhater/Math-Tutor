@@ -1,0 +1,21 @@
+# Replit config for the Next.js web app (lives in web/).
+# The repo is a monorepo (web/ bot/ generator/ supabase/); this runs web/.
+modules = ["nodejs-20"]
+
+run = "cd web && npm install && npm run dev -- -H 0.0.0.0 -p 3000"
+
+hidden = ["node_modules", ".next", ".config"]
+
+[env]
+NEXT_TELEMETRY_DISABLED = "1"
+
+# Replit maps the app's local port to a public URL.
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+# Production deployment (Replit Deployments → Autoscale).
+[deployment]
+deploymentTarget = "autoscale"
+build = ["sh", "-c", "cd web && npm install && npm run build"]
+run = ["sh", "-c", "cd web && npm run start -- -H 0.0.0.0 -p 3000"]
