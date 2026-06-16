@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { addChild } from "./actions";
+import { gradeLabel, GRADES } from "@/lib/curriculum";
 
 interface Curr {
   id: string;
@@ -24,6 +25,7 @@ export default function NewChildForm({
   const selected = curricula.find((c) => c.id === currId);
   const noun = selected?.grade_noun ?? "Grade";
   const offset = selected?.grade_offset ?? 0;
+  const code = selected?.code;
 
   return (
     <div className="wrap">
@@ -48,11 +50,11 @@ export default function NewChildForm({
             ))}
           </select>
 
-          <label htmlFor="nominal_grade">{noun}</label>
+          <label htmlFor="nominal_grade">Level</label>
           <select id="nominal_grade" name="nominal_grade" defaultValue="3">
-            {[3, 4, 5].map((g) => (
+            {GRADES.map((g) => (
               <option key={g} value={g}>
-                {noun} {g + offset}
+                {gradeLabel(noun, offset, g, code)}
               </option>
             ))}
           </select>

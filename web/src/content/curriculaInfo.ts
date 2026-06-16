@@ -13,11 +13,11 @@ export const CURRICULA_INFO: CurriculumInfo[] = [
   {
     slug: "us",
     name: "US Common Core",
-    tagline: "Curriculum-aligned math practice for Grades 3–5",
-    levels: "Grades 3–5",
+    tagline: "Curriculum-aligned math practice for Grades 1–8",
+    levels: "Grades 1–8",
     accent: "c1",
     intro:
-      "The US Common Core State Standards emphasize understanding the why behind the math, with reasoning and clear explanation at the center. Math Tutor places your child on the full Grade 3–5 skill ladder and gives them a few aligned questions a day.",
+      "The US Common Core State Standards emphasize understanding the why behind the math, with reasoning and clear explanation at the center. Math Tutor places your child on the full Grade 1–8 skill ladder and gives them a few aligned questions a day.",
     strands: [
       "Operations & Algebraic Thinking",
       "Number & Operations in Base Ten",
@@ -33,11 +33,11 @@ export const CURRICULA_INFO: CurriculumInfo[] = [
   {
     slug: "uk",
     name: "UK National Curriculum",
-    tagline: "Curriculum-aligned math practice for Years 4–6",
-    levels: "Years 4–6",
+    tagline: "Curriculum-aligned math practice for Years 2–9",
+    levels: "Years 2–9",
     accent: "c2",
     intro:
-      "The UK National Curriculum sets clear year-by-year expectations and prizes fluent arithmetic alongside problem solving. Math Tutor follows the Years 4–6 programme of study, in British conventions, and adapts to your child's level.",
+      "The UK National Curriculum sets clear year-by-year expectations and prizes fluent arithmetic alongside problem solving. Math Tutor follows the Years 2–9 programme of study, in British conventions, and adapts to your child's level.",
     strands: [
       "Number & Place Value",
       "Addition, Subtraction, Multiplication & Division",
@@ -54,11 +54,11 @@ export const CURRICULA_INFO: CurriculumInfo[] = [
   {
     slug: "singapore",
     name: "Singapore Math",
-    tagline: "Mastery-based math practice for Primary 3–5",
-    levels: "Primary 3–5",
+    tagline: "Mastery-based practice, Primary 1 to Secondary 2",
+    levels: "Primary 1–6 & Secondary 1–2",
     accent: "c3",
     intro:
-      "Singapore Math is built on mastery — concrete to pictorial to abstract, with the bar-model method and a careful, cumulative sequence. Math Tutor follows the Primary 3–5 syllabus and keeps each idea secure before moving on.",
+      "Singapore Math is built on mastery — concrete to pictorial to abstract, with the bar-model method and a careful, cumulative sequence. Math Tutor follows the Primary 1 to Secondary 2 syllabus and keeps each idea secure before moving on.",
     strands: [
       "Whole Numbers, Multiplication & Division",
       "Fractions & Decimals",

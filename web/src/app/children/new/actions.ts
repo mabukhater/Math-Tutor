@@ -13,7 +13,7 @@ export async function addChild(formData: FormData) {
   const display_name = String(formData.get("display_name") ?? "").trim();
   const nominal_grade = Number(formData.get("nominal_grade"));
   const curriculum_id = String(formData.get("curriculum_id") ?? "");
-  if (!display_name || ![3, 4, 5].includes(nominal_grade) || !curriculum_id) {
+  if (!display_name || !(nominal_grade >= 1 && nominal_grade <= 8) || !curriculum_id) {
     redirect("/children/new?error=1");
   }
 

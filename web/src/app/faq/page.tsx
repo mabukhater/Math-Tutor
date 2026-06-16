@@ -14,7 +14,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What ages or grades is it for?",
-    a: "Grades 3–5 (US), which is Years 4–6 (UK) and Primary 3–5 (Singapore) — roughly ages 8 to 11.",
+    a: "Grades 1–8 (US), which is Years 2–9 (UK) and Primary 1–6 & Secondary 1–2 (Singapore) — roughly ages 6 to 14.",
   },
   {
     q: "How does placement work?",

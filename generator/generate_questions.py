@@ -153,8 +153,10 @@ def main() -> None:
                 messages=[{"role": "user", "content": f"Generate {args.target} questions now."}],
                 output_format=QuestionSet,
             )
-        except anthropic.APIError as e:
-            print(f"✗ {s['code']}: API error — {e}")
+        except Exception as e:
+            # One bad skill (API error, parse/validation hiccup, etc.) must not
+            # kill the whole run — log it and move on.
+            print(f"✗ {s['code']}: error — {type(e).__name__}: {e}")
             continue
 
         parsed = resp.parsed_output

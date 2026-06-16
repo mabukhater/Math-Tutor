@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { initPlacement, recordAnswer, MAX_STEPS } from "@/lib/placement";
 import { loadLadder, pickQuestion, toPublic } from "@/lib/placementServer";
+import { gradeLabel } from "@/lib/curriculum";
 
 interface AskedEntry {
   index: number;
@@ -120,11 +121,11 @@ export async function POST(req: Request) {
     const meta = metaByIndex[estimatedIndex];
     const { data: cur } = await admin
       .from("curricula")
-      .select("grade_noun, grade_offset")
+      .select("code, grade_noun, grade_offset")
       .eq("id", student.curriculum_id)
       .single();
     const placedGrade = meta?.grade ?? student.nominal_grade;
-    const placedGradeLabel = `${cur?.grade_noun ?? "Grade"} ${placedGrade + (cur?.grade_offset ?? 0)}`;
+    const placedGradeLabel = gradeLabel(cur?.grade_noun, cur?.grade_offset, placedGrade, cur?.code);
     return NextResponse.json({
       done: true,
       correct,

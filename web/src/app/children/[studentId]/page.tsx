@@ -30,14 +30,14 @@ export default async function ChildDashboard({
   const { data: student } = await supabase
     .from("students")
     .select(
-      "id, display_name, nominal_grade, curriculum_id, current_skill_index, placement_completed, curricula(name, grade_noun, grade_offset)",
+      "id, display_name, nominal_grade, curriculum_id, current_skill_index, placement_completed, curricula(code, name, grade_noun, grade_offset)",
     )
     .eq("id", studentId)
     .single();
   if (!student) notFound();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const cur = student.curricula as any;
-  const levelLabel = gradeLabel(cur?.grade_noun, cur?.grade_offset, student.nominal_grade);
+  const levelLabel = gradeLabel(cur?.grade_noun, cur?.grade_offset, student.nominal_grade, cur?.code);
 
   const initial = student.display_name.charAt(0).toUpperCase();
 
@@ -178,7 +178,7 @@ export default async function ChildDashboard({
             {(allCurricula ?? []).map((c) => (
               <div className="xc-item" key={c.code}>
                 <div className="xc-sys">{c.name}</div>
-                <div className="xc-lvl">{gradeLabel(c.grade_noun, c.grade_offset, workingLevel)}</div>
+                <div className="xc-lvl">{gradeLabel(c.grade_noun, c.grade_offset, workingLevel, c.code)}</div>
               </div>
             ))}
           </div>

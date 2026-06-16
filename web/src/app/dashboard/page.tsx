@@ -18,7 +18,7 @@ export default async function Dashboard() {
   const { data: students } = await supabase
     .from("students")
     .select(
-      "id, display_name, nominal_grade, placement_completed, current_skill_index, telegram_chat_id, curricula(name, grade_noun, grade_offset)",
+      "id, display_name, nominal_grade, placement_completed, current_skill_index, telegram_chat_id, curricula(code, name, grade_noun, grade_offset)",
     )
     .order("created_at", { ascending: true });
 
@@ -54,6 +54,8 @@ export default async function Dashboard() {
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       (s.curricula as any)?.grade_offset,
                       s.nominal_grade,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (s.curricula as any)?.code,
                     )}
                   </span>
                   <div className="muted" style={{ fontSize: "0.82rem" }}>

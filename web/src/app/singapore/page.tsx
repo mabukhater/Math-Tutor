@@ -5,7 +5,7 @@ import { getCurriculumInfo } from "@/content/curriculaInfo";
 const INFO = getCurriculumInfo("singapore")!;
 
 export const metadata: Metadata = {
-  title: "Singapore Math Practice (Primary 3–5) — Math Tutor",
+  title: "Singapore Math Practice (Primary 1–6 & Secondary 1–2) — Math Tutor",
   description: INFO.intro,
 };
 

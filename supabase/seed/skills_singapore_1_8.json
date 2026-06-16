@@ -1,0 +1,564 @@
+{
+  "curriculum_code": "singapore",
+  "note": "Full grades 1-8 ladder. Ordered list IS the ladder; sequence_position assigned from index 0..N at seed time.",
+  "skills": [
+    {
+      "grade": 1,
+      "domain": "Whole Numbers",
+      "code": "SG.P1.WN.1",
+      "name": "Count, read and write numbers to 100"
+    },
+    {
+      "grade": 1,
+      "domain": "Whole Numbers",
+      "code": "SG.P1.WN.2",
+      "name": "Compare and order numbers within 100"
+    },
+    {
+      "grade": 1,
+      "domain": "Whole Numbers",
+      "code": "SG.P1.WN.3",
+      "name": "Number bonds within 10"
+    },
+    {
+      "grade": 1,
+      "domain": "Addition & Subtraction",
+      "code": "SG.P1.AS.1",
+      "name": "Add and subtract within 20"
+    },
+    {
+      "grade": 1,
+      "domain": "Addition & Subtraction",
+      "code": "SG.P1.AS.2",
+      "name": "Add and subtract within 100"
+    },
+    {
+      "grade": 1,
+      "domain": "Multiplication & Division",
+      "code": "SG.P1.MD.1",
+      "name": "Multiplication as repeated addition (groups of)"
+    },
+    {
+      "grade": 1,
+      "domain": "Geometry",
+      "code": "SG.P1.GE.1",
+      "name": "Identify and sort basic 2D and 3D shapes"
+    },
+    {
+      "grade": 1,
+      "domain": "Measurement",
+      "code": "SG.P1.ME.1",
+      "name": "Compare and measure length using non-standard units"
+    },
+    {
+      "grade": 1,
+      "domain": "Measurement",
+      "code": "SG.P1.ME.2",
+      "name": "Tell time to the hour and half hour"
+    },
+    {
+      "grade": 1,
+      "domain": "Money",
+      "code": "SG.P1.MO.1",
+      "name": "Recognise and count coins and notes"
+    },
+    {
+      "grade": 1,
+      "domain": "Statistics",
+      "code": "SG.P1.ST.1",
+      "name": "Read and interpret picture graphs"
+    },
+    {
+      "grade": 2,
+      "domain": "Whole Numbers",
+      "code": "SG.P2.WN.1",
+      "name": "Count, read and write numbers to 1000"
+    },
+    {
+      "grade": 2,
+      "domain": "Whole Numbers",
+      "code": "SG.P2.WN.2",
+      "name": "Place value of hundreds, tens and ones"
+    },
+    {
+      "grade": 2,
+      "domain": "Whole Numbers",
+      "code": "SG.P2.WN.3",
+      "name": "Compare and order numbers within 1000"
+    },
+    {
+      "grade": 2,
+      "domain": "Addition & Subtraction",
+      "code": "SG.P2.AS.1",
+      "name": "Add and subtract within 1000 with renaming"
+    },
+    {
+      "grade": 2,
+      "domain": "Multiplication & Division",
+      "code": "SG.P2.MD.1",
+      "name": "Multiplication tables of 2, 3, 4, 5 and 10"
+    },
+    {
+      "grade": 2,
+      "domain": "Multiplication & Division",
+      "code": "SG.P2.MD.2",
+      "name": "Divide using known multiplication facts"
+    },
+    {
+      "grade": 2,
+      "domain": "Fractions",
+      "code": "SG.P2.FR.1",
+      "name": "Recognise and name halves, quarters and thirds"
+    },
+    {
+      "grade": 2,
+      "domain": "Geometry",
+      "code": "SG.P2.GE.1",
+      "name": "Identify shapes, lines and curves; make patterns"
+    },
+    {
+      "grade": 2,
+      "domain": "Measurement",
+      "code": "SG.P2.ME.1",
+      "name": "Measure length in metres and centimetres"
+    },
+    {
+      "grade": 2,
+      "domain": "Measurement",
+      "code": "SG.P2.ME.2",
+      "name": "Measure mass in kilograms and grams"
+    },
+    {
+      "grade": 2,
+      "domain": "Measurement",
+      "code": "SG.P2.ME.3",
+      "name": "Tell time to 5 minutes and use a.m./p.m."
+    },
+    {
+      "grade": 2,
+      "domain": "Money",
+      "code": "SG.P2.MO.1",
+      "name": "Count money and make change in dollars and cents"
+    },
+    {
+      "grade": 2,
+      "domain": "Statistics",
+      "code": "SG.P2.ST.1",
+      "name": "Read and interpret picture graphs with scales"
+    },
+    {
+      "grade": 3,
+      "domain": "Whole Numbers",
+      "code": "SG.P3.WN.1",
+      "name": "Place value of numbers up to 10,000"
+    },
+    {
+      "grade": 3,
+      "domain": "Whole Numbers",
+      "code": "SG.P3.WN.2",
+      "name": "Add and subtract within 10,000 with renaming"
+    },
+    {
+      "grade": 3,
+      "domain": "Multiplication & Division",
+      "code": "SG.P3.MD.1",
+      "name": "Multiplication tables of 6, 7, 8 and 9"
+    },
+    {
+      "grade": 3,
+      "domain": "Multiplication & Division",
+      "code": "SG.P3.MD.2",
+      "name": "Multiply and divide 2- and 3-digit numbers by a 1-digit number"
+    },
+    {
+      "grade": 3,
+      "domain": "Fractions",
+      "code": "SG.P3.FR.1",
+      "name": "Equivalent fractions and comparing fractions"
+    },
+    {
+      "grade": 3,
+      "domain": "Fractions",
+      "code": "SG.P3.FR.2",
+      "name": "Add and subtract like fractions"
+    },
+    {
+      "grade": 3,
+      "domain": "Money",
+      "code": "SG.P3.MO.1",
+      "name": "Add and subtract money in dollars and cents"
+    },
+    {
+      "grade": 3,
+      "domain": "Measurement",
+      "code": "SG.P3.ME.1",
+      "name": "Length, mass and volume in metric units"
+    },
+    {
+      "grade": 3,
+      "domain": "Area & Perimeter",
+      "code": "SG.P3.AP.1",
+      "name": "Find the area and perimeter of figures"
+    },
+    {
+      "grade": 3,
+      "domain": "Geometry",
+      "code": "SG.P3.GE.1",
+      "name": "Identify angles, perpendicular and parallel lines"
+    },
+    {
+      "grade": 3,
+      "domain": "Statistics",
+      "code": "SG.P3.ST.1",
+      "name": "Read and interpret bar graphs"
+    },
+    {
+      "grade": 4,
+      "domain": "Whole Numbers",
+      "code": "SG.P4.WN.1",
+      "name": "Numbers up to 100,000 and rounding"
+    },
+    {
+      "grade": 4,
+      "domain": "Whole Numbers",
+      "code": "SG.P4.WN.2",
+      "name": "Factors and multiples"
+    },
+    {
+      "grade": 4,
+      "domain": "Multiplication & Division",
+      "code": "SG.P4.MD.1",
+      "name": "Multiply and divide by a 2-digit number"
+    },
+    {
+      "grade": 4,
+      "domain": "Fractions",
+      "code": "SG.P4.FR.1",
+      "name": "Mixed numbers and improper fractions"
+    },
+    {
+      "grade": 4,
+      "domain": "Fractions",
+      "code": "SG.P4.FR.2",
+      "name": "Add and subtract related fractions"
+    },
+    {
+      "grade": 4,
+      "domain": "Decimals",
+      "code": "SG.P4.DE.1",
+      "name": "Decimals up to 3 decimal places"
+    },
+    {
+      "grade": 4,
+      "domain": "Decimals",
+      "code": "SG.P4.DE.2",
+      "name": "Add and subtract decimals"
+    },
+    {
+      "grade": 4,
+      "domain": "Measurement",
+      "code": "SG.P4.ME.1",
+      "name": "Area and perimeter of squares and rectangles"
+    },
+    {
+      "grade": 4,
+      "domain": "Geometry",
+      "code": "SG.P4.GE.1",
+      "name": "Measure and draw angles and identify symmetry"
+    },
+    {
+      "grade": 4,
+      "domain": "Statistics",
+      "code": "SG.P4.ST.1",
+      "name": "Read and interpret tables and line graphs"
+    },
+    {
+      "grade": 5,
+      "domain": "Whole Numbers",
+      "code": "SG.P5.WN.1",
+      "name": "Numbers to 10 million and order of operations"
+    },
+    {
+      "grade": 5,
+      "domain": "Fractions",
+      "code": "SG.P5.FR.1",
+      "name": "Add and subtract unlike fractions"
+    },
+    {
+      "grade": 5,
+      "domain": "Fractions",
+      "code": "SG.P5.FR.2",
+      "name": "Multiply and divide fractions"
+    },
+    {
+      "grade": 5,
+      "domain": "Decimals",
+      "code": "SG.P5.DE.1",
+      "name": "Multiply and divide decimals"
+    },
+    {
+      "grade": 5,
+      "domain": "Percentage",
+      "code": "SG.P5.PE.1",
+      "name": "Express and find the percentage of a quantity"
+    },
+    {
+      "grade": 5,
+      "domain": "Ratio",
+      "code": "SG.P5.RA.1",
+      "name": "Equivalent ratios and ratio problems"
+    },
+    {
+      "grade": 5,
+      "domain": "Rate",
+      "code": "SG.P5.RT.1",
+      "name": "Solve problems involving rate"
+    },
+    {
+      "grade": 5,
+      "domain": "Area & Volume",
+      "code": "SG.P5.AV.1",
+      "name": "Area of a triangle and volume of a cuboid"
+    },
+    {
+      "grade": 5,
+      "domain": "Geometry",
+      "code": "SG.P5.GE.1",
+      "name": "Angles on a line, at a point, and in shapes"
+    },
+    {
+      "grade": 5,
+      "domain": "Statistics",
+      "code": "SG.P5.ST.1",
+      "name": "Find the average of a set of data"
+    },
+    {
+      "grade": 6,
+      "domain": "Algebra",
+      "code": "SG.P6.AL.1",
+      "name": "Use letters to represent unknowns and write expressions"
+    },
+    {
+      "grade": 6,
+      "domain": "Algebra",
+      "code": "SG.P6.AL.2",
+      "name": "Evaluate simple algebraic expressions by substitution"
+    },
+    {
+      "grade": 6,
+      "domain": "Area & Volume",
+      "code": "SG.P6.AV.1",
+      "name": "Find area and circumference of a circle"
+    },
+    {
+      "grade": 6,
+      "domain": "Area & Volume",
+      "code": "SG.P6.AV.2",
+      "name": "Find volume of cubes and cuboids and liquid volume"
+    },
+    {
+      "grade": 6,
+      "domain": "Fractions",
+      "code": "SG.P6.FR.1",
+      "name": "Divide a whole number or fraction by a fraction"
+    },
+    {
+      "grade": 6,
+      "domain": "Fractions",
+      "code": "SG.P6.FR.2",
+      "name": "Solve word problems involving the four operations on fractions"
+    },
+    {
+      "grade": 6,
+      "domain": "Percentage",
+      "code": "SG.P6.PC.1",
+      "name": "Find the whole given a part and the percentage"
+    },
+    {
+      "grade": 6,
+      "domain": "Percentage",
+      "code": "SG.P6.PC.2",
+      "name": "Solve percentage problems involving increase and decrease"
+    },
+    {
+      "grade": 6,
+      "domain": "Ratio & Rate",
+      "code": "SG.P6.RA.1",
+      "name": "Express and simplify ratios and find equivalent ratios"
+    },
+    {
+      "grade": 6,
+      "domain": "Ratio & Rate",
+      "code": "SG.P6.RA.2",
+      "name": "Relate ratio to fractions and solve ratio word problems"
+    },
+    {
+      "grade": 6,
+      "domain": "Speed",
+      "code": "SG.P6.SP.1",
+      "name": "Understand speed and relate distance, time and speed"
+    },
+    {
+      "grade": 6,
+      "domain": "Speed",
+      "code": "SG.P6.SP.2",
+      "name": "Compute average speed in word problems"
+    },
+    {
+      "grade": 7,
+      "domain": "Whole Numbers",
+      "code": "SG.S1.WN.1",
+      "name": "Primes, prime factorisation, HCF and LCM"
+    },
+    {
+      "grade": 7,
+      "domain": "Integers & Rational Numbers",
+      "code": "SG.S1.NU.1",
+      "name": "Operations on integers including negative numbers"
+    },
+    {
+      "grade": 7,
+      "domain": "Integers & Rational Numbers",
+      "code": "SG.S1.NU.2",
+      "name": "Operations on rational numbers and real numbers"
+    },
+    {
+      "grade": 7,
+      "domain": "Algebra",
+      "code": "SG.S1.AL.1",
+      "name": "Construct and simplify algebraic expressions"
+    },
+    {
+      "grade": 7,
+      "domain": "Algebra",
+      "code": "SG.S1.AL.2",
+      "name": "Expand and factorise simple linear expressions"
+    },
+    {
+      "grade": 7,
+      "domain": "Algebra",
+      "code": "SG.S1.AL.3",
+      "name": "Solve linear equations in one variable"
+    },
+    {
+      "grade": 7,
+      "domain": "Ratio & Rate",
+      "code": "SG.S1.RA.1",
+      "name": "Solve problems involving ratio, rate and proportion"
+    },
+    {
+      "grade": 7,
+      "domain": "Percentage",
+      "code": "SG.S1.PC.1",
+      "name": "Solve percentage problems including reverse percentage"
+    },
+    {
+      "grade": 7,
+      "domain": "Geometry",
+      "code": "SG.S1.GE.1",
+      "name": "Angles at a point, on a line and with parallel lines"
+    },
+    {
+      "grade": 7,
+      "domain": "Geometry",
+      "code": "SG.S1.GE.2",
+      "name": "Angle properties of triangles and polygons"
+    },
+    {
+      "grade": 7,
+      "domain": "Area & Volume",
+      "code": "SG.S1.AV.1",
+      "name": "Perimeter and area of plane figures including circles"
+    },
+    {
+      "grade": 7,
+      "domain": "Area & Volume",
+      "code": "SG.S1.AV.2",
+      "name": "Volume and surface area of prisms and cylinders"
+    },
+    {
+      "grade": 7,
+      "domain": "Statistics",
+      "code": "SG.S1.ST.1",
+      "name": "Collect, organise and represent data in statistical diagrams"
+    },
+    {
+      "grade": 7,
+      "domain": "Graphs & Functions",
+      "code": "SG.S1.GF.1",
+      "name": "Plot and interpret linear graphs in the Cartesian plane"
+    },
+    {
+      "grade": 8,
+      "domain": "Algebra",
+      "code": "SG.S2.AL.1",
+      "name": "Expand products of algebraic expressions"
+    },
+    {
+      "grade": 8,
+      "domain": "Algebra",
+      "code": "SG.S2.AL.2",
+      "name": "Factorise quadratic expressions"
+    },
+    {
+      "grade": 8,
+      "domain": "Algebra",
+      "code": "SG.S2.AL.3",
+      "name": "Add, subtract, multiply and divide algebraic fractions"
+    },
+    {
+      "grade": 8,
+      "domain": "Algebra",
+      "code": "SG.S2.AL.4",
+      "name": "Change the subject of a formula"
+    },
+    {
+      "grade": 8,
+      "domain": "Graphs & Functions",
+      "code": "SG.S2.GF.1",
+      "name": "Graphs of linear functions and gradient"
+    },
+    {
+      "grade": 8,
+      "domain": "Graphs & Functions",
+      "code": "SG.S2.GF.2",
+      "name": "Solve simultaneous linear equations graphically and algebraically"
+    },
+    {
+      "grade": 8,
+      "domain": "Proportion",
+      "code": "SG.S2.PR.1",
+      "name": "Direct and inverse proportion"
+    },
+    {
+      "grade": 8,
+      "domain": "Percentage",
+      "code": "SG.S2.PC.1",
+      "name": "Apply percentage to profit, loss, discount and interest"
+    },
+    {
+      "grade": 8,
+      "domain": "Geometry",
+      "code": "SG.S2.GE.1",
+      "name": "Congruence and similarity of figures"
+    },
+    {
+      "grade": 8,
+      "domain": "Geometry",
+      "code": "SG.S2.GE.2",
+      "name": "Pythagoras' theorem and its applications"
+    },
+    {
+      "grade": 8,
+      "domain": "Area & Volume",
+      "code": "SG.S2.AV.1",
+      "name": "Volume and surface area of pyramids, cones and spheres"
+    },
+    {
+      "grade": 8,
+      "domain": "Statistics",
+      "code": "SG.S2.ST.1",
+      "name": "Interpret data and compute mean, median and mode"
+    }
+  ]
+}

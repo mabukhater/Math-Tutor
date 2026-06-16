@@ -117,15 +117,15 @@ export default async function Landing() {
         <div className="curricula-row">
           <div className="curr-card c1">
             <div className="curr-name">US Common Core</div>
-            <div className="curr-lvl">Grades 3–5</div>
+            <div className="curr-lvl">Grades 1–8</div>
           </div>
           <div className="curr-card c2">
             <div className="curr-name">UK National Curriculum</div>
-            <div className="curr-lvl">Years 4–6</div>
+            <div className="curr-lvl">Years 2–9</div>
           </div>
           <div className="curr-card c3">
             <div className="curr-name">Singapore Math</div>
-            <div className="curr-lvl">Primary 3–5</div>
+            <div className="curr-lvl">Primary 1–6 & Secondary 1–2</div>
           </div>
         </div>
       </section>

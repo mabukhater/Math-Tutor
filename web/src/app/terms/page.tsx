@@ -11,7 +11,7 @@ const BODY = `These terms govern your use of Math Tutor. By creating an account 
 
 ## The service
 
-Math Tutor provides curriculum-aligned math placement and daily practice for children in grades 3–5. Features may change as we improve the product.
+Math Tutor provides curriculum-aligned math placement and daily practice for children in grades 1–8. Features may change as we improve the product.
 
 ## Accounts
 

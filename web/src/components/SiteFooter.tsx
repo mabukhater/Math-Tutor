@@ -35,7 +35,7 @@ export function SiteFooter() {
       </div>
       <div className="footer-base">
         © {new Date().getFullYear()} Math Tutor · Curriculum-aligned daily math practice for
-        grades 3–5.
+        grades 1–8.
       </div>
     </footer>
   );

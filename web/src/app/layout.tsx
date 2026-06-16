@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Math Tutor — daily math that follows your child",
-  description: "Curriculum-aligned daily math practice for grades 3–5.",
+  description: "Curriculum-aligned daily math practice for grades 1–8.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

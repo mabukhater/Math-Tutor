@@ -9,9 +9,14 @@ export const metadata: Metadata = {
 };
 
 const EQUIV = [
+  { age: "≈ 6–7", us: "Grade 1", uk: "Year 2", sg: "Primary 1" },
+  { age: "≈ 7–8", us: "Grade 2", uk: "Year 3", sg: "Primary 2" },
   { age: "≈ 8–9", us: "Grade 3", uk: "Year 4", sg: "Primary 3" },
   { age: "≈ 9–10", us: "Grade 4", uk: "Year 5", sg: "Primary 4" },
   { age: "≈ 10–11", us: "Grade 5", uk: "Year 6", sg: "Primary 5" },
+  { age: "≈ 11–12", us: "Grade 6", uk: "Year 7", sg: "Primary 6" },
+  { age: "≈ 12–13", us: "Grade 7", uk: "Year 8", sg: "Secondary 1" },
+  { age: "≈ 13–14", us: "Grade 8", uk: "Year 9", sg: "Secondary 2" },
 ];
 
 export default function Curricula() {
@@ -27,21 +32,21 @@ export default function Curricula() {
         <div className="curricula-row" style={{ marginTop: "1.5rem" }}>
           <div className="curr-card c1">
             <div className="curr-name">US Common Core</div>
-            <div className="curr-lvl">Grades 3–5</div>
+            <div className="curr-lvl">Grades 1–8</div>
             <p className="muted" style={{ marginTop: "0.6rem", fontSize: "0.88rem" }}>
               Depth over breadth — understanding the why, explaining reasoning.
             </p>
           </div>
           <div className="curr-card c2">
             <div className="curr-name">UK National Curriculum</div>
-            <div className="curr-lvl">Years 4–6</div>
+            <div className="curr-lvl">Years 2–9</div>
             <p className="muted" style={{ marginTop: "0.6rem", fontSize: "0.88rem" }}>
               Clear year-by-year objectives with strong arithmetic fluency.
             </p>
           </div>
           <div className="curr-card c3">
             <div className="curr-name">Singapore Math</div>
-            <div className="curr-lvl">Primary 3–5</div>
+            <div className="curr-lvl">Primary 1–6 & Secondary 1–2</div>
             <p className="muted" style={{ marginTop: "0.6rem", fontSize: "0.88rem" }}>
               Mastery-based — concrete to pictorial to abstract, bar models.
             </p>

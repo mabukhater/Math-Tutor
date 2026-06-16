@@ -11,7 +11,7 @@ const STEPS = [
   {
     n: "1",
     h: "Pick the curriculum and level",
-    p: "Choose US Common Core, the UK National Curriculum, or Singapore Math, and your child's level. We map it to a full skill ladder for grades 3–5.",
+    p: "Choose US Common Core, the UK National Curriculum, or Singapore Math, and your child's level. We map it to a full skill ladder for grades 1–8.",
   },
   {
     n: "2",
