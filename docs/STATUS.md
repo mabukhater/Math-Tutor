@@ -8,10 +8,11 @@
 5. **Grade band:** 3–5 (default accepted).
 
 ## Milestones
-- [~] **M0 — Scaffold.** Repo + schema + RLS + indexes written. Skill ladder
-      (75 CCSS skills, grades 3–5) authored as JSON + seed script.
-      **BLOCKED on a dedicated Supabase project** — see below. Nothing applied
-      to a live DB yet.
+- [x] **M0 — Scaffold.** APPLIED + VERIFIED on dedicated project
+      `gyaprlbdbzbpfulcanfa` (2026-06-15): 10 tables (all RLS on), 75 skills
+      (grade 3/4/5 = 24/27/24), sequence_position 0–74 contiguous. Repo pushed
+      to github.com/mabukhater/Math-Tutor. Applied via supabase/apply_migrations.py
+      over the session pooler.
 - [~] **M1 — Question bank.** Generator + vetting CLI written (code-complete).
       `generator/generate_questions.py` (Anthropic `claude-opus-4-8`, structured
       outputs → draft rows) and `generator/vet_questions.py` (human vet/retire).
