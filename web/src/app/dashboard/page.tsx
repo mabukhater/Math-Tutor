@@ -38,15 +38,18 @@ export default async function Dashboard() {
         {students?.map((s) => (
           <div className="list-item" key={s.id}>
             <div className="row">
-              <div>
-                <strong>{s.display_name}</strong>{" "}
-                <span className="muted">Grade {s.nominal_grade}</span>
-                <div className="muted" style={{ fontSize: "0.82rem" }}>
-                  {s.placement_completed
-                    ? s.telegram_chat_id
-                      ? "Placed · Telegram linked"
-                      : "Placed · not yet on Telegram"
-                    : "Placement not done"}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <div className="avatar">{s.display_name.charAt(0).toUpperCase()}</div>
+                <div>
+                  <strong>{s.display_name}</strong>{" "}
+                  <span className="muted">Grade {s.nominal_grade}</span>
+                  <div className="muted" style={{ fontSize: "0.82rem" }}>
+                    {s.placement_completed
+                      ? s.telegram_chat_id
+                        ? "Placed · Telegram linked"
+                        : "Placed · not yet on Telegram"
+                      : "Placement not done"}
+                  </div>
                 </div>
               </div>
               {s.placement_completed ? (

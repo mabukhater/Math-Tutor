@@ -3,6 +3,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { Check, Cross, Trophy } from "@/components/icons";
+
+const LETTERS = ["A", "B", "C", "D"];
 
 interface Question {
   id: string;
@@ -121,9 +124,12 @@ export default function Placement() {
   if (phase === "done" && result)
     return (
       <div className="wrap">
-        <div className="card">
+        <div className="card celebrate pop">
+          <div style={{ color: "var(--amber)", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
+            <Trophy size={44} />
+          </div>
           <span className="badge">Placement complete</span>
-          <h1 style={{ marginTop: "0.75rem" }}>
+          <h1 style={{ marginTop: "0.6rem" }}>
             We’ve placed {studentName || "your child"} at Grade {result.placedGrade}.
           </h1>
           <p className="sub">
@@ -154,8 +160,8 @@ export default function Placement() {
 
         {question?.options.map((opt, i) => {
           let cls = "opt";
-          if (phase === "feedback" && selected === i)
-            cls += feedback?.correct ? " correct" : " wrong";
+          const showMark = phase === "feedback" && selected === i;
+          if (showMark) cls += feedback?.correct ? " correct" : " wrong";
           return (
             <button
               key={i}
@@ -163,17 +169,24 @@ export default function Placement() {
               disabled={phase === "feedback"}
               onClick={() => answer(i)}
             >
+              <span className="opt-letter">{LETTERS[i]}</span>
               {opt}
+              {showMark && (
+                <span className="opt-mark">
+                  {feedback?.correct ? <Check size={20} /> : <Cross size={20} />}
+                </span>
+              )}
             </button>
           );
         })}
 
         {phase === "feedback" && feedback && (
           <>
-            <p style={{ marginTop: "1rem", fontWeight: 600 }}>
-              {feedback.correct ? "✓ Correct" : "✗ Not quite"}
-            </p>
-            <p className="muted">{feedback.explanation}</p>
+            <div className={"feedback-line " + (feedback.correct ? "ok" : "no")}>
+              {feedback.correct ? <Check size={20} /> : <Cross size={20} />}
+              {feedback.correct ? "Correct!" : "Not quite"}
+            </div>
+            <p className="muted" style={{ marginTop: "0.3rem" }}>{feedback.explanation}</p>
             <button className="btn" onClick={next}>
               {feedback.done ? "See result" : "Next question"}
             </button>

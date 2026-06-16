@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { Check, Cross, Flame, Trophy } from "@/components/icons";
+
+const LETTERS = ["A", "B", "C", "D"];
 
 interface Question {
   id: string;
@@ -120,17 +123,28 @@ export default function Practice() {
   if (phase === "done")
     return (
       <Shell>
-        <span className="badge">Done for today</span>
-        <h1 style={{ marginTop: "0.75rem" }}>
-          {total > 0 ? `${numCorrect}/${total} correct` : "Nothing due right now"}
-        </h1>
-        <p className="sub">
-          {streak > 0 ? `🔥 ${streak}-day streak. ` : ""}
-          {name ? `Great work, ${name}. ` : ""}Come back tomorrow for the next set.
-        </p>
-        <Link href="/dashboard" className="btn">
-          Back to dashboard
-        </Link>
+        <div className="celebrate pop">
+          <div style={{ color: "var(--amber)", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
+            <Trophy size={44} />
+          </div>
+          <div className="stat-big">
+            {total > 0 ? `${numCorrect}/${total}` : "All clear"}
+          </div>
+          <p className="sub" style={{ marginTop: "0.4rem" }}>
+            {total > 0 ? "correct today" : "Nothing due right now"}
+          </p>
+          {streak > 0 && (
+            <div className="streak-row">
+              <Flame size={16} /> {streak}-day streak
+            </div>
+          )}
+          <p className="sub" style={{ marginTop: "1rem" }}>
+            {name ? `Great work, ${name}! ` : ""}Come back tomorrow for the next set.
+          </p>
+          <Link href="/dashboard" className="btn">
+            Back to dashboard
+          </Link>
+        </div>
       </Shell>
     );
 
@@ -139,26 +153,40 @@ export default function Practice() {
       <div className="progress">
         <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
       </div>
-      <p className="muted">
-        Question {numCompleted + 1} of {total}
-        {streak > 0 ? ` · 🔥 ${streak}-day streak` : ""}
+      <p className="muted" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+        <span>
+          Question {numCompleted + 1} of {total}
+        </span>
+        {streak > 0 && (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: "0.2rem", color: "var(--amber)" }}>
+            · <Flame size={14} /> {streak}
+          </span>
+        )}
       </p>
       <h2 style={{ marginTop: "0.25rem" }}>{question?.stem}</h2>
       {question?.options.map((opt, i) => {
         let cls = "opt";
-        if (phase === "feedback" && selected === i) cls += feedback?.correct ? " correct" : " wrong";
+        const showMark = phase === "feedback" && selected === i;
+        if (showMark) cls += feedback?.correct ? " correct" : " wrong";
         return (
           <button key={i} className={cls} disabled={phase === "feedback"} onClick={() => answer(i)}>
+            <span className="opt-letter">{LETTERS[i]}</span>
             {opt}
+            {showMark && (
+              <span className="opt-mark">
+                {feedback?.correct ? <Check size={20} /> : <Cross size={20} />}
+              </span>
+            )}
           </button>
         );
       })}
       {phase === "feedback" && feedback && (
         <>
-          <p style={{ marginTop: "1rem", fontWeight: 600 }}>
-            {feedback.correct ? "✓ Correct" : "✗ Not quite"}
-          </p>
-          <p className="muted">{feedback.explanation}</p>
+          <div className={"feedback-line " + (feedback.correct ? "ok" : "no")}>
+            {feedback.correct ? <Check size={20} /> : <Cross size={20} />}
+            {feedback.correct ? "Correct!" : "Not quite"}
+          </div>
+          <p className="muted" style={{ marginTop: "0.3rem" }}>{feedback.explanation}</p>
           <button className="btn" onClick={next}>
             {feedback.done ? "See results" : "Next question"}
           </button>
