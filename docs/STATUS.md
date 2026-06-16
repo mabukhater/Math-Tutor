@@ -18,7 +18,13 @@
       outputs → draft rows) and `generator/vet_questions.py` (human vet/retire).
       **Not yet run** — needs the live DB + ANTHROPIC_API_KEY. Run once the
       dedicated Supabase project is connected.
-- [ ] **M2 — Web onboarding.** Auth → add child → adaptive placement → result.
+- [~] **M2 — Web onboarding.** Next.js app built + `next build` green (9 routes).
+      Supabase SSR auth (login/signup, middleware-gated), add-child, deterministic
+      placement engine (8/8 unit tests), server-side placement API (grades
+      server-side so correct_index never reaches the browser; seeds Leitner
+      progress on finish), result screen. Telegram-link page is an M3 placeholder.
+      **End-to-end placement run is gated on vetted questions** (engine + API are
+      done; they serve only status='vetted', and the bank is still all drafts).
 - [ ] **M3 — Telegram core.** Linking → scheduler → daily set → MCQ → SR updates.
 - [ ] **M4 — Parent dashboard.** Level, mastery map, streak, 7-day stats.
 - [ ] **M5 — Polish.** Timezones, /pause, error states.
