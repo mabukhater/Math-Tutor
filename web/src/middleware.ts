@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const protectedPrefixes = ["/dashboard", "/children", "/placement"];
+  const protectedPrefixes = ["/dashboard", "/children", "/placement", "/practice", "/vet"];
   const needsAuth = protectedPrefixes.some((p) => request.nextUrl.pathname.startsWith(p));
   if (needsAuth && !user) {
     const url = request.nextUrl.clone();

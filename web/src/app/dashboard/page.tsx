@@ -50,9 +50,14 @@ export default async function Dashboard() {
                 </div>
               </div>
               {s.placement_completed ? (
-                <Link href={`/children/${s.id}/link`} className="badge">
-                  {s.telegram_chat_id ? "Linked" : "Link Telegram"}
-                </Link>
+                <div style={{ display: "flex", gap: "0.6rem", alignItems: "center" }}>
+                  <Link href={`/practice/${s.id}`} className="badge">
+                    Practice
+                  </Link>
+                  <Link href={`/children/${s.id}/link`} className="muted" style={{ fontSize: "0.78rem" }}>
+                    {s.telegram_chat_id ? "Telegram ✓" : "Link Telegram"}
+                  </Link>
+                </div>
               ) : (
                 <Link href={`/placement/${s.id}`} className="badge">
                   Run placement

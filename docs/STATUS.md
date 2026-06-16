@@ -24,7 +24,13 @@
       progress on finish), result screen. Telegram-link page is an M3 placeholder.
       **End-to-end placement run is gated on vetted questions** (engine + API are
       done; they serve only status='vetted', and the bank is still all drafts).
+- [x] **Web practice (shared backend).** Daily-set composition + Leitner answer
+      loop built as surface-agnostic logic (`practice.ts` 8/8 tests) + server
+      (`practiceServer.ts`) + `/api/practice/today` & `/answer` + `/practice/[id]`
+      UI. All progress writes to the shared DB, so web/Telegram/future-app share
+      one tracked state. Telegram (M3) + native app will reuse these endpoints.
 - [ ] **M3 — Telegram core.** Linking → scheduler → daily set → MCQ → SR updates.
+      Will call the same practice backend (single source of truth).
 - [ ] **M4 — Parent dashboard.** Level, mastery map, streak, 7-day stats.
 - [ ] **M5 — Polish.** Timezones, /pause, error states.
 
