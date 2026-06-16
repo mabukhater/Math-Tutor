@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ensureParent } from "@/lib/parents";
+import { isAdminEmail } from "@/lib/adminAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -64,6 +65,14 @@ export default async function Dashboard() {
         <Link href="/children/new" className="btn" style={{ marginTop: "1.25rem" }}>
           Add a child
         </Link>
+
+        {isAdminEmail(user.email) && (
+          <p style={{ marginTop: "1rem", textAlign: "center" }}>
+            <Link href="/vet" className="muted">
+              Admin · vet questions →
+            </Link>
+          </p>
+        )}
       </div>
     </div>
   );
