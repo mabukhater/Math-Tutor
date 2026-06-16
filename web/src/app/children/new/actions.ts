@@ -12,15 +12,18 @@ export async function addChild(formData: FormData) {
 
   const display_name = String(formData.get("display_name") ?? "").trim();
   const nominal_grade = Number(formData.get("nominal_grade"));
-  if (!display_name || ![3, 4, 5].includes(nominal_grade)) {
+  const curriculum_id = String(formData.get("curriculum_id") ?? "");
+  if (!display_name || ![3, 4, 5].includes(nominal_grade) || !curriculum_id) {
     redirect("/children/new?error=1");
   }
 
+  // Validate the curriculum exists.
   const { data: curr } = await supabase
     .from("curricula")
     .select("id")
-    .eq("code", "common_core")
+    .eq("id", curriculum_id)
     .single();
+  if (!curr) redirect("/children/new?error=1");
 
   const { data: student, error } = await supabase
     .from("students")
@@ -28,7 +31,7 @@ export async function addChild(formData: FormData) {
       parent_id: user.id,
       display_name,
       nominal_grade,
-      curriculum_id: curr?.id,
+      curriculum_id,
     })
     .select("id")
     .single();

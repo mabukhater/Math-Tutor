@@ -58,10 +58,12 @@ class QuestionSet(BaseModel):
 
 
 SYSTEM_TEMPLATE = (
-    "You are a math curriculum specialist writing assessment items for US Common "
-    "Core, grade {grade}, skill {code} — \"{name}\". Generate {n} multiple-choice "
-    "questions for children aged about {age}.\n\n"
+    "You are a math curriculum specialist writing assessment items for the "
+    "{curriculum}, {grade_label}, skill {code} — \"{name}\". Generate {n} "
+    "multiple-choice questions for children aged about {age}.\n\n"
     "Rules:\n"
+    "- Match this curriculum's conventions and terminology (spelling, units, "
+    "currency, notation) for its country.\n"
     "- Exactly 4 options each. Exactly one correct.\n"
     "- Distractors must reflect realistic mistakes (common misconceptions), not "
     "random numbers.\n"
@@ -95,6 +97,7 @@ def main() -> None:
     ap.add_argument("--skill-code", help="restrict to a single skill code")
     ap.add_argument("--limit-skills", type=int, help="cap number of skills processed")
     ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--curriculum", help="restrict to one curriculum code (e.g. uk_national, singapore)")
     ap.add_argument("--force", action="store_true", help="generate even if skill already has enough")
     ap.add_argument("--dry-run", action="store_true", help="print, do not insert")
     args = ap.parse_args()
@@ -109,11 +112,15 @@ def main() -> None:
     sb = create_client(url, key)
     client = anthropic.Anthropic()
 
-    q = sb.table("skills").select("id, code, name, grade, domain").order("sequence_position")
+    q = sb.table("skills").select(
+        "id, code, name, grade, domain, curricula!inner(code, name, grade_noun, grade_offset)"
+    ).order("sequence_position")
     if args.grade is not None:
         q = q.eq("grade", args.grade)
     if args.skill_code:
         q = q.eq("code", args.skill_code)
+    if args.curriculum:
+        q = q.eq("curricula.code", args.curriculum)
     skills = q.execute().data
     if args.limit_skills:
         skills = skills[: args.limit_skills]
@@ -132,8 +139,11 @@ def main() -> None:
                 continue
 
         age = s["grade"] + 5
+        curr = s["curricula"]
+        grade_label = f"{curr['grade_noun']} {s['grade'] + curr['grade_offset']}"
         system = SYSTEM_TEMPLATE.format(
-            grade=s["grade"], code=s["code"], name=s["name"], n=args.target, age=age
+            curriculum=curr["name"], grade_label=grade_label,
+            code=s["code"], name=s["name"], n=args.target, age=age
         )
         try:
             resp = client.messages.parse(

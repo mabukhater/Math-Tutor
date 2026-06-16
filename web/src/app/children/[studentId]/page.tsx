@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { computeStreak } from "@/lib/practice";
+import { gradeLabel } from "@/lib/curriculum";
 import { Flame } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
@@ -28,10 +29,15 @@ export default async function ChildDashboard({
 
   const { data: student } = await supabase
     .from("students")
-    .select("id, display_name, nominal_grade, curriculum_id, current_skill_index, placement_completed")
+    .select(
+      "id, display_name, nominal_grade, curriculum_id, current_skill_index, placement_completed, curricula(name, grade_noun, grade_offset)",
+    )
     .eq("id", studentId)
     .single();
   if (!student) notFound();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const cur = student.curricula as any;
+  const levelLabel = gradeLabel(cur?.grade_noun, cur?.grade_offset, student.nominal_grade);
 
   const initial = student.display_name.charAt(0).toUpperCase();
 
@@ -133,7 +139,8 @@ export default async function ChildDashboard({
           <div>
             <h1 style={{ margin: 0 }}>{student.display_name}</h1>
             <p className="muted" style={{ fontSize: "0.9rem" }}>
-              Grade {student.nominal_grade}
+              {levelLabel}
+              {cur?.name ? ` · ${cur.name}` : ""}
               {curSkill ? ` · working on “${curSkill.name}”` : ""}
             </p>
           </div>

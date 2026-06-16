@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ensureParent } from "@/lib/parents";
 import { isAdminEmail } from "@/lib/adminAuth";
+import { gradeLabel } from "@/lib/curriculum";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,9 @@ export default async function Dashboard() {
 
   const { data: students } = await supabase
     .from("students")
-    .select("id, display_name, nominal_grade, placement_completed, current_skill_index, telegram_chat_id")
+    .select(
+      "id, display_name, nominal_grade, placement_completed, current_skill_index, telegram_chat_id, curricula(name, grade_noun, grade_offset)",
+    )
     .order("created_at", { ascending: true });
 
   return (
@@ -44,7 +47,15 @@ export default async function Dashboard() {
                   <Link href={`/children/${s.id}`}>
                     <strong>{s.display_name}</strong>
                   </Link>{" "}
-                  <span className="muted">Grade {s.nominal_grade}</span>
+                  <span className="muted">
+                    {gradeLabel(
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (s.curricula as any)?.grade_noun,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (s.curricula as any)?.grade_offset,
+                      s.nominal_grade,
+                    )}
+                  </span>
                   <div className="muted" style={{ fontSize: "0.82rem" }}>
                     {s.placement_completed
                       ? s.telegram_chat_id

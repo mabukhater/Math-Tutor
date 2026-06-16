@@ -1,0 +1,39 @@
+{
+  "curriculum_code": "singapore",
+  "note": "Singapore Math, Primary 3-5, mapped to internal levels 3/4/5 (Primary 3/4/5). Ordered list IS the ladder; sequence_position assigned from index.",
+  "skills": [
+    { "grade": 3, "domain": "Whole Numbers", "code": "SG.P3.WN.1", "name": "Place value of numbers up to 10,000" },
+    { "grade": 3, "domain": "Whole Numbers", "code": "SG.P3.WN.2", "name": "Add and subtract within 10,000 with renaming" },
+    { "grade": 3, "domain": "Multiplication & Division", "code": "SG.P3.MD.1", "name": "Multiplication tables of 6, 7, 8 and 9" },
+    { "grade": 3, "domain": "Multiplication & Division", "code": "SG.P3.MD.2", "name": "Multiply and divide 2- and 3-digit numbers by a 1-digit number" },
+    { "grade": 3, "domain": "Fractions", "code": "SG.P3.FR.1", "name": "Equivalent fractions and comparing fractions" },
+    { "grade": 3, "domain": "Fractions", "code": "SG.P3.FR.2", "name": "Add and subtract like fractions" },
+    { "grade": 3, "domain": "Money", "code": "SG.P3.MO.1", "name": "Add and subtract money in dollars and cents" },
+    { "grade": 3, "domain": "Measurement", "code": "SG.P3.ME.1", "name": "Length, mass and volume in metric units" },
+    { "grade": 3, "domain": "Area & Perimeter", "code": "SG.P3.AP.1", "name": "Find the area and perimeter of figures" },
+    { "grade": 3, "domain": "Geometry", "code": "SG.P3.GE.1", "name": "Identify angles, perpendicular and parallel lines" },
+    { "grade": 3, "domain": "Statistics", "code": "SG.P3.ST.1", "name": "Read and interpret bar graphs" },
+
+    { "grade": 4, "domain": "Whole Numbers", "code": "SG.P4.WN.1", "name": "Numbers up to 100,000 and rounding" },
+    { "grade": 4, "domain": "Whole Numbers", "code": "SG.P4.WN.2", "name": "Factors and multiples" },
+    { "grade": 4, "domain": "Multiplication & Division", "code": "SG.P4.MD.1", "name": "Multiply and divide by a 2-digit number" },
+    { "grade": 4, "domain": "Fractions", "code": "SG.P4.FR.1", "name": "Mixed numbers and improper fractions" },
+    { "grade": 4, "domain": "Fractions", "code": "SG.P4.FR.2", "name": "Add and subtract related fractions" },
+    { "grade": 4, "domain": "Decimals", "code": "SG.P4.DE.1", "name": "Decimals up to 3 decimal places" },
+    { "grade": 4, "domain": "Decimals", "code": "SG.P4.DE.2", "name": "Add and subtract decimals" },
+    { "grade": 4, "domain": "Measurement", "code": "SG.P4.ME.1", "name": "Area and perimeter of squares and rectangles" },
+    { "grade": 4, "domain": "Geometry", "code": "SG.P4.GE.1", "name": "Measure and draw angles and identify symmetry" },
+    { "grade": 4, "domain": "Statistics", "code": "SG.P4.ST.1", "name": "Read and interpret tables and line graphs" },
+
+    { "grade": 5, "domain": "Whole Numbers", "code": "SG.P5.WN.1", "name": "Numbers to 10 million and order of operations" },
+    { "grade": 5, "domain": "Fractions", "code": "SG.P5.FR.1", "name": "Add and subtract unlike fractions" },
+    { "grade": 5, "domain": "Fractions", "code": "SG.P5.FR.2", "name": "Multiply and divide fractions" },
+    { "grade": 5, "domain": "Decimals", "code": "SG.P5.DE.1", "name": "Multiply and divide decimals" },
+    { "grade": 5, "domain": "Percentage", "code": "SG.P5.PE.1", "name": "Express and find the percentage of a quantity" },
+    { "grade": 5, "domain": "Ratio", "code": "SG.P5.RA.1", "name": "Equivalent ratios and ratio problems" },
+    { "grade": 5, "domain": "Rate", "code": "SG.P5.RT.1", "name": "Solve problems involving rate" },
+    { "grade": 5, "domain": "Area & Volume", "code": "SG.P5.AV.1", "name": "Area of a triangle and volume of a cuboid" },
+    { "grade": 5, "domain": "Geometry", "code": "SG.P5.GE.1", "name": "Angles on a line, at a point, and in shapes" },
+    { "grade": 5, "domain": "Statistics", "code": "SG.P5.ST.1", "name": "Find the average of a set of data" }
+  ]
+}

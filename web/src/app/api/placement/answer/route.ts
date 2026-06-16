@@ -118,12 +118,20 @@ export async function POST(req: Request) {
         .upsert(seedRows, { onConflict: "student_id,skill_id", ignoreDuplicates: true });
 
     const meta = metaByIndex[estimatedIndex];
+    const { data: cur } = await admin
+      .from("curricula")
+      .select("grade_noun, grade_offset")
+      .eq("id", student.curriculum_id)
+      .single();
+    const placedGrade = meta?.grade ?? student.nominal_grade;
+    const placedGradeLabel = `${cur?.grade_noun ?? "Grade"} ${placedGrade + (cur?.grade_offset ?? 0)}`;
     return NextResponse.json({
       done: true,
       correct,
       explanation: q.explanation,
       estimatedIndex,
-      placedGrade: meta?.grade ?? student.nominal_grade,
+      placedGrade,
+      placedGradeLabel,
       placedSkillName: meta?.name ?? "",
     });
   }

@@ -23,7 +23,7 @@ except ImportError:
     sys.exit("Missing dependency: pip install supabase")
 
 HERE = Path(__file__).resolve().parent
-DATA = HERE / "skills_common_core_3_5.json"
+DEFAULT_DATA = HERE / "skills_common_core_3_5.json"
 
 
 def main() -> None:
@@ -32,7 +32,11 @@ def main() -> None:
     if not url or not key:
         sys.exit("Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY first.")
 
-    payload = json.loads(DATA.read_text())
+    # Optional path arg lets this seed any curriculum ladder (Common Core / UK / Singapore).
+    data_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_DATA
+    if not data_path.exists():
+        sys.exit(f"Ladder file not found: {data_path}")
+    payload = json.loads(data_path.read_text())
     curriculum_code = payload["curriculum_code"]
     skills = payload["skills"]
 

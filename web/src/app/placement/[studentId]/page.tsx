@@ -22,6 +22,7 @@ interface AnswerResp {
   question?: Question;
   estimatedIndex?: number;
   placedGrade?: number;
+  placedGradeLabel?: string;
   placedSkillName?: string;
 }
 
@@ -136,7 +137,8 @@ export default function Placement() {
           </div>
           <span className="badge">Placement complete</span>
           <h1 style={{ marginTop: "0.6rem" }}>
-            We’ve placed {studentName || "your child"} at Grade {result.placedGrade}.
+            We’ve placed {studentName || "your child"} at{" "}
+            {result.placedGradeLabel ?? `Grade ${result.placedGrade}`}.
           </h1>
           <p className="sub">
             Starting point: {result.placedSkillName}. Daily practice will begin here and

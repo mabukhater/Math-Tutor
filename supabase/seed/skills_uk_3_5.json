@@ -1,0 +1,42 @@
+{
+  "curriculum_code": "uk_national",
+  "note": "UK National Curriculum (Maths), Years 4-6, mapped to internal levels 3/4/5. Year = internal grade + 1 (Year 4/5/6). Ordered list IS the ladder; sequence_position assigned from index.",
+  "skills": [
+    { "grade": 3, "domain": "Number & Place Value", "code": "UK.Y4.NPV.1", "name": "Recognise place value in four-digit numbers" },
+    { "grade": 3, "domain": "Number & Place Value", "code": "UK.Y4.NPV.2", "name": "Round numbers to the nearest 10, 100 or 1000" },
+    { "grade": 3, "domain": "Number & Place Value", "code": "UK.Y4.NPV.3", "name": "Count backwards through zero with negative numbers" },
+    { "grade": 3, "domain": "Addition & Subtraction", "code": "UK.Y4.AS.1", "name": "Add and subtract four-digit numbers using written methods" },
+    { "grade": 3, "domain": "Multiplication & Division", "code": "UK.Y4.MD.1", "name": "Recall multiplication and division facts up to 12 × 12" },
+    { "grade": 3, "domain": "Multiplication & Division", "code": "UK.Y4.MD.2", "name": "Multiply two- and three-digit numbers by a one-digit number" },
+    { "grade": 3, "domain": "Fractions & Decimals", "code": "UK.Y4.FD.1", "name": "Recognise and find equivalent fractions" },
+    { "grade": 3, "domain": "Fractions & Decimals", "code": "UK.Y4.FD.2", "name": "Add and subtract fractions with the same denominator" },
+    { "grade": 3, "domain": "Fractions & Decimals", "code": "UK.Y4.FD.3", "name": "Understand decimals with one and two decimal places" },
+    { "grade": 3, "domain": "Measurement", "code": "UK.Y4.M.1", "name": "Convert between units of measure (e.g. kilometres to metres)" },
+    { "grade": 3, "domain": "Measurement", "code": "UK.Y4.M.2", "name": "Find the perimeter and area of rectilinear shapes" },
+    { "grade": 3, "domain": "Geometry", "code": "UK.Y4.G.1", "name": "Classify shapes and identify acute and obtuse angles" },
+    { "grade": 3, "domain": "Geometry", "code": "UK.Y4.G.2", "name": "Plot and describe coordinates in the first quadrant" },
+    { "grade": 3, "domain": "Statistics", "code": "UK.Y4.S.1", "name": "Interpret bar charts and time graphs" },
+
+    { "grade": 4, "domain": "Number & Place Value", "code": "UK.Y5.NPV.1", "name": "Read, write and order numbers to 1,000,000" },
+    { "grade": 4, "domain": "Number & Place Value", "code": "UK.Y5.NPV.2", "name": "Round numbers to the nearest power of 10" },
+    { "grade": 4, "domain": "Multiplication & Division", "code": "UK.Y5.MD.1", "name": "Multiply four-digit numbers by one- or two-digit numbers" },
+    { "grade": 4, "domain": "Multiplication & Division", "code": "UK.Y5.MD.2", "name": "Identify factors, multiples, primes, squares and cubes" },
+    { "grade": 4, "domain": "Fractions, Decimals & Percentages", "code": "UK.Y5.FDP.1", "name": "Add and subtract fractions with related denominators" },
+    { "grade": 4, "domain": "Fractions, Decimals & Percentages", "code": "UK.Y5.FDP.2", "name": "Multiply proper fractions by whole numbers" },
+    { "grade": 4, "domain": "Fractions, Decimals & Percentages", "code": "UK.Y5.FDP.3", "name": "Connect percentages to fractions and decimals" },
+    { "grade": 4, "domain": "Measurement", "code": "UK.Y5.M.1", "name": "Calculate area and perimeter and estimate volume" },
+    { "grade": 4, "domain": "Geometry", "code": "UK.Y5.G.1", "name": "Measure and draw angles in degrees" },
+    { "grade": 4, "domain": "Statistics", "code": "UK.Y5.S.1", "name": "Read and draw line graphs and tables" },
+
+    { "grade": 5, "domain": "Number & Operations", "code": "UK.Y6.NO.1", "name": "Use long multiplication and long division" },
+    { "grade": 5, "domain": "Number & Operations", "code": "UK.Y6.NO.2", "name": "Use the order of operations (BODMAS/BIDMAS)" },
+    { "grade": 5, "domain": "Fractions, Decimals & Percentages", "code": "UK.Y6.FDP.1", "name": "Add, subtract, multiply and divide fractions" },
+    { "grade": 5, "domain": "Fractions, Decimals & Percentages", "code": "UK.Y6.FDP.2", "name": "Convert between fractions, decimals and percentages" },
+    { "grade": 5, "domain": "Ratio & Proportion", "code": "UK.Y6.RP.1", "name": "Solve problems using ratio and proportion" },
+    { "grade": 5, "domain": "Ratio & Proportion", "code": "UK.Y6.RP.2", "name": "Use scale factors and find percentages of amounts" },
+    { "grade": 5, "domain": "Algebra", "code": "UK.Y6.A.1", "name": "Use simple formulae and generate linear sequences" },
+    { "grade": 5, "domain": "Measurement", "code": "UK.Y6.M.1", "name": "Find the area of triangles and parallelograms" },
+    { "grade": 5, "domain": "Geometry", "code": "UK.Y6.G.1", "name": "Identify parts of a circle and plot coordinates in four quadrants" },
+    { "grade": 5, "domain": "Statistics", "code": "UK.Y6.S.1", "name": "Interpret pie charts and calculate the mean" }
+  ]
+}
