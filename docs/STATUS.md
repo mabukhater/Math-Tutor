@@ -13,11 +13,10 @@
       (grade 3/4/5 = 24/27/24), sequence_position 0–74 contiguous. Repo pushed
       to github.com/mabukhater/Math-Tutor. Applied via supabase/apply_migrations.py
       over the session pooler.
-- [~] **M1 — Question bank.** Generator + vetting CLI written (code-complete).
-      `generator/generate_questions.py` (Anthropic `claude-opus-4-8`, structured
-      outputs → draft rows) and `generator/vet_questions.py` (human vet/retire).
-      **Not yet run** — needs the live DB + ANTHROPIC_API_KEY. Run once the
-      dedicated Supabase project is connected.
+- [x] **M1 — Question bank GENERATED.** 908 draft questions across all 75 skills
+      (claude-opus-4-8, structured outputs, all validated). Vetting pending —
+      `vet_questions.py` now has `--one-per-skill` for fast placement coverage.
+      Bot/web still serve only status='vetted'; everything is currently 'draft'.
 - [~] **M2 — Web onboarding.** Next.js app built + `next build` green (9 routes).
       Supabase SSR auth (login/signup, middleware-gated), add-child, deterministic
       placement engine (8/8 unit tests), server-side placement API (grades

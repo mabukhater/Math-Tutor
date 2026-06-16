@@ -46,6 +46,11 @@ def main() -> None:
     ap.add_argument("--grade", type=int)
     ap.add_argument("--skill-code")
     ap.add_argument("--stats", action="store_true")
+    ap.add_argument(
+        "--one-per-skill",
+        action="store_true",
+        help="review at most one draft per skill (prefers difficulty 3) — fastest path to full placement coverage",
+    )
     args = ap.parse_args()
 
     url = os.environ.get("SUPABASE_URL")
@@ -77,6 +82,16 @@ def main() -> None:
     if skill_ids is not None:
         dq = dq.in_("skill_id", skill_ids)
     drafts = dq.execute().data
+
+    if args.one_per_skill:
+        # Keep one draft per skill, preferring difficulty 3 (what placement uses).
+        best: dict = {}
+        for d in drafts:
+            sid = d["skill_id"]
+            cur = best.get(sid)
+            if cur is None or abs(d["difficulty"] - 3) < abs(cur["difficulty"] - 3):
+                best[sid] = d
+        drafts = list(best.values())
 
     if not drafts:
         print("No draft questions to review.")

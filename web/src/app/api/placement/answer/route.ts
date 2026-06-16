@@ -70,11 +70,29 @@ export async function POST(req: Request) {
     is_correct: correct,
   });
 
-  if (newState.done) {
-    const estimatedIndex = newState.estimatedIndex!;
+  // If the search continues, try to fetch the next question first. If the next
+  // rung has no vetted question yet (partial vetting), finalize gracefully at
+  // the best-known level rather than erroring mid-placement.
+  const clamp = (x: number) => Math.max(0, Math.min(x, newState.n));
+  let nextQ = null;
+  if (!newState.done) {
+    nextQ = await pickQuestion(
+      admin,
+      idByIndex[newState.estimate],
+      asked2.map((a) => a.question_id),
+    );
+  }
+
+  const mustFinish = newState.done || nextQ === null;
+  if (mustFinish) {
+    const estimatedIndex = newState.done ? newState.estimatedIndex! : clamp(newState.low);
     await admin
       .from("placement_sessions")
-      .update({ asked: asked2, completed_at: new Date().toISOString(), estimated_index: estimatedIndex })
+      .update({
+        asked: asked2,
+        completed_at: new Date().toISOString(),
+        estimated_index: estimatedIndex,
+      })
       .eq("id", sessionId);
     await admin
       .from("students")
@@ -86,12 +104,7 @@ export async function POST(req: Request) {
     const seedRows = [];
     for (let i = estimatedIndex - 1; i <= estimatedIndex + 2; i++) {
       if (idByIndex[i]) {
-        seedRows.push({
-          student_id: student.id,
-          skill_id: idByIndex[i],
-          box: 0,
-          next_due_at: now,
-        });
+        seedRows.push({ student_id: student.id, skill_id: idByIndex[i], box: 0, next_due_at: now });
       }
     }
     if (seedRows.length)
@@ -110,25 +123,14 @@ export async function POST(req: Request) {
     });
   }
 
-  // Not done — fetch the next question.
+  // Continue — record progress and serve the next question.
   await admin.from("placement_sessions").update({ asked: asked2 }).eq("id", sessionId);
-  const nextQ = await pickQuestion(
-    admin,
-    idByIndex[newState.estimate],
-    asked2.map((a) => a.question_id),
-  );
-  if (!nextQ)
-    return NextResponse.json(
-      { error: "no_vetted_question", skillIndex: newState.estimate },
-      { status: 422 },
-    );
-
   return NextResponse.json({
     done: false,
     correct,
     explanation: q.explanation,
     step: asked2.length + 1,
     maxSteps: MAX_STEPS,
-    question: toPublic(nextQ),
+    question: toPublic(nextQ!),
   });
 }
