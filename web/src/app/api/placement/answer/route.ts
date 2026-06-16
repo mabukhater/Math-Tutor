@@ -11,9 +11,13 @@ interface AskedEntry {
 }
 
 export async function POST(req: Request) {
-  const { sessionId, questionId, selectedIndex } = await req.json();
+  const { sessionId, questionId, selectedIndex, responseTimeMs } = await req.json();
   if (!sessionId || !questionId || typeof selectedIndex !== "number")
     return NextResponse.json({ error: "bad request" }, { status: 400 });
+  const rt =
+    typeof responseTimeMs === "number" && isFinite(responseTimeMs) && responseTimeMs >= 0
+      ? Math.min(Math.round(responseTimeMs), 3_600_000)
+      : null;
 
   const supabase = await createClient();
   const {
@@ -68,6 +72,7 @@ export async function POST(req: Request) {
     question_id: questionId,
     selected_index: selectedIndex,
     is_correct: correct,
+    response_time_ms: rt,
   });
 
   // If the search continues, try to fetch the next question first. If the next

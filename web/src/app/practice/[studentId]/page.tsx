@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Check, Cross, Flame, Trophy } from "@/components/icons";
@@ -41,6 +41,12 @@ export default function Practice() {
   const [question, setQuestion] = useState<Question | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<Resp | null>(null);
+  const shownAt = useRef(0);
+
+  // Reset the per-question timer whenever a new question is shown.
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, [question?.id]);
 
   const start = useCallback(async () => {
     setPhase("loading");
@@ -76,10 +82,11 @@ export default function Practice() {
   async function answer(i: number) {
     if (phase !== "question" || !question) return;
     setSelected(i);
+    const responseTimeMs = shownAt.current ? Date.now() - shownAt.current : null;
     const r = await fetch("/api/practice/answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId, questionId: question.id, selectedIndex: i }),
+      body: JSON.stringify({ studentId, questionId: question.id, selectedIndex: i, responseTimeMs }),
     });
     const d: Resp = await r.json();
     if (!r.ok) {

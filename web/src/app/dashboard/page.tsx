@@ -41,7 +41,9 @@ export default async function Dashboard() {
               <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <div className="avatar">{s.display_name.charAt(0).toUpperCase()}</div>
                 <div>
-                  <strong>{s.display_name}</strong>{" "}
+                  <Link href={`/children/${s.id}`}>
+                    <strong>{s.display_name}</strong>
+                  </Link>{" "}
                   <span className="muted">Grade {s.nominal_grade}</span>
                   <div className="muted" style={{ fontSize: "0.82rem" }}>
                     {s.placement_completed

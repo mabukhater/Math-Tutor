@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Check, Cross, Trophy } from "@/components/icons";
@@ -39,6 +39,11 @@ export default function Placement() {
   const [selected, setSelected] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<AnswerResp | null>(null);
   const [result, setResult] = useState<AnswerResp | null>(null);
+  const shownAt = useRef(0);
+
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, [question?.id]);
 
   const start = useCallback(async () => {
     setPhase("loading");
@@ -72,10 +77,11 @@ export default function Placement() {
   async function answer(i: number) {
     if (phase !== "question" || !question) return;
     setSelected(i);
+    const responseTimeMs = shownAt.current ? Date.now() - shownAt.current : null;
     const r = await fetch("/api/placement/answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId, questionId: question.id, selectedIndex: i }),
+      body: JSON.stringify({ sessionId, questionId: question.id, selectedIndex: i, responseTimeMs }),
     });
     const data: AnswerResp = await r.json();
     if (!r.ok) {

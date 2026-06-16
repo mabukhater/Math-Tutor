@@ -31,7 +31,7 @@
       one tracked state. Telegram (M3) + native app will reuse these endpoints.
 - [ ] **M3 — Telegram core.** Linking → scheduler → daily set → MCQ → SR updates.
       Will call the same practice backend (single source of truth).
-- [ ] **M4 — Parent dashboard.** Level, mastery map, streak, 7-day stats.
+- [x] **M4 — Parent dashboard.** Per-child progress page (/children/[id]): current level, streak, accuracy, skills-mastered, last-7-days view, and a Leitner mastery map grouped by domain. + response-time capture into attempts.response_time_ms (feeds question_stats.avg_response_ms).
 - [ ] **M5 — Polish.** Timezones, /pause, error states.
 
 ## Open blocker — Supabase project
