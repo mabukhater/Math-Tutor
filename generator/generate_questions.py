@@ -129,23 +129,25 @@ def main() -> None:
 
     total_inserted = 0
     for s in skills:
-        if not args.force:
-            existing = (
-                sb.table("questions").select("id", count="exact").eq("skill_id", s["id"]).execute()
-            )
-            have = existing.count or 0
-            if have >= args.target:
-                print(f"· {s['code']}: already has {have} — skipping")
-                continue
-
-        age = s["grade"] + 5
-        curr = s["curricula"]
-        grade_label = f"{curr['grade_noun']} {s['grade'] + curr['grade_offset']}"
-        system = SYSTEM_TEMPLATE.format(
-            curriculum=curr["name"], grade_label=grade_label,
-            code=s["code"], name=s["name"], n=args.target, age=age
-        )
+        # Wrap the ENTIRE per-skill body: a failure in the count query, the API
+        # call, validation, or the insert must never abort the whole run.
         try:
+            if not args.force:
+                existing = (
+                    sb.table("questions").select("id", count="exact").eq("skill_id", s["id"]).execute()
+                )
+                have = existing.count or 0
+                if have >= args.target:
+                    print(f"· {s['code']}: already has {have} — skipping")
+                    continue
+
+            age = s["grade"] + 5
+            curr = s["curricula"]
+            grade_label = f"{curr['grade_noun']} {s['grade'] + curr['grade_offset']}"
+            system = SYSTEM_TEMPLATE.format(
+                curriculum=curr["name"], grade_label=grade_label,
+                code=s["code"], name=s["name"], n=args.target, age=age
+            )
             resp = client.messages.parse(
                 model=args.model,
                 max_tokens=8000,
@@ -153,45 +155,40 @@ def main() -> None:
                 messages=[{"role": "user", "content": f"Generate {args.target} questions now."}],
                 output_format=QuestionSet,
             )
+            parsed = resp.parsed_output
+            if parsed is None:
+                print(f"✗ {s['code']}: no parseable output (stop_reason={resp.stop_reason})")
+                continue
+
+            rows, skipped = [], 0
+            for item in parsed.questions:
+                reason = valid(item)
+                if reason:
+                    skipped += 1
+                    continue
+                rows.append(
+                    {
+                        "skill_id": s["id"],
+                        "stem": item.stem.strip(),
+                        "options": item.options,
+                        "correct_index": item.correct_index,
+                        "explanation": item.explanation.strip(),
+                        "difficulty": item.difficulty,
+                        "status": "draft",
+                        "source": "ai_generated",
+                    }
+                )
+
+            if args.dry_run:
+                print(f"  {s['code']}: would insert {len(rows)} ({skipped} skipped)")
+                continue
+            if rows:
+                sb.table("questions").insert(rows).execute()
+                total_inserted += len(rows)
+            print(f"✓ {s['code']}: inserted {len(rows)} draft ({skipped} skipped)")
         except Exception as e:
-            # One bad skill (API error, parse/validation hiccup, etc.) must not
-            # kill the whole run — log it and move on.
             print(f"✗ {s['code']}: error — {type(e).__name__}: {e}")
             continue
-
-        parsed = resp.parsed_output
-        if parsed is None:
-            print(f"✗ {s['code']}: no parseable output (stop_reason={resp.stop_reason})")
-            continue
-
-        rows, skipped = [], 0
-        for item in parsed.questions:
-            reason = valid(item)
-            if reason:
-                skipped += 1
-                print(f"    skip ({reason})")
-                continue
-            rows.append(
-                {
-                    "skill_id": s["id"],
-                    "stem": item.stem.strip(),
-                    "options": item.options,
-                    "correct_index": item.correct_index,
-                    "explanation": item.explanation.strip(),
-                    "difficulty": item.difficulty,
-                    "status": "draft",
-                    "source": "ai_generated",
-                }
-            )
-
-        if args.dry_run:
-            print(f"  {s['code']}: would insert {len(rows)} ({skipped} skipped)")
-            continue
-
-        if rows:
-            sb.table("questions").insert(rows).execute()
-            total_inserted += len(rows)
-        print(f"✓ {s['code']}: inserted {len(rows)} draft ({skipped} skipped)")
 
     print(f"\nDone. {total_inserted} draft questions inserted. "
           f"Vet them with: python generator/vet_questions.py")
