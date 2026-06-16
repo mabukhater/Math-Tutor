@@ -6,9 +6,16 @@ export function SiteFooter() {
       <div className="footer-cols">
         <div>
           <div className="footer-h">Product</div>
-          <Link href="/#how">How it works</Link>
-          <Link href="/curricula">Curricula</Link>
+          <Link href="/how-it-works">How it works</Link>
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/demo">Try the demo</Link>
           <Link href="/login">Sign in</Link>
+        </div>
+        <div>
+          <div className="footer-h">Curricula</div>
+          <Link href="/us">US Common Core</Link>
+          <Link href="/uk">UK National</Link>
+          <Link href="/singapore">Singapore Math</Link>
         </div>
         <div>
           <div className="footer-h">Learn</div>
@@ -18,6 +25,7 @@ export function SiteFooter() {
         <div>
           <div className="footer-h">Company</div>
           <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </div>
         <div>
           <div className="footer-h">Legal</div>

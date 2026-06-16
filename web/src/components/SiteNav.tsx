@@ -15,10 +15,10 @@ export function SiteNav() {
         Math Tutor
       </Link>
       <div className="site-links">
+        <Link href="/how-it-works">How it works</Link>
         <Link href="/curricula">Curricula</Link>
+        <Link href="/pricing">Pricing</Link>
         <Link href="/blog">Blog</Link>
-        <Link href="/about">About</Link>
-        <Link href="/faq">FAQ</Link>
         <Link href="/login" className="site-cta">
           Sign in
         </Link>
