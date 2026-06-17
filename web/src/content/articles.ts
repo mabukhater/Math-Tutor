@@ -1,11 +1,12 @@
 export interface Article {
   slug: string;
-  title: string;
+  title: string; // H1
+  metaTitle?: string; // optional <title> override (else `${title} — Math Tutor`)
   category: string;
   readMinutes: number;
-  date: string; // ISO date, used for display + ordering
-  excerpt: string;
+  excerpt: string; // meta description + listing blurb
   body: string; // markdown (## / ### headings, paragraphs, "- " bullets)
+  date?: string; // unused/vestigial — dates are no longer displayed
 }
 
 export const ARTICLES: Article[] = [
@@ -421,8 +422,647 @@ Mental math grows through low-pressure, everyday practice:
 
 Calculators are not the enemy, and your child should learn to use them well. But they work best in the hands of someone who already understands the numbers. By keeping mental math alive in grades 3 through 5, you give your child both the tool and the wisdom to use it.`,
   },
+  {
+    slug: "how-to-help-your-child-with-math-at-home",
+    title: "How to Help Your Child With Math at Home",
+    metaTitle: "How to Help Your Child With Math at Home",
+    category: "Parent Guides",
+    readMinutes: 6,
+    excerpt:
+      "Learn how to help your child with math at home, even if you're not a math person. Practical, calm tips parents can start using tonight.",
+    body: `If you want to help your child with math at home but feel rusty yourself, take a breath: you do not need to be a math expert to make a real difference. What children need most is a calm, encouraging adult who shows up regularly and treats mistakes as part of learning. The methods your child uses may look different from the ones you grew up with, and that is okay. Your job is not to be the teacher. It is to be the steady, curious partner who helps math feel doable.
+
+This guide gives you simple, low-pressure ways to support your child, whether they are working through US Common Core, the UK National Curriculum, or Singapore Math.
+
+## Start by Keeping Math Calm and Positive
+
+Children pick up on our attitudes quickly. If you sigh, joke that you were "never a math person," or tense up, your child learns that math is something to fear. Try to keep your tone light and steady, even when a problem is hard.
+
+A few things that help:
+
+- Praise effort and strategy, not just right answers: "I like how you tried two ways."
+- Let mistakes be normal. Say, "Wrong answers help us find what to practice."
+- Avoid rushing. Anxiety rises when kids feel timed or judged.
+
+When math time feels safe, children are far more willing to keep going when it gets tricky.
+
+## Build a Simple Daily Math Routine
+
+Short and consistent beats long and occasional. Ten to fifteen focused minutes a day usually does more than an hour once a week, because math skills grow through regular practice and review.
+
+To build a routine that lasts:
+
+- Pick a consistent time, such as right after a snack or before screen time.
+- Keep sessions short so they end before frustration sets in.
+- Use a mix of new practice and review of older skills.
+- End on a small win so your child leaves feeling capable.
+
+Consistency also makes math feel ordinary and expected, rather than a battle you negotiate every day.
+
+## Let Your Child Explain Their Thinking
+
+One of the most powerful things you can do costs nothing: ask your child to talk you through a problem. When kids explain their reasoning out loud, they catch their own errors, deepen understanding, and build confidence.
+
+Try open questions like:
+
+- "How did you figure that out?"
+- "Can you show me another way?"
+- "What part feels confusing?"
+
+If they get stuck, resist the urge to jump in with the answer. Instead, ask a smaller question that nudges them toward the next step.
+
+## Use Everyday Life as Math Practice
+
+Math does not only live in workbooks. Real-life situations make abstract ideas concrete and show your child why math matters.
+
+- Cooking: doubling a recipe, measuring, or splitting portions.
+- Shopping: comparing prices, estimating totals, counting change.
+- Time: figuring out how many minutes until an event.
+- Games: dice, cards, dominoes, and board games all build number sense.
+
+These moments are low-stakes and often fun, which is exactly the feeling you want around math.
+
+## Focus on Understanding, Not Just Speed
+
+It is tempting to celebrate fast answers, but rushing can hide shaky understanding. A child who memorizes without understanding often hits a wall later, when topics build on earlier ideas.
+
+Encourage your child to slow down and show how a problem works. Drawings, counters, and simple diagrams make ideas like fractions or place value visible. The bar models used in Singapore Math are a good example of turning a word problem into a picture your child can reason about.
+
+## Know When and How to Get Extra Help
+
+Supporting math at home does not mean doing it alone. If your child is consistently frustrated, falling behind, or losing confidence, it is wise to reach out.
+
+- Talk to your child's teacher about specific skills to focus on.
+- Ask which method or curriculum the class uses, so home practice matches school.
+- Consider a structured daily-practice tool that adjusts to your child's level and fills gaps gently.
+
+Helping your child with math at home is less about perfect explanations and more about showing up with patience and warmth. Keep sessions short, let your child do the thinking, find math in everyday moments, and prize understanding over speed.`,
+  },
+  {
+    slug: "why-is-my-child-struggling-with-math",
+    title: "Why Is My Child Struggling With Math?",
+    metaTitle: "Why Is My Child Struggling With Math?",
+    category: "Parent Guides",
+    readMinutes: 6,
+    excerpt:
+      "Why is my child struggling with math? Learn the common signs and causes, from gaps to anxiety, and practical steps to help your child catch up.",
+    body: `If you have found yourself asking, "Why is my child struggling with math?" you are not alone, and it does not mean your child is "bad at math." Math is cumulative, which means each new skill rests on earlier ones. When a child struggles, it is usually a sign that something specific needs attention, not a fixed limit on their ability. The good news is that most math difficulties have clear, fixable causes once you know what to look for.
+
+## Common Signs Your Child Is Struggling
+
+Sometimes the struggle is loud, with tears at homework time. Other times it is quiet. Watch for patterns like these:
+
+- Avoiding math homework or saying "I'm just dumb at math."
+- Counting on fingers for facts that should be automatic by their grade.
+- Taking a very long time on problems, or freezing up entirely.
+- Strong reading skills but weak performance on word problems.
+- Grades slipping, or growing reluctance to go to school.
+
+One rough day is normal. A consistent pattern over several weeks is worth a closer look.
+
+## Cause 1: Gaps in Foundational Skills
+
+The most common reason a child struggles with math is a gap in an earlier skill. If multiplication never became solid, long division and fractions will feel impossible, no matter how hard your child tries.
+
+Think of math as a staircase. A missing step lower down makes every step above it wobble. A child stuck on fifth-grade fractions may actually need to firm up third-grade ideas about what a fraction means.
+
+What helps:
+
+- Look back, not just forward. The trouble often sits one or two grade levels below the current topic.
+- Use practice that diagnoses and targets the specific missing skill.
+- Rebuild slowly. Once the gap closes, later topics often click into place.
+
+## Cause 2: Math Anxiety and Lost Confidence
+
+For some children, the problem is not knowledge but fear. Math anxiety creates real stress that makes it hard to think clearly, so a child may know more than their test scores show.
+
+What helps:
+
+- Keep practice calm, untimed, and low-pressure.
+- Praise effort and strategy rather than speed or raw correctness.
+- Normalize mistakes as information, not failure.
+- Celebrate small wins so confidence can slowly rebuild.
+
+When the fear eases, you often see ability that was there all along.
+
+## Cause 3: Pace and Teaching Style Mismatch
+
+Classrooms move at one speed for many different learners. If the pace is too fast, a child barely grasps one idea before the next arrives. If a concept was taught in a way that did not click, your child may simply need to see it explained differently.
+
+What helps:
+
+- Give your child time to master a concept before moving on.
+- Try a different representation, such as drawings, counters, or bar models.
+- Let your child explain their thinking aloud so you can spot where it breaks down.
+
+## How to Help Your Struggling Child Step by Step
+
+Once you understand the likely cause, a calm plan makes a real difference. You do not have to fix everything at once.
+
+- Stay positive. Your steadiness tells your child this is solvable.
+- Talk to the teacher to confirm which skills to target first.
+- Build a short, daily practice habit, around ten to fifteen minutes.
+- Focus on the gap, not just the current homework.
+- Use a tool that adapts to your child's level, so practice meets them where they are.
+
+## When to Seek Extra Support
+
+Most math struggles respond well to patience, targeted practice, and time. But sometimes more support is wise. Consider reaching out to your child's teacher or a specialist if your child shows ongoing, intense difficulty despite steady practice, struggles that reach across many subjects, or distress that does not ease.
+
+If your child is struggling with math, remember that it is a signal, not a verdict. Identify the cause, keep the tone warm, practice a little each day, and target the real gap.`,
+  },
+  {
+    slug: "how-to-teach-times-tables-multiplication-facts",
+    title: "How to Teach Times Tables: Master Multiplication",
+    metaTitle: "How to Teach Times Tables to Kids",
+    category: "Skills",
+    readMinutes: 6,
+    excerpt:
+      "Learn how to teach times tables with practical strategies that build real recall and understanding, so your child masters multiplication facts.",
+    body: `If you want to learn how to teach times tables in a way that actually sticks, the secret is simple: pair quick recall with real understanding. Memorizing answers helps your child move fast, but understanding what multiplication means is what keeps those facts from fading. The good news is that you do not need to be a math teacher to make this happen at the kitchen table.
+
+## Why Understanding Comes Before Memorizing
+
+Before your child memorizes that 6 × 4 = 24, they should understand what that question is really asking. Multiplication is repeated addition: 6 × 4 means four groups of six.
+
+Show this with real objects. Line up four plates with six crackers on each, then count the total. When kids see that multiplication is just a faster way to add equal groups, the facts stop feeling random.
+
+- Use coins, blocks, buttons, or snacks to build equal groups
+- Draw arrays: rows and columns of dots that show the answer
+- Ask "how many groups, and how many in each?" before solving
+
+A child who understands the concept can rebuild a fact they forget, instead of freezing.
+
+## How to Teach Times Tables in the Right Order
+
+You do not have to teach the tables one through twelve in a straight line. Some are far easier than others, and starting with the easy ones builds early confidence.
+
+- Start with 2, 5, and 10 — kids often already know these from skip counting
+- Add 1 and 0, which follow simple rules
+- Move to the doubles like 3, 4, and 6
+- Save 7, 8, and 9 for last, since these are the trickiest
+
+By the time your child reaches the hard tables, most of the grid is already familiar.
+
+## Helpful Tricks for the Tricky Facts
+
+Once the easy tables are solid, a few reliable patterns make the rest easier to grasp.
+
+- The 9s finger trick: hold up ten fingers, fold down the one you are multiplying by nine, and the fingers on either side show the tens and ones
+- The 5s always end in 0 or 5 and are half of the 10s
+- For the 4s, double the number, then double again
+- Point out that 3 × 8 and 8 × 3 give the same answer, which cuts the facts to learn nearly in half
+
+## Making Daily Practice Short and Stick-able
+
+Recall comes from frequent, low-pressure repetition, not marathon sessions.
+
+- Keep practice short, calm, and consistent
+- Quiz a small mix: a few new facts plus several your child already knows
+- Use flashcards, a multiplication app, or a quick verbal round in the car
+- Celebrate speed and accuracy, but never punish a wrong answer
+
+Spacing practice over many days helps facts move into long-term memory.
+
+## Keeping Multiplication Fun, Not Stressful
+
+Stress is the enemy of math recall. When kids feel anxious, they freeze.
+
+- Play games: roll two dice and multiply, or use card games
+- Turn chores into math: "We need 3 forks for 4 people — how many?"
+- Let your child teach you a fact, which deepens their own memory
+- Praise effort and strategy, not just the right answer
+
+Teaching times tables well is a blend of two things: helping your child understand what multiplication means, and giving them frequent, friendly practice to build fast recall.`,
+  },
+  {
+    slug: "how-to-teach-fractions-to-kids-parents-guide",
+    title: "How to Teach Fractions to Kids: A Parent's Guide",
+    metaTitle: "How to Teach Fractions to Kids",
+    category: "Skills",
+    readMinutes: 6,
+    excerpt:
+      "Learn how to teach fractions to kids with hands-on, everyday strategies that make fractions concrete, intuitive, and far less intimidating.",
+    body: `Learning how to teach fractions to kids starts with one big idea: a fraction is simply a part of a whole. That sounds obvious to adults, but for children, fractions are often the first time numbers stop behaving the way they expect. The key is to keep fractions concrete and visible for as long as possible before moving to symbols and rules.
+
+## Start With Food Kids Can See and Touch
+
+Nothing teaches fractions like a pizza, a chocolate bar, or a sandwich. Food is the ultimate fraction tool because the "whole" and its parts are obvious and motivating.
+
+- Cut a pizza or pancake into equal pieces and name them: halves, thirds, quarters
+- Stress the word "equal" — fractions only work when the parts are the same size
+- Let your child do the cutting and the sharing
+
+Sharing is the perfect setup. "There are four of us and one cake — how do we split it fairly?" naturally introduces fourths.
+
+## What the Top and Bottom Numbers Really Mean
+
+Once your child grasps parts of a whole, connect that idea to how a fraction is written.
+
+- The bottom number (denominator) tells how many equal parts the whole is split into
+- The top number (numerator) tells how many of those parts you have
+
+So in three-fourths, the four means the whole is cut into four equal pieces, and the three means you have three of them. Draw a circle, split it into four, and shade three. Pair every written fraction with a picture, and the symbols stop feeling like a foreign language.
+
+## Hands-On Ways to Teach Fractions at Home
+
+The more your child handles fractions physically, the deeper the understanding goes.
+
+- Fold paper strips in half, then halves again, to show fourths and eighths
+- Use measuring cups while cooking to compare one-half and one-quarter
+- Build fractions with building bricks or a row of blocks
+- Draw fraction bars and color in the parts
+
+These activities quietly teach a powerful lesson: the more pieces you cut the whole into, the smaller each piece becomes. That is why one-eighth is smaller than one-half, even though eight is bigger than two.
+
+## How to Explain Equivalent Fractions
+
+Equivalent fractions trip up a lot of children, so make them visual.
+
+- Show that one-half of a pizza equals two-fourths of the same pizza
+- Use two identical paper strips, folding one into halves and one into fourths, then line them up
+- Point out that the shaded amount is the same even though the pieces differ
+
+Save the shortcut of multiplying the top and bottom by the same number until after they truly believe the pictures.
+
+## Connecting Fractions to Everyday Life
+
+Fractions are everywhere, and pointing them out keeps the learning going.
+
+- Telling time: a quarter past, half past the hour
+- Cooking: half a cup of flour, a quarter teaspoon of salt
+- Money: a quarter is one-fourth of a dollar
+- Sharing: splitting snacks, toys, or screen time fairly
+
+Teaching fractions to kids works best when you start concrete and stay patient. Begin with food and objects, connect those parts to the written numbers, explore equivalence with hands-on tools, and spot fractions in everyday life.`,
+  },
+  {
+    slug: "math-milestones-by-grade-1-8",
+    title: "Math Milestones by Grade: What Your Child Should Know",
+    metaTitle: "Math Milestones by Grade (1–8)",
+    category: "Parent Guides",
+    readMinutes: 6,
+    excerpt:
+      "Math milestones by grade for grades 1–8: a clear, parent-friendly guide to the key skills your child should be building each year.",
+    body: `If you have ever wondered whether your child is "on track," you are not alone. Understanding math milestones by grade gives you a simple way to check in, celebrate progress, and spot gaps before they grow. This guide walks through what most children learn from grades 1 to 8.
+
+Every child moves at their own pace, and curricula differ across the US, UK, and Singapore. Use this as a friendly map, not a rigid checklist.
+
+## Grades 1–2: Counting, Addition, and Subtraction
+
+The early grades are all about number sense, the comfortable, flexible feel for how numbers work.
+
+- Counting forward and backward, and skip-counting by 2s, 5s, and 10s
+- Reading, writing, and comparing numbers
+- Adding and subtracting within 20, then within 100
+- Understanding place value with tens and ones
+- Recognizing basic shapes and simple measurement
+
+By the end of grade 2, most children can add and subtract two-digit numbers and explain their thinking out loud.
+
+## Grades 3–4: Multiplication, Division, and Early Fractions
+
+This is a pivotal stretch. Multiplication and division become the new foundation, and fractions enter the picture.
+
+- Learning multiplication facts and connecting them to division
+- Multiplying and dividing larger numbers
+- Understanding fractions as parts of a whole and on a number line
+- Comparing simple fractions and finding equivalents
+- Working with area, perimeter, and basic measurement
+
+If your child memorizes 7 × 8 now, harder topics later feel far less intimidating.
+
+## Grades 5–6: Fractions, Decimals, and Ratios
+
+Now the pieces start connecting. Children learn that fractions, decimals, and percentages are different ways of saying the same thing.
+
+- Adding, subtracting, multiplying, and dividing fractions
+- Operations with decimals, including money and measurement
+- Converting between fractions, decimals, and percentages
+- Introducing ratios and rates
+- Exploring the coordinate plane and basic data and graphs
+
+## Grades 7–8: Integers, Ratios, and Early Algebra
+
+By middle school, math becomes more abstract and more powerful. Your child starts reasoning with symbols, not just numbers.
+
+- Working with negative numbers and integers
+- Using proportional relationships, ratios, and percentages in real problems
+- Writing and solving equations and inequalities
+- Understanding variables, expressions, and the basics of functions
+- Exploring geometry like angles, area, volume, and the Pythagorean relationship
+
+## How to Use These Milestones at Home
+
+Milestones are most helpful when they reduce pressure rather than add it.
+
+- Focus on understanding over speed.
+- Notice the foundations. If fractions feel shaky in grade 5, revisit grade 3–4 ideas without shame.
+- Keep practice short and consistent.
+- Talk about math in daily life, through cooking, shopping, and travel time.
+- Celebrate effort and progress, not just correct answers.
+
+If your child is a year ahead or a year behind on a particular skill, that is completely normal. What matters most is steady forward motion and a positive relationship with the subject.`,
+  },
+  {
+    slug: "how-much-math-practice-per-day",
+    title: "How Much Math Practice Per Day Is Enough?",
+    metaTitle: "How Much Math Practice Per Day?",
+    category: "Habits",
+    readMinutes: 5,
+    excerpt:
+      "How much math practice per day is enough? A parent-friendly guide to daily practice time by age, plus tips to build a habit that sticks.",
+    body: `If you are asking how much math practice per day is enough, you are already doing something right. The honest answer is that consistency matters far more than length. A short, focused session every day will help your child more than a long, exhausting cram once a week.
+
+## How Much Math Practice Per Day by Age?
+
+There is no single magic number, but there are sensible ranges. Think of these as starting points you can adjust based on your child's age, attention span, and mood that day.
+
+- Grades 1–2 (ages 6–7): around 10 minutes a day
+- Grades 3–4 (ages 8–9): around 15 minutes a day
+- Grades 5–6 (ages 10–11): around 15 to 20 minutes a day
+- Grades 7–8 (ages 12–13): around 20 to 30 minutes a day
+
+Younger children do best with very short bursts, while older children can sustain focus a bit longer. If your child is engaged and wants to keep going, that is wonderful, but never force it past the point of frustration.
+
+## Why Short Daily Sessions Beat Long Ones
+
+Math is a skill, much like learning an instrument or a sport. Skills grow through frequent, spaced repetition rather than occasional marathons.
+
+- Daily practice keeps facts fresh, so your child spends less time relearning.
+- Short sessions protect attention and reduce burnout.
+- A predictable routine lowers resistance, because it simply becomes "what we do."
+- Small daily wins build confidence, which fuels the next day's effort.
+
+## What Counts as Math Practice?
+
+Practice does not have to mean a worksheet. Variety keeps things fresh.
+
+- Quick fact drills for addition, subtraction, multiplication, or division
+- A few word problems that ask your child to explain their thinking
+- Real-life math, like doubling a recipe or counting change
+- Games, puzzles, and math apps designed for their grade
+- Reviewing a tricky homework problem together, slowly
+
+## How to Build a Math Habit That Sticks
+
+The best routine is the one your family can keep. Start small and protect it like any other healthy habit.
+
+- Pick a consistent time, such as right after a snack or before screen time.
+- Start shorter than you think you need. Ten easy minutes builds momentum.
+- Use a simple streak or checkmark chart to make progress visible.
+- End on a win, with a problem your child can solve confidently.
+
+## When to Do More or Less
+
+Some seasons call for adjustment, and that is perfectly fine.
+
+- Before a test or to fill a known gap, you might add a few extra minutes.
+- During tough weeks, illness, or burnout, scale back rather than skipping entirely.
+- If your child is racing through and bored, increase the challenge, not just the time.
+
+So how much math practice per day is enough? For most children, somewhere between 10 and 30 minutes, scaled to their age, is plenty, as long as it happens consistently.`,
+  },
+  {
+    slug: "common-core-math-explained-for-parents",
+    title: "Common Core Math Explained for Parents",
+    metaTitle: "Common Core Math Explained for Parents",
+    category: "Curricula",
+    readMinutes: 5,
+    excerpt:
+      "Common Core math explained for parents — what it is, why homework looks different, and simple, judgment-free ways to support your child at home.",
+    body: `If you have ever looked at your child's homework and wondered why a simple subtraction problem now fills half a page, you are not alone. Common Core math can feel unfamiliar to parents who learned a single method for each operation. This guide explains it in plain language.
+
+## What Is Common Core Math, Exactly?
+
+Common Core math refers to a set of shared learning standards adopted by many US states. The standards describe what students should know and be able to do at each grade level. They were designed to bring more consistency across states.
+
+It is worth being clear about what Common Core is and is not. It is a set of goals, not a specific textbook, worksheet, or teaching script. Individual states, districts, and teachers still choose their own curricula and methods. So when people criticize "Common Core math," they are often reacting to a particular workbook or homework page, not the standards themselves.
+
+## Why Does Common Core Math Look So Different?
+
+The biggest shift is emphasis. Traditional instruction often focused on memorizing one procedure and practicing it until it was fast. Common Core still values accuracy and fluency, but it also asks students to understand why a method works.
+
+That is why your child may be asked to:
+
+- Solve a problem more than one way
+- Draw a model, number line, or array to show their thinking
+- Break numbers apart by place value before adding or subtracting
+- Explain in words how they reached an answer
+
+These approaches can look slow to an adult who already has the shortcut memorized. The goal is to build number sense first, so the shortcuts make sense later.
+
+## Is Common Core Math Better or Worse?
+
+An honest answer is that it depends on how it is taught. Supporters point out that understanding multiple strategies helps children become flexible problem solvers. Critics note that some homework is confusing and that quality varies widely between materials.
+
+Both points can be true at once. The underlying aim of building deep understanding is widely respected by educators. The frustration many families feel is often about specific assignments, not the idea of understanding math more deeply.
+
+## How Can I Help With Common Core Math at Home?
+
+You do not need to relearn every strategy to be helpful.
+
+- Ask your child to teach you their method. Explaining it out loud shows you where they are stuck.
+- Focus on the thinking, not just the answer.
+- Connect math to real life. Counting change, doubling a recipe, or splitting a pizza all reinforce key ideas.
+- Stay positive about math. Try "Let's figure this out together" instead of "I'm not a math person."
+
+If a strategy stumps you, write a quick note to the teacher or ask how that method is being taught in class.
+
+## What If My Child Is Struggling With Common Core Math?
+
+Struggle is part of learning, but persistent confusion is a signal worth acting on. Short, consistent practice tends to work better than occasional long sessions. Look for resources that match the way your child is being taught, so home practice reinforces school rather than competing with it.`,
+  },
+  {
+    slug: "place-value-explained-helping-your-child-master-it",
+    title: "Place Value Explained: Help Your Child Master It",
+    metaTitle: "Place Value Explained for Parents",
+    category: "Skills",
+    readMinutes: 5,
+    excerpt:
+      "Place value explained for parents — why it matters, how to teach it at home, and simple activities to help your child master ones, tens, and hundreds.",
+    body: `Place value is one of the most important ideas in elementary math, and also one of the easiest to overlook. When your child understands place value, almost everything else in arithmetic becomes easier, from carrying in addition to lining up decimals later on.
+
+## What Is Place Value, and Why Does It Matter?
+
+Place value is the idea that the position of a digit determines its worth. In the number 342, the 3 is not just "three" — it means three hundreds. The same digit can mean very different amounts depending on where it sits: the 5 in 5 means five ones, but the 5 in 50 means five tens.
+
+For a child, this is a genuine leap. Until place value clicks, numbers are just strings of symbols. Once it clicks, children can see that 342 is really 300 + 40 + 2, which unlocks mental math, estimation, and every standard algorithm they will learn.
+
+## Why Do Kids Struggle With Place Value?
+
+Place value is abstract, and young children think concretely. A few common stumbling points show up again and again.
+
+- Treating each digit as a separate small number rather than seeing its place
+- Confusion with zero as a placeholder, as in 205
+- Trouble with "trading" or regrouping when adding and subtracting
+- Reading large numbers, where ones, tens, hundreds, and thousands blur together
+
+These are normal stages on the way to understanding, and they respond well to hands-on practice.
+
+## How Do I Teach Place Value at Home?
+
+The key is to make the abstract physical.
+
+- Group small objects into tens. Use pennies, beans, or buttons, and bundle them into groups of ten. Ten ones literally become one ten.
+- Use base-ten language. Say "four tens and two ones" alongside "forty-two."
+- Build numbers with cards. Write hundreds, tens, and ones on separate cards and stack them, then pull them apart to see 300 + 40 + 2.
+- Play with money. Dimes and pennies are a natural model for tens and ones.
+
+## What Place Value Activities Work Best?
+
+Once the basics feel comfortable, small daily activities keep the skill sharp.
+
+- Ask "What is the value of this digit?" while reading numbers on signs or receipts.
+- Play "expanded form" challenges: you say 528, your child says 500 + 20 + 8.
+- Round numbers together when shopping.
+- Compare numbers by lining up the places. Which is bigger, 419 or 491, and how do you know?
+
+## How Do I Know My Child Has Mastered Place Value?
+
+You will see mastery in the way your child talks about numbers, not just in correct answers. A child who understands place value can break a number into hundreds, tens, and ones, explain why regrouping works, and read larger numbers with confidence.
+
+Master place value early, and you give your child a sturdy foundation for addition, subtraction, multiplication, and the decimals and large numbers that come later.`,
+  },
+  {
+    slug: "math-games-for-kids-that-build-skills",
+    title: "Math Games for Kids That Actually Build Skills",
+    metaTitle: "Math Games for Kids That Build Real Skills",
+    category: "Skills",
+    readMinutes: 5,
+    excerpt:
+      "Discover math games for kids that actually build skills, from card and dice games to board games and everyday play that make practice feel like fun.",
+    body: `If you have ever watched your child groan at a worksheet but light up over a board game, you already understand something powerful. The right math games for kids can build real skills while feeling like pure play. Games turn abstract numbers into something your child can touch, move, and win, and that emotional spark helps the learning stick.
+
+## Why Math Games for Kids Work Better Than Drills
+
+Drills have their place, but they often feel like a chore. Games add three things worksheets usually lack: motivation, repetition, and conversation.
+
+- Motivation keeps your child trying even when a problem is hard, because they want to win.
+- Repetition happens naturally, since one game might involve dozens of small calculations.
+- Conversation grows as you talk through moves, ask why, and celebrate clever thinking.
+
+## Card Games That Build Number Sense
+
+A simple deck of cards is one of the best math tools you can own.
+
+- Make Ten: Flip cards and race to find two that add up to ten.
+- War with a Twist: Each player flips two cards and adds, multiplies, or subtracts them. Highest answer wins both piles.
+- Closest to 100: Deal a few cards and have your child arrange them into two-digit numbers that add up as close to 100 as possible.
+
+## Dice Games for Fast Mental Math
+
+Dice are tiny, cheap, and endlessly useful.
+
+- Roll and Add: Roll the dice and call out the total as fast as you can. For older kids, multiply instead.
+- Target Number: Pick a target, like 12. Roll three dice and combine them with addition, subtraction, or multiplication to hit it.
+- Pig: Roll and keep a running total, but if you roll a one, you lose your points for that round.
+
+## Board Games That Strengthen Math Skills
+
+Many classic board games are math games in disguise.
+
+- Games with a money element let kids make change, budget, and plan ahead.
+- Games with scorekeeping turn every round into addition or multiplication practice.
+- Strategy games build logical thinking and pattern recognition, which support later math like algebra.
+
+Hand your child the job of banker or scorekeeper. That single role packs in more arithmetic than a page of problems.
+
+## Everyday Play That Counts as Math
+
+Some of the best practice happens with no game box at all.
+
+- Cooking: Doubling a recipe is a lesson in fractions and multiplication.
+- Shopping: Ask your child to estimate the total or figure out the change.
+- Travel: Count license plates, add up house numbers, or estimate the minutes until you arrive.
+
+## How to Keep Math Games Fun, Not Stressful
+
+The fastest way to ruin a good math game is to turn it into a test.
+
+- Follow your child's lead and stop while they still want more.
+- Let them win sometimes, and let them see you recover cheerfully from mistakes.
+- Praise effort and strategy, not just speed.
+- Keep sessions short.
+
+Pick one game from this list, try it this week, and watch how quickly your child's confidence grows alongside their skills.`,
+  },
+  {
+    slug: "how-to-help-kids-solve-math-word-problems",
+    title: "How to Help Kids Solve Math Word Problems",
+    metaTitle: "How to Help Kids Solve Math Word Problems",
+    category: "Parent Guides",
+    readMinutes: 6,
+    excerpt:
+      "Learn how to help kids solve math word problems with a clear step-by-step approach, including drawing and bar models that make problems click.",
+    body: `Few things stall a homework session faster than a word problem. Your child can add, subtract, and multiply just fine, but wrap those numbers in a story and suddenly everything freezes. If you want to know how to help kids solve math word problems, the secret is not more arithmetic. It is teaching a calm, repeatable process for turning words into math.
+
+## Why Word Problems Are So Hard for Kids
+
+A word problem asks a child to do several jobs at once.
+
+- Read and understand the sentences.
+- Decide what the question is actually asking.
+- Pick out the numbers that matter and ignore the ones that do not.
+- Choose the right operation.
+- Do the calculation and check that the answer makes sense.
+
+Many kids who freeze on word problems are not weak at math at all. They simply have not been taught a system for untangling the steps.
+
+## A Step-by-Step Approach to Math Word Problems
+
+Teach your child this routine and use the same words every time, so it becomes a habit.
+
+- Read it twice. The first read is for the story, the second is for the details.
+- Find the question. Underline what the problem is asking before doing anything else.
+- Circle the numbers and the key words that tell you what is happening.
+- Choose a plan. Decide which operation fits and why.
+- Solve it, then check. Reread the question and ask, does my answer make sense?
+
+The check step matters more than parents expect. A child who asks whether the answer is reasonable catches their own mistakes.
+
+## How to Help Kids Solve Word Problems by Drawing
+
+When a problem feels confusing, drawing it almost always helps.
+
+- Sketch the situation simply. Stick figures, boxes, and tally marks are perfect.
+- Show the action. If three friends each get five stickers, draw three groups of five.
+- Label the parts. Mark what you know and put a question mark on what you need to find.
+
+## Using Bar Models to Make Problems Visual
+
+Bar models are a powerful drawing tool used in many strong math programs, and they work beautifully at home.
+
+- For addition and subtraction, draw one long bar split into parts. If you know the whole and one part, the missing part is what you solve for.
+- For a comparison, draw two bars side by side so your child can see which is bigger and by how much.
+- For multiplication and division, draw several equal bars to show equal groups.
+
+For example, if a child has 12 marbles and gives away 5, draw a bar of 12, then mark off 5. The empty section clearly shows the answer.
+
+## Helping Without Giving the Answer
+
+It is tempting to solve it for your child, but that robs them of the thinking.
+
+- Ask questions instead of giving steps. What is the problem asking? What do you already know?
+- Stay quiet after you ask. Give your child time to think.
+- Praise the process, like rereading or drawing, even when the answer is wrong.
+- Let your child find errors during the check step.
+
+Read it twice, find the question, draw it out, and check the answer. With those habits and a little daily practice, word problems become problems your child knows exactly how to tackle.`,
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
   return ARTICLES.find((a) => a.slug === slug);
+}
+
+/** Related articles for internal linking: same category first, then others. */
+export function getRelated(slug: string, n = 3): Article[] {
+  const current = getArticle(slug);
+  const others = ARTICLES.filter((a) => a.slug !== slug);
+  const ranked = [
+    ...others.filter((a) => current && a.category === current.category),
+    ...others.filter((a) => !current || a.category !== current.category),
+  ];
+  return ranked.slice(0, n);
 }

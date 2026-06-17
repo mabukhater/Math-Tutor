@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ARTICLES } from "@/content/articles";
 import { MarketingShell } from "@/components/MarketingShell";
-import { formatDate } from "@/lib/date";
 
 export const metadata: Metadata = {
   title: "Blog — Math Tutor",
@@ -24,9 +23,7 @@ export default function Blog() {
               <span className="blog-cat">{a.category}</span>
               <h3>{a.title}</h3>
               <p className="muted">{a.excerpt}</p>
-              <span className="blog-meta">
-                {formatDate(a.date)} · {a.readMinutes} min read
-              </span>
+              <span className="blog-meta">{a.readMinutes} min read</span>
             </Link>
           ))}
         </div>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ARTICLES, getArticle } from "@/content/articles";
+import { ARTICLES, getArticle, getRelated } from "@/content/articles";
 import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
-import { formatDate } from "@/lib/date";
+
+const SITE = "https://math-tutor-production-f83f.up.railway.app";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -17,9 +18,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const a = getArticle(slug);
+  if (!a) return { title: "Article — Math Tutor" };
+  const title = a.metaTitle ?? a.title;
+  const url = `${SITE}/blog/${a.slug}`;
   return {
-    title: a ? `${a.title} — Math Tutor` : "Article — Math Tutor",
-    description: a?.excerpt,
+    title: `${title} — Math Tutor`,
+    description: a.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title,
+      description: a.excerpt,
+      url,
+      siteName: "Math Tutor",
+    },
+    twitter: { card: "summary", title, description: a.excerpt },
   };
 }
 
@@ -31,9 +44,26 @@ export default async function ArticlePage({
   const { slug } = await params;
   const a = getArticle(slug);
   if (!a) notFound();
+  const related = getRelated(a.slug);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: a.title,
+    description: a.excerpt,
+    articleSection: a.category,
+    inLanguage: "en",
+    author: { "@type": "Organization", name: "Math Tutor" },
+    publisher: { "@type": "Organization", name: "Math Tutor" },
+    mainEntityOfPage: `${SITE}/blog/${a.slug}`,
+  };
 
   return (
     <MarketingShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="content-wrap article">
         <p>
           <Link href="/blog" className="muted">
@@ -42,20 +72,30 @@ export default async function ArticlePage({
         </p>
         <span className="blog-cat">{a.category}</span>
         <h1>{a.title}</h1>
-        <p className="blog-meta">
-          {formatDate(a.date)} · {a.readMinutes} min read
-        </p>
+        <p className="blog-meta">{a.readMinutes} min read</p>
         <Markdown content={a.body} />
 
         <div className="article-cta">
           <h3>Turn this into a daily habit</h3>
           <p className="muted">
             Math Tutor places your child at their real level and serves a few curriculum-aligned
-            questions a day — on the web or Telegram.
+            questions a day — across US, UK, and Singapore curricula, grades 1–8.
           </p>
           <Link href="/login" className="btn-cta">
             Start free
           </Link>
+        </div>
+
+        <h2 className="section-title">Keep reading</h2>
+        <div className="blog-grid">
+          {related.map((r) => (
+            <Link key={r.slug} href={`/blog/${r.slug}`} className="blog-card">
+              <span className="blog-cat">{r.category}</span>
+              <h3>{r.title}</h3>
+              <p className="muted">{r.excerpt}</p>
+              <span className="blog-meta">{r.readMinutes} min read</span>
+            </Link>
+          ))}
         </div>
       </article>
     </MarketingShell>
