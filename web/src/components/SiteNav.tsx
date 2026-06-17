@@ -12,7 +12,7 @@ export function SiteNav() {
     <nav className="site-nav">
       <Link href="/" className="site-brand">
         <BrandMark />
-        Math Tutor
+        Kareem
       </Link>
       <div className="site-links">
         <Link href="/how-it-works">How it works</Link>

@@ -3,15 +3,15 @@ import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Math Tutor",
-  description: "The terms for using Math Tutor.",
+  title: "Terms of Service — Kareem",
+  description: "The terms for using Kareem.",
 };
 
-const BODY = `These terms govern your use of Math Tutor. By creating an account you agree to them. Please read them alongside our Privacy Policy.
+const BODY = `These terms govern your use of Kareem. By creating an account you agree to them. Please read them alongside our Privacy Policy.
 
 ## The service
 
-Math Tutor provides curriculum-aligned math placement and daily practice for children in grades 1–8. Features may change as we improve the product.
+Kareem provides curriculum-aligned math placement and daily practice for children in grades 1–8. Features may change as we improve the product.
 
 ## Accounts
 

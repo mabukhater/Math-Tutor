@@ -5,10 +5,10 @@ const SITE = "https://math-tutor-production-f83f.up.railway.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Math Tutor — daily math that follows your child",
+  title: "Kareem — daily math that follows your child",
   description:
     "Curriculum-aligned daily math practice for grades 1–8 — US Common Core, UK National Curriculum, and Singapore Math.",
-  openGraph: { type: "website", siteName: "Math Tutor", url: SITE },
+  openGraph: { type: "website", siteName: "Kareem", url: SITE },
   twitter: { card: "summary" },
 };
 

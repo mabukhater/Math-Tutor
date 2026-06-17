@@ -5,7 +5,7 @@ import { getCurriculumInfo } from "@/content/curriculaInfo";
 const INFO = getCurriculumInfo("uk")!;
 
 export const metadata: Metadata = {
-  title: "UK National Curriculum Math Practice (Years 2–9) — Math Tutor",
+  title: "UK National Curriculum Math Practice (Years 2–9) — Kareem",
   description: INFO.intro,
 };
 

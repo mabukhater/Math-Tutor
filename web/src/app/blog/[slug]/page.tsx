@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ARTICLES, getArticle, getRelated } from "@/content/articles";
+import { ARTICLES, getArticle, getRelated, getSources } from "@/content/articles";
 import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
@@ -18,11 +18,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const a = getArticle(slug);
-  if (!a) return { title: "Article — Math Tutor" };
+  if (!a) return { title: "Article — Kareem" };
   const title = a.metaTitle ?? a.title;
   const url = `${SITE}/blog/${a.slug}`;
   return {
-    title: `${title} — Math Tutor`,
+    title: `${title} — Kareem`,
     description: a.excerpt,
     alternates: { canonical: url },
     openGraph: {
@@ -30,7 +30,7 @@ export async function generateMetadata({
       title,
       description: a.excerpt,
       url,
-      siteName: "Math Tutor",
+      siteName: "Kareem",
     },
     twitter: { card: "summary", title, description: a.excerpt },
   };
@@ -53,8 +53,8 @@ export default async function ArticlePage({
     description: a.excerpt,
     articleSection: a.category,
     inLanguage: "en",
-    author: { "@type": "Organization", name: "Math Tutor" },
-    publisher: { "@type": "Organization", name: "Math Tutor" },
+    author: { "@type": "Organization", name: "Kareem" },
+    publisher: { "@type": "Organization", name: "Kareem" },
     mainEntityOfPage: `${SITE}/blog/${a.slug}`,
   };
 
@@ -75,10 +75,25 @@ export default async function ArticlePage({
         <p className="blog-meta">{a.readMinutes} min read</p>
         <Markdown content={a.body} />
 
+        {getSources(a.slug).length > 0 && (
+          <div className="sources">
+            <h2 className="section-title">Sources &amp; further reading</h2>
+            <ul className="source-list">
+              {getSources(a.slug).map((s) => (
+                <li key={s.url}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="article-cta">
           <h3>Turn this into a daily habit</h3>
           <p className="muted">
-            Math Tutor places your child at their real level and serves a few curriculum-aligned
+            Kareem places your child at their real level and serves a few curriculum-aligned
             questions a day — across US, UK, and Singapore curricula, grades 1–8.
           </p>
           <Link href="/login" className="btn-cta">

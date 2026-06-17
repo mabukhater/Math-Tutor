@@ -5,7 +5,7 @@ import { getCurriculumInfo } from "@/content/curriculaInfo";
 const INFO = getCurriculumInfo("us")!;
 
 export const metadata: Metadata = {
-  title: "US Common Core Math Practice (Grades 1–8) — Math Tutor",
+  title: "US Common Core Math Practice (Grades 1–8) — Kareem",
   description: INFO.intro,
 };
 

@@ -3,11 +3,11 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "Contact — Math Tutor",
-  description: "Get in touch with the Math Tutor team.",
+  title: "Contact — Kareem",
+  description: "Get in touch with the Kareem team.",
 };
 
-const SUPPORT_EMAIL = "support@mathtutor.app";
+const SUPPORT_EMAIL = "hello@kareem.app";
 
 export default function Contact() {
   return (

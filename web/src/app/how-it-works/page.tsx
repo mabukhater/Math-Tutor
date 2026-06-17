@@ -3,8 +3,8 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "How it works — Math Tutor",
-  description: "From sign-up to a daily habit: how Math Tutor places and grows your child.",
+  title: "How it works — Kareem",
+  description: "From sign-up to a daily habit: how Kareem places and grows your child.",
 };
 
 const STEPS = [
@@ -39,7 +39,7 @@ export default function HowItWorks() {
   return (
     <MarketingShell>
       <div className="content-wrap">
-        <h1>How Math Tutor works</h1>
+        <h1>How Kareem works</h1>
         <p className="sub">
           Set up in minutes. The hard part — staying on track — runs itself.
         </p>

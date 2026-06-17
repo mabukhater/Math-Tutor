@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "Curricula — Math Tutor",
+  title: "Curricula — Kareem",
   description:
     "US Common Core, UK National Curriculum, and Singapore Math — and how your child's level maps across all three.",
 };

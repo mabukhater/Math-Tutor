@@ -1,7 +1,7 @@
 export interface Article {
   slug: string;
   title: string; // H1
-  metaTitle?: string; // optional <title> override (else `${title} — Math Tutor`)
+  metaTitle?: string; // optional <title> override (else `${title} — Kareem`)
   category: string;
   readMinutes: number;
   excerpt: string; // meta description + listing blurb
@@ -1065,4 +1065,38 @@ export function getRelated(slug: string, n = 3): Article[] {
     ...others.filter((a) => !current || a.category !== current.category),
   ];
   return ranked.slice(0, n);
+}
+
+/** Verified authoritative outbound sources for fact-based articles. */
+export const SOURCES: Record<string, { label: string; url: string }[]> = {
+  "common-core-uk-national-curriculum-singapore-math-difference": [
+    { label: "Common Core State Standards — Mathematics", url: "https://corestandards.org/mathematics-standards/" },
+    { label: "GOV.UK — National curriculum in England: mathematics (DfE)", url: "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study" },
+    { label: "Singapore MOE — Primary curriculum & syllabuses", url: "https://www.moe.gov.sg/primary/curriculum/syllabus" },
+  ],
+  "what-singapore-math-actually-is": [
+    { label: "Singapore MOE — Primary curriculum & syllabuses", url: "https://www.moe.gov.sg/primary/curriculum/syllabus" },
+    { label: "Singapore Ministry of Education", url: "https://www.moe.gov.sg/" },
+  ],
+  "why-some-countries-top-global-math-rankings": [
+    { label: "TIMSS & PIRLS International Study Center, Boston College", url: "https://timssandpirls.bc.edu/" },
+    { label: "IEA — Int'l Association for the Evaluation of Educational Achievement", url: "https://www.iea.nl/" },
+    { label: "OECD — PISA (Programme for International Student Assessment)", url: "https://www.oecd.org/en/about/programmes/pisa.html" },
+  ],
+  "where-math-takes-you-careers-built-on-numbers": [
+    { label: "U.S. Bureau of Labor Statistics — Math Occupations (OOH)", url: "https://www.bls.gov/ooh/math/home.htm" },
+    { label: "U.S. Bureau of Labor Statistics — Occupational Outlook Handbook", url: "https://www.bls.gov/ooh/" },
+  ],
+  "common-core-math-explained-for-parents": [
+    { label: "Common Core State Standards — Mathematics", url: "https://corestandards.org/mathematics-standards/" },
+    { label: "National Council of Teachers of Mathematics (NCTM)", url: "https://www.nctm.org/" },
+  ],
+  "math-milestones-by-grade-1-8": [
+    { label: "Common Core State Standards — Mathematics", url: "https://corestandards.org/mathematics-standards/" },
+    { label: "National Council of Teachers of Mathematics (NCTM)", url: "https://www.nctm.org/" },
+  ],
+};
+
+export function getSources(slug: string): { label: string; url: string }[] {
+  return SOURCES[slug] ?? [];
 }

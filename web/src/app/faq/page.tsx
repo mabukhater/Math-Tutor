@@ -3,8 +3,8 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "FAQ — Math Tutor",
-  description: "Common questions about Math Tutor — curricula, grades, placement, privacy.",
+  title: "FAQ — Kareem",
+  description: "Common questions about Kareem — curricula, grades, placement, privacy.",
 };
 
 const FAQS: { q: string; a: string }[] = [

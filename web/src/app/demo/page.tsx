@@ -3,8 +3,8 @@ import { MarketingShell } from "@/components/MarketingShell";
 import DemoWidget from "./DemoWidget";
 
 export const metadata: Metadata = {
-  title: "Try a few questions — Math Tutor",
-  description: "Sample real questions from Math Tutor, no sign-up needed.",
+  title: "Try a few questions — Kareem",
+  description: "Sample real questions from Kareem, no sign-up needed.",
 };
 
 export default function Demo() {
