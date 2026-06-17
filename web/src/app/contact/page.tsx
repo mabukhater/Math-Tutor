@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Get in touch with the Kareem team.",
 };
 
-const SUPPORT_EMAIL = "hello@kareem.app";
+const SUPPORT_EMAIL = "hello@kareem.academy";
 
 export default function Contact() {
   return (
