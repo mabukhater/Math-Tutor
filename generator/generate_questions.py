@@ -51,6 +51,7 @@ class GeneratedQuestion(BaseModel):
     correct_index: int
     explanation: str
     difficulty: int
+    option_explanations: list[str]  # kid-friendly note per option, in order
 
 
 class QuestionSet(BaseModel):
@@ -71,7 +72,12 @@ SYSTEM_TEMPLATE = (
     "- Age-appropriate language and context. Avoid reading-heavy word problems for "
     "the lower grades.\n"
     "- Provide a one-sentence explanation of the correct answer.\n"
-    "- correct_index is the 0-based index into options of the correct choice."
+    "- correct_index is the 0-based index into options of the correct choice.\n"
+    "- option_explanations: a warm, kid-friendly note (1-2 short sentences) for EACH of "
+    "the 4 options IN ORDER. For the correct option, why it's right and how to get there. "
+    "For each wrong option, gently name the common mistake that leads a kid to pick it "
+    "(e.g. 'it looks like you added instead of multiplied') and nudge toward the right idea. "
+    "Talk to the child as 'you', stay positive, no shaming."
 )
 
 
@@ -87,6 +93,8 @@ def valid(q: GeneratedQuestion) -> Optional[str]:
         return f"difficulty out of range: {q.difficulty}"
     if not q.stem.strip() or not q.explanation.strip():
         return "empty stem or explanation"
+    if len(q.option_explanations) != 4 or any(not s.strip() for s in q.option_explanations):
+        return "option_explanations must have 4 non-empty entries"
     return None
 
 
@@ -174,6 +182,7 @@ def main() -> None:
                         "correct_index": item.correct_index,
                         "explanation": item.explanation.strip(),
                         "difficulty": item.difficulty,
+                        "option_explanations": item.option_explanations,
                         "status": "draft",
                         "source": "ai_generated",
                     }

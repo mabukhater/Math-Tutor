@@ -10,6 +10,7 @@ interface DemoQ {
   options: string[];
   correctIndex: number;
   explanation: string;
+  optionExplanations: string[] | null;
   skillCode: string;
   curriculum: string;
 }
@@ -107,16 +108,26 @@ export default function DemoWidget() {
         );
       })}
       {answered && (
-        <>
+        <div className="feedback-box">
           <div className={"feedback-line " + (selected === q.correctIndex ? "ok" : "no")}>
             {selected === q.correctIndex ? <Check size={20} /> : <Cross size={20} />}
             {selected === q.correctIndex ? "Correct!" : "Not quite"}
           </div>
-          <p className="muted" style={{ marginTop: "0.3rem" }}>{q.explanation}</p>
+          {selected !== q.correctIndex && q.optionExplanations?.[selected as number] && (
+            <p className="why-wrong">{q.optionExplanations[selected as number]}</p>
+          )}
+          {selected !== q.correctIndex && (
+            <p style={{ marginTop: "0.5rem", fontWeight: 700 }}>
+              The answer is {LETTERS[q.correctIndex]}: {q.options[q.correctIndex]}
+            </p>
+          )}
+          <p className="muted" style={{ marginTop: "0.3rem" }}>
+            {q.optionExplanations?.[q.correctIndex] ?? q.explanation}
+          </p>
           <button className="btn" onClick={next}>
             {idx + 1 >= questions.length ? "See result" : "Next question"}
           </button>
-        </>
+        </div>
       )}
     </div>
   );

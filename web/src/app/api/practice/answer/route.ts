@@ -40,11 +40,17 @@ export async function POST(req: Request) {
   // Grade server-side.
   const { data: q } = await admin
     .from("questions")
-    .select("id, skill_id, correct_index, explanation")
+    .select("id, skill_id, correct_index, explanation, option_explanations")
     .eq("id", questionId)
     .single();
   if (!q) return NextResponse.json({ error: "no question" }, { status: 404 });
   const correct = selectedIndex === q.correct_index;
+
+  // Kid-friendly per-option detail (falls back to the single explanation).
+  const oe = (q.option_explanations as string[] | null) ?? null;
+  const correctIndex = q.correct_index as number;
+  const whyWrong = !correct ? (oe?.[selectedIndex] ?? null) : null;
+  const correctExplanation = oe?.[correctIndex] ?? q.explanation;
 
   // Telemetry.
   await admin.from("attempts").insert({
@@ -104,6 +110,9 @@ export async function POST(req: Request) {
   return NextResponse.json({
     correct,
     explanation: q.explanation,
+    correctIndex,
+    whyWrong,
+    correctExplanation,
     done,
     total,
     numCompleted,

@@ -18,7 +18,7 @@ export async function GET() {
 
   const { data: qs } = await admin
     .from("questions")
-    .select("id, stem, options, correct_index, explanation, skills!inner(code, curricula!inner(name))")
+    .select("id, stem, options, correct_index, explanation, option_explanations, skills!inner(code, curricula!inner(name))")
     .in("id", pick);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +28,7 @@ export async function GET() {
     options: q.options as string[],
     correctIndex: q.correct_index as number,
     explanation: q.explanation as string,
+    optionExplanations: (q.option_explanations as string[] | null) ?? null,
     skillCode: q.skills?.code as string,
     curriculum: q.skills?.curricula?.name as string,
   }));

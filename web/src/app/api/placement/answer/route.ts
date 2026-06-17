@@ -54,11 +54,17 @@ export async function POST(req: Request) {
   // Grade the just-answered question (server-side; correct_index never left here).
   const { data: q } = await admin
     .from("questions")
-    .select("id, correct_index, explanation")
+    .select("id, correct_index, explanation, option_explanations")
     .eq("id", questionId)
     .single();
   if (!q) return NextResponse.json({ error: "no question" }, { status: 404 });
   const correct = selectedIndex === q.correct_index;
+
+  // Kid-friendly per-option detail (falls back to the single explanation).
+  const oe = (q.option_explanations as string[] | null) ?? null;
+  const correctIndex = q.correct_index as number;
+  const whyWrong = !correct ? (oe?.[selectedIndex] ?? null) : null;
+  const correctExplanation = oe?.[correctIndex] ?? q.explanation;
 
   const askedIndex = state.estimate;
   const newState = recordAnswer(state, correct);
@@ -130,6 +136,9 @@ export async function POST(req: Request) {
       done: true,
       correct,
       explanation: q.explanation,
+      correctIndex,
+      whyWrong,
+      correctExplanation,
       estimatedIndex,
       placedGrade,
       placedGradeLabel,
@@ -143,6 +152,9 @@ export async function POST(req: Request) {
     done: false,
     correct,
     explanation: q.explanation,
+    correctIndex,
+    whyWrong,
+    correctExplanation,
     step: asked2.length + 1,
     maxSteps: MAX_STEPS,
     question: toPublic(nextQ!),

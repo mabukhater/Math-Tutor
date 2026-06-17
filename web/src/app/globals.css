@@ -81,6 +81,9 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .feedback-line { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1rem; font-family: var(--font-display); font-weight: 700; }
 .feedback-line.ok { color: var(--green-deep); }
 .feedback-line.no { color: #c0392b; }
+.feedback-box { margin-top: 1rem; }
+.feedback-box .feedback-line { margin-top: 0; }
+.why-wrong { margin-top: 0.6rem; padding: 0.8rem 0.9rem; background: #fff1ef; border: 1.5px solid #f6cfc7; border-radius: 12px; color: #8f2e22; font-size: 0.95rem; line-height: 1.5; }
 @keyframes pop-in { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 .pop { animation: pop-in .3s ease; }
 

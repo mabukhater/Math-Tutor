@@ -26,6 +26,9 @@ interface Resp {
   next?: Question | null;
   correct?: boolean;
   explanation?: string;
+  correctIndex?: number;
+  whyWrong?: string | null;
+  correctExplanation?: string | null;
   error?: string;
 }
 
@@ -173,31 +176,47 @@ export default function Practice() {
       <h2 style={{ marginTop: "0.25rem" }}>{question?.stem}</h2>
       {question?.options.map((opt, i) => {
         let cls = "opt";
-        const showMark = phase === "feedback" && selected === i;
-        if (showMark) cls += feedback?.correct ? " correct" : " wrong";
+        const fb = phase === "feedback" && feedback;
+        const isCorrect = !!fb && i === feedback?.correctIndex;
+        const isWrongPick = !!fb && i === selected && i !== feedback?.correctIndex;
+        if (isCorrect) cls += " correct";
+        else if (isWrongPick) cls += " wrong";
         return (
           <button key={i} className={cls} disabled={phase === "feedback"} onClick={() => answer(i)}>
             <span className="opt-letter">{LETTERS[i]}</span>
             {opt}
-            {showMark && (
+            {isCorrect && (
               <span className="opt-mark">
-                {feedback?.correct ? <Check size={20} /> : <Cross size={20} />}
+                <Check size={20} />
+              </span>
+            )}
+            {isWrongPick && (
+              <span className="opt-mark">
+                <Cross size={20} />
               </span>
             )}
           </button>
         );
       })}
       {phase === "feedback" && feedback && (
-        <>
+        <div className="feedback-box">
           <div className={"feedback-line " + (feedback.correct ? "ok" : "no")}>
             {feedback.correct ? <Check size={20} /> : <Cross size={20} />}
             {feedback.correct ? "Correct!" : "Not quite"}
           </div>
-          <p className="muted" style={{ marginTop: "0.3rem" }}>{feedback.explanation}</p>
+          {!feedback.correct && feedback.whyWrong && <p className="why-wrong">{feedback.whyWrong}</p>}
+          {!feedback.correct && typeof feedback.correctIndex === "number" && question && (
+            <p style={{ marginTop: "0.5rem", fontWeight: 700 }}>
+              The answer is {LETTERS[feedback.correctIndex]}: {question.options[feedback.correctIndex]}
+            </p>
+          )}
+          <p className="muted" style={{ marginTop: "0.3rem" }}>
+            {feedback.correct ? feedback.explanation : feedback.correctExplanation ?? feedback.explanation}
+          </p>
           <button className="btn" onClick={next}>
             {feedback.done ? "See results" : "Next question"}
           </button>
-        </>
+        </div>
       )}
     </Shell>
   );
