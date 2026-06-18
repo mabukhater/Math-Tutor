@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getOrCreateTopicSession } from "@/lib/topicsServer";
+import { getLesson } from "@/lib/lessonsServer";
 import { toPublic } from "@/lib/placementServer";
 
 // Start (or resume) a focused topic-practice set. Isolated from the daily feed.
@@ -42,6 +43,12 @@ export async function POST(req: Request) {
   const idx = session.num_completed;
   const done = idx >= total;
 
+  // Lesson to read before practicing (only surfaced when the set is fresh).
+  const lesson =
+    idx === 0
+      ? await getLesson(admin, student.curriculum_id, topic.id as string, student.nominal_grade)
+      : null;
+
   let question = null;
   if (!done) {
     const { data: q } = await admin
@@ -60,6 +67,7 @@ export async function POST(req: Request) {
     numCompleted: session.num_completed,
     numCorrect: session.num_correct,
     completed: done,
+    lesson,
     question,
   });
 }

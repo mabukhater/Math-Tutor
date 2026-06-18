@@ -95,6 +95,7 @@ export default async function TopicsPage({
                     <TopicIcon name={t.icon} />
                   </div>
                   <div className="topic-name">{t.name}</div>
+                  {t.hasLesson && <span className="topic-learn">Learn + practice</span>}
                   <div className="topic-foot">
                     <Ring pct={pct} />
                     <span className="topic-status">

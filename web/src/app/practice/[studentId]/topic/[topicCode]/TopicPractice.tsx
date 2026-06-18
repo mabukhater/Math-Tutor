@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, Cross, Trophy } from "@/components/icons";
+import { Markdown } from "@/components/Markdown";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -11,7 +12,11 @@ interface Question {
   stem: string;
   options: string[];
 }
-type Phase = "loading" | "question" | "feedback" | "done" | "error";
+interface Lesson {
+  title: string;
+  body: string;
+}
+type Phase = "loading" | "learn" | "question" | "feedback" | "done" | "error";
 
 interface Resp {
   sessionId?: string;
@@ -22,6 +27,7 @@ interface Resp {
   numCorrect: number;
   completed?: boolean;
   done?: boolean;
+  lesson?: Lesson | null;
   question?: Question | null;
   next?: Question | null;
   correct?: boolean;
@@ -47,6 +53,7 @@ export default function TopicPractice({
   const [numCompleted, setNumCompleted] = useState(0);
   const [numCorrect, setNumCorrect] = useState(0);
   const [question, setQuestion] = useState<Question | null>(null);
+  const [lesson, setLesson] = useState<Lesson | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<Resp | null>(null);
   const shownAt = useRef(0);
@@ -78,8 +85,9 @@ export default function TopicPractice({
     setNumCorrect(d.numCorrect);
     if (d.completed || !d.question) return setPhase("done");
     setQuestion(d.question);
+    setLesson(d.lesson ?? null);
     setSelected(null);
-    setPhase("question");
+    setPhase(d.lesson ? "learn" : "question");
   }, [studentId, topicCode]);
 
   useEffect(() => {
@@ -125,6 +133,25 @@ export default function TopicPractice({
     return (
       <Shell>
         <p className="muted">Loading this topic…</p>
+      </Shell>
+    );
+
+  if (phase === "learn" && lesson)
+    return (
+      <Shell>
+        <span className="badge">Learn · {topicName}</span>
+        <h1 style={{ marginTop: "0.5rem" }}>{lesson.title}</h1>
+        <div className="article" style={{ marginTop: "0.5rem" }}>
+          <Markdown content={lesson.body} />
+        </div>
+        <button className="btn" style={{ marginTop: "1rem" }} onClick={() => setPhase("question")}>
+          Start practice
+        </button>
+        <p style={{ marginTop: "0.75rem", textAlign: "center" }}>
+          <Link href={`/practice/${studentId}/topics`} className="muted">
+            Back to topics
+          </Link>
+        </p>
       </Shell>
     );
 

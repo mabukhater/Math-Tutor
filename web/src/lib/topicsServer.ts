@@ -17,6 +17,7 @@ export interface TopicCard {
   total: number; // topic skills at this grade that have vetted questions
   mastered: number; // box >= 4
   attempted: number; // any attempts
+  hasLesson: boolean; // a published "learn" lesson exists at this grade
 }
 
 /**
@@ -58,6 +59,15 @@ export async function getTopicsForStudent(
     (prog ?? []).map((p) => [p.skill_id as string, p as { box: number; total_attempts: number }]),
   );
 
+  // Topics with a published lesson at this grade.
+  const { data: lessonRows } = await admin
+    .from("lessons")
+    .select("topic_id")
+    .eq("curriculum_id", student.curriculum_id)
+    .eq("grade", student.nominal_grade)
+    .eq("status", "published");
+  const topicsWithLesson = new Set((lessonRows ?? []).map((r) => r.topic_id as string));
+
   const { data: topics } = await admin
     .from("topics")
     .select("id, code, name, icon, sort_order")
@@ -86,6 +96,7 @@ export async function getTopicsForStudent(
       total: topicSkills.length,
       mastered,
       attempted,
+      hasLesson: topicsWithLesson.has(t.id as string),
     });
   }
   return cards;

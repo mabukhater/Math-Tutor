@@ -129,6 +129,7 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .topic-card:hover { border-color: var(--green); transform: translateY(-2px); }
 .topic-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--green-soft); display: flex; align-items: center; justify-content: center; }
 .topic-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--ink, #15402f); line-height: 1.2; }
+.topic-learn { font-size: 0.68rem; font-weight: 700; color: var(--green-deep); background: var(--green-soft); padding: 0.1rem 0.4rem; border-radius: 99px; align-self: flex-start; }
 .topic-foot { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; }
 .topic-status { font-size: 0.78rem; color: #6b7280; font-weight: 600; }
 
