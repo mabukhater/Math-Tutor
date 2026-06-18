@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Curriculum-aligned daily math practice for grades 1–8 — US Common Core, UK National Curriculum, and Singapore Math.",
   openGraph: { type: "website", siteName: "Kareem", url: SITE },
-  twitter: { card: "summary" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
