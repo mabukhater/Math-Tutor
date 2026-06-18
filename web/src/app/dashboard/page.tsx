@@ -72,6 +72,9 @@ export default async function Dashboard() {
                   <Link href={`/practice/${s.id}`} className="badge">
                     Practice
                   </Link>
+                  <Link href={`/practice/${s.id}/topics`} className="badge-soft">
+                    Topics
+                  </Link>
                   <Link href={`/children/${s.id}/link`} className="muted" style={{ fontSize: "0.78rem" }}>
                     {s.telegram_chat_id ? "Telegram ✓" : "Link Telegram"}
                   </Link>

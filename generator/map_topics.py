@@ -54,8 +54,11 @@ NAME_RULES: list[tuple[str, list[str]]] = [
     ("data",           ["graph", "data", "chart", "pictograph", "pictogram", "statistic", "median",
                          "probab", "frequency", "survey", "histogram", "tally", "dot plot",
                          "average"]),
-    ("algebra",        ["algebra", "equation", "expression", "variable", "function", "inequalit",
-                         "unknown", "solve for", "formula", "linear", "slope", "exponent", "indices"]),
+    # "hard" algebra signals — always algebra. The "soft" ones (equation/unknown/
+    # solve for) are gated by grade in classify() so early missing-addend skills
+    # land in Addition & Subtraction, not Algebra.
+    ("algebra",        ["algebra", "expression", "variable", "function", "inequalit",
+                         "formula", "linear", "slope", "exponent", "indices"]),
     ("mult_div",       ["multipl", "product", "times table", "array", "multiple of", "factor",
                          "divis", "divid", "divide", "quotient", "remainder", "grouping"]),
     ("add_sub",        ["add", "sum", "plus", "total", "altogether",
@@ -99,9 +102,19 @@ def _hit(stem: str, text: str) -> bool:
     return re.search(r"\b" + re.escape(stem), text) is not None
 
 
+SOFT_ALGEBRA = ["equation", "unknown", "solve for"]
+
+
 def classify(name: str, domain: str, grade: int) -> str:
     n = (name or "").lower()
     for topic, kws in NAME_RULES:
+        if topic == "algebra":
+            if any(_hit(k, n) for k in kws):
+                return "algebra"
+            # Formal-equation framing only counts as Algebra from grade 5 up.
+            if grade >= 5 and any(_hit(k, n) for k in SOFT_ALGEBRA):
+                return "algebra"
+            continue
         if any(_hit(k, n) for k in kws):
             return topic
     d = (domain or "").lower()
