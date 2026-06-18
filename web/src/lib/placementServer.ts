@@ -33,10 +33,16 @@ export async function loadLadder(
   return { ladder, idByIndex, metaByIndex };
 }
 
+export interface QuestionVisualSpec {
+  type: string;
+  params: Record<string, number | string>;
+}
+
 export interface PublicQuestion {
   id: string;
   stem: string;
   options: string[];
+  visual?: QuestionVisualSpec | null;
 }
 
 interface FullQuestion extends PublicQuestion {
@@ -57,7 +63,7 @@ export async function pickQuestion(
 ): Promise<FullQuestion | null> {
   const { data, error } = await admin
     .from("questions")
-    .select("id, stem, options, correct_index, explanation, difficulty")
+    .select("id, stem, options, correct_index, explanation, difficulty, visual")
     .eq("skill_id", skillId)
     .eq("status", "vetted");
   if (error) throw new Error(error.message);
@@ -74,10 +80,16 @@ export async function pickQuestion(
     correct_index: q.correct_index as number,
     explanation: q.explanation as string,
     difficulty: q.difficulty as number,
+    visual: (q.visual as QuestionVisualSpec | null) ?? null,
   };
 }
 
 /** Strip the answer before sending a question to the browser. */
-export function toPublic(q: { id: string; stem: string; options: string[] }): PublicQuestion {
-  return { id: q.id, stem: q.stem, options: q.options };
+export function toPublic(q: {
+  id: string;
+  stem: string;
+  options: string[];
+  visual?: QuestionVisualSpec | null;
+}): PublicQuestion {
+  return { id: q.id, stem: q.stem, options: q.options, visual: q.visual ?? null };
 }

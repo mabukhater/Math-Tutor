@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Check, Cross, Flame, Trophy } from "@/components/icons";
+import { QuestionVisual, type Visual } from "@/components/QuestionVisual";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -11,6 +12,7 @@ interface Question {
   id: string;
   stem: string;
   options: string[];
+  visual?: Visual | null;
 }
 type Phase = "loading" | "question" | "feedback" | "done" | "error";
 
@@ -174,6 +176,7 @@ export default function Practice() {
         )}
       </p>
       <h2 style={{ marginTop: "0.25rem" }}>{question?.stem}</h2>
+      {question?.visual && <QuestionVisual visual={question.visual} />}
       {question?.options.map((opt, i) => {
         let cls = "opt";
         const fb = phase === "feedback" && feedback;

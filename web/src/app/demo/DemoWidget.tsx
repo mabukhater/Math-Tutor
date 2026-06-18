@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { Check, Cross } from "@/components/icons";
+import { QuestionVisual, type Visual } from "@/components/QuestionVisual";
 
 interface DemoQ {
   id: string;
@@ -11,6 +12,7 @@ interface DemoQ {
   correctIndex: number;
   explanation: string;
   optionExplanations: string[] | null;
+  visual: Visual | null;
   skillCode: string;
   curriculum: string;
 }
@@ -86,6 +88,7 @@ export default function DemoWidget() {
         {q.curriculum} · {q.skillCode} · sample {idx + 1} of {questions.length}
       </p>
       <h2 style={{ marginTop: "0.25rem" }}>{q.stem}</h2>
+      {q.visual && <QuestionVisual visual={q.visual} />}
       {q.options.map((opt, i) => {
         let cls = "opt";
         if (answered && i === q.correctIndex) cls += " correct";

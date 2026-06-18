@@ -53,10 +53,10 @@ export async function POST(req: Request) {
   if (!done) {
     const { data: q } = await admin
       .from("questions")
-      .select("id, stem, options")
+      .select("id, stem, options, visual")
       .eq("id", session.question_ids[idx])
       .single();
-    if (q) question = toPublic({ id: q.id, stem: q.stem, options: q.options });
+    if (q) question = toPublic({ id: q.id, stem: q.stem, options: q.options, visual: q.visual });
   }
 
   return NextResponse.json({

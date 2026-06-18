@@ -130,6 +130,10 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .topic-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--green-soft); display: flex; align-items: center; justify-content: center; }
 .topic-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--ink, #15402f); line-height: 1.2; }
 .topic-learn { font-size: 0.68rem; font-weight: 700; color: var(--green-deep); background: var(--green-soft); padding: 0.1rem 0.4rem; border-radius: 99px; align-self: flex-start; }
+
+/* Visual questions (counting, number line, fraction bar, array) */
+.q-visual { margin: 0.85rem 0 0.25rem; padding: 1.1rem 1rem; display: flex; justify-content: center; align-items: center; background: #f9fbfa; border: 1.5px solid var(--line); border-radius: 14px; }
+.q-visual svg { display: block; height: auto; }
 .topic-foot { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; }
 .topic-status { font-size: 0.78rem; color: #6b7280; font-weight: 600; }
 

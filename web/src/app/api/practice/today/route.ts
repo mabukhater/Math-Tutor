@@ -34,10 +34,10 @@ export async function POST(req: Request) {
     const nextId = session.question_ids[session.num_completed];
     const { data: q } = await admin
       .from("questions")
-      .select("id, stem, options")
+      .select("id, stem, options, visual")
       .eq("id", nextId)
       .single();
-    if (q) question = toPublic({ id: q.id, stem: q.stem, options: q.options });
+    if (q) question = toPublic({ id: q.id, stem: q.stem, options: q.options, visual: q.visual });
   }
 
   const streak = await streakForStudent(admin, student.id, now);

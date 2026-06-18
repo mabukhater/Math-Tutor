@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, Cross, Trophy } from "@/components/icons";
 import { Markdown } from "@/components/Markdown";
+import { QuestionVisual, type Visual } from "@/components/QuestionVisual";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -11,6 +12,7 @@ interface Question {
   id: string;
   stem: string;
   options: string[];
+  visual?: Visual | null;
 }
 interface Lesson {
   title: string;
@@ -195,6 +197,7 @@ export default function TopicPractice({
         {topicName} · question {numCompleted + 1} of {total}
       </p>
       <h2 style={{ marginTop: "0.25rem" }}>{question?.stem}</h2>
+      {question?.visual && <QuestionVisual visual={question.visual} />}
       {question?.options.map((opt, i) => {
         let cls = "opt";
         const fb = phase === "feedback" && feedback;
