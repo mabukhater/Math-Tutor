@@ -38,7 +38,7 @@ const TIERS: Tier[] = [
       "Full adaptive placement",
       "Spaced-repetition review",
       "Parent dashboard & mastery map",
-      "Multiple children",
+      "First child included · add a child for $2/mo each",
     ],
     cta: "Choose One Subject",
   },
@@ -52,6 +52,7 @@ const TIERS: Tier[] = [
       "All subjects, as we add them",
       "Cross-curriculum level tracking",
       "Priority access to new features",
+      "First child included · add a child for $2/mo each",
     ],
     cta: "Choose All Subjects",
     featured: true,
@@ -93,6 +94,10 @@ export default function Pricing() {
         </div>
 
         <p className="muted" style={{ marginTop: "1.5rem" }}>
+          Got more than one child? Your first child is included on any paid plan, and each
+          additional child is just <strong>$2/month</strong> — on either One Subject or All Subjects.
+        </p>
+        <p className="muted" style={{ marginTop: "0.75rem" }}>
           We&apos;re in early access, so plans and billing may evolve. Early families keep
           early-access perks.
         </p>
