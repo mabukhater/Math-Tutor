@@ -71,6 +71,9 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .opt .opt-mark { margin-left: auto; display: inline-flex; }
 .muted { color: var(--muted); font-size: 0.9rem; }
 .err { color: #c0392b; font-size: 0.9rem; margin-top: 0.6rem; }
+.ok-msg { color: var(--green-deep); background: var(--green-soft); border-radius: 10px; padding: 0.6rem 0.75rem; font-size: 0.9rem; margin-top: 0.6rem; }
+.linklike { background: none; border: none; padding: 0; color: var(--green-deep); font-weight: 700; cursor: pointer; font-size: inherit; }
+.linklike:hover { text-decoration: underline; }
 .progress { height: 9px; background: var(--line); border-radius: 99px; margin-bottom: 1.25rem; overflow: hidden; }
 .progress > div { height: 9px; background: linear-gradient(90deg, var(--green), var(--sky)); border-radius: 99px; transition: width .35s ease; }
 /* celebratory bits for kid-facing result screens */
