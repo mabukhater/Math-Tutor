@@ -69,8 +69,8 @@ export default async function Dashboard() {
               </div>
               {s.placement_completed ? (
                 <div style={{ display: "flex", gap: "0.6rem", alignItems: "center" }}>
-                  <Link href={`/practice/${s.id}`} className="badge">
-                    Practice
+                  <Link href={`/learn/${s.id}`} className="badge">
+                    Learn
                   </Link>
                   <Link href={`/practice/${s.id}/topics`} className="badge-soft">
                     Topics
