@@ -134,6 +134,26 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .topic-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--ink, #15402f); line-height: 1.2; }
 .topic-learn { font-size: 0.68rem; font-weight: 700; color: var(--green-deep); background: var(--green-soft); padding: 0.1rem 0.4rem; border-radius: 99px; align-self: flex-start; }
 
+/* ====================== Early-access A/B landing ====================== */
+.early-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: linear-gradient(180deg, #f3faf7 0%, #eef6f2 100%); }
+.early-card { background: #fff; border: 1.5px solid var(--line); border-radius: 22px; padding: 2.25rem; width: 100%; max-width: 540px; box-shadow: 0 12px 40px rgba(14,122,87,0.08); }
+.early-brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink, #15402f); margin-bottom: 1.25rem; }
+.early-eyebrow { display: inline-block; font-size: 0.78rem; font-weight: 700; color: var(--green-deep); background: var(--green-soft); padding: 0.2rem 0.6rem; border-radius: 99px; margin-bottom: 0.85rem; }
+.early-headline { font-size: 1.9rem; line-height: 1.12; margin: 0 0 0.6rem; color: var(--ink, #15402f); }
+.early-sub { color: #475569; font-size: 1rem; line-height: 1.55; margin-bottom: 1rem; }
+.early-bullets { list-style: none; padding: 0; margin: 0 0 1.4rem; }
+.early-bullets li { position: relative; padding-left: 1.6rem; margin-bottom: 0.55rem; color: #334155; font-size: 0.95rem; }
+.early-bullets li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--green); font-weight: 800; }
+.early-form { display: flex; flex-direction: column; gap: 0.6rem; }
+.early-form .btn { margin-top: 0.3rem; }
+.early-fine { font-size: 0.78rem; color: #94a3b8; text-align: center; margin-top: 0.4rem; }
+.early-done { text-align: center; padding: 1.5rem 0; }
+.ab-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.92rem; }
+.ab-table th, .ab-table td { text-align: left; padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--line); }
+.ab-table th { font-size: 0.78rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.03em; }
+.ab-table tr.win td { background: var(--green-soft); font-weight: 700; color: var(--green-deep); }
+.result-list { background: #f9fbfa; border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem; line-height: 1.9; }
+
 /* ====================== Learning path ====================== */
 .threshold-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.85rem 0 0; padding: 0.55rem 0.8rem; background: var(--green-soft); border-radius: 12px; }
 .threshold-row select { width: auto; margin: 0; }
