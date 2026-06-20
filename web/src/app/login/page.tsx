@@ -16,7 +16,9 @@ export default function LoginPage() {
   const [info, setInfo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  async function submit() {
+  async function submit(e?: React.FormEvent) {
+    e?.preventDefault();
+    if (busy || !email || !password) return;
     setBusy(true);
     setMsg(null);
     setInfo(null);
@@ -55,26 +57,28 @@ export default function LoginPage() {
             : "One parent account holds all your children’s progress."}
         </p>
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          autoComplete="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          autoComplete={mode === "signin" ? "current-password" : "new-password"}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <form onSubmit={submit}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            autoComplete="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            autoComplete={mode === "signin" ? "current-password" : "new-password"}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button className="btn" disabled={busy || !email || !password} onClick={submit}>
-          {busy ? "…" : mode === "signin" ? "Sign in" : "Create account"}
-        </button>
+          <button className="btn" type="submit" disabled={busy || !email || !password}>
+            {busy ? "…" : mode === "signin" ? "Sign in" : "Create account"}
+          </button>
+        </form>
 
         {info && <p className="ok-msg">{info}</p>}
         {msg && <p className="err">{msg}</p>}
