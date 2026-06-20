@@ -23,7 +23,7 @@ load_dotenv()
 
 # grade, level_order, title, [paragraphs], [questions]
 PASSAGES = [
-    (2, 1, "The Lost Kite",
+    (2, 1, 1, "The Lost Kite",
      [
         "Mia loved her red kite more than any other toy. Every Saturday she flew it in the park near her house.",
         "One windy morning, Mia looked out her window and saw that her kite was gone! The wind had pulled it off the porch. She grabbed her shoes and ran straight to the park.",
@@ -52,7 +52,7 @@ PASSAGES = [
          "Pulled it off the porch means the wind moved the kite away from where it was.",
          {"paragraph": 2, "hint": "Re-read ¶2 — the wind pulled the kite off the porch, so it moved away."}),
      ]),
-    (3, 1, "The Classroom Garden",
+    (3, 1, 1, "The Classroom Garden",
      [
         "Mr. Lee’s class started a garden behind the school. Each student chose one vegetable to grow.",
         "Sam picked carrots because they were his favorite. He planted the tiny seeds in a straight row and watered them every day.",
@@ -81,7 +81,7 @@ PASSAGES = [
          "A straight row means the seeds were planted in a line.",
          {"paragraph": 2, "hint": "Re-read ¶2 — a straight row is a line."}),
      ]),
-    (3, 2, "The Brave Little Boat",
+    (3, 1, 2, "The Brave Little Boat",
      [
         "The old fishing boat named Pearl had sailed the bay for thirty years. Her blue paint was faded, but Captain Rosa loved her dearly.",
         "One stormy night, a young sailor’s boat lost its engine far from shore. He waved a flashlight into the dark, hoping someone would see him.",
@@ -110,23 +110,110 @@ PASSAGES = [
          "Pearl went into the storm and towed the sailor safely back, so the town called her a hero.",
          {"paragraph": 4, "hint": "¶4 says what Pearl did just before the town called her a hero."}),
      ]),
+    (3, 1, 3, "Recess Rescue",
+     [
+        "At recess, Tariq saw a first grader named Lily sitting alone by the fence. She was crying because she had dropped her snack in a puddle.",
+        "Tariq remembered he still had half of his granola bar in his pocket. He walked over and offered it to her with a smile.",
+        "Lily wiped her eyes and grinned. The two of them spent the rest of recess playing tag with the other kids.",
+        "Walking back to class, Tariq felt proud. Sometimes the smallest kindness makes the biggest difference.",
+     ],
+     [
+        ("inference", "Why was Lily crying at the start?",
+         ["She lost a game of tag", "Her snack fell in a puddle", "She missed the bus", "She forgot her homework"], 1,
+         "¶1 says Lily dropped her snack in a puddle, which is why she was upset.",
+         {"paragraph": 1, "hint": "¶1 tells you what happened to Lily’s snack."}),
+        ("detail", "What did Tariq give Lily?",
+         ["A juice box", "Half of his granola bar", "A new toy", "His lunch money"], 1,
+         "¶2 says Tariq offered her half of his granola bar.",
+         {"paragraph": 2, "hint": "¶2 says exactly what Tariq took out of his pocket."}),
+        ("sequence", "What did they do after Tariq shared his snack?",
+         ["Went straight to class", "Played tag with other kids", "Looked for the lost snack", "Called a teacher"], 1,
+         "¶3 says they spent the rest of recess playing tag.",
+         {"paragraph": 3, "hint": "¶3 tells you what they did for the rest of recess."}),
+        ("main_idea", "What is the main lesson of this story?",
+         ["Always bring two snacks", "Small kindness makes a big difference", "Recess is too short", "Never play near puddles"], 1,
+         "¶4 states the lesson directly: small kindness matters.",
+         {"paragraph": 4, "hint": "¶4 says the lesson in the very last sentence."}),
+        ("vocab", "In ¶2, “offered” most nearly means—",
+         ["took away", "held out to give", "ate quickly", "threw at"], 1,
+         "Offered means he held it out to give it to her.",
+         {"paragraph": 2, "hint": "Re-read ¶2 — Tariq gave the bar to Lily."}),
+     ]),
+    (3, 2, 4, "The Science Fair Volcano",
+     [
+        "Maria had two weeks to build her science fair project, and she chose to make an erupting volcano. She read that mixing baking soda and vinegar makes a fizzy, bubbling reaction.",
+        "Her first try was a disaster. She used too little vinegar, and the volcano barely bubbled. Maria wrote down what went wrong instead of giving up.",
+        "On her second try, she added red food coloring and much more vinegar. The volcano erupted in a frothy red flow that spilled down the sides.",
+        "At the fair, the judges were impressed — not just by the eruption, but by Maria’s notebook showing how she fixed her mistakes. She won second place.",
+     ],
+     [
+        ("detail", "What two things did Maria mix to make the eruption?",
+         ["Sugar and water", "Baking soda and vinegar", "Salt and oil", "Flour and milk"], 1,
+         "¶1 says she mixed baking soda and vinegar.",
+         {"paragraph": 1, "hint": "¶1 names the two ingredients of the reaction."}),
+        ("inference", "Why did the first try barely bubble?",
+         ["She used too little vinegar", "The baking soda was old", "She forgot the food coloring", "It was too cold"], 0,
+         "¶2 says she used too little vinegar, so it barely bubbled.",
+         {"paragraph": 2, "hint": "¶2 explains what was wrong with the first try."}),
+        ("inference", "What does Maria writing down what went wrong show about her?",
+         ["She gives up easily", "She learns from mistakes", "She dislikes science", "She copied a friend"], 1,
+         "Instead of quitting, she recorded the problem to fix it — she learns from mistakes.",
+         {"paragraph": 2, "hint": "¶2 shows what Maria did instead of giving up."}),
+        ("detail", "What did she change on the second try?",
+         ["Less vinegar and no color", "More vinegar and red food coloring", "A bigger volcano shape", "A different table"], 1,
+         "¶3 says she added red food coloring and much more vinegar.",
+         {"paragraph": 3, "hint": "¶3 lists exactly what she changed."}),
+        ("main_idea", "Why were the judges most impressed?",
+         ["The volcano was the biggest", "Her notebook showed how she fixed mistakes", "She finished first", "It used real lava"], 1,
+         "¶4 says the judges liked that her notebook showed how she fixed her mistakes.",
+         {"paragraph": 4, "hint": "¶4 says what impressed the judges beyond the eruption."}),
+     ]),
+    (3, 2, 5, "A Letter to Grandma",
+     [
+        "Dear Grandma, I wanted to tell you about our class trip to the apple orchard last Friday. It was the best field trip all year!",
+        "First, a farmer showed us how apples grow on tall trees and which ones are ready to pick. Then each of us filled a small basket with red and green apples.",
+        "After picking, we drank fresh apple cider and learned how it is pressed from apples. I saved one perfect apple to bring home for you.",
+        "I can’t wait to see you next month so we can bake a pie together. Love, Sofia.",
+     ],
+     [
+        ("main_idea", "What is this letter mostly about?",
+         ["A birthday party", "A class trip to an apple orchard", "A trip to the zoo", "A baking contest"], 1,
+         "The whole letter describes Sofia’s class trip to the apple orchard.",
+         {"paragraph": 1, "hint": "¶1 tells you what the letter is about."}),
+        ("sequence", "What did the students do FIRST at the orchard?",
+         ["Drank cider", "Learned how apples grow and picked them", "Baked a pie", "Went home"], 1,
+         "¶2 says first the farmer showed how apples grow, then they picked apples.",
+         {"paragraph": 2, "hint": "¶2 begins with the word ‘First’."}),
+        ("detail", "What did Sofia save to bring home?",
+         ["A basket", "One perfect apple", "A bottle of cider", "A leaf"], 1,
+         "¶3 says she saved one perfect apple for Grandma.",
+         {"paragraph": 3, "hint": "¶3 says what Sofia kept to bring home."}),
+        ("inference", "Why is Sofia excited to see Grandma next month?",
+         ["To go to the orchard again", "To bake a pie together", "To pick more apples", "To write another letter"], 1,
+         "¶4 says she wants to bake a pie with Grandma.",
+         {"paragraph": 4, "hint": "¶4 says what they will do together next month."}),
+        ("vocab", "In ¶3, “pressed” means the cider was—",
+         ["squeezed out of apples", "frozen into ice", "poured from a bottle", "baked in an oven"], 0,
+         "Pressed means the juice was squeezed out of the apples.",
+         {"paragraph": 3, "hint": "Re-read ¶3 — cider is made by squeezing apples."}),
+     ]),
 ]
 
 
 def main() -> None:
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_ROLE_KEY"])
     made_p = made_q = 0
-    for grade, order, title, paras, questions in PASSAGES:
+    for grade, week, order, title, paras, questions in PASSAGES:
         existing = sb.table("passages").select("id").eq("grade", grade).eq("title", title).execute().data
         if existing:
-            print(f"  exists: G{grade} L{order} — {title}")
+            print(f"  exists: G{grade} W{week} L{order} — {title}")
             continue
         paragraphs = [{"n": i + 1, "text": t} for i, t in enumerate(paras)]
         wc = sum(len(t.split()) for t in paras)
         pid = (
             sb.table("passages")
             .insert({
-                "grade": grade, "level_order": order, "title": title,
+                "grade": grade, "week": week, "level_order": order, "title": title,
                 "paragraphs": paragraphs, "word_count": wc, "status": "published",
             })
             .execute()
@@ -135,11 +222,11 @@ def main() -> None:
         made_p += 1
         rows = []
         for qtype, stem, options, ci, expl, locator in questions:
-            order = options[:]
-            random.shuffle(order)  # don't let the correct answer sit in one spot
-            new_ci = order.index(options[ci])
+            shuffled = options[:]
+            random.shuffle(shuffled)  # don't let the correct answer sit in one spot
+            new_ci = shuffled.index(options[ci])
             rows.append({
-                "passage_id": pid, "stem": stem, "options": order, "correct_index": new_ci,
+                "passage_id": pid, "stem": stem, "options": shuffled, "correct_index": new_ci,
                 "explanation": expl, "locator": locator, "qtype": qtype, "status": "vetted",
             })
         sb.table("reading_questions").insert(rows).execute()

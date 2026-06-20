@@ -16,27 +16,39 @@ export interface PassageItem {
   accuracy: number | null;
 }
 
-export interface ReadingPath {
+export interface ReadingWeek {
+  week: number;
   passages: PassageItem[];
-  activePassageId: string | null;
-  threshold: number;
+  passed: number;
+  total: number;
 }
 
-/** The leveled reading path for a student's grade: published passages (that have
- * questions) ordered by difficulty. First not-passed passage is active; the rest
- * are locked. */
+export interface ReadingPath {
+  weeks: ReadingWeek[];
+  activePassageId: string | null;
+  threshold: number;
+  passedPassages: number;
+  totalPassages: number;
+}
+
+/** The reading ladder for a student's grade: passages grouped into weeks (3-4
+ * each) that get harder week over week. Passages unlock in order across the whole
+ * sequence — the first not-passed one is active, the rest locked — so finishing a
+ * week unlocks the next. */
 export async function getReadingPath(
   admin: SupabaseClient,
   student: ReadingStudent,
 ): Promise<ReadingPath> {
   const { data: passages } = await admin
     .from("passages")
-    .select("id, title, level_order")
+    .select("id, title, week, level_order")
     .eq("grade", student.nominal_grade)
     .eq("status", "published")
+    .order("week", { ascending: true })
     .order("level_order", { ascending: true });
-  const all = (passages ?? []) as { id: string; title: string; level_order: number }[];
-  if (all.length === 0) return { passages: [], activePassageId: null, threshold: student.pass_threshold };
+  const all = (passages ?? []) as { id: string; title: string; week: number; level_order: number }[];
+  const base = { weeks: [], activePassageId: null, threshold: student.pass_threshold, passedPassages: 0, totalPassages: 0 };
+  if (all.length === 0) return base;
 
   const ids = all.map((p) => p.id);
   const { data: vq } = await admin
@@ -60,23 +72,46 @@ export async function getReadingPath(
 
   let activeFound = false;
   let activePassageId: string | null = null;
-  const items: PassageItem[] = [];
+  let passedPassages = 0;
+  let totalPassages = 0;
+  const weekMap = new Map<number, ReadingWeek>();
+  const order: number[] = [];
+
   for (const p of all) {
     if (!withQ.has(p.id)) continue;
+    totalPassages++;
     const pr = progBy.get(p.id);
     const passed = !!pr?.passed_at;
     let status: PassageStatus;
-    if (passed) status = "passed";
-    else if (!activeFound) {
+    if (passed) {
+      status = "passed";
+      passedPassages++;
+    } else if (!activeFound) {
       status = "active";
       activeFound = true;
       activePassageId = p.id;
     } else status = "locked";
     const accuracy =
       pr && pr.total_attempts > 0 ? Math.round((100 * pr.total_correct) / pr.total_attempts) : null;
-    items.push({ passageId: p.id, title: p.title, status, accuracy });
+
+    let wk = weekMap.get(p.week);
+    if (!wk) {
+      wk = { week: p.week, passages: [], passed: 0, total: 0 };
+      weekMap.set(p.week, wk);
+      order.push(p.week);
+    }
+    wk.passages.push({ passageId: p.id, title: p.title, status, accuracy });
+    wk.total++;
+    if (passed) wk.passed++;
   }
-  return { passages: items, activePassageId, threshold: student.pass_threshold };
+
+  return {
+    weeks: order.map((w) => weekMap.get(w)!),
+    activePassageId,
+    threshold: student.pass_threshold,
+    passedPassages,
+    totalPassages,
+  };
 }
 
 export interface ReadingBlock {

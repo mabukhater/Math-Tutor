@@ -64,7 +64,7 @@ export default async function Dashboard() {
     const rp = await getReadingPath(admin, stud);
     summaries.set(s.id, {
       math,
-      reading: { passed: rp.passages.filter((p) => p.status === "passed").length, total: rp.passages.length },
+      reading: { passed: rp.passedPassages, total: rp.totalPassages },
     });
   }
 

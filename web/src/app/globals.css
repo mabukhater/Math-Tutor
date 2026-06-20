@@ -209,6 +209,17 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .rung-go:hover { filter: brightness(1.05); }
 .rung-meta { font-size: 0.78rem; color: #6b7280; margin-top: 0.25rem; }
 
+/* Claymorphic polish — chunky, toy-like, soft 3D (kids reading ladder) */
+.ladder-head.clay { border: 3px solid #d9eee5; box-shadow: 0 6px 0 #cfe9df, inset 0 2px 4px rgba(255,255,255,0.7); }
+.clay-banner { border: 3px solid #ffe2b0; box-shadow: 0 4px 0 #f3d28a, inset 0 2px 3px rgba(255,255,255,0.6); padding: 0.35rem 1rem; font-size: 0.88rem; }
+.clay-rung .rung-node { border-width: 5px; box-shadow: 0 5px 0 rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5); }
+.clay-rung.passed .rung-node { box-shadow: 0 5px 0 #0e7a57, inset 0 2px 4px rgba(255,255,255,0.4); }
+.clay-rung.active .rung-node { box-shadow: 0 5px 0 #c87f1e, inset 0 2px 5px rgba(255,255,255,0.5); }
+.clay-rung .rung-go { border-radius: 16px; box-shadow: 0 5px 0 rgba(14,122,87,0.45); transition: transform .15s ease, box-shadow .15s ease; }
+.clay-rung .rung-go:hover { filter: brightness(1.05); }
+.clay-rung .rung-go:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(14,122,87,0.45); }
+@media (prefers-reduced-motion: reduce) { .rung.active .rung-node { animation: none; } }
+
 /* ====================== Learning path ====================== */
 .threshold-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.85rem 0 0; padding: 0.55rem 0.8rem; background: var(--green-soft); border-radius: 12px; }
 .threshold-row select { width: auto; margin: 0; }

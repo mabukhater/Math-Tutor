@@ -52,10 +52,12 @@ SYSTEM = (
     "questions for a child about age {age} (grade {grade}). Reading level must "
     "match the grade — sentence length and vocabulary appropriate for a {grade}th "
     "grader.\n\n"
+    "This passage is for WEEK {week} — passages get a little longer and harder each "
+    "week, so make it suitably rich for week {week}.\n\n"
     "Produce:\n"
-    "- A short story or informational passage: a title and 3 to 5 SHORT paragraphs "
+    "- A short story or informational passage: a title and 4 to 6 SHORT paragraphs "
     "(2-4 sentences each), in order. Wholesome, engaging, varied topics.\n"
-    "- Exactly 5 multiple-choice questions about the passage, covering a mix of: "
+    "- Exactly 10 multiple-choice questions about the passage, covering a mix of: "
     "main_idea, detail, inference, vocab, sequence.\n"
     "- Each question: 4 options, one correct (correct_index 0-3), a one-sentence "
     "kid-friendly explanation, the 1-based paragraph number that holds the answer "
@@ -70,8 +72,8 @@ SYSTEM = (
 def valid(p: Passage) -> str | None:
     if not p.title.strip() or not (3 <= len(p.paragraphs) <= 6):
         return "bad passage shape"
-    if len(p.questions) != 5:
-        return f"expected 5 questions, got {len(p.questions)}"
+    if len(p.questions) != 10:
+        return f"expected 10 questions, got {len(p.questions)}"
     for q in p.questions:
         if len(q.options) != 4 or not (0 <= q.correct_index <= 3):
             return "bad options"
@@ -83,7 +85,8 @@ def valid(p: Passage) -> str | None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--grade", type=int, required=True)
-    ap.add_argument("--count", type=int, default=4, help="passages to generate")
+    ap.add_argument("--week", type=int, help="week number (default: next empty week for the grade)")
+    ap.add_argument("--count", type=int, default=3, help="passages to generate (3-4 per week)")
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--draft", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
@@ -99,26 +102,28 @@ def main() -> None:
     client = anthropic.Anthropic() if not args.dry_run else None
 
     # Continue numbering after existing passages at this grade.
-    existing = sb.table("passages").select("level_order").eq("grade", args.grade).execute().data
+    existing = sb.table("passages").select("level_order, week").eq("grade", args.grade).execute().data
     next_order = (max((r["level_order"] for r in existing), default=0)) + 1
+    week = args.week if args.week is not None else (max((r["week"] for r in existing), default=0)) + 1
 
-    print(f"generating {args.count} passages for grade {args.grade} "
+    print(f"generating {args.count} passages for grade {args.grade}, week {week} "
           f"(levels {next_order}..{next_order + args.count - 1})"
           + (" (dry run)" if args.dry_run else ""))
     if args.dry_run:
         return
 
-    system = SYSTEM.format(age=args.grade + 5, grade=args.grade)
+    system = SYSTEM.format(age=args.grade + 5, grade=args.grade, week=week)
     made = 0
     for k in range(args.count):
         order = next_order + k
         try:
             resp = client.messages.parse(
-                model=args.model, max_tokens=3000, system=system,
+                model=args.model, max_tokens=4500, system=system,
                 messages=[{
                     "role": "user",
-                    "content": f"Write reading passage #{order} for grade {args.grade}. "
-                               f"Make it different in topic and style from a typical first one.",
+                    "content": f"Write reading passage #{k + 1} of {args.count} for grade "
+                               f"{args.grade}, week {week}. Make it different in topic and style "
+                               f"from the others in this week.",
                 }],
                 output_format=Passage,
             )
@@ -130,7 +135,7 @@ def main() -> None:
             paragraphs = [{"n": i + 1, "text": t.strip()} for i, t in enumerate(p.paragraphs)]
             wc = sum(len(t.split()) for t in p.paragraphs)
             pid = sb.table("passages").insert({
-                "grade": args.grade, "level_order": order, "title": p.title.strip(),
+                "grade": args.grade, "week": week, "level_order": order, "title": p.title.strip(),
                 "paragraphs": paragraphs, "word_count": wc,
                 "status": "draft" if args.draft else "published",
             }).execute().data[0]["id"]
