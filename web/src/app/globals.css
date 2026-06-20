@@ -154,6 +154,17 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .ab-table tr.win td { background: var(--green-soft); font-weight: 700; color: var(--green-deep); }
 .result-list { background: #f9fbfa; border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem; line-height: 1.9; }
 
+/* ====================== Reading comprehension ====================== */
+.rc-passage { background: #fffdf7; border: 1.5px solid #f0e8d6; border-radius: 14px; padding: 1.1rem 1.25rem; margin: 0.75rem 0 1.1rem; }
+.rc-passage-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--ink, #15402f); margin-bottom: 0.5rem; }
+.rc-para { position: relative; padding-left: 2.1rem; margin: 0 0 0.7rem; font-size: 0.98rem; line-height: 1.6; color: #3a3a3a; border-radius: 8px; transition: background .2s; }
+.rc-para:last-child { margin-bottom: 0; }
+.rc-pnum { position: absolute; left: 0; top: 0.1rem; font-size: 0.72rem; font-weight: 800; color: #b8a55f; }
+.rc-para.hl { background: #fff3c4; padding: 0.35rem 0.5rem 0.35rem 2.1rem; margin-left: -0.5rem; margin-right: -0.5rem; }
+.rc-bar { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.rc-toggle { background: none; border: 1.5px solid var(--green-soft); color: var(--green-deep); font-weight: 700; font-size: 0.78rem; padding: 0.2rem 0.6rem; border-radius: 99px; cursor: pointer; flex: none; }
+.rc-toggle:hover { background: var(--green-soft); }
+
 /* ====================== Learning path ====================== */
 .threshold-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.85rem 0 0; padding: 0.55rem 0.8rem; background: var(--green-soft); border-radius: 12px; }
 .threshold-row select { width: auto; margin: 0; }
