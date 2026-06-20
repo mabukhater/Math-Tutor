@@ -5,9 +5,9 @@ const SITE = "https://kareem.academy";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Kareem — daily math that follows your child",
+  title: "Kareem — math & reading that follow your child",
   description:
-    "Curriculum-aligned daily math practice for grades 1–8 — US Common Core, UK National Curriculum, and Singapore Math.",
+    "Curriculum-aligned math and leveled reading comprehension for grades 1–8 — US Common Core, UK National Curriculum, and Singapore Math.",
   openGraph: { type: "website", siteName: "Kareem", url: SITE },
   twitter: { card: "summary_large_image" },
 };

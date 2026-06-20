@@ -39,7 +39,7 @@ export default function OpengraphImage() {
           <div style={{ fontSize: 96, fontWeight: 800 }}>Kareem</div>
         </div>
         <div style={{ fontSize: 42, marginTop: 30, opacity: 0.95 }}>
-          Daily math that follows your child
+          Math &amp; reading that follow your child
         </div>
         <div style={{ fontSize: 28, marginTop: 18, opacity: 0.8 }}>
           Grades 1–8 · US Common Core · UK · Singapore

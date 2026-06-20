@@ -85,12 +85,12 @@ export default async function Landing() {
           <BookIcon size={15} /> US · UK · Singapore curricula
         </span>
         <h1>
-          Math that <span className="pop-green">follows</span> your child
+          Math &amp; reading that <span className="pop-green">follow</span> your child
           <span className="pop-amber">.</span>
         </h1>
         <p className="lead">
-          Pick your child&apos;s curriculum, let a quick adaptive check find their real level,
-          then a few daily questions keep them on track — on the web or Telegram.
+          Curriculum-aligned math and leveled reading comprehension. A quick check finds your
+          child&apos;s level, then a daily climb of lessons and passages keeps them growing.
         </p>
         <div className="cta-row">
           <Link href="/login" className="btn-cta">
@@ -136,6 +136,29 @@ export default async function Landing() {
         </div>
       </section>
 
+      <section className="section">
+        <h2>Two subjects, one climb</h2>
+        <p className="sub-c">Your child builds skills step by step in both — same account, same progress.</p>
+        <div className="curricula-row">
+          <div className="curr-card c1">
+            <div className="curr-name">Math</div>
+            <div className="curr-lvl">Mastery ladder · grades 1–8</div>
+            <p className="muted" style={{ marginTop: "0.55rem", fontSize: "0.88rem" }}>
+              Read a short lesson, then practice until it sticks. Pass to unlock the next week.
+              Picture-based questions for younger kids.
+            </p>
+          </div>
+          <div className="curr-card c2">
+            <div className="curr-name">Reading comprehension</div>
+            <div className="curr-lvl">Leveled passages, week by week</div>
+            <p className="muted" style={{ marginTop: "0.55rem", fontSize: "0.88rem" }}>
+              Read a passage, answer questions. Wrong answer? A hint points to the exact
+              paragraph — teaching them to find the evidence.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section" id="how">
         <h2>Three steps to daily momentum</h2>
         <p className="sub-c">Set up in minutes — the hard part, staying on track, runs itself.</p>
@@ -158,8 +181,8 @@ export default async function Landing() {
             <div className="chip chip-grape">
               <BoltIcon />
             </div>
-            <h3>Practice daily</h3>
-            <p>A few smart questions a day, web or Telegram, with spaced repetition built in.</p>
+            <h3>Climb every day</h3>
+            <p>A short lesson or passage, then questions — pass to unlock the next rung, in math and reading.</p>
           </div>
         </div>
       </section>
