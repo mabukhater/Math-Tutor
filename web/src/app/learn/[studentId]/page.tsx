@@ -46,49 +46,74 @@ export default async function LearnPage({
           {label} · {cur?.name} — pass each week at {path.threshold}% to unlock the next.
         </p>
 
-        {path.months.length === 0 ? (
-          <p className="muted" style={{ marginTop: "1rem" }}>
-            No path content at this level yet. Check back soon.
-          </p>
-        ) : (
-          <div className="path">
-            {path.months.map((m, mi) => (
-              <div key={m.topicCode} className="path-month">
-                <div className="path-month-label">Month {mi + 1} · {m.topicName}</div>
-                {m.weeks.map((w, wi) => (
-                  <div key={w.skillId} className={"path-week " + w.status}>
-                    <div className="path-node">
-                      {w.status === "passed" ? (
-                        <Check size={16} />
-                      ) : w.status === "locked" ? (
-                        <Lock size={14} />
-                      ) : (
-                        <span className="path-dot" />
-                      )}
+        {(() => {
+          const allWeeks = path.months.flatMap((m) => m.weeks);
+          const total = allWeeks.length;
+          const passed = allWeeks.filter((w) => w.status === "passed").length;
+          const pct = total ? Math.round((100 * passed) / total) : 0;
+          if (total === 0)
+            return (
+              <p className="muted" style={{ marginTop: "1rem" }}>
+                No lessons at this level yet. Check back soon.
+              </p>
+            );
+          return (
+            <>
+              <div className="ladder-head">
+                <div className="ladder-head-row">
+                  <span className="ladder-trophy" aria-hidden="true">🏆</span>
+                  <div style={{ flex: 1 }}>
+                    <div className="ladder-head-title">
+                      {passed} of {total} lessons done
                     </div>
-                    <div className="path-week-body">
-                      <div className="path-week-name">
-                        Week {wi + 1} · {w.name}
+                    <div className="ladder-bar">
+                      <div style={{ width: `${pct}%` }} />
+                    </div>
+                  </div>
+                  <span className="ladder-pct">{pct}%</span>
+                </div>
+                <p className="ladder-cheer">
+                  {passed === total ? "You did it all! 🎉" : "Keep climbing — you’ve got this!"}
+                </p>
+              </div>
+
+              <div className="ladder">
+                {path.months.map((m) => (
+                  <div key={m.topicCode} className="ladder-month">
+                    <div className="ladder-month-banner">📘 {m.topicName}</div>
+                    {m.weeks.map((w, wi) => (
+                      <div key={w.skillId} className={"rung " + w.status}>
+                        <div className="rung-node">
+                          {w.status === "passed" ? (
+                            <Check size={22} />
+                          ) : w.status === "locked" ? (
+                            <Lock size={16} />
+                          ) : (
+                            <span>{wi + 1}</span>
+                          )}
+                        </div>
+                        <div className="rung-info">
+                          <div className="rung-name">{w.name}</div>
+                          {w.status === "active" && (
+                            <Link href={`/learn/${studentId}/week/${w.skillId}`} className="rung-go">
+                              ▶ Start this lesson
+                            </Link>
+                          )}
+                          {w.status === "passed" && (
+                            <div className="rung-meta">
+                              Done{w.accuracy != null ? ` · ${w.accuracy}%` : ""}
+                            </div>
+                          )}
+                          {w.status === "locked" && <div className="rung-meta">Locked</div>}
+                        </div>
                       </div>
-                      {w.status === "active" && (
-                        <Link href={`/learn/${studentId}/week/${w.skillId}`} className="btn path-start">
-                          Read lesson &amp; start
-                        </Link>
-                      )}
-                    </div>
-                    <div className="path-week-meta">
-                      {w.status === "passed"
-                        ? `Passed${w.accuracy != null ? ` · ${w.accuracy}%` : ""}`
-                        : w.status === "locked"
-                          ? "Locked"
-                          : "This week"}
-                    </div>
+                    ))}
                   </div>
                 ))}
               </div>
-            ))}
-          </div>
-        )}
+            </>
+          );
+        })()}
       </div>
     </div>
   );

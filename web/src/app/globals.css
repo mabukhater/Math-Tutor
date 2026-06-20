@@ -182,6 +182,33 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .rc-toggle { background: none; border: 1.5px solid var(--green-soft); color: var(--green-deep); font-weight: 700; font-size: 0.78rem; padding: 0.2rem 0.6rem; border-radius: 99px; cursor: pointer; flex: none; }
 .rc-toggle:hover { background: var(--green-soft); }
 
+/* ====================== Climbable ladder (kid path) ====================== */
+.ladder-head { background: var(--green-soft); border-radius: 16px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.ladder-head-row { display: flex; align-items: center; gap: 0.85rem; }
+.ladder-trophy { font-size: 1.9rem; line-height: 1; }
+.ladder-head-title { font-family: var(--font-display); font-weight: 800; color: var(--ink, #15402f); }
+.ladder-bar { height: 12px; background: #fff; border-radius: 99px; overflow: hidden; margin-top: 0.4rem; border: 1px solid #cfe9df; }
+.ladder-bar > div { height: 100%; background: linear-gradient(90deg, #1d9e75, #34c98a); border-radius: 99px; transition: width .4s ease; }
+.ladder-pct { font-family: var(--font-display); font-weight: 800; color: var(--green-deep); font-size: 1.15rem; }
+.ladder-cheer { margin: 0.55rem 0 0; font-weight: 700; color: var(--green-deep); font-size: 0.9rem; }
+.ladder-month-banner { display: inline-block; background: #fff3e0; color: #b45309; font-family: var(--font-display); font-weight: 800; font-size: 0.82rem; padding: 0.25rem 0.85rem; border-radius: 99px; margin: 0.9rem 0 0.4rem; }
+.rung { position: relative; display: flex; align-items: center; gap: 0.9rem; padding: 0.4rem 0; }
+.rung::before { content: ""; position: absolute; left: 25px; top: 0; bottom: 0; width: 4px; background: #e5e7eb; z-index: 0; }
+.rung:first-of-type::before { top: 50%; }
+.rung:last-of-type::before { bottom: 50%; }
+.rung.passed::before { background: var(--green); }
+.rung-node { position: relative; z-index: 1; width: 50px; height: 50px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: #fff; border: 4px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+.rung.passed .rung-node { background: var(--green); }
+.rung.active .rung-node { background: var(--amber); animation: rung-pulse 1.6s infinite; }
+.rung.locked .rung-node { background: #e5e7eb; color: #9ca3af; }
+@keyframes rung-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,58,0.5); } 50% { box-shadow: 0 0 0 11px rgba(244,162,58,0); } }
+.rung-info { flex: 1; }
+.rung-name { font-family: var(--font-display); font-weight: 700; color: var(--ink, #15402f); font-size: 0.98rem; line-height: 1.25; }
+.rung.locked .rung-name { color: #9ca3af; }
+.rung-go { display: inline-block; margin-top: 0.4rem; background: var(--green-deep); color: #fff; font-weight: 800; font-size: 0.92rem; padding: 0.5rem 1.1rem; border-radius: 12px; text-decoration: none; box-shadow: 0 3px 0 rgba(14,122,87,0.3); }
+.rung-go:hover { filter: brightness(1.05); }
+.rung-meta { font-size: 0.78rem; color: #6b7280; margin-top: 0.25rem; }
+
 /* ====================== Learning path ====================== */
 .threshold-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.85rem 0 0; padding: 0.55rem 0.8rem; background: var(--green-soft); border-radius: 12px; }
 .threshold-row select { width: auto; margin: 0; }

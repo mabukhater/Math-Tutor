@@ -46,47 +46,71 @@ export default async function ReadingPage({
           unlock the next, harder one.
         </p>
 
-        {path.passages.length === 0 ? (
-          <p className="muted" style={{ marginTop: "1rem" }}>
-            No reading passages at this level yet. Check back soon.
-          </p>
-        ) : (
-          <div className="path" style={{ marginTop: "1.25rem" }}>
-            {path.passages.map((p, i) => (
-              <div key={p.passageId} className={"path-week " + p.status}>
-                <div className="path-node">
-                  {p.status === "passed" ? (
-                    <Check size={16} />
-                  ) : p.status === "locked" ? (
-                    <Lock size={14} />
-                  ) : (
-                    <span className="path-dot" />
-                  )}
-                </div>
-                <div className="path-week-body">
-                  <div className="path-week-name">
-                    Level {i + 1} · {p.title}
+        {(() => {
+          const total = path.passages.length;
+          const passed = path.passages.filter((p) => p.status === "passed").length;
+          const pct = total ? Math.round((100 * passed) / total) : 0;
+          if (total === 0)
+            return (
+              <p className="muted" style={{ marginTop: "1rem" }}>
+                No reading passages at this level yet. Check back soon.
+              </p>
+            );
+          return (
+            <>
+              <div className="ladder-head">
+                <div className="ladder-head-row">
+                  <span className="ladder-trophy" aria-hidden="true">📚</span>
+                  <div style={{ flex: 1 }}>
+                    <div className="ladder-head-title">
+                      {passed} of {total} passages read
+                    </div>
+                    <div className="ladder-bar">
+                      <div style={{ width: `${pct}%` }} />
+                    </div>
                   </div>
-                  {p.status === "active" && (
-                    <Link
-                      href={`/reading/${studentId}/passage/${p.passageId}`}
-                      className="btn path-start"
-                    >
-                      Read &amp; answer
-                    </Link>
-                  )}
+                  <span className="ladder-pct">{pct}%</span>
                 </div>
-                <div className="path-week-meta">
-                  {p.status === "passed"
-                    ? `Passed${p.accuracy != null ? ` · ${p.accuracy}%` : ""}`
-                    : p.status === "locked"
-                      ? "Locked"
-                      : "Up next"}
-                </div>
+                <p className="ladder-cheer">
+                  {passed === total ? "All read! 🎉" : "Keep reading — level up!"}
+                </p>
               </div>
-            ))}
-          </div>
-        )}
+
+              <div className="ladder">
+                {path.passages.map((p, i) => (
+                  <div key={p.passageId} className={"rung " + p.status}>
+                    <div className="rung-node">
+                      {p.status === "passed" ? (
+                        <Check size={22} />
+                      ) : p.status === "locked" ? (
+                        <Lock size={16} />
+                      ) : (
+                        <span>{i + 1}</span>
+                      )}
+                    </div>
+                    <div className="rung-info">
+                      <div className="rung-name">{p.title}</div>
+                      {p.status === "active" && (
+                        <Link
+                          href={`/reading/${studentId}/passage/${p.passageId}`}
+                          className="rung-go"
+                        >
+                          ▶ Read &amp; answer
+                        </Link>
+                      )}
+                      {p.status === "passed" && (
+                        <div className="rung-meta">
+                          Done{p.accuracy != null ? ` · ${p.accuracy}%` : ""}
+                        </div>
+                      )}
+                      {p.status === "locked" && <div className="rung-meta">Locked</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          );
+        })()}
       </div>
     </div>
   );
