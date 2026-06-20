@@ -10,6 +10,7 @@ Usage:
 from __future__ import annotations
 
 import os
+import random
 import sys
 
 try:
@@ -134,8 +135,11 @@ def main() -> None:
         made_p += 1
         rows = []
         for qtype, stem, options, ci, expl, locator in questions:
+            order = options[:]
+            random.shuffle(order)  # don't let the correct answer sit in one spot
+            new_ci = order.index(options[ci])
             rows.append({
-                "passage_id": pid, "stem": stem, "options": options, "correct_index": ci,
+                "passage_id": pid, "stem": stem, "options": order, "correct_index": new_ci,
                 "explanation": expl, "locator": locator, "qtype": qtype, "status": "vetted",
             })
         sb.table("reading_questions").insert(rows).execute()

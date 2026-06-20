@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import random
 import sys
 
 from pydantic import BaseModel
@@ -133,12 +134,17 @@ def main() -> None:
                 "paragraphs": paragraphs, "word_count": wc,
                 "status": "draft" if args.draft else "published",
             }).execute().data[0]["id"]
-            rows = [{
-                "passage_id": pid, "stem": q.stem.strip(), "options": q.options,
-                "correct_index": q.correct_index, "explanation": q.explanation.strip(),
-                "locator": {"paragraph": q.locator_paragraph, "hint": q.locator_hint.strip()},
-                "qtype": q.qtype, "status": "vetted",
-            } for q in p.questions]
+            rows = []
+            for q in p.questions:
+                order = q.options[:]
+                random.shuffle(order)  # spread the correct answer across positions
+                rows.append({
+                    "passage_id": pid, "stem": q.stem.strip(), "options": order,
+                    "correct_index": order.index(q.options[q.correct_index]),
+                    "explanation": q.explanation.strip(),
+                    "locator": {"paragraph": q.locator_paragraph, "hint": q.locator_hint.strip()},
+                    "qtype": q.qtype, "status": "vetted",
+                })
             sb.table("reading_questions").insert(rows).execute()
             made += 1
             print(f"✓ level {order} — \"{p.title.strip()}\" ({len(rows)} questions)")
