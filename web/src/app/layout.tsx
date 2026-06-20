@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { PWARegister } from "@/components/PWARegister";
 
 const SITE = "https://kareem.academy";
 
@@ -8,8 +9,18 @@ export const metadata: Metadata = {
   title: "Kareem — math & reading that follow your child",
   description:
     "Curriculum-aligned math and leveled reading comprehension for grades 1–8 — US Common Core, UK National Curriculum, and Singapore Math.",
+  applicationName: "Kareem",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "Kareem", statusBarStyle: "default" },
   openGraph: { type: "website", siteName: "Kareem", url: SITE },
   twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1d9e75",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -23,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <PWARegister />
+      </body>
     </html>
   );
 }
