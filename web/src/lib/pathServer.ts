@@ -31,6 +31,7 @@ export interface PathView {
   months: Month[];
   activeSkillId: string | null;
   threshold: number;
+  effectiveGrade: number;
 }
 
 interface SkillRow {
@@ -38,13 +39,16 @@ interface SkillRow {
   name: string;
   sequence_position: number;
   topic_id: string | null;
+  grade: number;
 }
 
 /**
- * Build the linear path for a student at their grade: topics (months) in
- * sequence, each with its skills (weeks). The first not-yet-passed skill is
- * "active"; everything after it is "locked". Skills the child placed past (or
- * passed a block on) are "passed".
+ * Build the linear path at the student's EFFECTIVE (placed) level — the grade
+ * where their next unfinished skill sits, which may be above or below the grade
+ * the parent picked (placement can move them). Within that grade, skills they
+ * placed past or already passed are "passed", the first unfinished one is
+ * "active", and the rest are "locked". As they finish a grade, the effective
+ * grade rolls forward automatically.
  */
 export async function getPathForStudent(
   admin: SupabaseClient,
@@ -52,12 +56,17 @@ export async function getPathForStudent(
 ): Promise<PathView> {
   const { data: skills } = await admin
     .from("skills")
-    .select("id, name, sequence_position, topic_id")
+    .select("id, name, sequence_position, topic_id, grade")
     .eq("curriculum_id", student.curriculum_id)
-    .eq("grade", student.nominal_grade)
     .order("sequence_position", { ascending: true });
   const all = (skills ?? []) as SkillRow[];
-  if (all.length === 0) return { months: [], activeSkillId: null, threshold: student.pass_threshold };
+  const empty = {
+    months: [],
+    activeSkillId: null,
+    threshold: student.pass_threshold,
+    effectiveGrade: student.nominal_grade,
+  };
+  if (all.length === 0) return empty;
 
   const ids = all.map((s) => s.id);
   const { data: vetted } = await admin
@@ -66,7 +75,6 @@ export async function getPathForStudent(
     .in("skill_id", ids)
     .eq("status", "vetted");
   const withQ = new Set((vetted ?? []).map((r) => r.skill_id as string));
-  const pathSkills = all.filter((s) => s.topic_id && withQ.has(s.id));
 
   const { data: prog } = await admin
     .from("student_skill_progress")
@@ -81,26 +89,25 @@ export async function getPathForStudent(
   );
 
   const cursor = student.current_skill_index ?? 0;
+  const playable = all.filter((s) => s.topic_id && withQ.has(s.id));
+  const isPassed = (s: SkillRow) =>
+    !!progBy.get(s.id)?.passed_at || s.sequence_position < cursor;
+
+  // The effective grade = grade of the first unfinished playable skill (i.e.
+  // where they actually are), falling back to the last grade if all done.
+  const activeSkill = playable.find((s) => !isPassed(s)) ?? null;
+  const effectiveGrade =
+    activeSkill?.grade ?? playable[playable.length - 1]?.grade ?? student.nominal_grade;
+  const activeSkillId = activeSkill && activeSkill.grade === effectiveGrade ? activeSkill.id : null;
+
   const { data: topics } = await admin.from("topics").select("id, code, name, icon");
   const topicById = new Map((topics ?? []).map((t) => [t.id as string, t]));
 
-  let activeFound = false;
-  let activeSkillId: string | null = null;
   const ordered: Month[] = [];
   const monthByTopic = new Map<string, Month>();
-
-  for (const s of pathSkills) {
+  for (const s of playable.filter((s) => s.grade === effectiveGrade)) {
     const p = progBy.get(s.id);
-    const placedOut = s.sequence_position < cursor;
-    const passed = !!p?.passed_at || placedOut;
-    let status: WeekStatus;
-    if (passed) status = "passed";
-    else if (!activeFound) {
-      status = "active";
-      activeFound = true;
-      activeSkillId = s.id;
-    } else status = "locked";
-
+    const status: WeekStatus = isPassed(s) ? "passed" : s.id === activeSkillId ? "active" : "locked";
     const accuracy =
       p && p.total_attempts > 0 ? Math.round((100 * p.total_correct) / p.total_attempts) : null;
 
@@ -120,7 +127,7 @@ export async function getPathForStudent(
     month.weeks.push({ skillId: s.id, name: s.name, status, accuracy });
   }
 
-  return { months: ordered, activeSkillId, threshold: student.pass_threshold };
+  return { months: ordered, activeSkillId, threshold: student.pass_threshold, effectiveGrade };
 }
 
 export interface Block {

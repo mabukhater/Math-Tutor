@@ -29,7 +29,7 @@ export default async function LearnPage({
     .select("code, name, grade_noun, grade_offset")
     .eq("id", student.curriculum_id)
     .single();
-  const label = gradeLabel(cur?.grade_noun, cur?.grade_offset, student.nominal_grade, cur?.code);
+  const label = gradeLabel(cur?.grade_noun, cur?.grade_offset, path.effectiveGrade, cur?.code);
 
   return (
     <div className="wrap">
