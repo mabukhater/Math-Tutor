@@ -154,6 +154,23 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .ab-table tr.win td { background: var(--green-soft); font-weight: 700; color: var(--green-deep); }
 .result-list { background: #f9fbfa; border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem; line-height: 1.9; }
 
+/* ====================== Kid home + parent controls ====================== */
+.kid-subjects { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.kid-subject { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 1.6rem 1rem; border-radius: 20px; text-decoration: none; border: 2px solid var(--line); background: #fff; transition: transform .15s, border-color .15s; }
+.kid-subject:hover { transform: translateY(-3px); border-color: var(--green); }
+.kid-subject.math { background: #f0faf6; }
+.kid-subject.reading { background: #eef4ff; }
+.kid-subject-emoji { font-size: 2.4rem; }
+.kid-subject-name { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--ink, #15402f); }
+.kid-subject-go { font-size: 0.9rem; font-weight: 700; color: var(--green-deep); }
+.child-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+.child-controls .threshold-row { margin: 0; }
+.kid-login-toggle { background: none; border: none; color: var(--green-deep); font-weight: 700; font-size: 0.82rem; cursor: pointer; padding: 0.2rem 0; }
+.kid-login-toggle:hover { text-decoration: underline; }
+.kid-login-box { width: 100%; background: var(--green-soft); border-radius: 12px; padding: 0.7rem 0.85rem; }
+.kid-login-fields { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.kid-login-fields input { width: auto; flex: 1; min-width: 120px; margin: 0; }
+
 /* ====================== Reading comprehension ====================== */
 .rc-passage { background: #fffdf7; border: 1.5px solid #f0e8d6; border-radius: 14px; padding: 1.1rem 1.25rem; margin: 0.75rem 0 1.1rem; }
 .rc-passage-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--ink, #15402f); margin-bottom: 0.5rem; }

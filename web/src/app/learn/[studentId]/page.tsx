@@ -2,10 +2,10 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveStudent } from "@/lib/access";
 import { getPathForStudent } from "@/lib/pathServer";
 import { gradeLabel } from "@/lib/curriculum";
 import { Check, Lock } from "@/components/icons";
-import { ThresholdControl } from "@/components/ThresholdControl";
 
 export const dynamic = "force-dynamic";
 
@@ -16,20 +16,13 @@ export default async function LearnPage({
 }) {
   const { studentId } = await params;
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
-
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, curriculum_id, nominal_grade, current_skill_index, pass_threshold, display_name, placement_completed")
-    .eq("id", studentId)
-    .single();
-  if (!student) notFound();
-  if (!student.placement_completed) redirect(`/placement/${studentId}`);
-
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) redirect("/login");
+  const student = access.student;
+  const isKid = access.role === "kid";
+  if (!student.placement_completed) redirect(isKid ? "/me" : `/placement/${studentId}`);
+
   const path = await getPathForStudent(admin, student);
   const { data: cur } = await admin
     .from("curricula")
@@ -45,15 +38,13 @@ export default async function LearnPage({
           <h1 style={{ margin: 0 }}>
             {student.display_name ? `${student.display_name}’s path` : "Learning path"}
           </h1>
-          <Link href="/dashboard" className="muted">
-            Dashboard
+          <Link href={isKid ? "/me" : "/dashboard"} className="muted">
+            {isKid ? "Home" : "Dashboard"}
           </Link>
         </div>
         <p className="sub">
           {label} · {cur?.name} — pass each week at {path.threshold}% to unlock the next.
         </p>
-
-        <ThresholdControl studentId={studentId} value={path.threshold} />
 
         {path.months.length === 0 ? (
           <p className="muted" style={{ marginTop: "1rem" }}>

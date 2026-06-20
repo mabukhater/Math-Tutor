@@ -1,31 +1,24 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveStudent } from "@/lib/access";
 import { getPathForStudent, getOrCreateBlock } from "@/lib/pathServer";
 import { getWeekLesson } from "@/lib/lessonsServer";
 import { toPublic } from "@/lib/placementServer";
 
 // Start (or resume) the question block for a week. Only the active week is
-// playable — you can't skip ahead.
+// playable — you can't skip ahead. Parent or the linked kid may play.
 export async function POST(req: Request) {
   const { studentId, skillId } = await req.json();
   if (!studentId || !skillId)
     return NextResponse.json({ error: "bad request" }, { status: 400 });
 
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, curriculum_id, nominal_grade, current_skill_index, pass_threshold, display_name")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
-
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
+
   const path = await getPathForStudent(admin, student);
   if (path.activeSkillId !== skillId)
     return NextResponse.json({ error: "locked" }, { status: 409 });

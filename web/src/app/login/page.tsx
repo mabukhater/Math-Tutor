@@ -93,6 +93,9 @@ export default function LoginPage() {
             {mode === "signin" ? "Create an account" : "Sign in"}
           </button>
         </p>
+        <p className="muted" style={{ textAlign: "center", fontSize: "0.85rem" }}>
+          Are you a kid? <a href="/kids">Go to kid sign-in →</a>
+        </p>
       </div>
     </div>
   );

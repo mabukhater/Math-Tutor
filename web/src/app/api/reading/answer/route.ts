@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveStudent } from "@/lib/access";
 import { markPassagePassed } from "@/lib/readingServer";
 
 // Grade one comprehension answer. On a wrong answer, return the LOCATOR (the
@@ -16,19 +17,11 @@ export async function POST(req: Request) {
       : null;
 
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-
-  const { data: student } = await supabase
-    .from("students")
-    .select("id")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
-
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
+
   const { data: block } = await admin
     .from("reading_blocks")
     .select("id, student_id, passage_id, question_ids, num_completed, num_correct, passed, threshold")

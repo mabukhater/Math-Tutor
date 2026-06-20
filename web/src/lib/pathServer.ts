@@ -8,7 +8,7 @@ export interface PathStudent {
   nominal_grade: number;
   current_skill_index: number | null;
   pass_threshold: number;
-  display_name?: string;
+  display_name?: string | null;
 }
 
 export type WeekStatus = "passed" | "active" | "locked";

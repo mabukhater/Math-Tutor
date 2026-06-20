@@ -1,29 +1,23 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveStudent } from "@/lib/access";
 import { getReadingPath, getOrCreateReadingBlock } from "@/lib/readingServer";
 
 // Start (or resume) the comprehension block for a passage. Returns the passage
-// text so the child can read it; only the active passage is playable.
+// text so the child can read it; only the active passage is playable. Parent or
+// the linked kid may play.
 export async function POST(req: Request) {
   const { studentId, passageId } = await req.json();
   if (!studentId || !passageId)
     return NextResponse.json({ error: "bad request" }, { status: 400 });
 
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, nominal_grade, pass_threshold, display_name")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
-
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
+
   const path = await getReadingPath(admin, student);
   if (path.activePassageId !== passageId)
     return NextResponse.json({ error: "locked" }, { status: 409 });

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveStudent } from "@/lib/access";
 import { toPublic } from "@/lib/placementServer";
 import { markSkillPassed, type PathStudent } from "@/lib/pathServer";
 
@@ -17,19 +18,11 @@ export async function POST(req: Request) {
       : null;
 
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, curriculum_id, nominal_grade, current_skill_index, pass_threshold, display_name")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
-
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
+
   const { data: block } = await admin
     .from("path_blocks")
     .select("id, student_id, skill_id, question_ids, num_completed, num_correct, passed, threshold")

@@ -4,7 +4,7 @@ export interface ReadingStudent {
   id: string;
   nominal_grade: number;
   pass_threshold: number;
-  display_name?: string;
+  display_name?: string | null;
 }
 
 export type PassageStatus = "passed" | "active" | "locked";

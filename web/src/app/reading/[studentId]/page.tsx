@@ -2,10 +2,10 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { resolveStudent } from "@/lib/access";
 import { getReadingPath } from "@/lib/readingServer";
 import { gradeLabel } from "@/lib/curriculum";
 import { Check, Lock } from "@/components/icons";
-import { ThresholdControl } from "@/components/ThresholdControl";
 
 export const dynamic = "force-dynamic";
 
@@ -16,19 +16,12 @@ export default async function ReadingPage({
 }) {
   const { studentId } = await params;
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
-
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, nominal_grade, pass_threshold, display_name, curriculum_id")
-    .eq("id", studentId)
-    .single();
-  if (!student) notFound();
-
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) redirect("/login");
+  const student = access.student;
+  const isKid = access.role === "kid";
+
   const path = await getReadingPath(admin, student);
   const { data: cur } = await admin
     .from("curricula")
@@ -44,16 +37,14 @@ export default async function ReadingPage({
           <h1 style={{ margin: 0 }}>
             {student.display_name ? `${student.display_name}’s reading` : "Reading"}
           </h1>
-          <Link href="/dashboard" className="muted">
-            Dashboard
+          <Link href={isKid ? "/me" : "/dashboard"} className="muted">
+            {isKid ? "Home" : "Dashboard"}
           </Link>
         </div>
         <p className="sub">
           {label} reading level — read each passage, then answer. Pass at {path.threshold}% to
           unlock the next, harder one.
         </p>
-
-        <ThresholdControl studentId={studentId} value={path.threshold} />
 
         {path.passages.length === 0 ? (
           <p className="muted" style={{ marginTop: "1rem" }}>
