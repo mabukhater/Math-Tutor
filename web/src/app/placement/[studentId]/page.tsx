@@ -146,11 +146,11 @@ export default function Placement() {
             {result.placedGradeLabel ?? `Grade ${result.placedGrade}`}.
           </h1>
           <p className="sub">
-            Starting point: {result.placedSkillName}. Daily practice will begin here and
-            adapt as they go.
+            Starting point: {result.placedSkillName}. Their month-by-month learning path
+            begins here.
           </p>
-          <Link href={`/children/${studentId}/link`} className="btn">
-            Link Telegram for daily practice
+          <Link href={`/learn/${studentId}`} className="btn">
+            Start the learning path
           </Link>
           <p style={{ marginTop: "1rem", textAlign: "center" }}>
             <Link href="/dashboard" className="muted">

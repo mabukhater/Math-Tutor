@@ -61,10 +61,10 @@ export default async function LearnPage({
           </p>
         ) : (
           <div className="path">
-            {path.months.map((m) => (
+            {path.months.map((m, mi) => (
               <div key={m.topicCode} className="path-month">
-                <div className="path-month-label">{m.topicName}</div>
-                {m.weeks.map((w) => (
+                <div className="path-month-label">Month {mi + 1} · {m.topicName}</div>
+                {m.weeks.map((w, wi) => (
                   <div key={w.skillId} className={"path-week " + w.status}>
                     <div className="path-node">
                       {w.status === "passed" ? (
@@ -76,10 +76,12 @@ export default async function LearnPage({
                       )}
                     </div>
                     <div className="path-week-body">
-                      <div className="path-week-name">{w.name}</div>
+                      <div className="path-week-name">
+                        Week {wi + 1} · {w.name}
+                      </div>
                       {w.status === "active" && (
                         <Link href={`/learn/${studentId}/week/${w.skillId}`} className="btn path-start">
-                          Start this week
+                          Read lesson &amp; start
                         </Link>
                       )}
                     </div>
