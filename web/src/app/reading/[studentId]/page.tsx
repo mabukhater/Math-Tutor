@@ -37,8 +37,8 @@ export default async function ReadingPage({
           <h1 style={{ margin: 0 }}>
             {student.display_name ? `${student.display_name}’s reading` : "Reading"}
           </h1>
-          <Link href={isKid ? "/me" : "/dashboard"} className="muted">
-            {isKid ? "Home" : "Dashboard"}
+          <Link href={isKid ? "/me" : "/dashboard"} className="muted home-link">
+            {isKid ? "← Home" : "Dashboard"}
           </Link>
         </div>
         <p className="sub">
