@@ -59,7 +59,7 @@ export default async function LearnPage({
             );
           return (
             <>
-              <div className="ladder-head">
+              <div className="ladder-head clay">
                 <div className="ladder-head-row">
                   <span className="ladder-trophy" aria-hidden="true">🏆</span>
                   <div style={{ flex: 1 }}>
@@ -77,12 +77,12 @@ export default async function LearnPage({
                 </p>
               </div>
 
-              <div className="ladder">
+              <div className="ladder clay-ladder">
                 {path.months.map((m) => (
                   <div key={m.topicCode} className="ladder-month">
-                    <div className="ladder-month-banner">📘 {m.topicName}</div>
+                    <div className="ladder-month-banner clay-banner">📘 {m.topicName}</div>
                     {m.weeks.map((w, wi) => (
-                      <div key={w.skillId} className={"rung " + w.status}>
+                      <div key={w.skillId} className={"rung clay-rung " + w.status}>
                         <div className="rung-node">
                           {w.status === "passed" ? (
                             <Check size={22} />
