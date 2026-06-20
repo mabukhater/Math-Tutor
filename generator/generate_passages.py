@@ -141,11 +141,11 @@ def main() -> None:
             }).execute().data[0]["id"]
             rows = []
             for q in p.questions:
-                order = q.options[:]
-                random.shuffle(order)  # spread the correct answer across positions
+                shuffled = q.options[:]
+                random.shuffle(shuffled)  # spread the correct answer across positions
                 rows.append({
-                    "passage_id": pid, "stem": q.stem.strip(), "options": order,
-                    "correct_index": order.index(q.options[q.correct_index]),
+                    "passage_id": pid, "stem": q.stem.strip(), "options": shuffled,
+                    "correct_index": shuffled.index(q.options[q.correct_index]),
                     "explanation": q.explanation.strip(),
                     "locator": {"paragraph": q.locator_paragraph, "hint": q.locator_hint.strip()},
                     "qtype": q.qtype, "status": "vetted",
