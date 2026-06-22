@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-type Variant = "A" | "B";
+type Variant = "A" | "B" | "C";
+const VARIANTS: Variant[] = ["A", "B", "C"];
 
 const COPY: Record<
   Variant,
@@ -10,7 +11,7 @@ const COPY: Record<
 > = {
   A: {
     eyebrow: "For globally-mobile & international-school families",
-    headline: "One math program that moves with your family.",
+    headline: "One program that moves with your family.",
     sub: "US Common Core, the UK National Curriculum, or Singapore Math — Kareem keeps your child on track in every system, so moving countries never means starting over.",
     bullets: [
       "See where your child stands in all three curricula at once",
@@ -19,13 +20,23 @@ const COPY: Record<
     ],
   },
   B: {
-    eyebrow: "Math that actually teaches",
-    headline: "Rigorous math your kid can’t game.",
+    eyebrow: "Math & reading that actually teach",
+    headline: "Rigorous learning your kid can’t game.",
     sub: "A calm, mastery-based path: a short lesson, then practice until your child truly gets it. You set the standard — no ads, no gimmicks, no pay-to-win.",
     bullets: [
       "Master each skill before moving on — you set the pass bar",
       "Every wrong answer explained in kid-friendly language",
       "No ads, no dark patterns, no in-game upsells",
+    ],
+  },
+  C: {
+    eyebrow: "Your child’s whole school year, planned",
+    headline: "The full curriculum, week by week, Sept to June.",
+    sub: "A complete, grade-aligned plan for the year — math and reading laid out week by week so you always know your child is covering everything, and exactly where they are.",
+    bullets: [
+      "Every week mapped out from September to June",
+      "See the curriculum is fully covered — no gaps",
+      "Lessons then practice, mastery-gated, at your child’s pace",
     ],
   },
 };
@@ -70,8 +81,8 @@ export default function EarlyLanding() {
       writeCookie("kareem_sid", sid);
     }
     let v = readCookie("kareem_ab") as Variant | null;
-    if (v !== "A" && v !== "B") {
-      v = Math.random() < 0.5 ? "A" : "B";
+    if (!v || !VARIANTS.includes(v)) {
+      v = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
       writeCookie("kareem_ab", v);
     }
     setSessionId(sid);

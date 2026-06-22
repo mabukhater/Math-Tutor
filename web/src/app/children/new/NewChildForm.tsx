@@ -62,8 +62,12 @@ export default function NewChildForm({
           {hasError && <p className="err">Please enter a name and pick a curriculum and level.</p>}
 
           <button className="btn" type="submit">
-            Start placement
+            Add child
           </button>
+          <p className="muted" style={{ textAlign: "center", marginTop: "0.6rem", fontSize: "0.82rem" }}>
+            They’ll start at the beginning of this grade. You can run an optional level
+            check anytime.
+          </p>
         </form>
         <p style={{ marginTop: "1rem", textAlign: "center" }}>
           <Link href="/dashboard" className="muted">

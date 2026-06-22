@@ -6,7 +6,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export async function POST(req: Request) {
   const { email, variant, situation, sessionId } = await req.json();
   const e = String(email ?? "").trim().toLowerCase();
-  if (!EMAIL_RE.test(e) || (variant !== "A" && variant !== "B"))
+  if (!EMAIL_RE.test(e) || !["A", "B", "C"].includes(variant))
     return NextResponse.json({ error: "bad request" }, { status: 400 });
 
   const admin = createAdminClient();

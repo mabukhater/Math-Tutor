@@ -37,5 +37,23 @@ export async function addChild(formData: FormData) {
     .single();
   if (error || !student) redirect("/children/new?error=1");
 
-  redirect(`/placement/${student.id}`);
+  // Place the child at the START of their chosen grade — no assessment required.
+  // The parent can run the optional assessment later to fine-tune the level.
+  const { data: firstSkill } = await supabase
+    .from("skills")
+    .select("sequence_position")
+    .eq("curriculum_id", curriculum_id)
+    .eq("grade", nominal_grade)
+    .order("sequence_position", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+  await supabase
+    .from("students")
+    .update({
+      current_skill_index: firstSkill?.sequence_position ?? 0,
+      placement_completed: true,
+    })
+    .eq("id", student.id);
+
+  redirect("/dashboard");
 }

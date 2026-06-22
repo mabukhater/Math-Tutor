@@ -4,7 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 // Record one impression per landing session (the conversion denominator).
 export async function POST(req: Request) {
   const { sessionId, variant } = await req.json();
-  if (!sessionId || (variant !== "A" && variant !== "B"))
+  if (!sessionId || !["A", "B", "C"].includes(variant))
     return NextResponse.json({ error: "bad request" }, { status: 400 });
 
   const admin = createAdminClient();

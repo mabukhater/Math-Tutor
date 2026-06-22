@@ -49,16 +49,17 @@ class Passage(BaseModel):
 
 SYSTEM = (
     "You write original, age-appropriate reading passages and comprehension "
-    "questions for a child about age {age} (grade {grade}). Reading level must "
-    "match the grade — sentence length and vocabulary appropriate for a {grade}th "
-    "grader.\n\n"
-    "This passage is for WEEK {week} — passages get a little longer and harder each "
-    "week, so make it suitably rich for week {week}.\n\n"
+    "questions for a child about age {age} (grade {grade}).\n\n"
+    "READING LEVEL — THIS IS THE MOST IMPORTANT RULE. Match it tightly:\n"
+    "{level_guidance}\n\n"
+    "This is WEEK {week}. Week 1 is the GENTLEST of the year; later weeks get a "
+    "little longer and a little harder, but NEVER exceed the grade's reading level "
+    "above. A young child must be able to actually read it.\n\n"
     "Produce:\n"
-    "- A short story or informational passage: a title and 4 to 6 SHORT paragraphs "
-    "(2-4 sentences each), in order. Wholesome, engaging, varied topics.\n"
+    "- A short {form}: a title and {paras}, in order. Wholesome, engaging, varied topics.\n"
     "- Exactly 10 multiple-choice questions about the passage, covering a mix of: "
-    "main_idea, detail, inference, vocab, sequence.\n"
+    "main_idea, detail, inference, vocab, sequence. Keep question wording at the same "
+    "reading level as the passage.\n"
     "- Each question: 4 options, one correct (correct_index 0-3), a one-sentence "
     "kid-friendly explanation, the 1-based paragraph number that holds the answer "
     "(locator_paragraph), and a short locator_hint that points the child back to "
@@ -69,8 +70,41 @@ SYSTEM = (
 )
 
 
+def level_spec(grade: int) -> tuple[str, str, str]:
+    """(reading-level guidance, passage form, paragraph spec) for a grade."""
+    if grade <= 1:
+        return (
+            "Grade 1 (age ~6): VERY simple. Short sentences of 3 to 7 words. Use common sight "
+            "words (the, is, has, can, see, go, like, my) and easy words a 6-year-old can sound "
+            "out (cat, run, big, sun, mom). Repetition is good. NO long or fancy words, no "
+            "complex clauses or commas-heavy sentences. One simple idea per sentence.",
+            "very simple story",
+            "3 short paragraphs of 2 to 3 very short sentences",
+        )
+    if grade == 2:
+        return (
+            "Grade 2 (age ~7): simple. Sentences of 5 to 10 words, mostly familiar everyday "
+            "words with a few new ones. Clear and concrete.",
+            "simple story",
+            "3 to 4 short paragraphs of 2 to 3 sentences",
+        )
+    if grade <= 4:
+        return (
+            f"Grade {grade} (age ~{grade + 5}): sentences of 8 to 14 words, grade-appropriate "
+            "vocabulary with some richer words made clear by context.",
+            "story or simple informational passage",
+            "4 to 5 paragraphs of 2 to 4 sentences",
+        )
+    return (
+        f"Grade {grade} (age ~{grade + 5}): longer, more varied sentences and richer vocabulary, "
+        "more inference required, but still clear and age-appropriate.",
+        "story or informational passage",
+        "5 to 6 paragraphs of 3 to 4 sentences",
+    )
+
+
 def valid(p: Passage) -> str | None:
-    if not p.title.strip() or not (3 <= len(p.paragraphs) <= 6):
+    if not p.title.strip() or not (2 <= len(p.paragraphs) <= 6):
         return "bad passage shape"
     if len(p.questions) != 10:
         return f"expected 10 questions, got {len(p.questions)}"
@@ -112,7 +146,11 @@ def main() -> None:
     if args.dry_run:
         return
 
-    system = SYSTEM.format(age=args.grade + 5, grade=args.grade, week=week)
+    guidance, form, paras = level_spec(args.grade)
+    system = SYSTEM.format(
+        age=args.grade + 5, grade=args.grade, week=week,
+        level_guidance=guidance, form=form, paras=paras,
+    )
     made = 0
     for k in range(args.count):
         order = next_order + k

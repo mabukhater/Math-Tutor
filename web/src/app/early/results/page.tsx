@@ -28,7 +28,7 @@ export default async function ResultsPage() {
     .select("email, variant, situation, created_at")
     .order("created_at", { ascending: false });
 
-  const stat = (v: "A" | "B") => {
+  const stat = (v: "A" | "B" | "C") => {
     const vs = (views ?? []).filter((r) => r.variant === v);
     const imp = vs.length;
     const sign = vs.filter((r) => r.signed_up).length;
@@ -36,8 +36,12 @@ export default async function ResultsPage() {
   };
   const A = stat("A");
   const B = stat("B");
-  const winner =
-    A.imp >= 20 && B.imp >= 20 ? (A.rate > B.rate ? "A" : B.rate > A.rate ? "B" : "tie") : "—";
+  const C = stat("C");
+  const ranked = (["A", "B", "C"] as const)
+    .map((k) => ({ k, s: stat(k) }))
+    .filter((x) => x.s.imp >= 20)
+    .sort((a, b) => b.s.rate - a.s.rate);
+  const winner = ranked.length ? ranked[0].k : "—";
 
   const sitCounts: Record<string, number> = {};
   for (const s of signups ?? []) {
@@ -50,8 +54,8 @@ export default async function ResultsPage() {
       <div className="card" style={{ maxWidth: 760 }}>
         <h1>Waitlist A/B results</h1>
         <p className="sub">
-          A = cross-curriculum continuity · B = rigor-first. Need ~20+ impressions/variant before
-          trusting the rate.
+          A = cross-curriculum continuity · B = rigor-first · C = full year plan. Need ~20+
+          impressions/variant before trusting the rate.
         </p>
 
         <table className="ab-table">
@@ -75,6 +79,12 @@ export default async function ResultsPage() {
               <td>{B.imp}</td>
               <td>{B.sign}</td>
               <td>{B.rate}%</td>
+            </tr>
+            <tr className={winner === "C" ? "win" : ""}>
+              <td>C · full year plan</td>
+              <td>{C.imp}</td>
+              <td>{C.sign}</td>
+              <td>{C.rate}%</td>
             </tr>
           </tbody>
         </table>
