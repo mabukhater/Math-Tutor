@@ -155,10 +155,13 @@ export async function getOrCreateReadingBlock(
 
   const { data: qs } = await admin
     .from("reading_questions")
-    .select("id")
+    .select("id, difficulty")
     .eq("passage_id", passageId)
     .eq("status", "vetted");
-  const pool = shuffle((qs ?? []).map((q) => q.id as string));
+  // Shuffle, then serve easiest-first (detail → inference) so the child ramps up.
+  const pool = shuffle((qs ?? []) as { id: string; difficulty: number }[])
+    .sort((a, b) => (a.difficulty ?? 3) - (b.difficulty ?? 3))
+    .map((q) => q.id);
   if (pool.length === 0) throw new Error("no_questions");
 
   const { data: block, error } = await admin

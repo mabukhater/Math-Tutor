@@ -166,12 +166,14 @@ export async function getOrCreateTopicSession(
   // Vetted questions grouped by skill.
   const { data: qs } = await admin
     .from("questions")
-    .select("id, skill_id")
+    .select("id, skill_id, difficulty")
     .in("skill_id", skillIds)
     .eq("status", "vetted");
+  const diffById = new Map<string, number>();
   const bySkill = new Map<string, string[]>();
   for (const q of qs ?? []) {
     const sid = q.skill_id as string;
+    diffById.set(q.id as string, (q.difficulty as number) ?? 3);
     if (!bySkill.has(sid)) bySkill.set(sid, []);
     bySkill.get(sid)!.push(q.id as string);
   }
@@ -196,6 +198,8 @@ export async function getOrCreateTopicSession(
     }
   }
   if (questionIds.length === 0) throw new Error("no_questions");
+  // Serve easiest-first within the set.
+  questionIds.sort((a, b) => (diffById.get(a) ?? 3) - (diffById.get(b) ?? 3));
 
   const { data: session, error } = await admin
     .from("topic_sessions")

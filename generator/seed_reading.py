@@ -312,9 +312,12 @@ def main() -> None:
             shuffled = options[:]
             random.shuffle(shuffled)  # don't let the correct answer sit in one spot
             new_ci = shuffled.index(options[ci])
+            qdiff = {"detail": 1, "main_idea": 2, "sequence": 2, "vocab": 3, "inference": 4}
+            difficulty = max(1, min(5, qdiff.get(qtype, 2) + (1 if grade >= 5 else 0)))
             rows.append({
                 "passage_id": pid, "stem": stem, "options": shuffled, "correct_index": new_ci,
-                "explanation": expl, "locator": locator, "qtype": qtype, "status": "vetted",
+                "explanation": expl, "locator": locator, "qtype": qtype,
+                "difficulty": difficulty, "status": "vetted",
             })
         sb.table("reading_questions").insert(rows).execute()
         made_q += len(rows)

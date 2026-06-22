@@ -70,6 +70,13 @@ SYSTEM = (
 )
 
 
+QTYPE_DIFF = {"detail": 1, "main_idea": 2, "sequence": 2, "vocab": 3, "inference": 4}
+
+
+def q_difficulty(qtype: str, grade: int) -> int:
+    return max(1, min(5, QTYPE_DIFF.get(qtype, 2) + (1 if grade >= 5 else 0)))
+
+
 def level_spec(grade: int) -> tuple[str, str, str]:
     """(reading-level guidance, passage form, paragraph spec) for a grade."""
     if grade <= 1:
@@ -186,7 +193,8 @@ def main() -> None:
                     "correct_index": shuffled.index(q.options[q.correct_index]),
                     "explanation": q.explanation.strip(),
                     "locator": {"paragraph": q.locator_paragraph, "hint": q.locator_hint.strip()},
-                    "qtype": q.qtype, "status": "vetted",
+                    "qtype": q.qtype, "difficulty": q_difficulty(q.qtype, args.grade),
+                    "status": "vetted",
                 })
             sb.table("reading_questions").insert(rows).execute()
             made += 1

@@ -171,10 +171,14 @@ export async function getOrCreateBlock(
 
   const { data: qs } = await admin
     .from("questions")
-    .select("id")
+    .select("id, difficulty")
     .eq("skill_id", skillId)
     .eq("status", "vetted");
-  const pool = shuffle((qs ?? []).map((q) => q.id as string)).slice(0, BLOCK_SIZE);
+  // Random sample, then serve easiest-first so the child ramps up.
+  const pool = shuffle((qs ?? []) as { id: string; difficulty: number }[])
+    .slice(0, BLOCK_SIZE)
+    .sort((a, b) => (a.difficulty ?? 3) - (b.difficulty ?? 3))
+    .map((q) => q.id);
   if (pool.length === 0) throw new Error("no_questions");
 
   const { data: block, error } = await admin
