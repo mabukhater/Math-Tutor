@@ -152,14 +152,14 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
 
   if (phase === "loading")
     return (
-      <Shell>
+      <Shell exitHref={`/reading/${studentId}`}>
         <p className="muted">Loading…</p>
       </Shell>
     );
 
   if (phase === "error")
     return (
-      <Shell>
+      <Shell exitHref={`/reading/${studentId}`}>
         <h2>Hmm.</h2>
         <p className="sub">{errMsg}</p>
         <Link href={`/reading/${studentId}`} className="btn">
@@ -170,7 +170,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
 
   if (phase === "read")
     return (
-      <Shell>
+      <Shell exitHref={`/reading/${studentId}`}>
         <span className="badge">Read first</span>
         <Passage title={title} paragraphs={paragraphs} highlight={null} />
         <button className="btn" onClick={() => setPhase("question")}>
@@ -182,7 +182,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   if (phase === "result" && result) {
     const passed = result.passed === true;
     return (
-      <Shell>
+      <Shell exitHref={`/reading/${studentId}`}>
         <div className="celebrate pop">
           <div style={{ color: passed ? "var(--amber)" : "#c0392b", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
             {passed ? <Trophy size={44} /> : <Cross size={40} />}
@@ -222,7 +222,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
 
   // question / feedback
   return (
-    <Shell>
+    <Shell exitHref={`/reading/${studentId}`}>
       <div className="progress">
         <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
       </div>
@@ -291,9 +291,14 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: string }) {
   return (
     <div className="wrap">
+      {exitHref && (
+        <Link href={exitHref} className="exit-btn" aria-label="Exit">
+          ✕ Exit
+        </Link>
+      )}
       <div className="card">{children}</div>
     </div>
   );

@@ -133,14 +133,14 @@ export default function TopicPractice({
 
   if (phase === "loading")
     return (
-      <Shell>
+      <Shell exitHref={`/practice/${studentId}/topics`}>
         <p className="muted">Loading this topic…</p>
       </Shell>
     );
 
   if (phase === "learn" && lesson)
     return (
-      <Shell>
+      <Shell exitHref={`/practice/${studentId}/topics`}>
         <span className="badge">Learn · {topicName}</span>
         <h1 style={{ marginTop: "0.5rem" }}>{lesson.title}</h1>
         <div className="article" style={{ marginTop: "0.5rem" }}>
@@ -159,7 +159,7 @@ export default function TopicPractice({
 
   if (phase === "error")
     return (
-      <Shell>
+      <Shell exitHref={`/practice/${studentId}/topics`}>
         <h2>Hmm.</h2>
         <p className="sub">{errMsg}</p>
         <Link href={`/practice/${studentId}/topics`} className="btn">
@@ -170,7 +170,7 @@ export default function TopicPractice({
 
   if (phase === "done")
     return (
-      <Shell>
+      <Shell exitHref={`/practice/${studentId}/topics`}>
         <div className="celebrate pop">
           <div style={{ color: "var(--amber)", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
             <Trophy size={44} />
@@ -189,7 +189,7 @@ export default function TopicPractice({
     );
 
   return (
-    <Shell>
+    <Shell exitHref={`/practice/${studentId}/topics`}>
       <div className="progress">
         <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
       </div>
@@ -246,9 +246,14 @@ export default function TopicPractice({
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: string }) {
   return (
     <div className="wrap">
+      {exitHref && (
+        <Link href={exitHref} className="exit-btn" aria-label="Exit">
+          ✕ Exit
+        </Link>
+      )}
       <div className="card">{children}</div>
     </div>
   );

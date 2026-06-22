@@ -164,6 +164,9 @@ export default function Placement() {
   // question / feedback
   return (
     <div className="wrap">
+      <Link href="/dashboard" className="exit-btn" aria-label="Exit">
+        ✕ Exit
+      </Link>
       <div className="card">
         <div className="progress">
           <div style={{ width: `${(step / maxSteps) * 100}%` }} />

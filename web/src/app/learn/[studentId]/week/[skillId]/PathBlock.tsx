@@ -134,14 +134,14 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
 
   if (phase === "loading")
     return (
-      <Shell>
+      <Shell exitHref={`/learn/${studentId}`}>
         <p className="muted">Loading this week…</p>
       </Shell>
     );
 
   if (phase === "error")
     return (
-      <Shell>
+      <Shell exitHref={`/learn/${studentId}`}>
         <h2>Hmm.</h2>
         <p className="sub">{errMsg}</p>
         <Link href={`/learn/${studentId}`} className="btn">
@@ -152,7 +152,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
 
   if (phase === "learn" && lesson)
     return (
-      <Shell>
+      <Shell exitHref={`/learn/${studentId}`}>
         <span className="badge">Learn · {skillName}</span>
         <h1 style={{ marginTop: "0.5rem" }}>{lesson.title}</h1>
         <div className="article" style={{ marginTop: "0.5rem" }}>
@@ -167,7 +167,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   if (phase === "result" && result) {
     const passed = result.passed === true;
     return (
-      <Shell>
+      <Shell exitHref={`/learn/${studentId}`}>
         <div className="celebrate pop">
           <div style={{ color: passed ? "var(--amber)" : "#c0392b", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
             {passed ? <Trophy size={44} /> : <Cross size={40} />}
@@ -206,7 +206,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   }
 
   return (
-    <Shell>
+    <Shell exitHref={`/learn/${studentId}`}>
       <div className="progress">
         <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
       </div>
@@ -263,9 +263,14 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: string }) {
   return (
     <div className="wrap">
+      {exitHref && (
+        <Link href={exitHref} className="exit-btn" aria-label="Exit">
+          ✕ Exit
+        </Link>
+      )}
       <div className="card">{children}</div>
     </div>
   );
