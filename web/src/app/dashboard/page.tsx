@@ -33,7 +33,7 @@ export default async function Dashboard() {
   const { data: students } = await supabase
     .from("students")
     .select(
-      "id, display_name, nominal_grade, placement_completed, current_skill_index, pass_threshold, curriculum_id, curricula(code, name, grade_noun, grade_offset)",
+      "id, display_name, nominal_grade, placement_completed, current_skill_index, pass_threshold, curriculum_id, year_plan_id, curricula(code, name, grade_noun, grade_offset)",
     )
     .order("created_at", { ascending: true });
 
@@ -113,7 +113,12 @@ export default async function Dashboard() {
                   </div>
                 </div>
                 {s.placement_completed ? (
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
+                    {s.year_plan_id && (
+                      <Link href={`/plan/${s.id}`} className="badge">
+                        Year plan
+                      </Link>
+                    )}
                     <Link href={`/learn/${s.id}`} className="badge">
                       Math
                     </Link>

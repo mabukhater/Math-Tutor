@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 const STUDENT_COLS =
-  "id, parent_id, curriculum_id, nominal_grade, current_skill_index, pass_threshold, questions_per_day, placement_completed, display_name, telegram_chat_id";
+  "id, parent_id, curriculum_id, nominal_grade, current_skill_index, pass_threshold, questions_per_day, placement_completed, display_name, telegram_chat_id, year_plan_id";
 
 export interface StudentRow {
   id: string;
@@ -14,6 +14,7 @@ export interface StudentRow {
   placement_completed: boolean;
   display_name: string | null;
   telegram_chat_id: number | null;
+  year_plan_id: string | null;
 }
 
 export type AccessRole = "parent" | "kid";

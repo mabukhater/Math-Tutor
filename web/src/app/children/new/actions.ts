@@ -20,10 +20,24 @@ export async function addChild(formData: FormData) {
   // Validate the curriculum exists.
   const { data: curr } = await supabase
     .from("curricula")
-    .select("id")
+    .select("id, code")
     .eq("id", curriculum_id)
     .single();
   if (!curr) redirect("/children/new?error=1");
+
+  // Ontario Grade 4 enrolls in the structured Sept-June year plan, if one exists.
+  let year_plan_id: string | null = null;
+  if (curr.code === "ontario" && nominal_grade === 4) {
+    const { data: yp } = await supabase
+      .from("year_plans")
+      .select("id")
+      .eq("curriculum_id", curriculum_id)
+      .eq("grade", 4)
+      .order("year_label", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    year_plan_id = yp?.id ?? null;
+  }
 
   const { data: student, error } = await supabase
     .from("students")
@@ -32,6 +46,7 @@ export async function addChild(formData: FormData) {
       display_name,
       nominal_grade,
       curriculum_id,
+      year_plan_id,
     })
     .select("id")
     .single();

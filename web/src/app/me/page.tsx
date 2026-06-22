@@ -22,7 +22,7 @@ export default async function KidHome() {
 
   const { data: student } = await admin
     .from("students")
-    .select("id, display_name, placement_completed, curriculum_id, nominal_grade, current_skill_index, pass_threshold")
+    .select("id, display_name, placement_completed, curriculum_id, nominal_grade, current_skill_index, pass_threshold, year_plan_id")
     .eq("id", studentId)
     .single();
   if (!student) redirect("/kids");
@@ -54,6 +54,17 @@ export default async function KidHome() {
           </form>
         </div>
         <p className="sub">What do you want to learn today?</p>
+
+        {student.year_plan_id && (
+          <Link href={`/plan/${student.id}`} className="kid-yearplan">
+            <span className="kid-yearplan-emoji" aria-hidden="true">🗓️</span>
+            <span className="kid-yearplan-body">
+              <strong>My year</strong>
+              <span>See your whole year, week by week</span>
+            </span>
+            <span className="kid-yearplan-go">→</span>
+          </Link>
+        )}
 
         <div className="kid-subjects">
           <Link href={`/learn/${student.id}`} className="kid-subject math">

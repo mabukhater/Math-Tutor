@@ -159,6 +159,27 @@ export default async function Landing() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="ontario-band">
+          <span className="ontario-flag">🍁 New · Ontario Grade 4</span>
+          <h2>The whole school year, mapped week by week</h2>
+          <p>
+            Enroll your Grade 4 child in the full <strong>Ontario 2020 curriculum</strong> as a
+            September-to-June plan. Every week has its math focus and a reading passage, tied to the
+            real Ontario expectations — so you always know what they’re learning and whether they’re
+            on pace.
+          </p>
+          <div className="ontario-feats">
+            <span className="pill"><CheckIcon size={16} /> 36-week Sept–June schedule</span>
+            <span className="pill"><CheckIcon size={16} /> Mapped to Ontario expectations</span>
+            <span className="pill"><CheckIcon size={16} /> Live coverage &amp; pace tracking</span>
+          </div>
+          <Link href="/login" className="btn-cta" style={{ marginTop: "1.4rem" }}>
+            Start the Ontario year plan <ArrowIcon size={18} />
+          </Link>
+        </div>
+      </section>
+
       <section className="section" id="how">
         <h2>Three steps to daily momentum</h2>
         <p className="sub-c">Set up in minutes — the hard part, staying on track, runs itself.</p>

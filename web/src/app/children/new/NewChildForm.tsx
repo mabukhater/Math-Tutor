@@ -59,6 +59,13 @@ export default function NewChildForm({
             ))}
           </select>
 
+          {code === "ontario" && (
+            <p className="muted" style={{ marginTop: "-0.4rem", marginBottom: "0.6rem", fontSize: "0.82rem" }}>
+              Pick <strong>Grade 4</strong> to follow the full Sept–June Ontario year
+              plan, week by week.
+            </p>
+          )}
+
           {hasError && <p className="err">Please enter a name and pick a curriculum and level.</p>}
 
           <button className="btn" type="submit">
