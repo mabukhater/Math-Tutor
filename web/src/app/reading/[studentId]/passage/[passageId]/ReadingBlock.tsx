@@ -34,6 +34,7 @@ interface Resp {
   blockDone?: boolean;
   passed?: boolean | null;
   accuracy?: number;
+  grade?: number;
   error?: string;
 }
 
@@ -67,6 +68,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   const [result, setResult] = useState<Resp | null>(null);
   const [showPassage, setShowPassage] = useState(false);
   const [highlight, setHighlight] = useState<number | null>(null);
+  const [young, setYoung] = useState(false);
   const shownAt = useRef(0);
 
   useEffect(() => {
@@ -94,6 +96,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setBlockId(d.blockId ?? "");
     setTitle(d.title ?? "");
     setParagraphs((d.paragraphs ?? []) as Para[]);
+    setYoung((d.grade ?? 9) <= 3);
     setThreshold(d.threshold);
     setTotal(d.total);
     setNumCompleted(d.numCompleted);
@@ -152,14 +155,14 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
 
   if (phase === "loading")
     return (
-      <Shell exitHref={`/reading/${studentId}`}>
+      <Shell exitHref={`/reading/${studentId}`} young={young}>
         <p className="muted">Loading…</p>
       </Shell>
     );
 
   if (phase === "error")
     return (
-      <Shell exitHref={`/reading/${studentId}`}>
+      <Shell exitHref={`/reading/${studentId}`} young={young}>
         <h2>Hmm.</h2>
         <p className="sub">{errMsg}</p>
         <Link href={`/reading/${studentId}`} className="btn">
@@ -170,7 +173,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
 
   if (phase === "read")
     return (
-      <Shell exitHref={`/reading/${studentId}`}>
+      <Shell exitHref={`/reading/${studentId}`} young={young}>
         <span className="badge">Read first</span>
         <Passage title={title} paragraphs={paragraphs} highlight={null} />
         <button className="btn" onClick={() => setPhase("question")}>
@@ -182,7 +185,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   if (phase === "result" && result) {
     const passed = result.passed === true;
     return (
-      <Shell exitHref={`/reading/${studentId}`}>
+      <Shell exitHref={`/reading/${studentId}`} young={young}>
         <div className="celebrate pop">
           <div style={{ color: passed ? "var(--amber)" : "#c0392b", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
             {passed ? <Trophy size={44} /> : <Cross size={40} />}
@@ -222,7 +225,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
 
   // question / feedback
   return (
-    <Shell exitHref={`/reading/${studentId}`}>
+    <Shell exitHref={`/reading/${studentId}`} young={young}>
       <div className="progress">
         <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
       </div>
@@ -291,7 +294,15 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   );
 }
 
-function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: string }) {
+function Shell({
+  children,
+  exitHref,
+  young,
+}: {
+  children: React.ReactNode;
+  exitHref?: string;
+  young?: boolean;
+}) {
   return (
     <div className="wrap">
       {exitHref && (
@@ -299,7 +310,7 @@ function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: s
           ✕ Exit
         </Link>
       )}
-      <div className="card">{children}</div>
+      <div className={"card" + (young ? " young" : "")}>{children}</div>
     </div>
   );
 }

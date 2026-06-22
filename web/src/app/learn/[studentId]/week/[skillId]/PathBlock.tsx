@@ -38,6 +38,7 @@ interface Resp {
   blockDone?: boolean;
   passed?: boolean | null;
   accuracy?: number;
+  grade?: number;
   error?: string;
 }
 
@@ -46,6 +47,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   const [errMsg, setErrMsg] = useState("");
   const [blockId, setBlockId] = useState("");
   const [skillName, setSkillName] = useState("");
+  const [young, setYoung] = useState(false);
   const [threshold, setThreshold] = useState(80);
   const [total, setTotal] = useState(0);
   const [numCompleted, setNumCompleted] = useState(0);
@@ -82,6 +84,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
       }
       setBlockId(d.blockId ?? "");
       setSkillName(d.skillName ?? "");
+      setYoung((d.grade ?? 9) <= 3);
       setThreshold(d.threshold);
       setTotal(d.total);
       setNumCompleted(d.numCompleted);
@@ -134,14 +137,14 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
 
   if (phase === "loading")
     return (
-      <Shell exitHref={`/learn/${studentId}`}>
+      <Shell exitHref={`/learn/${studentId}`} young={young}>
         <p className="muted">Loading this week…</p>
       </Shell>
     );
 
   if (phase === "error")
     return (
-      <Shell exitHref={`/learn/${studentId}`}>
+      <Shell exitHref={`/learn/${studentId}`} young={young}>
         <h2>Hmm.</h2>
         <p className="sub">{errMsg}</p>
         <Link href={`/learn/${studentId}`} className="btn">
@@ -152,7 +155,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
 
   if (phase === "learn" && lesson)
     return (
-      <Shell exitHref={`/learn/${studentId}`}>
+      <Shell exitHref={`/learn/${studentId}`} young={young}>
         <span className="badge">Learn · {skillName}</span>
         <h1 style={{ marginTop: "0.5rem" }}>{lesson.title}</h1>
         <div className="article" style={{ marginTop: "0.5rem" }}>
@@ -167,7 +170,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   if (phase === "result" && result) {
     const passed = result.passed === true;
     return (
-      <Shell exitHref={`/learn/${studentId}`}>
+      <Shell exitHref={`/learn/${studentId}`} young={young}>
         <div className="celebrate pop">
           <div style={{ color: passed ? "var(--amber)" : "#c0392b", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
             {passed ? <Trophy size={44} /> : <Cross size={40} />}
@@ -206,7 +209,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   }
 
   return (
-    <Shell exitHref={`/learn/${studentId}`}>
+    <Shell exitHref={`/learn/${studentId}`} young={young}>
       <div className="progress">
         <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
       </div>
@@ -263,7 +266,15 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   );
 }
 
-function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: string }) {
+function Shell({
+  children,
+  exitHref,
+  young,
+}: {
+  children: React.ReactNode;
+  exitHref?: string;
+  young?: boolean;
+}) {
   return (
     <div className="wrap">
       {exitHref && (
@@ -271,7 +282,7 @@ function Shell({ children, exitHref }: { children: React.ReactNode; exitHref?: s
           ✕ Exit
         </Link>
       )}
-      <div className="card">{children}</div>
+      <div className={"card" + (young ? " young" : "")}>{children}</div>
     </div>
   );
 }

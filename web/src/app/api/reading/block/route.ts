@@ -55,6 +55,7 @@ export async function POST(req: Request) {
     total,
     numCompleted: block.num_completed,
     numCorrect: block.num_correct,
+    grade: student.nominal_grade,
     question,
   });
 }

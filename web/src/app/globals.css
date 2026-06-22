@@ -180,6 +180,20 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .kid-login-fields { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
 .kid-login-fields input { width: auto; flex: 1; min-width: 120px; margin: 0; }
 
+/* ====================== Bigger text for young grades (1-3) ====================== */
+.card.young h2 { font-size: 1.65rem; line-height: 1.35; }
+.card.young .opt { font-size: 1.3rem; padding: 1.15rem 1.25rem; }
+.card.young .opt .opt-letter { width: 38px; height: 38px; font-size: 1.2rem; }
+.card.young .rc-passage { padding: 1.4rem 1.55rem; }
+.card.young .rc-passage-title { font-size: 1.55rem; }
+.card.young .rc-para { font-size: 1.5rem; line-height: 1.75; padding-left: 2.7rem; margin-bottom: 1rem; }
+.card.young .rc-para.hl { padding: 0.45rem 0.6rem 0.45rem 2.7rem; }
+.card.young .rc-pnum { font-size: 0.95rem; top: 0.2rem; }
+.card.young .prose p, .card.young .prose li { font-size: 1.25rem; line-height: 1.7; }
+.card.young .prose h2 { font-size: 1.4rem; }
+.card.young .why-wrong, .card.young .feedback-box .muted { font-size: 1.1rem; line-height: 1.6; }
+.card.young .feedback-line { font-size: 1.2rem; }
+
 /* ====================== Reading comprehension ====================== */
 .rc-passage { background: #fffdf7; border: 1.5px solid #f0e8d6; border-radius: 14px; padding: 1.1rem 1.25rem; margin: 0.75rem 0 1.1rem; }
 .rc-passage-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--ink, #15402f); margin-bottom: 0.5rem; }
