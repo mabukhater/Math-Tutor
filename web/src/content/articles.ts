@@ -11,6 +11,64 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "why-reading-aloud-still-matters-after-your-child-can-read",
+    title: "Why Reading Aloud Still Matters After Your Child Can Read",
+    category: "Reading",
+    readMinutes: 3,
+    excerpt:
+      "Your child can read on their own — so why keep reading aloud? Here's what older kids gain and how to keep the habit going.",
+    body: `## The Question Most Parents Eventually Ask
+
+Once a child sounds out their first chapter book independently, reading aloud together often quietly disappears. It feels like a milestone reached, a baton passed. But stopping too soon can mean missing out on some of the biggest benefits — benefits that arrive long after the decoding stage is done.
+
+Reading aloud is not just a stepping stone to independent reading. It is a separate, powerful thing in its own right. Here is why it deserves a place in your week well into the upper grades.
+
+## What Older Kids Still Gain
+
+When you read aloud, you can choose books that are above your child's independent reading level. This matters more than it sounds.
+
+- Listening comprehension runs ahead of reading ability until around age 13. A child who cannot yet decode a complex novel can absolutely understand and enjoy it when you read it to them.
+- They hear vocabulary they would not meet in their own books, soaking up words like reluctant, ancient, or magnificent in a context that makes the meaning clear.
+- They absorb the rhythm of good sentences — how a story builds tension, how dialogue sounds, where a sentence pauses for effect.
+- They learn that books are worth the effort, because they get the payoff of a great story without the friction of hard words.
+
+There is also a quieter benefit. Reading aloud is one of the few activities that asks nothing of a child except to sit and listen. No screen, no scoring, no right answer. For an anxious or tired child, that calm is its own reward.
+
+## How to Keep It Going Past the Picture Book Years
+
+### Pick books just above their level
+
+Aim for stories your child finds gripping but could not quite manage alone yet. A nine-year-old who reads early chapter books independently might love hearing a meatier adventure or mystery read to them. The gap is the point.
+
+### Make it a fixed, low-pressure ritual
+
+Ten to fifteen minutes works. Bedtime is the classic slot, but breakfast, the car, or a Sunday afternoon all work too. Consistency beats length. A short reading most nights builds more than a long one once a month.
+
+### Read with a little drama
+
+You do not need to be an actor. Just slow down, give characters slightly different voices, and pause before a big moment. Children remember the books their parents clearly enjoyed reading.
+
+### Let them follow along sometimes
+
+For a child building fluency, occasionally running a finger under the words while you read connects the sound of language to its shape on the page. Do not force it — keep the focus on enjoyment.
+
+### Talk, but do not quiz
+
+Resist turning story time into a comprehension test. Instead, wonder aloud. What do you think she will do next? Why do you reckon he lied? Genuine curiosity invites a child to think without making them feel examined.
+
+## When They Want to Read to You
+
+Somewhere along the way, your child may offer to read a page back to you. This is gold. Taking turns — a page each — keeps the momentum on tricky books and lets them practise out loud in a safe, supportive setting. If they stumble on a word, simply supply it and move on. Flow matters more than perfection here.
+
+You can mirror this at home with their everyday practice too. Reading a word problem out loud, or having your child read a question to you before solving it, builds the same listening and comprehension muscles that make math word problems and instructions less intimidating.
+
+## The Long View
+
+The families who read aloud the longest tend to raise the most enthusiastic readers — not because of any single book, but because reading stays linked to warmth, attention, and togetherness rather than homework and pressure.
+
+So if your child can already read alone, wonderful. Celebrate it. Then pick up a book that is a little too hard, sit close, and keep reading. The decoding is finished, but the best part of reading aloud is only getting started.`,
+  },
+  {
     slug: "common-core-uk-national-curriculum-singapore-math-difference",
     title: "US Common Core, UK National Curriculum, and Singapore Math: What's the Difference?",
     category: "Curricula",
