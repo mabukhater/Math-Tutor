@@ -16,7 +16,9 @@ export function QuestionNav({
   onJump,
 }: {
   total: number;
-  results: boolean[]; // results[i] is set for each answered question, in order
+  // results[i] is set for each answered question, in order: true/false for the
+  // result, or null when it was answered earlier and the result isn't known.
+  results: (boolean | null)[];
   liveIndex: number; // index of the live, in-progress question (-1 when finished)
   viewIndex: number; // index currently on screen, gets the focus ring (-1 for none)
   onJump: (i: number) => void;
@@ -26,18 +28,22 @@ export function QuestionNav({
       {Array.from({ length: total }, (_, i) => {
         const answered = i < results.length;
         const status = answered
-          ? results[i]
-            ? "correct"
-            : "wrong"
+          ? results[i] === null
+            ? "done"
+            : results[i]
+              ? "correct"
+              : "wrong"
           : i === liveIndex
             ? "current"
             : "upcoming";
         const clickable = answered || i === liveIndex;
         const label = `Question ${i + 1}${
           answered
-            ? results[i]
-              ? ", correct"
-              : ", incorrect"
+            ? results[i] === null
+              ? ", answered"
+              : results[i]
+                ? ", correct"
+                : ", incorrect"
             : i === liveIndex
               ? ", current"
               : ", not answered yet"
@@ -54,7 +60,7 @@ export function QuestionNav({
             onClick={() => clickable && onJump(i)}
           >
             <span className="qnav-num">{i + 1}</span>
-            {answered && (
+            {answered && results[i] !== null && (
               <span className="qnav-badge" aria-hidden="true">
                 {results[i] ? <Check size={11} /> : <Cross size={11} />}
               </span>

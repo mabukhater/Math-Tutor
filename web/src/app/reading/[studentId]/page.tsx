@@ -5,7 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { getReadingPath } from "@/lib/readingServer";
 import { gradeLabel } from "@/lib/curriculum";
-import { Check, Lock } from "@/components/icons";
+import { Check } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
 
@@ -42,8 +42,8 @@ export default async function ReadingPage({
           </Link>
         </div>
         <p className="sub">
-          {label} reading level — read each passage, then answer. Pass at {path.threshold}% to
-          unlock the next, harder one.
+          {label} reading level — read each passage, then answer. Pass at {path.threshold}%. Tap any
+          passage to start it.
         </p>
 
         {(() => {
@@ -83,34 +83,25 @@ export default async function ReadingPage({
                       📖 Week {wk.week} · {wk.passed}/{wk.total} read
                     </div>
                     {wk.passages.map((p, i) => (
-                      <div key={p.passageId} className={"rung clay-rung " + p.status}>
+                      <Link
+                        key={p.passageId}
+                        href={`/reading/${studentId}/passage/${p.passageId}`}
+                        className={"rung clay-rung " + p.status}
+                      >
                         <div className="rung-node">
-                          {p.status === "passed" ? (
-                            <Check size={22} />
-                          ) : p.status === "locked" ? (
-                            <Lock size={16} />
-                          ) : (
-                            <span>{i + 1}</span>
-                          )}
+                          {p.status === "passed" ? <Check size={22} /> : <span>{i + 1}</span>}
                         </div>
                         <div className="rung-info">
                           <div className="rung-name">{p.title}</div>
-                          {p.status === "active" && (
-                            <Link
-                              href={`/reading/${studentId}/passage/${p.passageId}`}
-                              className="rung-go"
-                            >
-                              ▶ Read &amp; answer
-                            </Link>
-                          )}
-                          {p.status === "passed" && (
-                            <div className="rung-meta">
-                              Done{p.accuracy != null ? ` · ${p.accuracy}%` : ""}
-                            </div>
-                          )}
-                          {p.status === "locked" && <div className="rung-meta">Locked</div>}
+                          <div className="rung-meta">
+                            {p.status === "passed"
+                              ? `Done${p.accuracy != null ? ` · ${p.accuracy}%` : ""} · Read again`
+                              : p.status === "active"
+                                ? "▶ Read & answer"
+                                : "Read →"}
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 ))}

@@ -23,7 +23,7 @@ interface Answered {
   options: string[];
   selectedIndex: number;
   correctIndex: number;
-  correct: boolean;
+  correct: boolean | null; // null = answered in an earlier session, result not recorded
   locator?: Locator | null;
   explanation?: string;
 }
@@ -33,7 +33,7 @@ interface QView {
   answered: boolean;
   selected: number | null;
   correctIndex?: number;
-  correct?: boolean;
+  correct?: boolean | null;
   locator?: Locator | null;
   explanation?: string;
 }
@@ -57,6 +57,7 @@ interface Resp {
   passed?: boolean | null;
   accuracy?: number;
   grade?: number;
+  answered?: Answered[];
   error?: string;
 }
 
@@ -130,7 +131,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setFeedback(null);
     setResult(null);
     setHighlight(null);
-    setHistory([]);
+    setHistory(d.answered ?? []); // seed history so a resumed block is consistent
     setReviewIndex(null);
     // If they already started, jump back into questions; else read first.
     setPhase(d.numCompleted > 0 ? "question" : "read");
@@ -401,11 +402,12 @@ function OptionList({
 }
 
 function ReadingFeedback({ view }: { view: QView }) {
+  const unknown = view.correct === null || view.correct === undefined;
   return (
     <div className="feedback-box">
-      <div className={"feedback-line " + (view.correct ? "ok" : "no")}>
-        {view.correct ? <Check size={20} /> : <Cross size={20} />}
-        {view.correct ? "Correct!" : "Not quite"}
+      <div className={"feedback-line" + (unknown ? "" : view.correct ? " ok" : " no")}>
+        {!unknown && (view.correct ? <Check size={20} /> : <Cross size={20} />)}
+        {unknown ? "Review" : view.correct ? "Correct!" : "Not quite"}
       </div>
       {!view.correct && view.locator && (
         <p className="why-wrong">

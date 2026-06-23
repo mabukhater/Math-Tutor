@@ -5,7 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { getPathForStudent } from "@/lib/pathServer";
 import { gradeLabel } from "@/lib/curriculum";
-import { Check, Lock } from "@/components/icons";
+import { Check } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +43,7 @@ export default async function LearnPage({
           </Link>
         </div>
         <p className="sub">
-          {label} · {cur?.name} — pass each week at {path.threshold}% to unlock the next.
+          {label} · {cur?.name} — pass each week at {path.threshold}%. Tap any week to start it.
         </p>
 
         {(() => {
@@ -82,31 +82,25 @@ export default async function LearnPage({
                   <div key={m.topicCode} className="ladder-month">
                     <div className="ladder-month-banner clay-banner">📘 {m.topicName}</div>
                     {m.weeks.map((w, wi) => (
-                      <div key={w.skillId} className={"rung clay-rung " + w.status}>
+                      <Link
+                        key={w.skillId}
+                        href={`/learn/${studentId}/week/${w.skillId}`}
+                        className={"rung clay-rung " + w.status}
+                      >
                         <div className="rung-node">
-                          {w.status === "passed" ? (
-                            <Check size={22} />
-                          ) : w.status === "locked" ? (
-                            <Lock size={16} />
-                          ) : (
-                            <span>{wi + 1}</span>
-                          )}
+                          {w.status === "passed" ? <Check size={22} /> : <span>{wi + 1}</span>}
                         </div>
                         <div className="rung-info">
                           <div className="rung-name">{w.name}</div>
-                          {w.status === "active" && (
-                            <Link href={`/learn/${studentId}/week/${w.skillId}`} className="rung-go">
-                              ▶ Start this lesson
-                            </Link>
-                          )}
-                          {w.status === "passed" && (
-                            <div className="rung-meta">
-                              Done{w.accuracy != null ? ` · ${w.accuracy}%` : ""}
-                            </div>
-                          )}
-                          {w.status === "locked" && <div className="rung-meta">Locked</div>}
+                          <div className="rung-meta">
+                            {w.status === "passed"
+                              ? `Done${w.accuracy != null ? ` · ${w.accuracy}%` : ""} · Practice again`
+                              : w.status === "active"
+                                ? "▶ Start this lesson"
+                                : "Start →"}
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 ))}

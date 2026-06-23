@@ -1,8 +1,36 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { getReadingPath, getOrCreateReadingBlock } from "@/lib/readingServer";
+
+// Already-answered questions in this block. Reading attempts don't record the
+// per-question result, so on a resumed block these show as neutral "answered"
+// (result unknown) — enough to keep the counter/progress/navigator consistent
+// and let the child re-open a question to see its correct answer.
+async function answeredReadingHistory(admin: SupabaseClient, answeredIds: string[]) {
+  if (answeredIds.length === 0) return [];
+  const { data: aqs } = await admin
+    .from("reading_questions")
+    .select("id, stem, options, correct_index, explanation")
+    .in("id", answeredIds);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const qById = new Map((aqs ?? []).map((q: any) => [q.id as string, q]));
+  return answeredIds.map((qid) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const q = qById.get(qid) as any;
+    return {
+      stem: q?.stem ?? "",
+      options: q?.options ?? [],
+      selectedIndex: -1,
+      correctIndex: (q?.correct_index as number) ?? -1,
+      correct: null,
+      locator: null,
+      explanation: q?.explanation ?? "",
+    };
+  });
+}
 
 // Start (or resume) the comprehension block for a passage. Returns the passage
 // text so the child can read it; only the active passage is playable. Parent or
@@ -19,8 +47,9 @@ export async function POST(req: Request) {
   const student = access.student;
 
   const path = await getReadingPath(admin, student);
-  if (path.activePassageId !== passageId)
-    return NextResponse.json({ error: "locked" }, { status: 409 });
+  // Any passage in this student's path is playable (revisit or jump ahead).
+  const inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
+  if (!inPath) return NextResponse.json({ error: "locked" }, { status: 409 });
 
   let block;
   try {
@@ -47,6 +76,8 @@ export async function POST(req: Request) {
     if (q) question = { id: q.id, stem: q.stem, options: q.options };
   }
 
+  const answered = await answeredReadingHistory(admin, block.question_ids.slice(0, idx));
+
   return NextResponse.json({
     blockId: block.id,
     title: passage?.title ?? "",
@@ -57,5 +88,6 @@ export async function POST(req: Request) {
     numCorrect: block.num_correct,
     grade: student.nominal_grade,
     question,
+    answered,
   });
 }

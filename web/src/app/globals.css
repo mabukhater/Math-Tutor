@@ -227,6 +227,13 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .qnav-cell.current { border-color: var(--green); border-width: 2px; color: var(--green-deep); box-shadow: 0 0 0 3px var(--green-soft); }
 .qnav-cell.correct { background: var(--green); border-color: var(--green); color: #fff; }
 .qnav-cell.wrong { background: #e2574c; border-color: #e2574c; color: #fff; }
+.qnav-cell.done { background: #e8eef5; border-color: #d4dfeb; color: #5b7088; }
+
+/* Ladder rungs are tappable links — any week is playable, so they shouldn't read as disabled. */
+a.rung { cursor: pointer; border-radius: 14px; transition: background .12s ease; }
+a.rung:hover { background: var(--green-soft); }
+a.rung.locked .rung-name { color: var(--ink); }
+a.rung:hover .rung-name { color: var(--green-deep); }
 .qnav-cell:not(:disabled):hover { transform: translateY(-2px); }
 .qnav-cell.view { box-shadow: 0 0 0 3px var(--amber); }
 .qnav-badge { position: absolute; top: -5px; right: -5px; width: 16px; height: 16px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,.22); }

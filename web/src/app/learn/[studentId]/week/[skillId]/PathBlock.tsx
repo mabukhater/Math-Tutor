@@ -65,6 +65,7 @@ interface Resp {
   passed?: boolean | null;
   accuracy?: number;
   grade?: number;
+  answered?: Answered[];
   error?: string;
 }
 
@@ -122,7 +123,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
       setSelected(null);
       setFeedback(null);
       setResult(null);
-      setHistory([]);
+      setHistory(d.answered ?? []); // seed history so a resumed block is consistent
       setReviewIndex(null);
       setPhase(d.lesson && !skipLesson ? "learn" : "question");
     },
