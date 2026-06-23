@@ -1,14 +1,10 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { ensureParent } from "@/lib/parents";
 import { isAdminEmail } from "@/lib/adminAuth";
 import { gradeLabel } from "@/lib/curriculum";
-import { currentKidStudentId } from "@/lib/access";
 import { getPathForStudent } from "@/lib/pathServer";
 import { getReadingPath } from "@/lib/readingServer";
-import { BillingControl } from "@/components/BillingControl";
 import { DashboardViews, type Kid } from "@/components/DashboardViews";
 
 export const dynamic = "force-dynamic";
@@ -23,16 +19,12 @@ export default async function Dashboard() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
-
+  if (!user) return null; // layout already guards; satisfies types
   const admin = createAdminClient();
-  // A kid who reaches the dashboard is sent to their own home.
-  if (await currentKidStudentId(supabase, admin)) redirect("/me");
-  await ensureParent(supabase, user);
 
   const { data: billing } = await supabase
     .from("parents")
-    .select("subscription_plan, subscription_status, subscription_subject")
+    .select("subscription_plan, subscription_status, full_name")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -52,7 +44,10 @@ export default async function Dashboard() {
     (kidLogins ?? []).map((k) => [k.student_id as string, k.username as string]),
   );
 
-  const summaries = new Map<string, { math: { passed: number; total: number } | null; reading: { passed: number; total: number } }>();
+  const summaries = new Map<
+    string,
+    { math: { passed: number; total: number } | null; reading: { passed: number; total: number } }
+  >();
   for (const s of list) {
     const stud = {
       id: s.id,
@@ -68,10 +63,7 @@ export default async function Dashboard() {
       math = { passed: weeks.filter((w) => w.status === "passed").length, total: weeks.length };
     }
     const rp = await getReadingPath(admin, stud);
-    summaries.set(s.id, {
-      math,
-      reading: { passed: rp.passedPassages, total: rp.totalPassages },
-    });
+    summaries.set(s.id, { math, reading: { passed: rp.passedPassages, total: rp.totalPassages } });
   }
 
   const kids: Kid[] = list.map((s) => ({
@@ -92,42 +84,42 @@ export default async function Dashboard() {
     reading: summaries.get(s.id)?.reading ?? { passed: 0, total: 0 },
   }));
 
+  const plan = billing?.subscription_plan ?? "free";
+  const planLabel = plan === "all" ? "All Subjects" : plan === "one" ? "One Subject" : "Free plan";
+
   return (
-    <div className="wrap">
-      <div className="card" style={{ maxWidth: 880 }}>
-        <div className="row" style={{ marginBottom: "1rem" }}>
-          <h1 style={{ margin: 0 }}>Your children</h1>
-          <form action="/auth/signout" method="post">
-            <button className="muted" style={{ background: "none", border: "none", cursor: "pointer" }}>
-              Sign out
-            </button>
-          </form>
-        </div>
-
-        <BillingControl
-          plan={billing?.subscription_plan ?? "free"}
-          status={billing?.subscription_status ?? null}
-          subject={billing?.subscription_subject ?? null}
-        />
-
-        <DashboardViews kids={kids} />
-
-        <Link href="/children/new" className="btn" style={{ marginTop: "1.25rem" }}>
-          Add a child
+    <>
+      <div className="parent-page-head">
+        <h1 style={{ margin: 0 }}>Your children</h1>
+        <Link href="/billing" className="plan-chip">
+          {planLabel}
+          {billing?.subscription_status ? ` · ${billing.subscription_status}` : ""}
         </Link>
-
-        {isAdminEmail(user.email) && (
-          <p style={{ marginTop: "1rem", textAlign: "center" }}>
-            <Link href="/vet" className="muted">
-              Admin · vet questions →
-            </Link>{" "}
-            ·{" "}
-            <Link href="/early/results" className="muted">
-              waitlist results →
-            </Link>
-          </p>
-        )}
       </div>
-    </div>
+
+      {!billing?.full_name && (
+        <Link href="/account" className="profile-nudge">
+          Finish setting up your profile →
+        </Link>
+      )}
+
+      <DashboardViews kids={kids} />
+
+      <Link href="/children/new" className="btn" style={{ marginTop: "1.25rem" }}>
+        Add a child
+      </Link>
+
+      {isAdminEmail(user.email) && (
+        <p style={{ marginTop: "1rem" }}>
+          <Link href="/vet" className="muted">
+            Admin · vet questions →
+          </Link>{" "}
+          ·{" "}
+          <Link href="/early/results" className="muted">
+            waitlist results →
+          </Link>
+        </p>
+      )}
+    </>
   );
 }
