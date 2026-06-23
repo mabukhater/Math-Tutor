@@ -58,13 +58,57 @@ class QuestionSet(BaseModel):
     questions: list[GeneratedQuestion]
 
 
+CURRICULUM_PROFILES = {
+    "singapore": (
+        "SINGAPORE MATH (MOE syllabus) — make it unmistakably Singapore:\n"
+        "- Use the BAR-MODEL / model-drawing method for word problems (part-whole and comparison bars), "
+        "and NUMBER BONDS for part-whole relationships, with the 'make-ten' and branching strategies.\n"
+        "- Follow Concrete -> Pictorial -> Abstract; favour mastery and mental-math heuristics.\n"
+        "- Currency: Singapore dollars and cents ($, ¢). Units: metric (cm, m, kg, g, litres, ml).\n"
+        "- Several word problems should be naturally solved by drawing a bar model; mention the model in "
+        "the explanation."
+    ),
+    "uk_national": (
+        "UK NATIONAL CURRICULUM (England) — make it unmistakably British:\n"
+        "- Currency: pounds and pence (£, p), e.g. £3.45, 75p. Metric units and BRITISH spelling: "
+        "centimetres, metres, kilograms, litres, 'maths', 'colour', 'centre', 'favourite'.\n"
+        "- Use the FORMAL WRITTEN METHODS taught in England: column addition/subtraction with carrying/"
+        "exchanging, short & long multiplication, and the BUS-STOP method (short division) for division.\n"
+        "- Emphasise times-table fluency (to 12×12), fractions, and reasoning/'prove it' problem solving.\n"
+        "- British contexts: the corner shop, a bus fare, the playground, a school fete."
+    ),
+    "ontario": (
+        "ONTARIO 2020 CURRICULUM — make it unmistakably Ontario/Canadian:\n"
+        "- Currency: Canadian dollars and cents ($, ¢). Metric units. Canadian spelling (colour, metre, centre).\n"
+        "- Reflect Ontario's strands, especially FINANCIAL LITERACY (money sense, making change, simple budgets, "
+        "needs vs wants) and ALGEBRA (patterns, and simple coding / step-by-step instructions where natural).\n"
+        "- Emphasise multiple representations and explaining your thinking."
+    ),
+    "common_core": (
+        "US COMMON CORE — keep US conventions:\n"
+        "- Currency: US dollars and cents ($, ¢). US spelling (math, color, meter). US customary and metric as fits.\n"
+        "- Emphasise conceptual understanding and multiple strategies/representations: area models, number lines, "
+        "place-value decomposition, and 'explain your reasoning' (Standards for Mathematical Practice)."
+    ),
+}
+
+
+def profile_for(code: str) -> str:
+    return CURRICULUM_PROFILES.get(
+        code, "Use this curriculum's authentic conventions, methods, terminology, currency, and units."
+    )
+
+
 SYSTEM_TEMPLATE = (
     "You are a math curriculum specialist writing assessment items for the "
     "{curriculum}, {grade_label}, skill {code} — \"{name}\". Generate {n} "
     "multiple-choice questions for children aged about {age}.\n\n"
+    "CURRICULUM METHOD & CONVENTIONS — this defines HOW this curriculum teaches; follow it "
+    "exactly so the questions are authentic to it, not generic:\n{method_profile}\n\n"
     "Rules:\n"
-    "- Match this curriculum's conventions and terminology (spelling, units, "
-    "currency, notation) for its country.\n"
+    "- Use the methods, question types, currency, units, and spelling from the CURRICULUM METHOD & "
+    "CONVENTIONS above. The same skill should look different across curricula — a UK child sees £ and "
+    "bus-stop division, a Singapore child sees bar models and number bonds.\n"
     "- Exactly 4 options each. Exactly one correct.\n"
     "- Distractors must reflect realistic mistakes (common misconceptions), not "
     "random numbers.\n"
@@ -154,7 +198,8 @@ def main() -> None:
             grade_label = f"{curr['grade_noun']} {s['grade'] + curr['grade_offset']}"
             system = SYSTEM_TEMPLATE.format(
                 curriculum=curr["name"], grade_label=grade_label,
-                code=s["code"], name=s["name"], n=args.target, age=age
+                code=s["code"], name=s["name"], n=args.target, age=age,
+                method_profile=profile_for(curr["code"]),
             )
             resp = client.messages.parse(
                 model=args.model,
