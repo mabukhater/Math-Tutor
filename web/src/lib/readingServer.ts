@@ -140,6 +140,14 @@ export async function getOrCreateReadingBlock(
   student: ReadingStudent,
   passageId: string,
 ): Promise<ReadingBlock> {
+  const { data: qs } = await admin
+    .from("reading_questions")
+    .select("id, difficulty")
+    .eq("passage_id", passageId)
+    .eq("status", "vetted");
+  const vetted = (qs ?? []) as { id: string; difficulty: number }[];
+  const vettedSet = new Set(vetted.map((q) => q.id));
+
   const { data: open } = await admin
     .from("reading_blocks")
     .select("id, passage_id, question_ids, num_completed, num_correct, passed, threshold")
@@ -149,17 +157,33 @@ export async function getOrCreateReadingBlock(
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
-  if (open && (open.question_ids as string[]).length > (open.num_completed as number)) {
-    return open as ReadingBlock;
+  if (open) {
+    const ids = open.question_ids as string[];
+    const done = open.num_completed as number;
+    const remaining = ids.slice(done);
+    const validRemaining = remaining.filter((id) => vettedSet.has(id));
+    if (remaining.length > 0 && validRemaining.length === remaining.length) {
+      return open as ReadingBlock; // nothing retired ahead — resume as-is
+    }
+    if (validRemaining.length > 0) {
+      // A question ahead was retired — drop it, keep answered prefix + remainder.
+      const newIds = ids.slice(0, done).concat(validRemaining);
+      const { data: upd } = await admin
+        .from("reading_blocks")
+        .update({ question_ids: newIds })
+        .eq("id", open.id)
+        .select("id, passage_id, question_ids, num_completed, num_correct, passed, threshold")
+        .single();
+      if (upd) return upd as ReadingBlock;
+    }
+    await admin
+      .from("reading_blocks")
+      .update({ passed: false, completed_at: new Date().toISOString() })
+      .eq("id", open.id);
   }
 
-  const { data: qs } = await admin
-    .from("reading_questions")
-    .select("id, difficulty")
-    .eq("passage_id", passageId)
-    .eq("status", "vetted");
   // Shuffle, then serve easiest-first (detail → inference) so the child ramps up.
-  const pool = shuffle((qs ?? []) as { id: string; difficulty: number }[])
+  const pool = shuffle(vetted)
     .sort((a, b) => (a.difficulty ?? 3) - (b.difficulty ?? 3))
     .map((q) => q.id);
   if (pool.length === 0) throw new Error("no_questions");

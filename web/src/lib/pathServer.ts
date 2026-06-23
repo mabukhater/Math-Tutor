@@ -156,6 +156,16 @@ export async function getOrCreateBlock(
   student: PathStudent,
   skillId: string,
 ): Promise<Block> {
+  // Current vetted questions for this skill (retired/draft excluded). Used both
+  // to heal a resumed block and to build a fresh one.
+  const { data: qs } = await admin
+    .from("questions")
+    .select("id, difficulty")
+    .eq("skill_id", skillId)
+    .eq("status", "vetted");
+  const vetted = (qs ?? []) as { id: string; difficulty: number }[];
+  const vettedSet = new Set(vetted.map((q) => q.id));
+
   const { data: open } = await admin
     .from("path_blocks")
     .select("id, skill_id, question_ids, num_completed, num_correct, passed, threshold")
@@ -165,17 +175,35 @@ export async function getOrCreateBlock(
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
-  if (open && (open.question_ids as string[]).length > (open.num_completed as number)) {
-    return open as Block;
+  if (open) {
+    const ids = open.question_ids as string[];
+    const done = open.num_completed as number;
+    const remaining = ids.slice(done);
+    const validRemaining = remaining.filter((id) => vettedSet.has(id));
+    if (remaining.length > 0 && validRemaining.length === remaining.length) {
+      return open as Block; // nothing retired ahead — resume as-is
+    }
+    if (validRemaining.length > 0) {
+      // A question ahead was retired (e.g. by a re-grade) — drop it, keep the
+      // answered prefix and the still-valid remainder so progress survives.
+      const newIds = ids.slice(0, done).concat(validRemaining);
+      const { data: upd } = await admin
+        .from("path_blocks")
+        .update({ question_ids: newIds })
+        .eq("id", open.id)
+        .select("id, skill_id, question_ids, num_completed, num_correct, passed, threshold")
+        .single();
+      if (upd) return upd as Block;
+    }
+    // Nothing valid left to serve — close this block and start fresh.
+    await admin
+      .from("path_blocks")
+      .update({ passed: false, completed_at: new Date().toISOString() })
+      .eq("id", open.id);
   }
 
-  const { data: qs } = await admin
-    .from("questions")
-    .select("id, difficulty")
-    .eq("skill_id", skillId)
-    .eq("status", "vetted");
-  // Random sample, then serve easiest-first so the child ramps up.
-  const pool = shuffle((qs ?? []) as { id: string; difficulty: number }[])
+  // Fresh block: random sample, then serve easiest-first so the child ramps up.
+  const pool = shuffle(vetted)
     .slice(0, BLOCK_SIZE)
     .sort((a, b) => (a.difficulty ?? 3) - (b.difficulty ?? 3))
     .map((q) => q.id);
