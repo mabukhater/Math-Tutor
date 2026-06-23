@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
+import { CheckoutButton } from "@/components/CheckoutButton";
 import { Check } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ interface Tier {
   blurb: string;
   features: string[];
   cta: string;
+  plan?: "one" | "all";
   featured?: boolean;
 }
 
@@ -41,6 +43,7 @@ const TIERS: Tier[] = [
       "First child included · add a child for $2/mo each",
     ],
     cta: "Choose One Subject",
+    plan: "one",
   },
   {
     name: "All Subjects",
@@ -55,6 +58,7 @@ const TIERS: Tier[] = [
       "First child included · add a child for $2/mo each",
     ],
     cta: "Choose All Subjects",
+    plan: "all",
     featured: true,
   },
 ];
@@ -86,9 +90,21 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <Link href="/login" className={t.featured ? "btn-cta" : "btn-soft"} style={{ width: "100%", justifyContent: "center" }}>
-                {t.cta}
-              </Link>
+              {t.plan ? (
+                <CheckoutButton
+                  plan={t.plan}
+                  label={t.cta}
+                  className={t.featured ? "btn-cta" : "btn-soft"}
+                />
+              ) : (
+                <Link
+                  href="/login"
+                  className={t.featured ? "btn-cta" : "btn-soft"}
+                  style={{ width: "100%", justifyContent: "center" }}
+                >
+                  {t.cta}
+                </Link>
+              )}
             </div>
           ))}
         </div>

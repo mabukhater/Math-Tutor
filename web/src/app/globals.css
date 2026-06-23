@@ -239,6 +239,12 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .subject-btn.topics { background: #fff; color: var(--green-deep); border-color: var(--green); }
 .subject-btn.plan { background: #fff7e6; color: #8a5a00; border-color: #ffd98a; }
 
+/* Billing bar (dashboard) */
+.billing-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; justify-content: space-between; background: #f4faf7; border: 1.5px solid #cfe9df; border-radius: 14px; padding: 0.6rem 0.9rem; margin-bottom: 1rem; font-size: 0.9rem; }
+.billing-subj { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: var(--muted); }
+.chip-toggle { font-size: 0.8rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 99px; border: 1.5px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+.chip-toggle.on { background: var(--green); color: #fff; border-color: var(--green); }
+
 /* Parent attempts view */
 .attempt-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
 .attempt-group { border: 1.5px solid var(--line); border-radius: 14px; padding: 0.7rem 0.85rem; }

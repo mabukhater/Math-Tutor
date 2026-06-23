@@ -94,6 +94,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   const [young, setYoung] = useState(false);
   const [history, setHistory] = useState<Answered[]>([]);
   const [reviewIndex, setReviewIndex] = useState<number | null>(null);
+  const [limited, setLimited] = useState(false);
   const shownAt = useRef(0);
 
   useEffect(() => {
@@ -109,6 +110,13 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     });
     const d: Resp = await r.json();
     if (!r.ok) {
+      if (d.error === "limit") {
+        setLimited(true);
+        setErrMsg(
+          "You’ve finished today’s free passage! 🎉 Come back tomorrow, or ask a grown-up to upgrade for unlimited reading.",
+        );
+        return setPhase("error");
+      }
       setErrMsg(
         d.error === "locked"
           ? "Finish the earlier passages first — this one isn’t unlocked yet."
@@ -118,6 +126,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
       );
       return setPhase("error");
     }
+    setLimited(false);
     setBlockId(d.blockId ?? "");
     setTitle(d.title ?? "");
     setParagraphs((d.paragraphs ?? []) as Para[]);
@@ -208,11 +217,18 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   if (phase === "error")
     return (
       <Shell exitHref={`/reading/${studentId}`} young={young}>
-        <h2>Hmm.</h2>
+        <h2>{limited ? "That’s today’s free passage!" : "Hmm."}</h2>
         <p className="sub">{errMsg}</p>
-        <Link href={`/reading/${studentId}`} className="btn">
-          Back to reading
-        </Link>
+        {limited && (
+          <Link href="/pricing" className="btn">
+            See plans →
+          </Link>
+        )}
+        <p style={{ marginTop: limited ? "0.75rem" : 0, textAlign: "center" }}>
+          <Link href={`/reading/${studentId}`} className="muted">
+            Back to reading
+          </Link>
+        </p>
       </Shell>
     );
 

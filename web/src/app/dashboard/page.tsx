@@ -10,6 +10,7 @@ import { getPathForStudent } from "@/lib/pathServer";
 import { getReadingPath } from "@/lib/readingServer";
 import { ThresholdControl } from "@/components/ThresholdControl";
 import { KidLoginManager } from "@/components/KidLoginManager";
+import { BillingControl } from "@/components/BillingControl";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,12 @@ export default async function Dashboard() {
   // A kid who reaches the dashboard is sent to their own home.
   if (await currentKidStudentId(supabase, admin)) redirect("/me");
   await ensureParent(supabase, user);
+
+  const { data: billing } = await supabase
+    .from("parents")
+    .select("subscription_plan, subscription_status, subscription_subject")
+    .eq("id", user.id)
+    .maybeSingle();
 
   const { data: students } = await supabase
     .from("students")
@@ -79,6 +86,12 @@ export default async function Dashboard() {
             </button>
           </form>
         </div>
+
+        <BillingControl
+          plan={billing?.subscription_plan ?? "free"}
+          status={billing?.subscription_status ?? null}
+          subject={billing?.subscription_subject ?? null}
+        />
 
         {list.length === 0 && (
           <p className="sub">No children yet. Add one to run the placement check.</p>

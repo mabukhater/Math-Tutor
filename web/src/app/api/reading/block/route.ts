@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { getReadingPath, getOrCreateReadingBlock } from "@/lib/readingServer";
+import { checkSubjectGate } from "@/lib/billing";
 
 // Already-answered questions in this block. Reading attempts don't record the
 // per-question result, so on a resumed block these show as neutral "answered"
@@ -50,6 +51,9 @@ export async function POST(req: Request) {
   // Any passage in this student's path is playable (revisit or jump ahead).
   const inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
   if (!inPath) return NextResponse.json({ error: "locked" }, { status: 409 });
+
+  const gate = await checkSubjectGate(admin, student, "reading");
+  if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
 
   let block;
   try {

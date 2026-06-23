@@ -86,6 +86,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   const [result, setResult] = useState<Resp | null>(null);
   const [history, setHistory] = useState<Answered[]>([]);
   const [reviewIndex, setReviewIndex] = useState<number | null>(null);
+  const [limited, setLimited] = useState(false);
   const shownAt = useRef(0);
 
   useEffect(() => {
@@ -102,6 +103,13 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
       });
       const d: Resp = await r.json();
       if (!r.ok) {
+        if (d.error === "limit") {
+          setLimited(true);
+          setErrMsg(
+            "You’ve finished today’s free lesson! 🎉 Come back tomorrow, or ask a grown-up to upgrade for unlimited practice.",
+          );
+          return setPhase("error");
+        }
         setErrMsg(
           d.error === "locked"
             ? "Finish the earlier weeks first — this one isn’t unlocked yet."
@@ -111,6 +119,7 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
         );
         return setPhase("error");
       }
+      setLimited(false);
       setBlockId(d.blockId ?? "");
       setSkillName(d.skillName ?? "");
       setYoung((d.grade ?? 9) <= 3);
@@ -198,11 +207,18 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   if (phase === "error")
     return (
       <Shell exitHref={`/learn/${studentId}`} young={young}>
-        <h2>Hmm.</h2>
+        <h2>{limited ? "That’s today’s free lesson!" : "Hmm."}</h2>
         <p className="sub">{errMsg}</p>
-        <Link href={`/learn/${studentId}`} className="btn">
-          Back to path
-        </Link>
+        {limited && (
+          <Link href="/pricing" className="btn">
+            See plans →
+          </Link>
+        )}
+        <p style={{ marginTop: limited ? "0.75rem" : 0, textAlign: "center" }}>
+          <Link href={`/learn/${studentId}`} className="muted">
+            Back to path
+          </Link>
+        </p>
       </Shell>
     );
 

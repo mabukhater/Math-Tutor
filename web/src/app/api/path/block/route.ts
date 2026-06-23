@@ -6,6 +6,7 @@ import { resolveStudent } from "@/lib/access";
 import { getPathForStudent, getOrCreateBlock } from "@/lib/pathServer";
 import { getWeekLesson } from "@/lib/lessonsServer";
 import { toPublic } from "@/lib/placementServer";
+import { checkSubjectGate } from "@/lib/billing";
 
 // Rebuild the client's per-question history for questions already answered in
 // this block (so a resumed block shows the right counter/progress/navigator).
@@ -67,6 +68,11 @@ export async function POST(req: Request) {
   // path (wrong curriculum/grade) are still rejected.
   const inPath = path.months.some((m) => m.weeks.some((w) => w.skillId === skillId));
   if (!inPath) return NextResponse.json({ error: "locked" }, { status: 409 });
+
+  // Free-taster gate: a capped subject allows finishing an open lesson + a small
+  // number of new lessons per day, then prompts to upgrade.
+  const gate = await checkSubjectGate(admin, student, "math");
+  if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
 
   let block;
   try {
