@@ -58,7 +58,8 @@ columns; no policy changes.
 
 ## Grade auto-suggest
 
-Pure, unit-tested helper `web/src/lib/placement.ts`:
+Pure, unit-tested helper `web/src/lib/agePlacement.ts` (note: `placement.ts` is
+already taken by the adaptive-assessment ladder — keep them separate):
 
 - `schoolYearCutoff(today): Date` → the most recent **Sept 1** on/before `today`.
 - `suggestGrade(birthdate, today): number` → `clamp(ageOnCutoff − 5, 1, 8)`, where
@@ -108,7 +109,7 @@ URLs are unchanged (a route group adds no path segment).
 
 **New**
 - `supabase/migrations/0018_parent_profile.sql`
-- `web/src/lib/placement.ts` (+ `placement.test.ts`)
+- `web/src/lib/agePlacement.ts` (+ `agePlacement.test.ts`)
 - `web/src/app/(parent)/layout.tsx`, `web/src/components/SidebarNav.tsx`
 - `web/src/app/(parent)/billing/page.tsx`
 - `web/src/app/(parent)/account/page.tsx` (+ `ProfileForm.tsx`, server actions)
