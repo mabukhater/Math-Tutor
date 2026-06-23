@@ -150,6 +150,8 @@ def main() -> None:
     ap.add_argument("--limit-skills", type=int, help="cap number of skills processed")
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--curriculum", help="restrict to one curriculum code (e.g. uk_national, singapore)")
+    ap.add_argument("--source", default="ai_generated", help="source tag for inserted rows")
+    ap.add_argument("--isolate", action="store_true", help="incremental skip counts only --source rows (for regen)")
     ap.add_argument("--force", action="store_true", help="generate even if skill already has enough")
     ap.add_argument("--dry-run", action="store_true", help="print, do not insert")
     args = ap.parse_args()
@@ -162,7 +164,7 @@ def main() -> None:
         sys.exit("Set ANTHROPIC_API_KEY.")
 
     sb = create_client(url, key)
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(max_retries=6)  # ride out transient 429/529
 
     q = sb.table("skills").select(
         "id, code, name, grade, domain, curricula!inner(code, name, grade_noun, grade_offset)"
@@ -185,10 +187,13 @@ def main() -> None:
         # call, validation, or the insert must never abort the whole run.
         try:
             if not args.force:
-                existing = (
-                    sb.table("questions").select("id", count="exact").eq("skill_id", s["id"]).execute()
+                cnt = (
+                    sb.table("questions").select("id", count="exact")
+                    .eq("skill_id", s["id"]).in_("status", ["draft", "vetted"])
                 )
-                have = existing.count or 0
+                if args.isolate:  # count only this source (for curriculum regen)
+                    cnt = cnt.eq("source", args.source)
+                have = cnt.execute().count or 0
                 if have >= args.target:
                     print(f"· {s['code']}: already has {have} — skipping")
                     continue
@@ -229,7 +234,7 @@ def main() -> None:
                         "difficulty": item.difficulty,
                         "option_explanations": item.option_explanations,
                         "status": "draft",
-                        "source": "ai_generated",
+                        "source": args.source,
                     }
                 )
 

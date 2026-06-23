@@ -117,6 +117,7 @@ def main() -> None:
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--apply", action="store_true", help="write fixes (default is dry-run)")
+    ap.add_argument("--keep-source", action="store_true", help="don't rewrite source to ai_verified (preserve the tag)")
     args = ap.parse_args()
 
     dburl = os.environ.get("DATABASE_URL")
@@ -203,11 +204,12 @@ def main() -> None:
                 else:
                     n_ok += 1
                 if args.apply:
-                    # Mark source='ai_verified' so re-runs skip it and the bank
-                    # carries an audit trail of what Opus has re-graded.
+                    # Normally mark source='ai_verified' (audit trail + re-run skip).
+                    # With --keep-source, leave source as-is (e.g. 'ai_authentic').
+                    src_set = "" if args.keep_source else ", source='ai_verified'"
                     cur.execute(
-                        """update questions set correct_index=%s, option_explanations=%s::jsonb,
-                           explanation=%s, status='vetted', source='ai_verified' where id=%s""",
+                        f"""update questions set correct_index=%s, option_explanations=%s::jsonb,
+                           explanation=%s, status='vetted'{src_set} where id=%s""",
                         (idx, psycopg2.extras.Json(v.option_explanations), v.explanation.strip(), r["id"]),
                     )
             if args.apply:
