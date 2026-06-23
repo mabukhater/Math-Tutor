@@ -13,8 +13,12 @@ export async function addChild(formData: FormData) {
   const display_name = String(formData.get("display_name") ?? "").trim();
   const nominal_grade = Number(formData.get("nominal_grade"));
   const curriculum_id = String(formData.get("curriculum_id") ?? "");
+  const birthdateRaw = String(formData.get("birthdate") ?? "").trim();
+  const birthdate = /^\d{4}-\d{2}-\d{2}$/.test(birthdateRaw) ? birthdateRaw : null;
+  const source = String(formData.get("source") ?? "");
+  const errorTo = source === "onboarding" ? "/welcome/child?error=1" : "/children/new?error=1";
   if (!display_name || !(nominal_grade >= 1 && nominal_grade <= 8) || !curriculum_id) {
-    redirect("/children/new?error=1");
+    redirect(errorTo);
   }
 
   // Validate the curriculum exists.
@@ -23,7 +27,7 @@ export async function addChild(formData: FormData) {
     .select("id, code")
     .eq("id", curriculum_id)
     .single();
-  if (!curr) redirect("/children/new?error=1");
+  if (!curr) redirect(errorTo);
 
   // Ontario Grade 4 enrolls in the structured Sept-June year plan, if one exists.
   let year_plan_id: string | null = null;
@@ -47,10 +51,11 @@ export async function addChild(formData: FormData) {
       nominal_grade,
       curriculum_id,
       year_plan_id,
+      birthdate,
     })
     .select("id")
     .single();
-  if (error || !student) redirect("/children/new?error=1");
+  if (error || !student) redirect(errorTo);
 
   // Place the child at the START of their chosen grade — no assessment required.
   // The parent can run the optional assessment later to fine-tune the level.
@@ -69,6 +74,10 @@ export async function addChild(formData: FormData) {
       placement_completed: true,
     })
     .eq("id", student.id);
+
+  if (source === "onboarding") {
+    await supabase.from("parents").update({ onboarding_completed: true }).eq("id", user.id);
+  }
 
   redirect("/dashboard");
 }
