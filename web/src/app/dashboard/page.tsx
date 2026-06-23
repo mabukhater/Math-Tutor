@@ -113,25 +113,25 @@ export default async function Dashboard() {
                   </div>
                 </div>
                 {s.placement_completed ? (
-                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
+                  <div className="subject-btns">
                     {s.year_plan_id && (
-                      <Link href={`/plan/${s.id}`} className="badge">
+                      <Link href={`/plan/${s.id}`} className="subject-btn plan">
                         Year plan
                       </Link>
                     )}
-                    <Link href={`/learn/${s.id}`} className="badge">
-                      Math
+                    <Link href={`/learn/${s.id}`} className="subject-btn math">
+                      Math →
                     </Link>
-                    <Link href={`/reading/${s.id}`} className="badge">
-                      Reading
+                    <Link href={`/reading/${s.id}`} className="subject-btn reading">
+                      Reading →
                     </Link>
-                    <Link href={`/practice/${s.id}/topics`} className="badge-soft">
+                    <Link href={`/practice/${s.id}/topics`} className="subject-btn topics">
                       Topics
                     </Link>
                   </div>
                 ) : (
-                  <Link href={`/placement/${s.id}`} className="badge">
-                    Run placement
+                  <Link href={`/placement/${s.id}`} className="subject-btn math">
+                    Run placement →
                   </Link>
                 )}
               </div>

@@ -22,6 +22,7 @@ interface Attempt {
 }
 interface Group {
   name: string;
+  refId: string;
   attempts: Attempt[];
   best: number;
 }
@@ -33,12 +34,13 @@ function embedName(v: any): string {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function groupBlocks(blocks: any[], key: string): Group[] {
+function groupBlocks(blocks: any[], embedKey: string, idField: string): Group[] {
   const by = new Map<string, Group>();
   for (const b of blocks ?? []) {
-    const name = embedName(b[key]) || "Untitled";
-    if (!by.has(name)) by.set(name, { name, attempts: [], best: 0 });
-    const g = by.get(name)!;
+    const refId = b[idField] as string;
+    if (!refId) continue;
+    if (!by.has(refId)) by.set(refId, { name: embedName(b[embedKey]) || "Untitled", refId, attempts: [], best: 0 });
+    const g = by.get(refId)!;
     const total = (b.question_ids as string[]).length;
     const p = pct(b.num_correct, total);
     g.attempts.push({ n: g.attempts.length + 1, pct: p, passed: b.passed, threshold: b.threshold, date: b.created_at });
@@ -47,13 +49,23 @@ function groupBlocks(blocks: any[], key: string): Group[] {
   return [...by.values()];
 }
 
-function Attempts({ groups, unit }: { groups: Group[]; unit: string }) {
+function Attempts({
+  groups,
+  unit,
+  studentId,
+  kind,
+}: {
+  groups: Group[];
+  unit: string;
+  studentId: string;
+  kind: string;
+}) {
   if (groups.length === 0)
     return <p className="muted" style={{ marginTop: "0.5rem" }}>No {unit} attempts yet.</p>;
   return (
     <div className="attempt-list">
       {groups.map((g) => (
-        <div key={g.name} className="attempt-group">
+        <Link key={g.refId} href={`/children/${studentId}/attempts/${kind}/${g.refId}`} className="attempt-group link">
           <div className="attempt-group-head">
             <span className="attempt-name">{g.name}</span>
             <span className="muted" style={{ fontSize: "0.8rem" }}>
@@ -79,7 +91,8 @@ function Attempts({ groups, unit }: { groups: Group[]; unit: string }) {
               );
             })}
           </div>
-        </div>
+          <div className="attempt-more">See their answers →</div>
+        </Link>
       ))}
     </div>
   );
@@ -119,8 +132,8 @@ export default async function AttemptsPage({
       .order("created_at", { ascending: true }),
   ]);
 
-  const math = groupBlocks(pb ?? [], "skills");
-  const reading = groupBlocks(rb ?? [], "passages");
+  const math = groupBlocks(pb ?? [], "skills", "skill_id");
+  const reading = groupBlocks(rb ?? [], "passages", "passage_id");
 
   return (
     <div className="wrap">
@@ -134,10 +147,10 @@ export default async function AttemptsPage({
         <p className="sub">Every try on each lesson, with the score they got.</p>
 
         <h2 style={{ fontSize: "1.1rem", marginTop: "1rem" }}>Math</h2>
-        <Attempts groups={math} unit="math" />
+        <Attempts groups={math} unit="math" studentId={studentId} kind="math" />
 
         <h2 style={{ fontSize: "1.1rem", marginTop: "1.5rem" }}>Reading</h2>
-        <Attempts groups={reading} unit="reading" />
+        <Attempts groups={reading} unit="reading" studentId={studentId} kind="reading" />
       </div>
     </div>
   );

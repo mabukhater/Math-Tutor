@@ -229,6 +229,16 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .qnav-cell.wrong { background: #e2574c; border-color: #e2574c; color: #fff; }
 .qnav-cell.done { background: #e8eef5; border-color: #d4dfeb; color: #5b7088; }
 
+/* Dashboard subject buttons (clearly tappable, not labels) */
+.subject-btns { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.subject-btn { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.92rem; font-weight: 800; padding: 0.5rem 1.05rem; border-radius: 12px; text-decoration: none; border: 2px solid transparent; transition: transform .12s ease, filter .12s ease; line-height: 1; cursor: pointer; }
+.subject-btn:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.subject-btn:active { transform: translateY(1px); }
+.subject-btn.math { background: var(--green); color: #fff; box-shadow: 0 3px 0 var(--green-deep); }
+.subject-btn.reading { background: #3f7ef0; color: #fff; box-shadow: 0 3px 0 #2c5fc4; }
+.subject-btn.topics { background: #fff; color: var(--green-deep); border-color: var(--green); }
+.subject-btn.plan { background: #fff7e6; color: #8a5a00; border-color: #ffd98a; }
+
 /* Parent attempts view */
 .attempt-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
 .attempt-group { border: 1.5px solid var(--line); border-radius: 14px; padding: 0.7rem 0.85rem; }
@@ -241,6 +251,25 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .attempt-chip.wip { background: #f1f3f5; color: var(--muted); }
 .attempt-n { opacity: 0.7; font-weight: 800; }
 .attempt-pct { font-variant-numeric: tabular-nums; }
+.attempt-group.link { text-decoration: none; color: inherit; cursor: pointer; transition: border-color .12s, transform .12s; }
+.attempt-group.link:hover { border-color: var(--green); transform: translateY(-1px); }
+.attempt-more { font-size: 0.8rem; color: var(--green-deep); font-weight: 700; margin-top: 0.5rem; }
+
+/* Attempt drill-down: per-question review */
+.rev-q { border: 1.5px solid var(--line); border-radius: 14px; padding: 0.85rem 1rem; margin-bottom: 0.8rem; }
+.rev-q-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.rev-q-n { font-family: var(--font-display); font-weight: 800; color: var(--muted); font-size: 0.85rem; }
+.rev-tag { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.78rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: 99px; }
+.rev-tag.ok { background: var(--green-soft); color: var(--green-deep); }
+.rev-tag.no { background: #fdecea; color: #c0392b; }
+.rev-tag.wip { background: #f1f3f5; color: var(--muted); }
+.rev-stem { font-weight: 700; color: var(--ink); margin-bottom: 0.55rem; }
+.rev-opts { display: flex; flex-direction: column; gap: 0.35rem; }
+.rev-opt { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.7rem; border: 1.5px solid var(--line); border-radius: 10px; font-size: 0.92rem; }
+.rev-opt .rev-opt-text { flex: 1; }
+.rev-opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green-deep); }
+.rev-opt.wrong { background: #fdecea; border-color: #e2574c; color: #c0392b; }
+.rev-pick { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.8; }
 
 /* Ladder rungs are tappable links — any week is playable, so they shouldn't read as disabled. */
 a.rung { cursor: pointer; border-radius: 14px; transition: background .12s ease; }

@@ -49,7 +49,8 @@ export async function POST(req: Request) {
   const now = new Date();
   await admin.from("attempts").insert({
     student_id: student.id,
-    question_id: null, // math attempts table; reading question ids live elsewhere
+    question_id: null, // math attempts use question_id; reading uses reading_question_id
+    reading_question_id: questionId,
     selected_index: selectedIndex,
     is_correct: correct,
     response_time_ms: rt,
