@@ -109,10 +109,10 @@ export default async function AttemptDetail({
     const qids = (qs ?? []).map((q) => q.id as string);
     const { data: atts } = await admin
       .from("attempts")
-      .select("question_id, selected_index, is_correct, created_at")
+      .select("question_id, selected_index, is_correct, answered_at")
       .eq("student_id", studentId)
       .in("question_id", qids.length ? qids : ["00000000-0000-0000-0000-000000000000"])
-      .order("created_at", { ascending: false });
+      .order("answered_at", { ascending: false });
     const { latest, tries } = latestByQuestion(atts ?? [], "question_id");
     views = [...latest.entries()].map(([qid, a]) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -144,10 +144,10 @@ export default async function AttemptDetail({
       .order("difficulty", { ascending: true });
     const { data: atts } = await admin
       .from("attempts")
-      .select("reading_question_id, selected_index, is_correct, created_at")
+      .select("reading_question_id, selected_index, is_correct, answered_at")
       .eq("student_id", studentId)
       .not("reading_question_id", "is", null)
-      .order("created_at", { ascending: false });
+      .order("answered_at", { ascending: false });
     const { latest, tries } = latestByQuestion(atts ?? [], "reading_question_id");
     views = (rqs ?? []).map((q) => {
       const a = latest.get(q.id as string);

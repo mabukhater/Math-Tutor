@@ -19,10 +19,10 @@ async function answeredHistory(admin: SupabaseClient, studentId: string, answere
   const qById = new Map((aqs ?? []).map((q: any) => [q.id as string, q]));
   const { data: atts } = await admin
     .from("attempts")
-    .select("question_id, selected_index, is_correct, created_at")
+    .select("question_id, selected_index, is_correct, answered_at")
     .eq("student_id", studentId)
     .in("question_id", answeredIds)
-    .order("created_at", { ascending: true });
+    .order("answered_at", { ascending: true });
   const attByQ = new Map<string, { selected_index: number; is_correct: boolean }>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   for (const a of (atts ?? []) as any[]) attByQ.set(a.question_id, a); // ascending => latest wins
