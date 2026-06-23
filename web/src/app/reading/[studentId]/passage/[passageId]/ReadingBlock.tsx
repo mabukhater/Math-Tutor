@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, Cross, Trophy } from "@/components/icons";
+import { QuestionNav } from "@/components/QuestionNav";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -14,6 +15,27 @@ interface Question {
   id: string;
   stem: string;
   options: string[];
+}
+type Locator = { paragraph: number; hint: string };
+// A finished question, kept so the child can jump back and review it.
+interface Answered {
+  stem: string;
+  options: string[];
+  selectedIndex: number;
+  correctIndex: number;
+  correct: boolean;
+  locator?: Locator | null;
+  explanation?: string;
+}
+interface QView {
+  stem: string;
+  options: string[];
+  answered: boolean;
+  selected: number | null;
+  correctIndex?: number;
+  correct?: boolean;
+  locator?: Locator | null;
+  explanation?: string;
 }
 type Phase = "loading" | "read" | "question" | "feedback" | "result" | "error";
 
@@ -30,7 +52,7 @@ interface Resp {
   correct?: boolean;
   correctIndex?: number;
   explanation?: string;
-  locator?: { paragraph: number; hint: string } | null;
+  locator?: Locator | null;
   blockDone?: boolean;
   passed?: boolean | null;
   accuracy?: number;
@@ -69,6 +91,8 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   const [showPassage, setShowPassage] = useState(false);
   const [highlight, setHighlight] = useState<number | null>(null);
   const [young, setYoung] = useState(false);
+  const [history, setHistory] = useState<Answered[]>([]);
+  const [reviewIndex, setReviewIndex] = useState<number | null>(null);
   const shownAt = useRef(0);
 
   useEffect(() => {
@@ -106,6 +130,8 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setFeedback(null);
     setResult(null);
     setHighlight(null);
+    setHistory([]);
+    setReviewIndex(null);
     // If they already started, jump back into questions; else read first.
     setPhase(d.numCompleted > 0 ? "question" : "read");
     setShowPassage(d.numCompleted > 0);
@@ -141,9 +167,23 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   }
 
   function next() {
-    if (!feedback) return;
+    if (!feedback || !question) return;
+    setHistory((h) => [
+      ...h,
+      {
+        stem: question.stem,
+        options: question.options,
+        selectedIndex: selected ?? -1,
+        correctIndex: feedback.correctIndex ?? -1,
+        correct: !!feedback.correct,
+        locator: feedback.locator ?? null,
+        explanation: feedback.explanation,
+      },
+    ]);
     if (feedback.blockDone) {
       setResult(feedback);
+      setSelected(null);
+      setFeedback(null);
       return setPhase("result");
     }
     setQuestion(feedback.next ?? null);
@@ -151,6 +191,10 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setFeedback(null);
     setHighlight(null);
     setPhase("question");
+  }
+
+  function jump(i: number) {
+    setReviewIndex(i >= history.length ? null : i);
   }
 
   if (phase === "loading")
@@ -182,22 +226,81 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
       </Shell>
     );
 
+  const liveIndex = history.length;
+  const results = history.map((h) => h.correct);
+  const reviewing = reviewIndex !== null && reviewIndex < history.length;
+  // Only ring a chip when actually reviewing a past one; during live play the
+  // current chip keeps its own (green) highlight.
+  const viewIndex = reviewing ? reviewIndex! : -1;
+
+  const header = (
+    <>
+      <div className="q-head">
+        <div className="progress">
+          <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
+        </div>
+        <span className="q-count">
+          {phase === "result" ? "Complete" : `Question ${Math.min(liveIndex + 1, total)} of ${total}`}
+        </span>
+      </div>
+      <div className="rc-bar">
+        <span className="q-skill">{title}</span>
+        <button className="rc-toggle" onClick={() => setShowPassage((s) => !s)}>
+          {showPassage ? "Hide passage" : "Show passage"}
+        </button>
+      </div>
+      {total > 0 && (
+        <QuestionNav
+          total={total}
+          results={results}
+          liveIndex={phase === "result" ? -1 : liveIndex}
+          viewIndex={viewIndex}
+          onJump={jump}
+        />
+      )}
+    </>
+  );
+
+  // Reviewing a finished question (read-only).
+  if (reviewing) {
+    const a = history[reviewIndex!];
+    const view: QView = { ...a, answered: true, selected: a.selectedIndex };
+    return (
+      <Shell exitHref={`/reading/${studentId}`} young={young}>
+        {header}
+        <div className="review-banner">
+          <span>Reviewing question {reviewIndex! + 1}</span>
+          <button className="review-resume" onClick={() => setReviewIndex(null)}>
+            {phase === "result" ? "Back to results" : "Resume →"}
+          </button>
+        </div>
+        {showPassage && <Passage title={title} paragraphs={paragraphs} highlight={view.locator?.paragraph ?? null} />}
+        <h2 style={{ marginTop: "0.5rem" }}>{view.stem}</h2>
+        <OptionList view={view} interactive={false} />
+        <ReadingFeedback view={view} />
+      </Shell>
+    );
+  }
+
   if (phase === "result" && result) {
     const passed = result.passed === true;
     return (
       <Shell exitHref={`/reading/${studentId}`} young={young}>
+        {header}
         <div className="celebrate pop">
           <div style={{ color: passed ? "var(--amber)" : "#c0392b", display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
             {passed ? <Trophy size={44} /> : <Cross size={40} />}
           </div>
+          <h2 style={{ marginBottom: "0.15rem" }}>{passed ? "You passed! 🎉" : "Try again"}</h2>
           <div className="stat-big">{result.accuracy}%</div>
           <p className="sub" style={{ marginTop: "0.4rem" }}>
-            {result.numCorrect}/{result.total} correct · pass mark {result.threshold}%
+            {result.numCorrect} of {result.total} correct
           </p>
           {passed ? (
             <>
               <p className="sub" style={{ marginTop: "0.75rem" }}>
-                Nice reading! The next passage is unlocked.
+                You reached the {result.threshold}% your parent set to pass — the next passage is
+                unlocked. Tap any question above to review it.
               </p>
               <Link href={`/reading/${studentId}`} className="btn" style={{ marginTop: "0.5rem" }}>
                 Back to reading
@@ -206,7 +309,8 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
           ) : (
             <>
               <p className="sub" style={{ marginTop: "0.75rem" }}>
-                Not quite {result.threshold}% — re-read the passage and try again.
+                You need {result.threshold}% to pass (your parent sets this). Tap the red questions
+                above to see what to fix, then re-read and try again.
               </p>
               <button className="btn" style={{ marginTop: "0.5rem" }} onClick={start}>
                 Read again &amp; retry
@@ -223,33 +327,60 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     );
   }
 
-  // question / feedback
+  // Live question / feedback.
+  const liveView: QView = {
+    stem: question?.stem ?? "",
+    options: question?.options ?? [],
+    answered: phase === "feedback",
+    selected,
+    correctIndex: feedback?.correctIndex,
+    correct: feedback?.correct,
+    locator: feedback?.locator,
+    explanation: feedback?.explanation,
+  };
+
   return (
     <Shell exitHref={`/reading/${studentId}`} young={young}>
-      <div className="progress">
-        <div style={{ width: `${total ? (numCompleted / total) * 100 : 0}%` }} />
-      </div>
-      <div className="rc-bar">
-        <span className="muted">
-          {title} · question {numCompleted + 1} of {total} · pass at {threshold}%
-        </span>
-        <button className="rc-toggle" onClick={() => setShowPassage((s) => !s)}>
-          {showPassage ? "Hide passage" : "Show passage"}
-        </button>
-      </div>
-
+      {header}
       {showPassage && <Passage title={title} paragraphs={paragraphs} highlight={highlight} />}
-
       <h2 style={{ marginTop: "0.5rem" }}>{question?.stem}</h2>
-      {question?.options.map((opt, i) => {
+      <OptionList view={liveView} interactive={phase === "question"} onPick={answer} />
+      {phase === "feedback" && feedback && (
+        <>
+          <ReadingFeedback view={liveView} />
+          <button className="btn" onClick={next}>
+            {feedback.blockDone ? "See result" : "Next question"}
+          </button>
+        </>
+      )}
+    </Shell>
+  );
+}
+
+function OptionList({
+  view,
+  interactive,
+  onPick,
+}: {
+  view: QView;
+  interactive: boolean;
+  onPick?: (i: number) => void;
+}) {
+  return (
+    <>
+      {view.options.map((opt, i) => {
         let cls = "opt";
-        const fb = phase === "feedback" && feedback;
-        const isCorrect = !!fb && i === feedback?.correctIndex;
-        const isWrongPick = !!fb && i === selected && i !== feedback?.correctIndex;
+        const isCorrect = view.answered && i === view.correctIndex;
+        const isWrongPick = view.answered && i === view.selected && i !== view.correctIndex;
         if (isCorrect) cls += " correct";
         else if (isWrongPick) cls += " wrong";
         return (
-          <button key={i} className={cls} disabled={phase === "feedback"} onClick={() => answer(i)}>
+          <button
+            key={i}
+            className={cls}
+            disabled={!interactive || view.answered}
+            onClick={() => interactive && !view.answered && onPick?.(i)}
+          >
             <span className="opt-letter">{LETTERS[i]}</span>
             {opt}
             {isCorrect && (
@@ -265,32 +396,31 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
           </button>
         );
       })}
+    </>
+  );
+}
 
-      {phase === "feedback" && feedback && (
-        <div className="feedback-box">
-          <div className={"feedback-line " + (feedback.correct ? "ok" : "no")}>
-            {feedback.correct ? <Check size={20} /> : <Cross size={20} />}
-            {feedback.correct ? "Correct!" : "Not quite"}
-          </div>
-          {!feedback.correct && feedback.locator && (
-            <p className="why-wrong">
-              <strong>Look again at ¶{feedback.locator.paragraph}.</strong> {feedback.locator.hint}
-            </p>
-          )}
-          {!feedback.correct && typeof feedback.correctIndex === "number" && question && (
-            <p style={{ marginTop: "0.5rem", fontWeight: 700 }}>
-              The answer is {LETTERS[feedback.correctIndex]}: {question.options[feedback.correctIndex]}
-            </p>
-          )}
-          <p className="muted" style={{ marginTop: "0.3rem" }}>
-            {feedback.explanation}
-          </p>
-          <button className="btn" onClick={next}>
-            {feedback.blockDone ? "See result" : "Next question"}
-          </button>
-        </div>
+function ReadingFeedback({ view }: { view: QView }) {
+  return (
+    <div className="feedback-box">
+      <div className={"feedback-line " + (view.correct ? "ok" : "no")}>
+        {view.correct ? <Check size={20} /> : <Cross size={20} />}
+        {view.correct ? "Correct!" : "Not quite"}
+      </div>
+      {!view.correct && view.locator && (
+        <p className="why-wrong">
+          <strong>Look again at ¶{view.locator.paragraph}.</strong> {view.locator.hint}
+        </p>
       )}
-    </Shell>
+      {!view.correct && typeof view.correctIndex === "number" && (
+        <p style={{ marginTop: "0.5rem", fontWeight: 700 }}>
+          The answer is {LETTERS[view.correctIndex]}: {view.options[view.correctIndex]}
+        </p>
+      )}
+      <p className="muted" style={{ marginTop: "0.3rem" }}>
+        {view.explanation}
+      </p>
+    </div>
   );
 }
 

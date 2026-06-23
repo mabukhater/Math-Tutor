@@ -214,6 +214,30 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .kid-yearplan-body span { color: #a06b1f; font-size: 0.85rem; }
 .kid-yearplan-go { font-size: 1.4rem; color: #8a5a00; flex: none; font-weight: 800; }
 
+/* ===== Question card: header counter, navigator strip, review ===== */
+.q-head { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.45rem; }
+.q-head .progress { flex: 1; margin: 0; }
+.q-count { flex: none; font-weight: 800; font-size: 0.8rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.q-skill { font-size: 0.82rem; color: var(--muted); font-weight: 600; margin: 0 0 0.7rem; }
+
+.qnav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.1rem; }
+.qnav-cell { position: relative; width: 40px; height: 40px; flex: none; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; font-family: var(--font-display); font-weight: 800; font-size: 0.92rem; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: transform .12s ease, box-shadow .12s ease, background .12s ease; font-variant-numeric: tabular-nums; }
+.qnav-cell:disabled { cursor: default; }
+.qnav-cell.upcoming { background: #f4f4f4; color: #c2c2c2; border-color: #ececec; }
+.qnav-cell.current { border-color: var(--green); border-width: 2px; color: var(--green-deep); box-shadow: 0 0 0 3px var(--green-soft); }
+.qnav-cell.correct { background: var(--green); border-color: var(--green); color: #fff; }
+.qnav-cell.wrong { background: #e2574c; border-color: #e2574c; color: #fff; }
+.qnav-cell:not(:disabled):hover { transform: translateY(-2px); }
+.qnav-cell.view { box-shadow: 0 0 0 3px var(--amber); }
+.qnav-badge { position: absolute; top: -5px; right: -5px; width: 16px; height: 16px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,.22); }
+.qnav-cell.correct .qnav-badge { color: var(--green-deep); }
+.qnav-cell.wrong .qnav-badge { color: #c0392b; }
+.card.young .qnav-cell { width: 44px; height: 44px; font-size: 1.05rem; }
+
+.review-banner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: #fff7e6; border: 1.5px solid #ffe0a3; border-radius: 12px; padding: 0.55rem 0.85rem; margin-bottom: 0.6rem; font-weight: 700; font-size: 0.85rem; color: #8a5a00; }
+.review-resume { background: var(--green); color: #fff; border: none; border-radius: 99px; padding: 0.4rem 0.9rem; font-weight: 800; font-size: 0.82rem; cursor: pointer; flex: none; }
+.review-resume:hover { background: var(--green-deep); }
+
 /* Homepage Ontario feature band */
 .ontario-band { background: linear-gradient(135deg, #f4faf7, #eaf6f0); border: 2px solid #cfe9df; border-radius: 22px; padding: 2.2rem 2rem; text-align: center; max-width: 760px; margin: 0 auto; }
 .ontario-flag { display: inline-block; font-weight: 800; font-size: 0.85rem; color: #b91c1c; background: #fff; border: 1.5px solid #f1c9c9; padding: 0.3rem 0.85rem; border-radius: 99px; margin-bottom: 1rem; }
