@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
+import { JsonLd } from "@/components/JsonLd";
+
+const SITE = "https://astute.academy";
+const PROVIDER = { "@type": "EducationalOrganization", name: "Astute Academy", url: SITE };
+const COURSES_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    { name: "US Common Core Math, Grades 1–8", desc: "Curriculum-aligned math practice on the full US Common Core skill ladder.", url: `${SITE}/us` },
+    { name: "UK National Curriculum Maths, Years 2–9", desc: "Maths practice following the England programme of study, in British conventions.", url: `${SITE}/uk` },
+    { name: "Singapore Math, Primary 1 to Secondary 2", desc: "Mastery-based math with bar models and number bonds, following the MOE syllabus.", url: `${SITE}/singapore` },
+    { name: "Reading Comprehension, Grades 1–8", desc: "Leveled passages with evidence-finding comprehension questions.", url: `${SITE}/` },
+  ].map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: { "@type": "Course", name: c.name, description: c.desc, url: c.url, provider: PROVIDER },
+  })),
+};
 
 export const metadata: Metadata = {
   title: "Curricula — Astute Academy",
@@ -22,6 +40,7 @@ const EQUIV = [
 export default function Curricula() {
   return (
     <MarketingShell>
+      <JsonLd data={COURSES_SCHEMA} />
       <div className="content-wrap">
         <h1>Your child&apos;s real curriculum — and every other one</h1>
         <p className="sub">

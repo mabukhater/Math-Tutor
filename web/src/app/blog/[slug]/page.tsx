@@ -53,8 +53,13 @@ export default async function ArticlePage({
     description: a.excerpt,
     articleSection: a.category,
     inLanguage: "en",
+    ...(a.date ? { datePublished: a.date, dateModified: a.date } : {}),
     author: { "@type": "Organization", name: "Astute Academy" },
-    publisher: { "@type": "Organization", name: "Astute Academy" },
+    publisher: {
+      "@type": "Organization",
+      name: "Astute Academy",
+      logo: { "@type": "ImageObject", url: `${SITE}/icon.svg` },
+    },
     mainEntityOfPage: `${SITE}/blog/${a.slug}`,
   };
 

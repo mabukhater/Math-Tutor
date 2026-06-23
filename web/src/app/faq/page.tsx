@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
+import { JsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "FAQ — Astute Academy",
@@ -42,9 +43,20 @@ const FAQS: { q: string; a: string }[] = [
   },
 ];
 
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function FAQ() {
   return (
     <MarketingShell>
+      <JsonLd data={FAQ_SCHEMA} />
       <div className="content-wrap">
         <h1>Frequently asked questions</h1>
         <p className="sub">Everything parents usually want to know before getting started.</p>

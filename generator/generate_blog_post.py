@@ -13,6 +13,7 @@ Usage:
 """
 from __future__ import annotations
 
+import datetime
 import os
 import re
 import sys
@@ -120,6 +121,7 @@ def main() -> None:
         f'    title: "{post.title.replace(chr(34), chr(39))}",\n'
         f'    category: "{post.category}",\n'
         f"    readMinutes: {read_minutes},\n"
+        f'    date: "{datetime.date.today().isoformat()}",\n'
         f'    excerpt:\n      "{post.excerpt.replace(chr(34), chr(39))}",\n'
         f"    body: `{post.body}`,\n"
         "  },\n"

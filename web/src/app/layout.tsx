@@ -1,8 +1,26 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { PWARegister } from "@/components/PWARegister";
+import { JsonLd } from "@/components/JsonLd";
 
 const SITE = "https://astute.academy";
+
+const ORG_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Astute Academy",
+  url: SITE,
+  logo: `${SITE}/icon.svg`,
+  description:
+    "Curriculum-aligned math and leveled reading practice for children in grades 1–8 — US Common Core, UK National Curriculum, Singapore Math, and Ontario.",
+};
+
+const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Astute Academy",
+  url: SITE,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -35,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <JsonLd data={ORG_SCHEMA} />
+        <JsonLd data={WEBSITE_SCHEMA} />
         {children}
         <PWARegister />
       </body>
