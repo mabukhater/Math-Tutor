@@ -52,8 +52,11 @@ const TIERS: Tier[] = [
     blurb: "Everything, every subject.",
     features: [
       "Everything in One Subject",
-      "All subjects, as we add them",
+      "Math and Reading included",
+      "Every new subject added free",
       "Cross-curriculum level tracking",
+      "Switch between subjects anytime",
+      "Spaced-repetition review across subjects",
       "Priority access to new features",
       "First child included · add a child for $2/mo each",
     ],
