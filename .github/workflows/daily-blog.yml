@@ -1,0 +1,36 @@
+name: Daily blog post
+
+# Writes one new blog post each morning and pushes it (deploys + refreshes the
+# sitemap). Times are UTC; GitHub may delay scheduled runs by a few minutes.
+on:
+  schedule:
+    - cron: "0 10 * * *" # ~6am US Eastern
+  workflow_dispatch: {} # allow manual "Run workflow" from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install anthropic python-dotenv pydantic
+      - name: Write the post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python generator/generate_blog_post.py
+      - name: Commit & push
+        run: |
+          git config user.name "astute-bot"
+          git config user.email "bot@astute.academy"
+          git add web/src/content/articles.ts
+          if git diff --staged --quiet; then
+            echo "No new post to commit."
+          else
+            git commit -m "Daily blog post"
+            git push
+          fi
