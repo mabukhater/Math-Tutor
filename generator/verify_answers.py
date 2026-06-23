@@ -112,6 +112,7 @@ def main() -> None:
     ap.add_argument("--grade", type=int)
     ap.add_argument("--skill-code")
     ap.add_argument("--status", default="draft", help="which questions to verify (default: draft)")
+    ap.add_argument("--source", help="only this source, e.g. ai_generated (verified ones become ai_verified)")
     ap.add_argument("--limit", type=int)
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--workers", type=int, default=6)
@@ -123,7 +124,7 @@ def main() -> None:
         sys.exit("Set DATABASE_URL (session-pooler postgres URL).")
     if not os.environ.get("ANTHROPIC_API_KEY"):
         sys.exit("Set ANTHROPIC_API_KEY.")
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(max_retries=6)  # ride out transient 429/529
 
     conn = psycopg2.connect(dburl)
     conn.autocommit = False
@@ -131,6 +132,8 @@ def main() -> None:
 
     where = ["q.status = %s"]
     params: list = [args.status]
+    if args.source:
+        where.append("q.source = %s"); params.append(args.source)
     if args.curriculum:
         where.append("c.code = %s"); params.append(args.curriculum)
     if args.grade is not None:
@@ -154,26 +157,40 @@ def main() -> None:
           f"{'APPLY' if args.apply else 'dry-run'}]\n")
 
     def work(r):
+        # Returns (row, verdict, payload, note). SKIP means a solver/transient
+        # problem — leave the question untouched so a re-run retries it. We only
+        # QUARANTINE on a genuine verdict (model says unsolvable, or two valid
+        # solves disagree) — never because of an API error.
         v1 = solve(client, args.model, r["grade"], r["curr_name"], r["stem"], r["options"], r["visual"])
-        if not v1 or not valid_verdict(v1):
-            # one retry for transient/format issues before quarantining
-            v1 = solve(client, args.model, r["grade"], r["curr_name"], r["stem"], r["options"], r["visual"])
-        if not v1 or not valid_verdict(v1):
-            return r, "QUARANTINE", None, "unsolvable or no clean verdict"
+        if v1 is None:
+            return r, "SKIP", None, "solver error (left unchanged)"
+        if (not v1.solvable) or letter_idx(v1.correct_letter) is None:
+            return r, "QUARANTINE", None, "model says unsolvable / no correct option"
+        if not valid_verdict(v1):
+            v1b = solve(client, args.model, r["grade"], r["curr_name"], r["stem"], r["options"], r["visual"])
+            if v1b and valid_verdict(v1b):
+                v1 = v1b
+            else:
+                return r, "SKIP", None, "malformed verdict (left unchanged)"
         idx = letter_idx(v1.correct_letter)
         if idx == r["correct_index"]:
             return r, "OK", v1, None
-        # disagreement -> second independent solve must confirm before we move the key
+        # disagreement -> a second independent solve must confirm before we move the key
         v2 = solve(client, args.model, r["grade"], r["curr_name"], r["stem"], r["options"], r["visual"])
-        if v2 and valid_verdict(v2) and letter_idx(v2.correct_letter) == idx:
+        if v2 is None or not valid_verdict(v2):
+            return r, "SKIP", None, "disagreement unconfirmed (left unchanged)"
+        if letter_idx(v2.correct_letter) == idx:
             return r, "FIX", v1, f"{r['correct_index']}->{idx}"
-        return r, "QUARANTINE", None, "answer disagreement between solves"
+        return r, "QUARANTINE", None, "two solves disagree (ambiguous)"
 
-    n_ok = n_fix = n_quar = 0
+    n_ok = n_fix = n_quar = n_skip = 0
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         for r, verdict, v, note in ex.map(work, rows):
             tag = r.get("stem", "")[:48]
-            if verdict == "QUARANTINE":
+            if verdict == "SKIP":
+                n_skip += 1
+                print(f"  · SKIP  {tag}  ({note})")
+            elif verdict == "QUARANTINE":
                 n_quar += 1
                 print(f"  ⚠ QUARANTINE  {tag}  ({note})")
                 if args.apply:
@@ -186,15 +203,19 @@ def main() -> None:
                 else:
                     n_ok += 1
                 if args.apply:
+                    # Mark source='ai_verified' so re-runs skip it and the bank
+                    # carries an audit trail of what Opus has re-graded.
                     cur.execute(
                         """update questions set correct_index=%s, option_explanations=%s::jsonb,
-                           explanation=%s, status='vetted' where id=%s""",
+                           explanation=%s, status='vetted', source='ai_verified' where id=%s""",
                         (idx, psycopg2.extras.Json(v.option_explanations), v.explanation.strip(), r["id"]),
                     )
             if args.apply:
                 conn.commit()
 
-    print(f"\nDone. OK(vetted): {n_ok}   FIXED(vetted): {n_fix}   QUARANTINED(retired): {n_quar}")
+    print(f"\nDone. OK: {n_ok}   FIXED: {n_fix}   QUARANTINED(retired): {n_quar}   SKIPPED: {n_skip}")
+    if n_skip:
+        print(f"{n_skip} skipped (left unchanged) — re-run the same command to retry just those.")
     if not args.apply:
         print("Dry run — no changes written. Re-run with --apply to persist.")
     conn.close()
