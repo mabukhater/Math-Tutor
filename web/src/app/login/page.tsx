@@ -36,9 +36,9 @@ export default function LoginPage() {
     setBusy(false);
     if (error) return setMsg(error.message);
     if (data.session) {
-      // Email confirmation is off — they're signed in immediately.
+      // Email confirmation is off — they're signed in immediately; start onboarding.
       router.refresh();
-      return router.push("/dashboard");
+      return router.push("/welcome/profile");
     }
     // Confirmation required.
     setInfo(
