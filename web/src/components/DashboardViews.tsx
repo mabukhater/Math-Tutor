@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ThresholdControl } from "@/components/ThresholdControl";
 import { KidLoginManager } from "@/components/KidLoginManager";
+import { DeleteChildButton } from "@/components/DeleteChildButton";
 
 export interface Kid {
   id: string;
@@ -64,7 +65,7 @@ function SubjectButtons({ k }: { k: Kid }) {
 
 function FullCard({ k }: { k: Kid }) {
   return (
-    <div className="list-item">
+    <div className="child-card">
       <div className="row">
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <Avatar name={k.name} />
@@ -90,6 +91,7 @@ function FullCard({ k }: { k: Kid }) {
         <Link href={`/placement/${k.id}`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
           Assess level (optional)
         </Link>
+        <DeleteChildButton studentId={k.id} name={k.name} />
       </div>
     </div>
   );

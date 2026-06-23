@@ -269,6 +269,13 @@ input:focus, select:focus { outline: none; border-color: var(--green); box-shado
 .board-row .subject-btn { padding: 0.3rem 0.65rem; font-size: 0.78rem; }
 @media (max-width: 600px) { .board { grid-template-columns: 1fr; } }
 
+/* Distinct, bounded card per child (All cards view) */
+.child-card { border: 1.5px solid var(--line); border-radius: 18px; padding: 1.1rem 1.2rem; margin-bottom: 1.1rem; background: #fff; box-shadow: 0 3px 0 rgba(0,0,0,0.035); }
+.child-card:last-of-type { margin-bottom: 0; }
+.delete-child { background: none; border: none; color: #c0392b; font-weight: 700; font-size: 0.82rem; cursor: pointer; padding: 0.35rem 0.4rem; border-radius: 8px; }
+.delete-child:hover { background: #fdecea; }
+.delete-child:disabled { opacity: 0.6; cursor: default; }
+
 /* Parent attempts view */
 .attempt-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
 .attempt-group { border: 1.5px solid var(--line); border-radius: 14px; padding: 0.7rem 0.85rem; }
