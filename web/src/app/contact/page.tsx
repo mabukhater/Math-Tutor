@@ -3,8 +3,8 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "Contact — Kareem",
-  description: "Get in touch with the Kareem team.",
+  title: "Contact — Astute Academy",
+  description: "Get in touch with the Astute Academy team.",
 };
 
 const SUPPORT_EMAIL = "hello@kareem.academy";

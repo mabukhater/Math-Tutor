@@ -3,15 +3,15 @@ import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Kareem",
-  description: "The terms for using Kareem.",
+  title: "Terms of Service — Astute Academy",
+  description: "The terms for using Astute Academy.",
 };
 
-const BODY = `These terms govern your use of Kareem. By creating an account you agree to them. Please read them alongside our Privacy Policy.
+const BODY = `These terms govern your use of Astute Academy. By creating an account you agree to them. Please read them alongside our Privacy Policy.
 
 ## The service
 
-Kareem provides curriculum-aligned math placement and daily practice for children in grades 1–8. Features may change as we improve the product.
+Astute Academy provides curriculum-aligned math placement and daily practice for children in grades 1–8. Features may change as we improve the product.
 
 ## Accounts
 

@@ -4,7 +4,7 @@ import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
 export const metadata: Metadata = {
-  title: "About — Kareem",
+  title: "About — Astute Academy",
   description: "Why we built curriculum-aligned math practice for globally-mobile families.",
 };
 
@@ -14,7 +14,7 @@ const BODY = `Most math apps are built on a single curriculum. That works until 
 
 Math is close to universal, but how it's taught — the order, the pacing, the labels — is not. A child should be able to practice in the curriculum they're actually in, and stay oriented even when they move between systems.
 
-## What Kareem does
+## What Astute Academy does
 
 - Lets a parent pick their child's real curriculum — US Common Core, UK National Curriculum, or Singapore Math
 - Places the child at their true level with a short adaptive check
@@ -29,7 +29,7 @@ export default function About() {
   return (
     <MarketingShell>
       <div className="content-wrap article">
-        <h1>About Kareem</h1>
+        <h1>About Astute Academy</h1>
         <Markdown content={BODY} />
         <div className="article-cta">
           <h3>Try it with your child</h3>

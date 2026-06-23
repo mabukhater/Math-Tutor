@@ -4,7 +4,7 @@ import { ARTICLES, type Article } from "@/content/articles";
 import { MarketingShell } from "@/components/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "Blog — Kareem",
+  title: "Blog — Astute Academy",
   description:
     "Parent-friendly guides on early math, curricula, learning science, and raising confident young learners.",
 };
@@ -26,7 +26,7 @@ export default function Blog() {
     <MarketingShell>
       <div className="blog-layout">
         <main>
-          <h1>The Kareem blog</h1>
+          <h1>The Astute Academy blog</h1>
           <p className="sub">
             Practical, parent-friendly guides on early math, curricula, learning science, and
             raising confident young learners.

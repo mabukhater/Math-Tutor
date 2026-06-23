@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Kareem — math & reading",
-    short_name: "Kareem",
+    name: "Astute Academy — math & reading",
+    short_name: "Astute",
     description: "Curriculum-aligned math and reading practice for kids, grades 1–8.",
     start_url: "/",
     display: "standalone",

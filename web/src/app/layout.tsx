@@ -6,13 +6,13 @@ const SITE = "https://kareem.academy";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Kareem — math & reading that follow your child",
+  title: "Astute Academy — math & reading that follow your child",
   description:
     "Curriculum-aligned math and leveled reading comprehension for grades 1–8 — US Common Core, UK National Curriculum, and Singapore Math.",
-  applicationName: "Kareem",
+  applicationName: "Astute Academy",
   manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, title: "Kareem", statusBarStyle: "default" },
-  openGraph: { type: "website", siteName: "Kareem", url: SITE },
+  appleWebApp: { capable: true, title: "Astute Academy", statusBarStyle: "default" },
+  openGraph: { type: "website", siteName: "Astute Academy", url: SITE },
   twitter: { card: "summary_large_image" },
 };
 

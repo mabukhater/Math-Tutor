@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Kareem — daily math that follows your child";
+export const alt = "Astute Academy — daily math that follows your child";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -30,13 +30,13 @@ export default function OpengraphImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 76,
               fontWeight: 800,
             }}
           >
-            K
+            <span style={{ fontSize: 76 }}>A</span>
+            <span style={{ fontSize: 40, alignSelf: "flex-start", marginTop: 16 }}>+</span>
           </div>
-          <div style={{ fontSize: 96, fontWeight: 800 }}>Kareem</div>
+          <div style={{ fontSize: 96, fontWeight: 800 }}>Astute Academy</div>
         </div>
         <div style={{ fontSize: 42, marginTop: 30, opacity: 0.95 }}>
           Math &amp; reading that follow your child

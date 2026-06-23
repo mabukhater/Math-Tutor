@@ -56,13 +56,8 @@ const FlameIcon = ({ size }: { size?: number }) => (
 const LogoMark = () => (
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
     <rect width="28" height="28" rx="8" fill="#1d9e75" />
-    <path
-      d="M10 7.5v13M10 14l8-6.5M10 14l8 6.5"
-      stroke="#fff"
-      strokeWidth="2.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <text x="12.5" y="20.5" fontFamily="Verdana, Geneva, system-ui, sans-serif" fontSize="18" fontWeight="bold" fill="#fff" textAnchor="middle">A</text>
+    <text x="21.5" y="11.5" fontFamily="Verdana, Geneva, system-ui, sans-serif" fontSize="10" fontWeight="bold" fill="#fff" textAnchor="middle">+</text>
   </svg>
 );
 

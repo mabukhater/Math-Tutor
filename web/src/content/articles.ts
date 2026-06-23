@@ -1,7 +1,7 @@
 export interface Article {
   slug: string;
   title: string; // H1
-  metaTitle?: string; // optional <title> override (else `${title} — Kareem`)
+  metaTitle?: string; // optional <title> override (else `${title} — Astute Academy`)
   category: string;
   readMinutes: number;
   excerpt: string; // meta description + listing blurb

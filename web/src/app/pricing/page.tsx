@@ -4,7 +4,7 @@ import { MarketingShell } from "@/components/MarketingShell";
 import { Check } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Pricing — Kareem",
+  title: "Pricing — Astute Academy",
   description: "Simple plans: a free taste, one subject for $4.99/mo, or every subject for $7.99/mo.",
 };
 

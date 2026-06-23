@@ -12,7 +12,7 @@ const COPY: Record<
   A: {
     eyebrow: "For globally-mobile & international-school families",
     headline: "One program that moves with your family.",
-    sub: "US Common Core, the UK National Curriculum, or Singapore Math — Kareem keeps your child on track in every system, so moving countries never means starting over.",
+    sub: "US Common Core, the UK National Curriculum, or Singapore Math — Astute Academy keeps your child on track in every system, so moving countries never means starting over.",
     bullets: [
       "See where your child stands in all three curricula at once",
       "Placement and progress that follow them across borders",
@@ -61,7 +61,8 @@ function writeCookie(name: string, value: string) {
 const BrandMark = () => (
   <svg width="30" height="30" viewBox="0 0 28 28" fill="none" aria-hidden="true">
     <rect width="28" height="28" rx="8" fill="#1d9e75" />
-    <path d="M10 7.5v13M10 14l8-6.5M10 14l8 6.5" stroke="#fff" strokeWidth="2.7" strokeLinecap="round" strokeLinejoin="round" />
+    <text x="12.5" y="20.5" fontFamily="Verdana, Geneva, system-ui, sans-serif" fontSize="18" fontWeight="bold" fill="#fff" textAnchor="middle">A</text>
+    <text x="21.5" y="11.5" fontFamily="Verdana, Geneva, system-ui, sans-serif" fontSize="10" fontWeight="bold" fill="#fff" textAnchor="middle">+</text>
   </svg>
 );
 
@@ -117,7 +118,7 @@ export default function EarlyLanding() {
       <div className="early-card">
         <div className="early-brand">
           <BrandMark />
-          <span>Kareem</span>
+          <span>Astute Academy</span>
         </div>
 
         {done ? (

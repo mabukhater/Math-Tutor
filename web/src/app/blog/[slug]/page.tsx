@@ -18,11 +18,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const a = getArticle(slug);
-  if (!a) return { title: "Article — Kareem" };
+  if (!a) return { title: "Article — Astute Academy" };
   const title = a.metaTitle ?? a.title;
   const url = `${SITE}/blog/${a.slug}`;
   return {
-    title: `${title} — Kareem`,
+    title: `${title} — Astute Academy`,
     description: a.excerpt,
     alternates: { canonical: url },
     openGraph: {
@@ -30,7 +30,7 @@ export async function generateMetadata({
       title,
       description: a.excerpt,
       url,
-      siteName: "Kareem",
+      siteName: "Astute Academy",
     },
     twitter: { card: "summary", title, description: a.excerpt },
   };
@@ -53,8 +53,8 @@ export default async function ArticlePage({
     description: a.excerpt,
     articleSection: a.category,
     inLanguage: "en",
-    author: { "@type": "Organization", name: "Kareem" },
-    publisher: { "@type": "Organization", name: "Kareem" },
+    author: { "@type": "Organization", name: "Astute Academy" },
+    publisher: { "@type": "Organization", name: "Astute Academy" },
     mainEntityOfPage: `${SITE}/blog/${a.slug}`,
   };
 
@@ -93,7 +93,7 @@ export default async function ArticlePage({
         <div className="article-cta">
           <h3>Turn this into a daily habit</h3>
           <p className="muted">
-            Kareem places your child at their real level and serves a few curriculum-aligned
+            Astute Academy places your child at their real level and serves a few curriculum-aligned
             questions a day — across US, UK, and Singapore curricula, grades 1–8.
           </p>
           <Link href="/login" className="btn-cta">

@@ -3,11 +3,11 @@ import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Kareem",
-  description: "How Kareem protects children's data and respects families' privacy.",
+  title: "Privacy Policy — Astute Academy",
+  description: "How Astute Academy protects children's data and respects families' privacy.",
 };
 
-const BODY = `Kareem is built for children, so privacy and data minimization are part of the design — not an afterthought. This policy explains what we collect, why, and the choices you have. It is written in plain language; if anything is unclear, contact us.
+const BODY = `Astute Academy is built for children, so privacy and data minimization are part of the design — not an afterthought. This policy explains what we collect, why, and the choices you have. It is written in plain language; if anything is unclear, contact us.
 
 ## Who holds the account
 
@@ -61,7 +61,7 @@ We may update this policy as the product evolves. Material changes will be commu
 
 ## Contact
 
-For any privacy question or request, contact the account email associated with Kareem.
+For any privacy question or request, contact the account email associated with Astute Academy.
 
 This page is a product privacy policy and not legal advice. Before any public launch, have a qualified professional review the consent flow and this policy for your jurisdictions.`;
 
