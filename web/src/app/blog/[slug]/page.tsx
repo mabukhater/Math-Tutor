@@ -5,7 +5,7 @@ import { ARTICLES, getArticle, getRelated, getSources } from "@/content/articles
 import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
-const SITE = "https://kareem.academy";
+const SITE = "https://astute.academy";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));

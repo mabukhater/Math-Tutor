@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Get in touch with the Astute Academy team.",
 };
 
-const SUPPORT_EMAIL = "hello@kareem.academy";
+const SUPPORT_EMAIL = "hello@astute.academy";
 
 export default function Contact() {
   return (

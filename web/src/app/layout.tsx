@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { PWARegister } from "@/components/PWARegister";
 
-const SITE = "https://kareem.academy";
+const SITE = "https://astute.academy";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
