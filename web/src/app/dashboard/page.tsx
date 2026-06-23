@@ -8,9 +8,8 @@ import { gradeLabel } from "@/lib/curriculum";
 import { currentKidStudentId } from "@/lib/access";
 import { getPathForStudent } from "@/lib/pathServer";
 import { getReadingPath } from "@/lib/readingServer";
-import { ThresholdControl } from "@/components/ThresholdControl";
-import { KidLoginManager } from "@/components/KidLoginManager";
 import { BillingControl } from "@/components/BillingControl";
+import { DashboardViews, type Kid } from "@/components/DashboardViews";
 
 export const dynamic = "force-dynamic";
 
@@ -75,9 +74,27 @@ export default async function Dashboard() {
     });
   }
 
+  const kids: Kid[] = list.map((s) => ({
+    id: s.id,
+    name: s.display_name,
+    grade: s.nominal_grade,
+    gradeLabel: gradeLabel(
+      curField(s.curricula, "grade_noun"),
+      curField(s.curricula, "grade_offset"),
+      s.nominal_grade,
+      curField(s.curricula, "code"),
+    ),
+    placement: s.placement_completed,
+    yearPlan: !!s.year_plan_id,
+    threshold: s.pass_threshold,
+    username: usernameBy.get(s.id) ?? null,
+    math: summaries.get(s.id)?.math ?? null,
+    reading: summaries.get(s.id)?.reading ?? { passed: 0, total: 0 },
+  }));
+
   return (
     <div className="wrap">
-      <div className="card">
+      <div className="card" style={{ maxWidth: 880 }}>
         <div className="row" style={{ marginBottom: "1rem" }}>
           <h1 style={{ margin: 0 }}>Your children</h1>
           <form action="/auth/signout" method="post">
@@ -93,75 +110,7 @@ export default async function Dashboard() {
           subject={billing?.subscription_subject ?? null}
         />
 
-        {list.length === 0 && (
-          <p className="sub">No children yet. Add one to run the placement check.</p>
-        )}
-
-        {list.map((s) => {
-          const sum = summaries.get(s.id);
-          return (
-            <div className="list-item" key={s.id}>
-              <div className="row">
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <div className="avatar">{s.display_name.charAt(0).toUpperCase()}</div>
-                  <div>
-                    <Link href={`/children/${s.id}`}>
-                      <strong>{s.display_name}</strong>
-                    </Link>{" "}
-                    <span className="muted">
-                      {gradeLabel(
-                        curField(s.curricula, "grade_noun"),
-                        curField(s.curricula, "grade_offset"),
-                        s.nominal_grade,
-                        curField(s.curricula, "code"),
-                      )}
-                    </span>
-                    <div className="muted" style={{ fontSize: "0.82rem" }}>
-                      {sum?.math
-                        ? `Math: ${sum.math.passed}/${sum.math.total} weeks`
-                        : "Math: placement not done"}
-                      {" · "}
-                      Reading: {sum?.reading.passed ?? 0}/{sum?.reading.total ?? 0} passages
-                    </div>
-                  </div>
-                </div>
-                {s.placement_completed ? (
-                  <div className="subject-btns">
-                    {s.year_plan_id && (
-                      <Link href={`/plan/${s.id}`} className="subject-btn plan">
-                        Year plan
-                      </Link>
-                    )}
-                    <Link href={`/learn/${s.id}`} className="subject-btn math">
-                      Math →
-                    </Link>
-                    <Link href={`/reading/${s.id}`} className="subject-btn reading">
-                      Reading →
-                    </Link>
-                    <Link href={`/practice/${s.id}/topics`} className="subject-btn topics">
-                      Topics
-                    </Link>
-                  </div>
-                ) : (
-                  <Link href={`/placement/${s.id}`} className="subject-btn math">
-                    Run placement →
-                  </Link>
-                )}
-              </div>
-
-              <div className="child-controls">
-                <ThresholdControl studentId={s.id} value={s.pass_threshold} />
-                <KidLoginManager studentId={s.id} username={usernameBy.get(s.id) ?? null} />
-                <Link href={`/children/${s.id}/attempts`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
-                  Attempts &amp; scores
-                </Link>
-                <Link href={`/placement/${s.id}`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
-                  Assess level (optional)
-                </Link>
-              </div>
-            </div>
-          );
-        })}
+        <DashboardViews kids={kids} />
 
         <Link href="/children/new" className="btn" style={{ marginTop: "1.25rem" }}>
           Add a child
