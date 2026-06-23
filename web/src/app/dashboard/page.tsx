@@ -139,6 +139,9 @@ export default async function Dashboard() {
               <div className="child-controls">
                 <ThresholdControl studentId={s.id} value={s.pass_threshold} />
                 <KidLoginManager studentId={s.id} username={usernameBy.get(s.id) ?? null} />
+                <Link href={`/children/${s.id}/attempts`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
+                  Attempts &amp; scores
+                </Link>
                 <Link href={`/placement/${s.id}`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
                   Assess level (optional)
                 </Link>

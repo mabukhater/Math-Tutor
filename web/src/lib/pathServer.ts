@@ -140,15 +140,6 @@ export interface Block {
   threshold: number;
 }
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
 /** Resume an in-progress block for this skill, or build a fresh block of up to
  * BLOCK_SIZE vetted questions (snapshotting the current threshold). */
 export async function getOrCreateBlock(
@@ -202,8 +193,22 @@ export async function getOrCreateBlock(
       .eq("id", open.id);
   }
 
-  // Fresh block: random sample, then serve easiest-first so the child ramps up.
-  const pool = shuffle(vetted)
+  // Fresh block: prefer the questions this child has seen least recently, so a
+  // retry brings new questions instead of repeating the same set (when the skill
+  // has more than BLOCK_SIZE questions). Then serve easiest-first to ramp up.
+  const { data: seen } = await admin
+    .from("attempts")
+    .select("question_id, created_at")
+    .eq("student_id", student.id)
+    .in("question_id", vetted.length ? vetted.map((q) => q.id) : ["00000000-0000-0000-0000-000000000000"]);
+  const lastSeen = new Map<string, number>();
+  for (const a of seen ?? []) {
+    const t = new Date(a.created_at as string).getTime();
+    const qid = a.question_id as string;
+    if (t > (lastSeen.get(qid) ?? 0)) lastSeen.set(qid, t);
+  }
+  const pool = [...vetted]
+    .sort((a, b) => (lastSeen.get(a.id) ?? 0) - (lastSeen.get(b.id) ?? 0) || Math.random() - 0.5)
     .slice(0, BLOCK_SIZE)
     .sort((a, b) => (a.difficulty ?? 3) - (b.difficulty ?? 3))
     .map((q) => q.id);
