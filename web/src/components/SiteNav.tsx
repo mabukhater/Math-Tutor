@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
 
 const BrandMark = () => (
   <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -8,7 +9,20 @@ const BrandMark = () => (
   </svg>
 );
 
-export function SiteNav() {
+export async function SiteNav() {
+  // Reflect real auth state so the CTA isn't a misleading "Sign in" while logged
+  // in. Falls back to signed-out if the session can't be read for any reason.
+  let signedIn = false;
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    signedIn = !!user;
+  } catch {
+    signedIn = false;
+  }
+
   return (
     <nav className="site-nav">
       <Link href="/" className="site-brand">
@@ -20,8 +34,8 @@ export function SiteNav() {
         <Link href="/curricula">Curricula</Link>
         <Link href="/pricing">Pricing</Link>
         <Link href="/blog">Blog</Link>
-        <Link href="/login" className="site-cta">
-          Sign in
+        <Link href={signedIn ? "/dashboard" : "/login"} className="site-cta">
+          {signedIn ? "Dashboard" : "Sign in"}
         </Link>
       </div>
     </nav>
