@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import type { ParentProfile } from "@/lib/profileActions";
-import { ProfileForm } from "./ProfileForm";
+import { ProfileSection } from "./ProfileSection";
 import { PasswordForm } from "./PasswordForm";
 
 export const dynamic = "force-dynamic";
@@ -34,7 +34,7 @@ export default async function AccountPage() {
       <h1 style={{ marginTop: 0 }}>Account</h1>
       <section style={{ marginBottom: "2rem" }}>
         <h2 style={{ fontSize: "1.05rem" }}>Profile</h2>
-        <ProfileForm profile={profile} email={user.email ?? ""} />
+        <ProfileSection profile={profile} email={user.email ?? ""} />
       </section>
       <section>
         <h2 style={{ fontSize: "1.05rem" }}>Password</h2>
