@@ -152,6 +152,7 @@ def main() -> None:
     ap.add_argument("--curriculum", help="restrict to one curriculum code (e.g. uk_national, singapore)")
     ap.add_argument("--source", default="ai_generated", help="source tag for inserted rows")
     ap.add_argument("--isolate", action="store_true", help="incremental skip counts only --source rows (for regen)")
+    ap.add_argument("--topup", action="store_true", help="generate only (target - have) to reach target, not a full batch")
     ap.add_argument("--force", action="store_true", help="generate even if skill already has enough")
     ap.add_argument("--dry-run", action="store_true", help="print, do not insert")
     args = ap.parse_args()
@@ -186,7 +187,8 @@ def main() -> None:
         # Wrap the ENTIRE per-skill body: a failure in the count query, the API
         # call, validation, or the insert must never abort the whole run.
         try:
-            if not args.force:
+            have = 0
+            if not args.force or args.topup:
                 cnt = (
                     sb.table("questions").select("id", count="exact")
                     .eq("skill_id", s["id"]).in_("status", ["draft", "vetted"])
@@ -194,23 +196,25 @@ def main() -> None:
                 if args.isolate:  # count only this source (for curriculum regen)
                     cnt = cnt.eq("source", args.source)
                 have = cnt.execute().count or 0
-                if have >= args.target:
+                if not args.force and have >= args.target:
                     print(f"· {s['code']}: already has {have} — skipping")
                     continue
 
+            # --topup generates only the deficit (target - have); default = full batch.
+            n_gen = max(1, args.target - have) if args.topup else args.target
             age = s["grade"] + 5
             curr = s["curricula"]
             grade_label = f"{curr['grade_noun']} {s['grade'] + curr['grade_offset']}"
             system = SYSTEM_TEMPLATE.format(
                 curriculum=curr["name"], grade_label=grade_label,
-                code=s["code"], name=s["name"], n=args.target, age=age,
+                code=s["code"], name=s["name"], n=n_gen, age=age,
                 method_profile=profile_for(curr["code"]),
             )
             resp = client.messages.parse(
                 model=args.model,
                 max_tokens=8000,
                 system=system,
-                messages=[{"role": "user", "content": f"Generate {args.target} questions now."}],
+                messages=[{"role": "user", "content": f"Generate {n_gen} questions now."}],
                 output_format=QuestionSet,
             )
             parsed = resp.parsed_output

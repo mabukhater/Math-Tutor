@@ -1,0 +1,45 @@
+name: Top up question banks
+
+# On-demand: bring every under-stocked skill up to `target` vetted questions so
+# math retries can serve >=50% new questions across attempts. Matrix over
+# curriculum x grade, concurrency-capped to avoid Anthropic 529 overloads.
+# Idempotent: generate --topup only fills the deficit and skips full skills, so
+# re-running resumes safely after any interruption.
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Vetted questions per skill to reach"
+        default: "30"
+        required: true
+
+jobs:
+  topup:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        curriculum: [singapore, common_core, uk_national, ontario]
+        grade: [1, 2, 3, 4, 5, 6, 7, 8]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r generator/requirements.txt
+      - name: Top up ${{ matrix.curriculum }} grade ${{ matrix.grade }}
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          python generator/generate_questions.py \
+            --curriculum ${{ matrix.curriculum }} --grade ${{ matrix.grade }} \
+            --target ${{ inputs.target }} --topup \
+            --source ai_authentic --model claude-sonnet-4-6
+          python generator/verify_answers.py \
+            --curriculum ${{ matrix.curriculum }} --grade ${{ matrix.grade }} \
+            --status draft --source ai_authentic --apply --keep-source \
+            --workers 4 --model claude-sonnet-4-6
