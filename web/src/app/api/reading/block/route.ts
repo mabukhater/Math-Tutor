@@ -6,11 +6,14 @@ import { resolveStudent } from "@/lib/access";
 import { getReadingPath, getOrCreateReadingBlock } from "@/lib/readingServer";
 import { checkSubjectGate } from "@/lib/billing";
 
-// Already-answered questions in this block. Reading attempts don't record the
-// per-question result, so on a resumed block these show as neutral "answered"
-// (result unknown) — enough to keep the counter/progress/navigator consistent
-// and let the child re-open a question to see its correct answer.
-async function answeredReadingHistory(admin: SupabaseClient, answeredIds: string[]) {
+// Already-answered questions in this block, with their real result so a resumed
+// block shows each prior question's green/red (not a neutral grey). Pulls the
+// child's recorded attempt (is_correct + selected option) per reading question.
+async function answeredReadingHistory(
+  admin: SupabaseClient,
+  studentId: string,
+  answeredIds: string[],
+) {
   if (answeredIds.length === 0) return [];
   const { data: aqs } = await admin
     .from("reading_questions")
@@ -18,15 +21,32 @@ async function answeredReadingHistory(admin: SupabaseClient, answeredIds: string
     .in("id", answeredIds);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const qById = new Map((aqs ?? []).map((q: any) => [q.id as string, q]));
+
+  // The child's actual results, keyed by reading question (latest attempt wins).
+  const { data: ats } = await admin
+    .from("attempts")
+    .select("reading_question_id, selected_index, is_correct, answered_at")
+    .eq("student_id", studentId)
+    .in("reading_question_id", answeredIds)
+    .order("answered_at", { ascending: true });
+  const resultByQid = new Map<string, { selectedIndex: number; correct: boolean }>();
+  for (const a of ats ?? []) {
+    resultByQid.set(a.reading_question_id as string, {
+      selectedIndex: (a.selected_index as number) ?? -1,
+      correct: !!a.is_correct,
+    });
+  }
+
   return answeredIds.map((qid) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const q = qById.get(qid) as any;
+    const r = resultByQid.get(qid);
     return {
       stem: q?.stem ?? "",
       options: q?.options ?? [],
-      selectedIndex: -1,
+      selectedIndex: r?.selectedIndex ?? -1,
       correctIndex: (q?.correct_index as number) ?? -1,
-      correct: null,
+      correct: r ? r.correct : null,
       locator: null,
       explanation: q?.explanation ?? "",
     };
@@ -80,7 +100,7 @@ export async function POST(req: Request) {
     if (q) question = { id: q.id, stem: q.stem, options: q.options };
   }
 
-  const answered = await answeredReadingHistory(admin, block.question_ids.slice(0, idx));
+  const answered = await answeredReadingHistory(admin, student.id, block.question_ids.slice(0, idx));
 
   return NextResponse.json({
     blockId: block.id,
