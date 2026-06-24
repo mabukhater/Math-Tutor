@@ -180,7 +180,8 @@ def main() -> None:
     if args.limit_skills:
         skills = skills[: args.limit_skills]
     if not skills:
-        sys.exit("No matching skills. Seed the ladder first (seed_skills.py).")
+        print("No matching skills for this curriculum/grade — nothing to do.")
+        return
 
     total_inserted = 0
     for s in skills:
