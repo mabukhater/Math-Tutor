@@ -11,6 +11,69 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "why-estimation-is-a-math-superpower",
+    title: "Why Estimation Is a Math Superpower (and How to Teach It)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-06-24",
+    excerpt:
+      "Estimation helps kids catch mistakes, build number sense, and think flexibly. Here is how to teach it at home with everyday moments.",
+    body: `## The Skill Hiding in Plain Sight
+
+When most of us picture school math, we picture exact answers. Get the right number, circle it, move on. But there is a quieter skill that often separates confident math students from anxious ones: estimation.
+
+Estimation is the ability to look at a problem and know roughly what a sensible answer should be before you calculate. It sounds simple, but it does something powerful. It turns your child from someone who blindly follows steps into someone who actually thinks about whether an answer makes sense.
+
+## Why Estimation Matters More Than You Think
+
+A child who can estimate has a built-in error detector. If they calculate that 19 times 21 equals 39, an estimator pauses, because 20 times 20 is about 400. Something is clearly off. A child without that instinct writes down 39 and feels fine about it.
+
+Here is what estimation builds over time:
+
+- Number sense, the deep feel for how big or small numbers really are
+- Confidence, because kids stop fearing wrong answers when they can sanity-check their own work
+- Flexibility, since estimating means rounding, regrouping, and thinking in friendly numbers
+- Real-world readiness, because adults estimate constantly at the grocery store, at restaurants, and when budgeting
+
+Research on math achievement keeps pointing back to number sense as a foundation. Estimation is one of the most natural ways to grow it.
+
+## How to Teach Estimation at Home
+
+The best part is that estimation does not need worksheets. It thrives in everyday life. Here are approaches that work across grades 1 through 8.
+
+### Make Guessing a Game
+
+Before counting anything, ask your child to guess first. How many spoons are in the drawer? How many steps to the front door? How many grapes in the bowl? Then count together and talk about how close the guess was. There is no wrong answer here, which keeps the pressure off and the curiosity on.
+
+### Round Before You Calculate
+
+When your child faces a calculation, ask one question first: about how much should this be? For 48 plus 37, encourage them to think 50 plus 40, so around 90. Then they solve it exactly and compare. This habit of estimate first, calculate second catches errors and builds the instinct that answers should be reasonable.
+
+### Use the Grocery Store
+
+The checkout line is an estimation classroom. Ask your child to round each item to the nearest dollar and keep a running total in their head. Were they close to the receipt? Older kids can estimate tax or figure out whether twenty dollars covers the basket. This is math that obviously matters, which is exactly why it sticks.
+
+### Estimate Time and Distance
+
+How long until dinner is ready? How many minutes to walk to the park? How far is the next town? Estimation is not only about numbers on a page. Reasoning about time and distance stretches the same mental muscle and shows up in word problems later.
+
+## Gentle Mistakes to Avoid
+
+A few traps can quietly undo your good work.
+
+- Do not treat estimates as wrong when they are not exact. The whole point is closeness, not precision.
+- Do not rush past the estimate to get the real answer. The pause is where the thinking happens.
+- Do not save estimation for big numbers only. Even small everyday guesses train the brain.
+
+## Bringing It Into Daily Practice
+
+Estimation works best as a quick habit rather than a separate subject. A single question, asked before a calculation, is enough to start. About how much? About how many? Roughly what should this be?
+
+As your child practices core skills, weaving in an estimate first builds a steady checking instinct that carries through harder topics like fractions, percentages, and multi-step word problems. Over weeks and months, you will notice your child catching their own slips and reasoning out loud about whether answers make sense.
+
+That is the real superpower. Not just getting the right answer, but knowing when an answer could not possibly be right. Estimation gives your child that quiet confidence, one friendly guess at a time.`,
+  },
+  {
     slug: "why-reading-aloud-still-matters-after-your-child-can-read",
     title: "Why Reading Aloud Still Matters After Your Child Can Read",
     category: "Reading",
