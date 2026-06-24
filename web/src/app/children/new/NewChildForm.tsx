@@ -91,7 +91,7 @@ export default function NewChildForm({
             ))}
           </select>
           {suggested !== null && (
-            <p className="muted" style={{ marginTop: "-0.4rem", marginBottom: "0.6rem", fontSize: "0.82rem" }}>
+            <p className="muted" style={{ marginTop: "0.45rem", marginBottom: "0.6rem", fontSize: "0.82rem" }}>
               Suggested from birthdate: <strong>{gradeLabel(noun, offset, suggested, code)}</strong> — you can
               change this.
             </p>
