@@ -182,7 +182,6 @@ export default async function AttemptDetail({
             <div className="rc-passage-title">{title}</div>
             {paragraphs.map((p) => (
               <p key={p.n} className="rc-para">
-                <span className="rc-pnum">¶{p.n}</span>
                 {p.text}
               </p>
             ))}

@@ -67,7 +67,6 @@ function Passage({ title, paragraphs, highlight }: { title: string; paragraphs: 
       <div className="rc-passage-title">{title}</div>
       {paragraphs.map((p) => (
         <p key={p.n} className={"rc-para" + (highlight === p.n ? " hl" : "")}>
-          <span className="rc-pnum">¶{p.n}</span>
           {p.text}
         </p>
       ))}
@@ -427,7 +426,8 @@ function ReadingFeedback({ view }: { view: QView }) {
       </div>
       {!view.correct && view.locator && (
         <p className="why-wrong">
-          <strong>Look again at ¶{view.locator.paragraph}.</strong> {view.locator.hint}
+          <strong>Look again at paragraph {view.locator.paragraph}.</strong>{" "}
+          {view.locator.hint.replace(/¶\s*(\d+)/g, "paragraph $1").replace(/¶/g, "")}
         </p>
       )}
       {!view.correct && typeof view.correctIndex === "number" && (
