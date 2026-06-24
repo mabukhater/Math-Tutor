@@ -382,23 +382,38 @@ function OptionList({
   interactive: boolean;
   onPick?: (i: number) => void;
 }) {
+  // Two-step select: first tap arms (highlights) an option, a second tap on the
+  // SAME option confirms — so an accidental tap can't submit. Reset on confirm,
+  // and the only way past a question is to confirm, so each one starts clean.
+  const [armed, setArmed] = useState<number | null>(null);
   return (
     <>
       {view.options.map((opt, i) => {
         let cls = "opt";
         const isCorrect = view.answered && i === view.correctIndex;
         const isWrongPick = view.answered && i === view.selected && i !== view.correctIndex;
+        const isArmed = interactive && !view.answered && armed === i;
         if (isCorrect) cls += " correct";
         else if (isWrongPick) cls += " wrong";
+        if (isArmed) cls += " armed";
         return (
           <button
             key={i}
             className={cls}
             disabled={!interactive || view.answered}
-            onClick={() => interactive && !view.answered && onPick?.(i)}
+            onClick={() => {
+              if (!interactive || view.answered) return;
+              if (armed === i) {
+                setArmed(null);
+                onPick?.(i);
+              } else {
+                setArmed(i);
+              }
+            }}
           >
             <span className="opt-letter">{LETTERS[i]}</span>
             {opt}
+            {isArmed && <span className="opt-confirm">Click to confirm</span>}
             {isCorrect && (
               <span className="opt-mark">
                 <Check size={20} />

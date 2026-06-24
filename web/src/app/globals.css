@@ -82,6 +82,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .opt.correct .opt-letter { background: var(--green); color: #fff; }
 .opt.wrong .opt-letter { background: #c0392b; color: #fff; }
 .opt .opt-mark { margin-left: auto; display: inline-flex; }
+.opt.armed { border-color: var(--green); background: var(--green-soft); box-shadow: 0 0 0 3px var(--green-soft), 0 3px 0 rgba(29,158,117,0.18); }
+.opt.armed .opt-letter { background: var(--green); color: #fff; }
+.opt-confirm { margin-left: auto; flex: none; font-size: 0.78rem; font-weight: 700; color: var(--green-deep); background: #fff; border: 1.5px solid var(--green); border-radius: 99px; padding: 0.22rem 0.65rem; white-space: nowrap; }
 .muted { color: var(--muted); font-size: 0.9rem; }
 .home-link { font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 99px; }
 .home-link:hover { background: var(--green-soft); color: var(--green-deep); }
