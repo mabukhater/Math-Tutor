@@ -85,22 +85,29 @@ def retire_old(cur_code: str) -> int:
 
 
 def main():
+    failed = False
     for code in CURRICULA:
         print(f"\n===== {code} =====", flush=True)
         if not wait_api():
             print("API overloaded too long — stopping; re-run to resume.", flush=True)
             return
-        run(["/usr/bin/python3", "generator/generate_questions.py", "--curriculum", code,
-             "--target", str(TARGET), "--source", "ai_authentic", "--isolate", "--model", GEN_MODEL])
+        rc = run([sys.executable, "generator/generate_questions.py", "--curriculum", code,
+                  "--target", str(TARGET), "--source", "ai_authentic", "--isolate", "--model", GEN_MODEL])
+        if rc != 0:
+            print(f"  {code}: generate failed (rc={rc}); skipping verify/retire", flush=True)
+            failed = True
+            continue
         if not wait_api():
             print("API overloaded too long — stopping; re-run to resume.", flush=True)
             return
-        run(["/usr/bin/python3", "generator/verify_answers.py", "--curriculum", code,
+        run([sys.executable, "generator/verify_answers.py", "--curriculum", code,
              "--status", "draft", "--source", "ai_authentic", "--apply", "--keep-source",
              "--workers", "4", "--model", VERIFY_MODEL])
         retired, authentic = retire_old(code)
         print(f"  {code}: {authentic} authentic vetted; retired {retired} old generic", flush=True)
     print("\nALL CURRICULA DONE", flush=True)
+    if failed:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
