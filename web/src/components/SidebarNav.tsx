@@ -7,6 +7,7 @@ const ITEMS = [
   { href: "/dashboard", label: "Children" },
   { href: "/billing", label: "Billing & plan" },
   { href: "/account", label: "Account" },
+  { href: "/contact", label: "Contact us" },
 ];
 
 const Brand = () => (

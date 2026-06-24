@@ -647,6 +647,8 @@ a.rung:hover .rung-name { color: var(--green-deep); }
 .profile-form { display: flex; flex-direction: column; gap: 0.35rem; max-width: 460px; }
 .profile-form label { font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem; }
 .profile-form input { padding: 0.6rem 0.7rem; border: 1px solid var(--line); border-radius: 10px; font: inherit; }
+.profile-form textarea { padding: 0.6rem 0.7rem; border: 1px solid var(--line); border-radius: 10px; font: inherit; resize: vertical; }
+.profile-form textarea:focus, .profile-form input:focus, .profile-form select:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
 .profile-form input:disabled { background: #f6f6f4; color: var(--muted); }
 .profile-form .btn { margin-top: 1rem; }
 .profile-summary { max-width: 460px; border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem 1.4rem; background: #fff; }
