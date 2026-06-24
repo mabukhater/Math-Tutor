@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { composeBlock } from "./blockSelection";
 
 export const BLOCK_SIZE = 20;
 
@@ -193,25 +194,33 @@ export async function getOrCreateBlock(
       .eq("id", open.id);
   }
 
-  // Fresh block: prefer the questions this child has seen least recently, so a
-  // retry brings new questions instead of repeating the same set (when the skill
-  // has more than BLOCK_SIZE questions). Then serve easiest-first to ramp up.
+  // Fresh block. A retry must not be the same quiz: compose at least half new
+  // questions relative to the previous (failed) block, filling the rest with the
+  // least-recently-seen repeats, then serve easiest-first. See composeBlock.
+  const { data: prevBlock } = await admin
+    .from("path_blocks")
+    .select("question_ids")
+    .eq("student_id", student.id)
+    .eq("skill_id", skillId)
+    .not("passed", "is", null)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const previousIds = new Set((prevBlock?.question_ids as string[] | undefined) ?? []);
+
   const { data: seen } = await admin
     .from("attempts")
-    .select("question_id, created_at")
+    .select("question_id, answered_at")
     .eq("student_id", student.id)
     .in("question_id", vetted.length ? vetted.map((q) => q.id) : ["00000000-0000-0000-0000-000000000000"]);
   const lastSeen = new Map<string, number>();
   for (const a of seen ?? []) {
-    const t = new Date(a.created_at as string).getTime();
+    const t = new Date(a.answered_at as string).getTime();
     const qid = a.question_id as string;
     if (t > (lastSeen.get(qid) ?? 0)) lastSeen.set(qid, t);
   }
-  const pool = [...vetted]
-    .sort((a, b) => (lastSeen.get(a.id) ?? 0) - (lastSeen.get(b.id) ?? 0) || Math.random() - 0.5)
-    .slice(0, BLOCK_SIZE)
-    .sort((a, b) => (a.difficulty ?? 3) - (b.difficulty ?? 3))
-    .map((q) => q.id);
+
+  const pool = composeBlock(vetted, previousIds, lastSeen, BLOCK_SIZE);
   if (pool.length === 0) throw new Error("no_questions");
 
   const { data: block, error } = await admin
