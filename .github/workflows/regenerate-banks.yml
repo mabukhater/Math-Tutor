@@ -1,0 +1,44 @@
+name: Regenerate curricula (authentic)
+
+# On-demand: replace older generic questions with curriculum-authentic ones.
+# Per curriculum it generates authentic questions to REGEN_TARGET, verifies them,
+# then retires the old generic ones (only once a skill has >= REGEN_FLOOR authentic
+# vetted, so nothing is left empty; retired != deleted). TARGET 30 / FLOOR 28 keeps
+# the >=30 rotation headroom. Idempotent + resumable: re-running skips finished
+# skills, verifies only remaining drafts, and the retire step is a no-op once done.
+on:
+  workflow_dispatch:
+    inputs:
+      curriculum:
+        description: "Curriculum to convert"
+        type: choice
+        options: [common_core, singapore, uk_national, ontario, all]
+        default: common_core
+      target:
+        description: "Authentic questions per skill"
+        default: "30"
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      REGEN_TARGET: ${{ inputs.target }}
+      REGEN_FLOOR: "28"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r generator/requirements.txt
+      - name: Regenerate ${{ inputs.curriculum }}
+        run: |
+          if [ "${{ inputs.curriculum }}" = "all" ]; then
+            python generator/regenerate_curricula.py
+          else
+            python generator/regenerate_curricula.py "${{ inputs.curriculum }}"
+          fi
