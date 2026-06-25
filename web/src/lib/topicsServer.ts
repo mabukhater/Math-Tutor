@@ -41,22 +41,27 @@ export async function getTopicsForStudent(
 
   const skillIds = skillRows.map((s) => s.id);
 
-  // Which of those skills actually have vetted questions.
-  const { data: vetted } = await admin
-    .from("questions")
-    .select("skill_id")
-    .in("skill_id", skillIds)
-    .eq("status", "vetted");
-  const skillsWithQuestions = new Set((vetted ?? []).map((r) => r.skill_id as string));
+  // Which skills have vetted questions. Computed DB-side (distinct, one row per
+  // skill) to avoid PostgREST's 1000-row cap, which would drop skills in grades
+  // with many skills × many questions.
+  const { data: vetted } = await admin.rpc("skills_with_vetted", {
+    cur: student.curriculum_id,
+  });
+  const skillsWithQuestions = new Set(
+    ((vetted ?? []) as { skill_id: string }[]).map((r) => r.skill_id),
+  );
 
   // Student progress over those skills.
   const { data: prog } = await admin
     .from("student_skill_progress")
-    .select("skill_id, box, total_attempts")
+    .select("skill_id, box, total_attempts, passed_at")
     .eq("student_id", student.id)
     .in("skill_id", skillIds);
   const progBySkill = new Map(
-    (prog ?? []).map((p) => [p.skill_id as string, p as { box: number; total_attempts: number }]),
+    (prog ?? []).map((p) => [
+      p.skill_id as string,
+      p as { box: number; total_attempts: number; passed_at: string | null },
+    ]),
   );
 
   // Topics with a published lesson at this grade.
@@ -84,8 +89,9 @@ export async function getTopicsForStudent(
     for (const s of topicSkills) {
       const p = progBySkill.get(s.id);
       if (p) {
-        if (p.box >= 4) mastered++;
-        if (p.total_attempts > 0) attempted++;
+        // Mastered if practised to a high Leitner box OR passed in the weekly path.
+        if (p.box >= 4 || p.passed_at) mastered++;
+        if (p.total_attempts > 0 || p.passed_at) attempted++;
       }
     }
     cards.push({

@@ -70,9 +70,12 @@ export default async function TopicsPage({
             Dashboard
           </Link>
         </div>
-        <p className="sub">
+        <p className="sub" style={{ marginBottom: "0.15rem" }}>
           {student.display_name ? `${student.display_name} · ` : ""}
-          {label} · {cur?.name}. Extra practice — it builds mastery but won’t affect daily streaks.
+          {label} · {cur?.name}
+        </p>
+        <p className="muted" style={{ marginTop: 0, fontSize: "0.9rem" }}>
+          Extra practice to build mastery — it doesn’t affect daily streaks.
         </p>
 
         {topics.length === 0 ? (
