@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { MobileMenu } from "./MobileMenu";
 
 const BrandMark = () => (
   <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -38,6 +39,7 @@ export async function SiteNav() {
           {signedIn ? "Dashboard" : "Sign in"}
         </Link>
       </div>
+      <MobileMenu signedIn={signedIn} />
     </nav>
   );
 }
