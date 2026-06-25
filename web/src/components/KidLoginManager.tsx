@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function KidLoginManager({
   studentId,
@@ -9,21 +10,22 @@ export function KidLoginManager({
   studentId: string;
   username: string | null;
 }) {
+  const router = useRouter();
+  const [savedUsername, setSavedUsername] = useState(username);
   const [open, setOpen] = useState(false);
   const [u, setU] = useState(username ?? "");
   const [pin, setPin] = useState("");
   const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
   async function save() {
     setBusy(true);
     setErr(null);
-    setMsg(null);
+    const uname = u.trim().toLowerCase();
     const r = await fetch("/api/kids/set-login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId, username: u.trim().toLowerCase(), pin: pin.trim() }),
+      body: JSON.stringify({ studentId, username: uname, pin: pin.trim() }),
     });
     setBusy(false);
     const d = await r.json().catch(() => ({}));
@@ -35,14 +37,17 @@ export function KidLoginManager({
       );
       return;
     }
+    // Saved: reflect it, collapse the form, and sync the server-rendered data.
+    setSavedUsername(uname);
     setPin("");
-    setMsg(`Saved! They sign in at /kids as “${u.trim().toLowerCase()}”.`);
+    setOpen(false);
+    router.refresh();
   }
 
   if (!open)
     return (
       <button className="card-action" onClick={() => setOpen(true)}>
-        {username ? `Kid login: ${username} · edit` : "+ Create kid login"}
+        {savedUsername ? `Kid login: ${savedUsername} · edit` : "+ Create kid login"}
       </button>
     );
 
@@ -67,10 +72,9 @@ export function KidLoginManager({
           {busy ? "…" : "Save"}
         </button>
         <button className="kid-login-toggle" onClick={() => setOpen(false)}>
-          Close
+          Cancel
         </button>
       </div>
-      {msg && <p className="ok-msg" style={{ marginTop: "0.4rem" }}>{msg}</p>}
       {err && <p className="err">{err}</p>}
     </div>
   );
