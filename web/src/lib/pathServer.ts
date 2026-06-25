@@ -70,12 +70,15 @@ export async function getPathForStudent(
   if (all.length === 0) return empty;
 
   const ids = all.map((s) => s.id);
-  const { data: vetted } = await admin
-    .from("questions")
-    .select("skill_id")
-    .in("skill_id", ids)
-    .eq("status", "vetted");
-  const withQ = new Set((vetted ?? []).map((r) => r.skill_id as string));
+  // Set of skills that have at least one vetted question. Computed in the DB
+  // (distinct, one row per skill) because selecting the raw question rows hits
+  // PostgREST's 1000-row cap and silently drops later grades' weeks.
+  const { data: vetted } = await admin.rpc("skills_with_vetted", {
+    cur: student.curriculum_id,
+  });
+  const withQ = new Set(
+    ((vetted ?? []) as { skill_id: string }[]).map((r) => r.skill_id),
+  );
 
   const { data: prog } = await admin
     .from("student_skill_progress")
