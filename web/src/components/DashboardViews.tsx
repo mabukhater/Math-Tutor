@@ -75,8 +75,13 @@ function FullCard({ k }: { k: Kid }) {
             </Link>{" "}
             <span className="muted">{k.gradeLabel}</span>
             <div className="muted" style={{ fontSize: "0.82rem" }}>
-              {k.math ? `Math: ${k.math.passed}/${k.math.total} weeks` : "Math: placement not done"}
-              {" · "}Reading: {k.reading.passed}/{k.reading.total} passages
+              <span style={{ whiteSpace: "nowrap" }}>
+                {k.math ? `Math: ${k.math.passed}/${k.math.total} weeks` : "Math: not placed"}
+              </span>
+              {" · "}
+              <span style={{ whiteSpace: "nowrap" }}>
+                Reading: {k.reading.passed}/{k.reading.total} passages
+              </span>
             </div>
           </div>
         </div>
@@ -84,14 +89,16 @@ function FullCard({ k }: { k: Kid }) {
       </div>
       <div className="child-controls">
         <ThresholdControl studentId={k.id} value={k.threshold} />
-        <KidLoginManager studentId={k.id} username={k.username} />
-        <Link href={`/children/${k.id}/attempts`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
-          Attempts &amp; scores
-        </Link>
-        <Link href={`/placement/${k.id}`} className="muted home-link" style={{ fontSize: "0.82rem" }}>
-          Assess level (optional)
-        </Link>
-        <DeleteChildButton studentId={k.id} name={k.name} />
+        <div className="card-actions">
+          <KidLoginManager studentId={k.id} username={k.username} />
+          <Link href={`/children/${k.id}/attempts`} className="card-action">
+            Attempts &amp; scores
+          </Link>
+          <Link href={`/placement/${k.id}`} className="card-action">
+            Assess level
+          </Link>
+          <DeleteChildButton studentId={k.id} name={k.name} />
+        </div>
       </div>
     </div>
   );

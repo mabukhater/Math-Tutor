@@ -41,7 +41,7 @@ export function KidLoginManager({
 
   if (!open)
     return (
-      <button className="kid-login-toggle" onClick={() => setOpen(true)}>
+      <button className="card-action" onClick={() => setOpen(true)}>
         {username ? `Kid login: ${username} · edit` : "+ Create kid login"}
       </button>
     );

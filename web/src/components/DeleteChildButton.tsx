@@ -27,7 +27,7 @@ export function DeleteChildButton({ studentId, name }: { studentId: string; name
   }
 
   return (
-    <button onClick={del} disabled={busy} className="delete-child">
+    <button onClick={del} disabled={busy} className="card-action card-action-danger">
       {busy ? "Deleting…" : "Delete child"}
     </button>
   );

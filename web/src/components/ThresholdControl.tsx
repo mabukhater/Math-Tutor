@@ -23,10 +23,8 @@ export function ThresholdControl({ studentId, value }: { studentId: string; valu
   }
 
   return (
-    <div className="threshold-row">
-      <span>
-        <strong>Parent setting:</strong> score needed to unlock the next week
-      </span>
+    <div className="threshold-row" title="Score your child needs to unlock the next week">
+      <span>Score to advance</span>
       <select
         value={val}
         disabled={busy}

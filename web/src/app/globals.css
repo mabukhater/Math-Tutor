@@ -193,8 +193,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .kid-subject-name { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--ink); }
 .kid-subject-progress { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
 .kid-subject-go { margin-top: 0.55rem; font-size: 0.92rem; font-weight: 800; color: var(--green-deep); }
-.child-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
-.child-controls .threshold-row { margin: 0; }
+.child-controls { display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; margin-top: 0.85rem; }
+.card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.card-action { display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 700; font-size: 0.82rem; color: var(--green-deep); background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 0.45rem 0.8rem; cursor: pointer; text-decoration: none; line-height: 1.1; }
+.card-action:hover { border-color: var(--green); background: var(--green-soft); }
+.card-action:disabled { opacity: 0.6; cursor: default; }
+.card-action-danger { color: #c0392b; }
+.card-action-danger:hover { border-color: #e3a9a2; background: #fdecea; }
 .kid-login-toggle { background: none; border: none; color: var(--green-deep); font-weight: 700; font-size: 0.82rem; cursor: pointer; padding: 0.2rem 0; }
 .kid-login-toggle:hover { text-decoration: underline; }
 .kid-login-box { width: 100%; background: var(--green-soft); border-radius: 12px; padding: 0.7rem 0.85rem; }
@@ -417,8 +422,8 @@ a.rung:hover .rung-name { color: var(--green-deep); }
 @media (prefers-reduced-motion: reduce) { .rung.active .rung-node { animation: none; } }
 
 /* ====================== Learning path ====================== */
-.threshold-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.85rem 0 0; padding: 0.55rem 0.8rem; background: var(--green-soft); border-radius: 12px; }
-.threshold-row select { width: auto; margin: 0; }
+.threshold-row { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0; padding: 0.3rem 0.35rem 0.3rem 0.7rem; background: var(--green-soft); border-radius: 10px; font-size: 0.82rem; font-weight: 600; color: var(--green-deep); }
+.threshold-row select { width: auto; margin: 0; padding: 0.3rem 1.85rem 0.3rem 0.6rem; font-size: 0.82rem; border-radius: 8px; }
 .path { margin-top: 1.25rem; }
 .path-month { margin-bottom: 1.4rem; }
 .path-month-label { display: inline-block; background: var(--green); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.02em; padding: 0.2rem 0.7rem; border-radius: 99px; margin-bottom: 0.65rem; }
@@ -640,6 +645,9 @@ a.rung:hover .rung-name { color: var(--green-deep); }
   .site-menu a { padding: 0.65rem 0.8rem; border-radius: 8px; color: var(--ink); font-weight: 600; }
   .site-menu a:hover { background: #f6f6f4; color: var(--green-deep); }
   .site-menu a.site-cta { background: var(--green-deep); color: #fff; text-align: center; margin-top: 0.25rem; padding: 0.7rem; }
+  .child-card .row { flex-direction: column; align-items: stretch; gap: 0.85rem; }
+  .subject-btns { justify-content: flex-start; }
+  .subject-btns .subject-btn { flex: 1 1 auto; justify-content: center; }
 }
 
 @media (max-width: 720px) {
