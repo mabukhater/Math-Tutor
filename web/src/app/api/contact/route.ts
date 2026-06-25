@@ -33,13 +33,16 @@ export async function POST(req: Request) {
     .insert({ parent_id: user.id, email, category: cat, subject: subj, message: msg });
   if (error) return NextResponse.json({ error: "save_failed" }, { status: 500 });
 
-  const { sent } = await sendContactEmail({
+  const { sent, error: emailError } = await sendContactEmail({
     fromName: parent?.full_name ?? "",
     fromEmail: email,
     category: cat,
     subject: subj,
     message: msg,
   });
+  // Surface why a notification didn't send (missing key, Resend restriction,
+  // bad key, …) in the server logs — the message itself is already saved.
+  if (!sent) console.error("[contact] email not sent:", emailError);
 
   return NextResponse.json({ ok: true, emailed: sent });
 }
