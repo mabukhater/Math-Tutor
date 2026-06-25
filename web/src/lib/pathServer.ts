@@ -94,12 +94,16 @@ export async function getPathForStudent(
 
   const cursor = student.current_skill_index ?? 0;
   const playable = all.filter((s) => s.topic_id && withQ.has(s.id));
-  const isPassed = (s: SkillRow) =>
-    !!progBy.get(s.id)?.passed_at || s.sequence_position < cursor;
+  // A week is shown "done" only if the child actually passed it. The cursor
+  // (placement / linear advance) tells us where they are now — used to pick the
+  // active skill + grade — but must NOT mark skipped weeks as done. Kids can play
+  // weeks out of order, so the cursor can sit ahead of weeks they never did.
+  const reallyPassed = (s: SkillRow) => !!progBy.get(s.id)?.passed_at;
+  const cleared = (s: SkillRow) => reallyPassed(s) || s.sequence_position < cursor;
 
   // The effective grade = grade of the first unfinished playable skill (i.e.
   // where they actually are), falling back to the last grade if all done.
-  const activeSkill = playable.find((s) => !isPassed(s)) ?? null;
+  const activeSkill = playable.find((s) => !cleared(s)) ?? null;
   const effectiveGrade =
     activeSkill?.grade ?? playable[playable.length - 1]?.grade ?? student.nominal_grade;
   const activeSkillId = activeSkill && activeSkill.grade === effectiveGrade ? activeSkill.id : null;
@@ -111,7 +115,7 @@ export async function getPathForStudent(
   const monthByTopic = new Map<string, Month>();
   for (const s of playable.filter((s) => s.grade === effectiveGrade)) {
     const p = progBy.get(s.id);
-    const status: WeekStatus = isPassed(s) ? "passed" : s.id === activeSkillId ? "active" : "locked";
+    const status: WeekStatus = reallyPassed(s) ? "passed" : s.id === activeSkillId ? "active" : "locked";
     const accuracy =
       p && p.total_attempts > 0 ? Math.round((100 * p.total_correct) / p.total_attempts) : null;
 
