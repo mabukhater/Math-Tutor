@@ -128,6 +128,9 @@ export async function getTopicsForStudent(
       weeks,
     });
   }
+  // Order topics by the week they begin, so the grid reads in path order:
+  // the first card starts at Week 1, the next at the following week, and so on.
+  cards.sort((a, b) => (a.weeks[0] ?? Infinity) - (b.weeks[0] ?? Infinity));
   return cards;
 }
 
