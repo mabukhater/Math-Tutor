@@ -8,7 +8,7 @@ import { markPassagePassed } from "@/lib/readingServer";
 // paragraph + hint) so the child is sent back into the text. When the block
 // finishes, pass/fail against the threshold and unlock the next passage.
 export async function POST(req: Request) {
-  const { studentId, blockId, questionId, selectedIndex, responseTimeMs } = await req.json();
+  const { studentId, blockId, questionId, selectedIndex, responseTimeMs, hintUsed } = await req.json();
   if (!studentId || !blockId || !questionId || typeof selectedIndex !== "number")
     return NextResponse.json({ error: "bad request" }, { status: 400 });
   const rt =
@@ -54,6 +54,7 @@ export async function POST(req: Request) {
     selected_index: selectedIndex,
     is_correct: correct,
     response_time_ms: rt,
+    hint_used: hintUsed === true,
   });
 
   // Per-passage stats (for the path accuracy display).

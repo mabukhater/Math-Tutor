@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, Cross, Trophy } from "@/components/icons";
 import { QuestionNav } from "@/components/QuestionNav";
+import { QuestionTags, difficultyTag } from "@/components/QuestionTags";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -15,6 +16,8 @@ interface Question {
   id: string;
   stem: string;
   options: string[];
+  difficulty?: number | null;
+  hintParagraph?: number | null;
 }
 type Locator = { paragraph: number; hint: string };
 // A finished question, kept so the child can jump back and review it.
@@ -43,6 +46,7 @@ interface Resp {
   blockId?: string;
   title?: string;
   paragraphs?: Para[];
+  tags?: { grade: string; curriculum: string; topic: string } | null;
   threshold: number;
   total: number;
   numCompleted: number;
@@ -90,6 +94,8 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
   const [result, setResult] = useState<Resp | null>(null);
   const [showPassage, setShowPassage] = useState(false);
   const [highlight, setHighlight] = useState<number | null>(null);
+  const [tags, setTags] = useState<{ grade: string; curriculum: string; topic: string } | null>(null);
+  const [hintUsed, setHintUsed] = useState(false);
   const [young, setYoung] = useState(false);
   const [history, setHistory] = useState<Answered[]>([]);
   const [reviewIndex, setReviewIndex] = useState<number | null>(null);
@@ -128,6 +134,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setLimited(false);
     setBlockId(d.blockId ?? "");
     setTitle(d.title ?? "");
+    setTags(d.tags ?? null);
     setParagraphs((d.paragraphs ?? []) as Para[]);
     setYoung((d.grade ?? 9) <= 3);
     setThreshold(d.threshold);
@@ -139,6 +146,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setFeedback(null);
     setResult(null);
     setHighlight(null);
+    setHintUsed(false);
     setHistory(d.answered ?? []); // seed history so a resumed block is consistent
     setReviewIndex(null);
     // If they already started, jump back into questions; else read first.
@@ -157,7 +165,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     const r = await fetch("/api/reading/answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId, blockId, questionId: question.id, selectedIndex: i, responseTimeMs }),
+      body: JSON.stringify({ studentId, blockId, questionId: question.id, selectedIndex: i, responseTimeMs, hintUsed }),
     });
     const d: Resp = await r.json();
     if (!r.ok) {
@@ -199,6 +207,7 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
     setSelected(null);
     setFeedback(null);
     setHighlight(null);
+    setHintUsed(false);
     setPhase("question");
   }
 
@@ -265,6 +274,16 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
           {showPassage ? "Hide passage" : "Show passage"}
         </button>
       </div>
+      {tags && (
+        <QuestionTags
+          items={[
+            { label: tags.grade },
+            { label: tags.curriculum },
+            { label: tags.topic },
+            !reviewing && phase !== "result" ? difficultyTag(question?.difficulty) : null,
+          ]}
+        />
+      )}
       {total > 0 && (
         <QuestionNav
           total={total}
@@ -361,6 +380,19 @@ export default function ReadingBlock({ studentId, passageId }: { studentId: stri
       {showPassage && <Passage title={title} paragraphs={paragraphs} highlight={highlight} />}
       <h2 style={{ marginTop: "0.5rem" }}>{question?.stem}</h2>
       <OptionList view={liveView} interactive={phase === "question"} onPick={answer} />
+      {phase === "question" && question?.hintParagraph != null && (
+        <button
+          className="q-link"
+          type="button"
+          onClick={() => {
+            setShowPassage(true);
+            setHighlight(question.hintParagraph ?? null);
+            setHintUsed(true);
+          }}
+        >
+          💡 Get a hint{hintUsed ? " — shown above" : ""}
+        </button>
+      )}
       {phase === "feedback" && feedback && (
         <>
           <ReadingFeedback view={liveView} />

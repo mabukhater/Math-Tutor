@@ -14,12 +14,13 @@ interface QView {
   selectedIndex: number | null;
   correct: boolean | null;
   tries: number;
+  hintUsed?: boolean;
 }
 
 // Latest attempt per question + how many times it was tried.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function latestByQuestion(attempts: any[], idKey: string) {
-  const latest = new Map<string, { selected_index: number; is_correct: boolean }>();
+  const latest = new Map<string, { selected_index: number; is_correct: boolean; hint_used?: boolean }>();
   const tries = new Map<string, number>();
   for (const a of attempts ?? []) {
     const qid = a[idKey] as string;
@@ -47,6 +48,7 @@ function QuestionReview({ v, n }: { v: QView; n: number }) {
           </span>
         )}
         {v.tries > 1 && <span className="muted" style={{ fontSize: "0.78rem" }}>· {v.tries} tries</span>}
+        {v.hintUsed && <span className="rev-tag hint">💡 hint used</span>}
       </div>
       <div className="rev-stem">{v.stem}</div>
       <div className="rev-opts">
@@ -144,7 +146,7 @@ export default async function AttemptDetail({
       .order("difficulty", { ascending: true });
     const { data: atts } = await admin
       .from("attempts")
-      .select("reading_question_id, selected_index, is_correct, answered_at")
+      .select("reading_question_id, selected_index, is_correct, answered_at, hint_used")
       .eq("student_id", studentId)
       .not("reading_question_id", "is", null)
       .order("answered_at", { ascending: false });
@@ -158,6 +160,7 @@ export default async function AttemptDetail({
         selectedIndex: a?.selected_index ?? null,
         correct: a ? a.is_correct : null,
         tries: tries.get(q.id as string) ?? 0,
+        hintUsed: a?.hint_used ?? false,
       };
     });
   } else {

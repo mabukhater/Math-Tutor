@@ -6,6 +6,7 @@ import { Check, Cross, Trophy } from "@/components/icons";
 import { Markdown } from "@/components/Markdown";
 import { QuestionVisual, type Visual } from "@/components/QuestionVisual";
 import { QuestionNav } from "@/components/QuestionNav";
+import { QuestionTags, difficultyTag } from "@/components/QuestionTags";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -14,6 +15,7 @@ interface Question {
   stem: string;
   options: string[];
   visual?: Visual | null;
+  difficulty?: number | null;
 }
 interface Lesson {
   title: string;
@@ -49,6 +51,7 @@ type Phase = "loading" | "learn" | "question" | "feedback" | "result" | "error";
 interface Resp {
   blockId?: string;
   skillName?: string;
+  tags?: { grade: string; curriculum: string; topic: string } | null;
   threshold: number;
   total: number;
   numCompleted: number;
@@ -74,6 +77,8 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   const [errMsg, setErrMsg] = useState("");
   const [blockId, setBlockId] = useState("");
   const [skillName, setSkillName] = useState("");
+  const [tags, setTags] = useState<{ grade: string; curriculum: string; topic: string } | null>(null);
+  const [lessonRevisit, setLessonRevisit] = useState(false);
   const [young, setYoung] = useState(false);
   const [threshold, setThreshold] = useState(80);
   const [total, setTotal] = useState(0);
@@ -122,6 +127,8 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
       setLimited(false);
       setBlockId(d.blockId ?? "");
       setSkillName(d.skillName ?? "");
+      setTags(d.tags ?? null);
+      setLessonRevisit(false);
       setYoung((d.grade ?? 9) <= 3);
       setThreshold(d.threshold);
       setTotal(d.total);
@@ -230,8 +237,15 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
         <div className="article" style={{ marginTop: "0.5rem" }}>
           <Markdown content={lesson.body} />
         </div>
-        <button className="btn" style={{ marginTop: "1rem" }} onClick={() => setPhase("question")}>
-          Start the {total} questions
+        <button
+          className="btn"
+          style={{ marginTop: "1rem" }}
+          onClick={() => {
+            setLessonRevisit(false);
+            setPhase("question");
+          }}
+        >
+          {lessonRevisit ? "Resume →" : `Start the ${total} questions`}
         </button>
       </Shell>
     );
@@ -254,6 +268,16 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
         </span>
       </div>
       <p className="q-skill">{skillName}</p>
+      {tags && (
+        <QuestionTags
+          items={[
+            { label: tags.grade },
+            { label: tags.curriculum },
+            { label: tags.topic },
+            !reviewing && phase !== "result" ? difficultyTag(question?.difficulty) : null,
+          ]}
+        />
+      )}
       {total > 0 && (
         <QuestionNav
           total={total}
@@ -359,6 +383,18 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
       <h2 style={{ marginTop: "0.25rem" }}>{question?.stem}</h2>
       {question?.visual && <QuestionVisual visual={question.visual} />}
       <OptionList view={liveView} interactive={phase === "question"} onPick={answer} />
+      {phase === "question" && lesson && (
+        <button
+          className="q-link"
+          type="button"
+          onClick={() => {
+            setLessonRevisit(true);
+            setPhase("learn");
+          }}
+        >
+          ← Go back to lesson
+        </button>
+      )}
       {phase === "feedback" && feedback && (
         <div className="feedback-box">
           <div className={"feedback-line " + (feedback.correct ? "ok" : "no")}>

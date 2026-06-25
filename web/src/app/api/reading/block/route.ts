@@ -84,7 +84,7 @@ export async function POST(req: Request) {
 
   const { data: passage } = await admin
     .from("passages")
-    .select("title, paragraphs")
+    .select("title, paragraphs, grade")
     .eq("id", passageId)
     .single();
 
@@ -94,10 +94,18 @@ export async function POST(req: Request) {
   if (idx < total) {
     const { data: q } = await admin
       .from("reading_questions")
-      .select("id, stem, options")
+      .select("id, stem, options, difficulty, locator")
       .eq("id", block.question_ids[idx])
       .single();
-    if (q) question = { id: q.id, stem: q.stem, options: q.options };
+    if (q)
+      question = {
+        id: q.id,
+        stem: q.stem,
+        options: q.options,
+        difficulty: (q.difficulty as number) ?? null,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        hintParagraph: (q.locator as any)?.paragraph ?? null,
+      };
   }
 
   const answered = await answeredReadingHistory(admin, student.id, block.question_ids.slice(0, idx));
@@ -106,6 +114,11 @@ export async function POST(req: Request) {
     blockId: block.id,
     title: passage?.title ?? "",
     paragraphs: passage?.paragraphs ?? [],
+    tags: {
+      grade: passage?.grade != null ? `Grade ${passage.grade}` : "",
+      curriculum: "Reading",
+      topic: "",
+    },
     threshold: block.threshold,
     total,
     numCompleted: block.num_completed,

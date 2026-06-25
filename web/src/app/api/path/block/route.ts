@@ -5,6 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { getPathForStudent, getOrCreateBlock } from "@/lib/pathServer";
 import { getWeekLesson } from "@/lib/lessonsServer";
+import { gradeLabel } from "@/lib/curriculum";
 import { toPublic } from "@/lib/placementServer";
 import { checkSubjectGate } from "@/lib/billing";
 
@@ -86,8 +87,25 @@ export async function POST(req: Request) {
     .select("id, name, curriculum_id, topic_id, grade")
     .eq("id", skillId)
     .single();
-  const lesson =
-    block.num_completed === 0 && skill ? await getWeekLesson(admin, skill) : null;
+  const { data: curr } = skill
+    ? await admin
+        .from("curricula")
+        .select("code, name, grade_noun, grade_offset")
+        .eq("id", skill.curriculum_id)
+        .maybeSingle()
+    : { data: null };
+  const { data: topic } = skill?.topic_id
+    ? await admin.from("topics").select("name").eq("id", skill.topic_id).maybeSingle()
+    : { data: null };
+  const tags = {
+    grade: curr
+      ? gradeLabel(curr.grade_noun, curr.grade_offset, skill?.grade ?? 0, curr.code)
+      : `Grade ${skill?.grade ?? ""}`,
+    curriculum: curr?.name ?? "",
+    topic: topic?.name ?? "",
+  };
+  // Returned on every question so "Go back to lesson" works mid-block, not just at the start.
+  const lesson = skill ? await getWeekLesson(admin, skill) : null;
 
   const total = block.question_ids.length;
   const idx = block.num_completed;
@@ -95,10 +113,14 @@ export async function POST(req: Request) {
   if (idx < total) {
     const { data: q } = await admin
       .from("questions")
-      .select("id, stem, options, visual")
+      .select("id, stem, options, visual, difficulty")
       .eq("id", block.question_ids[idx])
       .single();
-    if (q) question = toPublic({ id: q.id, stem: q.stem, options: q.options, visual: q.visual });
+    if (q)
+      question = {
+        ...toPublic({ id: q.id, stem: q.stem, options: q.options, visual: q.visual }),
+        difficulty: (q.difficulty as number) ?? null,
+      };
   }
 
   // Already-answered questions in this block, so a resumed block shows the right
@@ -109,6 +131,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     blockId: block.id,
     skillName: skill?.name ?? "",
+    tags,
     threshold: block.threshold,
     total,
     numCompleted: block.num_completed,
