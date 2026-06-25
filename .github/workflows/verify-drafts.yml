@@ -1,0 +1,38 @@
+name: Verify draft questions
+
+# Re-grade and vet ALL draft questions (any source), not just ai_authentic ones.
+# Older ai_generated drafts were never verified by the top-up/regen workflows
+# (which filter to --source ai_authentic), leaving some skills with too few
+# vetted questions to rotate on a retry. This clears that backlog. Idempotent:
+# verify only touches status='draft'; already-vetted questions are skipped.
+on:
+  workflow_dispatch:
+    inputs:
+      curriculum:
+        description: "Curriculum (or 'all')"
+        type: choice
+        options: [common_core, singapore, uk_national, ontario, all]
+        default: common_core
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r generator/requirements.txt
+      - name: Verify drafts
+        run: |
+          if [ "${{ inputs.curriculum }}" = "all" ]; then
+            python generator/verify_answers.py --status draft --apply --workers 4 --model claude-sonnet-4-6
+          else
+            python generator/verify_answers.py --curriculum "${{ inputs.curriculum }}" --status draft --apply --workers 4 --model claude-sonnet-4-6
+          fi
