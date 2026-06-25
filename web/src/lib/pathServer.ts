@@ -19,6 +19,7 @@ export interface Week {
   name: string;
   status: WeekStatus;
   accuracy: number | null;
+  week: number; // 1-based position in the grade's sequence (the "Week N" label)
 }
 
 export interface Month {
@@ -113,7 +114,9 @@ export async function getPathForStudent(
 
   const ordered: Month[] = [];
   const monthByTopic = new Map<string, Month>();
+  let weekNum = 0;
   for (const s of playable.filter((s) => s.grade === effectiveGrade)) {
+    weekNum++;
     const p = progBy.get(s.id);
     const status: WeekStatus = reallyPassed(s) ? "passed" : s.id === activeSkillId ? "active" : "locked";
     const accuracy =
@@ -132,7 +135,7 @@ export async function getPathForStudent(
       monthByTopic.set(code, month);
       ordered.push(month);
     }
-    month.weeks.push({ skillId: s.id, name: s.name, status, accuracy });
+    month.weeks.push({ skillId: s.id, name: s.name, status, accuracy, week: weekNum });
   }
 
   return { months: ordered, activeSkillId, threshold: student.pass_threshold, effectiveGrade };

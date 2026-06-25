@@ -18,6 +18,7 @@ export interface TopicCard {
   mastered: number; // box >= 4
   attempted: number; // any attempts
   hasLesson: boolean; // a published "learn" lesson exists at this grade
+  weeks: number[]; // "Week N" path positions this topic covers (sorted)
 }
 
 /**
@@ -29,14 +30,19 @@ export async function getTopicsForStudent(
   admin: SupabaseClient,
   student: StudentRow,
 ): Promise<TopicCard[]> {
-  // Topic skills at this grade.
+  // Topic skills at this grade, in path order (so we can number the weeks).
   const { data: skills } = await admin
     .from("skills")
-    .select("id, topic_id")
+    .select("id, topic_id, sequence_position")
     .eq("curriculum_id", student.curriculum_id)
     .eq("grade", student.nominal_grade)
-    .not("topic_id", "is", null);
-  const skillRows = (skills ?? []) as { id: string; topic_id: string }[];
+    .not("topic_id", "is", null)
+    .order("sequence_position", { ascending: true });
+  const skillRows = (skills ?? []) as {
+    id: string;
+    topic_id: string;
+    sequence_position: number;
+  }[];
   if (skillRows.length === 0) return [];
 
   const skillIds = skillRows.map((s) => s.id);
@@ -50,6 +56,18 @@ export async function getTopicsForStudent(
   const skillsWithQuestions = new Set(
     ((vetted ?? []) as { skill_id: string }[]).map((r) => r.skill_id),
   );
+
+  // Global "Week N" numbers: a skill's position among the grade's playable
+  // skills (those with vetted questions), in sequence order. This matches the
+  // numbering on the learning path, so a topic's week tags point at the exact
+  // weeks the child climbs there.
+  const weekBySkill = new Map<string, number>();
+  let weekNum = 0;
+  for (const s of skillRows) {
+    if (!skillsWithQuestions.has(s.id)) continue;
+    weekNum++;
+    weekBySkill.set(s.id, weekNum);
+  }
 
   // Student progress over those skills.
   const { data: prog } = await admin
@@ -94,6 +112,10 @@ export async function getTopicsForStudent(
         if (p.total_attempts > 0 || p.passed_at) attempted++;
       }
     }
+    const weeks = topicSkills
+      .map((s) => weekBySkill.get(s.id))
+      .filter((n): n is number => n != null)
+      .sort((a, b) => a - b);
     cards.push({
       id: t.id as string,
       code: t.code as string,
@@ -103,6 +125,7 @@ export async function getTopicsForStudent(
       mastered,
       attempted,
       hasLesson: topicsWithLesson.has(t.id as string),
+      weeks,
     });
   }
   return cards;

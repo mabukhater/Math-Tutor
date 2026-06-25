@@ -99,6 +99,15 @@ export default async function TopicsPage({
                   </div>
                   <div className="topic-name">{t.name}</div>
                   {t.hasLesson && <span className="topic-learn">Learn + practice</span>}
+                  {t.weeks.length > 0 && (
+                    <div className="topic-weeks">
+                      {t.weeks.map((w) => (
+                        <span key={w} className="topic-week">
+                          Week {w}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   <div className="topic-foot">
                     <Ring pct={pct} />
                     <span className="topic-status">

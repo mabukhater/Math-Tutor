@@ -81,14 +81,14 @@ export default async function LearnPage({
                 {path.months.map((m) => (
                   <div key={m.topicCode} className="ladder-month">
                     <div className="ladder-month-banner clay-banner">📘 {m.topicName}</div>
-                    {m.weeks.map((w, wi) => (
+                    {m.weeks.map((w) => (
                       <Link
                         key={w.skillId}
                         href={`/learn/${studentId}/week/${w.skillId}`}
                         className={"rung clay-rung " + w.status}
                       >
                         <div className="rung-node">
-                          {w.status === "passed" ? <Check size={22} /> : <span>{wi + 1}</span>}
+                          {w.status === "passed" ? <Check size={22} /> : <span>{w.week}</span>}
                         </div>
                         <div className="rung-info">
                           <div className="rung-name">{w.name}</div>

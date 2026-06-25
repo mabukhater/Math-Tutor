@@ -160,6 +160,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .topic-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--green-soft); display: flex; align-items: center; justify-content: center; }
 .topic-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--ink, #15402f); line-height: 1.2; }
 .topic-learn { font-size: 0.68rem; font-weight: 700; color: var(--green-deep); background: var(--green-soft); padding: 0.1rem 0.4rem; border-radius: 99px; align-self: flex-start; }
+.topic-weeks { display: flex; flex-wrap: wrap; gap: 4px; }
+.topic-week { font-size: 0.66rem; font-weight: 700; color: #6b7280; background: #f3f4f6; border: 1px solid var(--line); padding: 0.06rem 0.4rem; border-radius: 99px; line-height: 1.5; white-space: nowrap; }
 
 /* ====================== Early-access A/B landing ====================== */
 .early-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: linear-gradient(180deg, #f3faf7 0%, #eef6f2 100%); }
