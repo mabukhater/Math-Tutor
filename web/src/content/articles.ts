@@ -11,6 +11,75 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-telling-time-on-an-analog-clock",
+    title: "How to Help Your Child Understand Telling Time on an Analog Clock",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-06-25",
+    excerpt:
+      "A step-by-step guide to teaching kids to read an analog clock, from the hour hand to the tricky minutes in between.",
+    body: `## Why Analog Clocks Still Matter
+
+In a world of glowing digital displays, you might wonder whether reading an analog clock is a skill worth teaching. It is. Telling time on a clock face builds skills that go far beyond knowing when dinner is ready. Children practice counting by fives, skip counting, fractions of a circle, and the idea that one quantity can be measured two ways at once. Most curricula introduce time in grades 1 and 2 and expect confident reading to the minute by grade 3.
+
+The good news is that time is one of the easier topics to practice at home, because clocks are everywhere.
+
+## Start With the Hour Hand Alone
+
+The most common mistake is teaching both hands at once. Children get overwhelmed trying to track two moving pointers that mean completely different things.
+
+Instead, cover the minute hand or use a clock with only the short hand visible. Have your child say what hour it is and what comes next.
+
+- Point to the short hand and ask, what number is it closest to?
+- Practice on the hour first: 3 o'clock, 7 o'clock, 12 o'clock.
+- Then notice when the hour hand sits between two numbers. If it is between 4 and 5, the time is somewhere in the four o'clock hour.
+
+This last idea is powerful. Many kids can read a clock at exactly 4:00 but freeze at 4:35 because the hour hand has drifted past the 4. Naming the hour as a stretch of time, not a single point, fixes this.
+
+## Bring In the Minute Hand With Counting by Fives
+
+Once the hour hand feels comfortable, introduce the long hand. The key insight your child needs is that the numbers on the clock face mean something different for minutes.
+
+- The 1 means 5 minutes, the 2 means 10 minutes, and so on.
+- Practice skip counting around the face: 5, 10, 15, 20, 25, 30.
+- Connect it to things they know: the 3 is a quarter past, the 6 is half past, the 9 is a quarter to.
+
+A fun trick is to have your child walk their finger around the clock counting by fives out loud. The physical motion plus the counting cements the pattern.
+
+## Tackling the Minutes In Between
+
+Reading to the exact minute, like 2:47, is the final hurdle. Here the small tick marks between numbers come into play.
+
+Teach your child to find the nearest number first, then count single minutes from there.
+
+- For 2:47, land on the 9, which is 45 minutes.
+- Count the extra ticks: 46, 47.
+- Read it together: 2:47.
+
+Many children find counting backward harder, so practice the second half of the clock more often than the first.
+
+## Everyday Practice That Sticks
+
+Time is best learned in context, not on worksheets alone. Weave it into daily life so the skill feels useful rather than abstract.
+
+- Put an analog clock in your child's room or the kitchen at eye level.
+- Ask time questions throughout the day: we leave in 20 minutes, what time will the clock show?
+- Connect time to events your child cares about, like a show, a meal, or bedtime.
+- Compare the analog clock with a digital one so your child sees the two systems describing the same moment.
+
+Elapsed time, figuring out how long until something happens, is the next step and often appears in word problems. Start simple with whole hours before moving to mixed times.
+
+## Common Sticking Points to Watch For
+
+A few predictable confusions trip up most learners. Knowing them in advance helps you stay patient.
+
+- Mixing up the hands. Remind your child the short hand is for hours and the long hand is for minutes.
+- Reading the hour wrong when the hour hand is past a number, such as calling 5:55 by the wrong hour.
+- Forgetting that minute numbers are counted in fives, not ones.
+
+Keep sessions short and frequent. A couple of minutes of clock talk each day will do far more than a long, frustrating lesson once a week. Before long, your child will glance up, read the time, and move on without a second thought.`,
+  },
+  {
     slug: "why-estimation-is-a-math-superpower",
     title: "Why Estimation Is a Math Superpower (and How to Teach It)",
     category: "Math Tips",
