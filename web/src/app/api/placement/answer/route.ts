@@ -97,7 +97,21 @@ export async function POST(req: Request) {
 
   const mustFinish = newState.done || nextQ === null;
   if (mustFinish) {
-    const estimatedIndex = newState.done ? newState.estimatedIndex! : clamp(newState.low);
+    let estimatedIndex = newState.done ? newState.estimatedIndex! : clamp(newState.low);
+    // Keep placement inside the grade the parent set. The diagnostic can estimate
+    // a spot in an adjacent grade; honouring that would put current_skill_index in
+    // another grade, so the kid's path (labelled by the skill's grade) would
+    // silently disagree with the dashboard's nominal_grade — the exact mismatch a
+    // parent sees as "Grade 4 here, Grade 5 there". The parent owns the grade;
+    // placement only finds WHERE within it to start.
+    const gradeIdx = Object.keys(metaByIndex)
+      .map(Number)
+      .filter((i) => metaByIndex[i]?.grade === student.nominal_grade);
+    if (gradeIdx.length) {
+      const gMin = Math.min(...gradeIdx);
+      const gMax = Math.max(...gradeIdx);
+      estimatedIndex = Math.max(gMin, Math.min(gMax, estimatedIndex));
+    }
     await admin
       .from("placement_sessions")
       .update({
