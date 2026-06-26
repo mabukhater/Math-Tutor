@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-build-reading-comprehension-not-just-speed",
+    title: "How to Build Your Child's Reading Comprehension (Not Just Reading Speed)",
+    category: "Reading",
+    readMinutes: 3,
+    date: "2026-06-26",
+    excerpt:
+      "Your child reads the words but can't tell you what happened? Here are practical ways to grow real comprehension at home.",
+    body: `## When Reading the Words Isn't Enough
+
+Many parents notice the same surprising thing: their child can sound out every word on the page, read quickly and smoothly, and yet struggle to answer a simple question about what they just read. Decoding and comprehension are two different skills. One is about turning letters into sounds. The other is about turning those sounds into meaning, and that second skill needs its own kind of practice.
+
+The good news is that comprehension grows with everyday habits, not expensive programs. Here is how to help it along.
+
+## Slow Down on Purpose
+
+Speed can hide a lack of understanding. A child racing to finish often skips the mental work of picturing the story or connecting ideas. Try asking your child to read a paragraph and then pause.
+
+- Ask: What just happened in your own words?
+- Ask: What do you think happens next, and why?
+- If they can't answer, reread that section together.
+
+This isn't about catching mistakes. It is about teaching your child that reading is supposed to make sense, and that it is normal to stop and check.
+
+## Build Background Knowledge
+
+Comprehension depends heavily on what a child already knows. A story about a farm makes more sense to a child who has visited one. A passage about volcanoes lands better if they have seen pictures or watched a short clip.
+
+You don't need to teach formal lessons. Talk about the world during car rides, cooking, and walks. Read a wide range of topics rather than the same series over and over. The more a child knows about animals, weather, history, and how things work, the more every future text will make sense.
+
+## Teach the Question Behind the Question
+
+Comprehension questions usually fall into a few types, and naming them helps children answer with purpose.
+
+- Right there: the answer is stated directly in the text.
+- Think and search: the answer is in the text but spread across sentences.
+- Author and you: the answer combines clues from the text with your own thinking.
+
+When your child gets stuck, ask which type of question it is. This stops the guessing and points them back to where the answer actually lives.
+
+## Make Predictions and Connections
+
+Strong readers are always quietly asking themselves questions as they go. You can model this out loud while reading together.
+
+- I wonder why she did that.
+- This reminds me of the time we got lost at the fair.
+- I think this character is going to change his mind.
+
+When you think aloud like this, you show your child the invisible work that happens inside a good reader's head. Over time they start doing it on their own.
+
+## Use Retelling as a Daily Tool
+
+Retelling is one of the simplest and most powerful comprehension exercises. After a chapter or short passage, ask your child to retell it from beginning to end. A good retelling includes the main characters, the problem, the important events in order, and how things turned out.
+
+If the retelling is jumbled, that tells you where comprehension broke down. You can gently guide them back: What came first? What was the big problem in this part?
+
+## Match the Book to the Reader
+
+A book that is too hard drains all the energy a child needs for thinking about meaning. A useful guideline is the five-finger check: if a child misses about five words on a single page, the book may be too difficult for independent reading right now. Save harder books for reading together, and let independent reading happen at a comfortable level.
+
+## Keep It Conversational
+
+The biggest comprehension boost is talking about books the way you would talk about a movie you both enjoyed. Ask what your child liked, what surprised them, and what they would have done differently. When reading feels like a conversation rather than a test, children relax and start thinking more deeply.
+
+Comprehension grows slowly, one curious question at a time. A few minutes of thoughtful talk after reading does more than another worksheet ever could.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-telling-time-on-an-analog-clock",
     title: "How to Help Your Child Understand Telling Time on an Analog Clock",
     category: "Math Tips",
