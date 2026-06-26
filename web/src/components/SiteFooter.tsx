@@ -34,8 +34,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="footer-base">
-        © {new Date().getFullYear()} Astute Academy · Curriculum-aligned daily math practice for
-        grades 1–8.
+        © {new Date().getFullYear()} Astute Academy · An Astute A+ Student · Curriculum-aligned
+        math &amp; reading for grades 1–8.
       </div>
     </footer>
   );

@@ -83,6 +83,17 @@ export default async function Landing() {
           Math &amp; reading that <span className="pop-green">follow</span> your child
           <span className="pop-amber">.</span>
         </h1>
+        <p
+          style={{
+            fontWeight: 800,
+            color: "var(--green)",
+            fontSize: "1.1rem",
+            letterSpacing: "0.01em",
+            margin: "0 0 0.6rem",
+          }}
+        >
+          An Astute A+ Student
+        </p>
         <p className="lead">
           Curriculum-aligned math and leveled reading comprehension. A quick check finds your
           child&apos;s level, then a daily climb of lessons and passages keeps them growing.

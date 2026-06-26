@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 import { JsonLd } from "@/components/JsonLd";
 
-const SITE = "https://astute.academy";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://astute.academy";
 const PROVIDER = { "@type": "EducationalOrganization", name: "Astute Academy", url: SITE };
 const COURSES_SCHEMA = {
   "@context": "https://schema.org",

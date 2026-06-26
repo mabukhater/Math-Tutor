@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 // proxy is the container's internal 0.0.0.0:8080, which the browser can't reach.
 function baseUrl(req: Request): string {
   const proto = req.headers.get("x-forwarded-proto") ?? "https";
-  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host") ?? "astute.academy";
+  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host") ?? "astutent.com";
   return `${proto}://${host}`;
 }
 

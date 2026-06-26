@@ -3,7 +3,7 @@ import "./globals.css";
 import { PWARegister } from "@/components/PWARegister";
 import { JsonLd } from "@/components/JsonLd";
 
-const SITE = "https://astute.academy";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://astute.academy";
 
 const ORG_SCHEMA = {
   "@context": "https://schema.org",

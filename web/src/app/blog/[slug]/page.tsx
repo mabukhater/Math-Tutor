@@ -5,7 +5,7 @@ import { ARTICLES, getArticle, getRelated, getSources } from "@/content/articles
 import { MarketingShell } from "@/components/MarketingShell";
 import { Markdown } from "@/components/Markdown";
 
-const SITE = "https://astute.academy";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://astute.academy";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
