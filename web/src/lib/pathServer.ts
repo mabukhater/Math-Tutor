@@ -55,6 +55,7 @@ interface SkillRow {
 export async function getPathForStudent(
   admin: SupabaseClient,
   student: PathStudent,
+  opts?: { vetted?: Set<string> },
 ): Promise<PathView> {
   const { data: skills } = await admin
     .from("skills")
@@ -73,13 +74,18 @@ export async function getPathForStudent(
   const ids = all.map((s) => s.id);
   // Set of skills that have at least one vetted question. Computed in the DB
   // (distinct, one row per skill) because selecting the raw question rows hits
-  // PostgREST's 1000-row cap and silently drops later grades' weeks.
-  const { data: vetted } = await admin.rpc("skills_with_vetted", {
-    cur: student.curriculum_id,
-  });
-  const withQ = new Set(
-    ((vetted ?? []) as { skill_id: string }[]).map((r) => r.skill_id),
-  );
+  // PostgREST's 1000-row cap and silently drops later grades' weeks. Callers that
+  // load several children at once (the dashboard) can pass a precomputed set to
+  // avoid re-running this heavy DISTINCT-over-questions RPC once per child.
+  let withQ: Set<string>;
+  if (opts?.vetted) {
+    withQ = opts.vetted;
+  } else {
+    const { data: vetted } = await admin.rpc("skills_with_vetted", {
+      cur: student.curriculum_id,
+    });
+    withQ = new Set(((vetted ?? []) as { skill_id: string }[]).map((r) => r.skill_id));
+  }
 
   const { data: prog } = await admin
     .from("student_skill_progress")

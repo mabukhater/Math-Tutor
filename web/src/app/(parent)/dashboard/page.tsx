@@ -48,11 +48,15 @@ export default async function Dashboard() {
   // "Change grade" control. Siblings often share a curriculum, so compute once.
   const curIds = [...new Set(list.map((s) => s.curriculum_id as string))];
   const gradeOptsByCur = new Map<string, { grade: number; label: string }[]>();
+  // Reused in the per-child loop below so we don't re-run the heavy
+  // skills_with_vetted RPC once per child for the same curriculum.
+  const vetByCur = new Map<string, Set<string>>();
   for (const cur of curIds) {
     const sample = list.find((s) => s.curriculum_id === cur);
     const { data: cs } = await admin.from("skills").select("id, grade").eq("curriculum_id", cur);
     const { data: vet } = await admin.rpc("skills_with_vetted", { cur });
     const vetSet = new Set(((vet ?? []) as { skill_id: string }[]).map((r) => r.skill_id));
+    vetByCur.set(cur, vetSet);
     const grades = [
       ...new Set(
         ((cs ?? []) as { id: string; grade: number }[])
@@ -88,7 +92,7 @@ export default async function Dashboard() {
     };
     let math: { passed: number; total: number } | null = null;
     if (s.placement_completed) {
-      const path = await getPathForStudent(admin, stud);
+      const path = await getPathForStudent(admin, stud, { vetted: vetByCur.get(s.curriculum_id as string) });
       const weeks = path.months.flatMap((m) => m.weeks);
       math = { passed: weeks.filter((w) => w.status === "passed").length, total: weeks.length };
     }
