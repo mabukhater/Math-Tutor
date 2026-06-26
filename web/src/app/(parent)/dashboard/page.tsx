@@ -44,6 +44,36 @@ export default async function Dashboard() {
     (kidLogins ?? []).map((k) => [k.student_id as string, k.username as string]),
   );
 
+  // Grade levels that actually have vetted content, per curriculum — drives the
+  // "Change grade" control. Siblings often share a curriculum, so compute once.
+  const curIds = [...new Set(list.map((s) => s.curriculum_id as string))];
+  const gradeOptsByCur = new Map<string, { grade: number; label: string }[]>();
+  for (const cur of curIds) {
+    const sample = list.find((s) => s.curriculum_id === cur);
+    const { data: cs } = await admin.from("skills").select("id, grade").eq("curriculum_id", cur);
+    const { data: vet } = await admin.rpc("skills_with_vetted", { cur });
+    const vetSet = new Set(((vet ?? []) as { skill_id: string }[]).map((r) => r.skill_id));
+    const grades = [
+      ...new Set(
+        ((cs ?? []) as { id: string; grade: number }[])
+          .filter((r) => vetSet.has(r.id))
+          .map((r) => r.grade),
+      ),
+    ].sort((a, b) => a - b);
+    gradeOptsByCur.set(
+      cur,
+      grades.map((g) => ({
+        grade: g,
+        label: gradeLabel(
+          curField(sample?.curricula, "grade_noun"),
+          curField(sample?.curricula, "grade_offset"),
+          g,
+          curField(sample?.curricula, "code"),
+        ),
+      })),
+    );
+  }
+
   const summaries = new Map<
     string,
     { math: { passed: number; total: number } | null; reading: { passed: number; total: number } }
@@ -76,6 +106,7 @@ export default async function Dashboard() {
       s.nominal_grade,
       curField(s.curricula, "code"),
     ),
+    gradeOptions: gradeOptsByCur.get(s.curriculum_id as string) ?? [],
     placement: s.placement_completed,
     yearPlan: !!s.year_plan_id,
     threshold: s.pass_threshold,

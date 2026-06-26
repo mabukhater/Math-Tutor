@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ThresholdControl } from "@/components/ThresholdControl";
+import { GradeControl } from "@/components/GradeControl";
 import { KidLoginManager } from "@/components/KidLoginManager";
 import { DeleteChildButton } from "@/components/DeleteChildButton";
 
@@ -11,6 +12,7 @@ export interface Kid {
   name: string;
   grade: number;
   gradeLabel: string;
+  gradeOptions: { grade: number; label: string }[];
   placement: boolean;
   yearPlan: boolean;
   threshold: number;
@@ -88,6 +90,7 @@ function FullCard({ k }: { k: Kid }) {
         <SubjectButtons k={k} />
       </div>
       <div className="child-controls">
+        <GradeControl studentId={k.id} name={k.name} value={k.grade} options={k.gradeOptions} />
         <ThresholdControl studentId={k.id} value={k.threshold} />
         <div className="card-actions">
           <KidLoginManager studentId={k.id} username={k.username} />
