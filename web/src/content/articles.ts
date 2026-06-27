@@ -11,6 +11,78 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-memorize-sight-words-without-the-tears",
+    title: "How to Help Your Child Memorize Sight Words Without the Tears",
+    category: "Reading",
+    readMinutes: 3,
+    date: "2026-06-27",
+    excerpt:
+      "A calm, practical guide to teaching sight words at home, with games and routines that build instant word recognition.",
+    body: `## What Sight Words Are and Why They Matter
+
+Sight words are the high-frequency words a child should recognize instantly, without sounding them out. Words like the, was, said, and they show up on nearly every page your child reads. Many of them break the usual phonics rules, which is exactly why they trip kids up. The word was does not sound the way it looks, so trying to decode it letter by letter leads to frustration.
+
+When a child recognizes these words automatically, their brain is freed up to focus on meaning instead of grinding through each word. That is why fluent readers seem to glide through a sentence: a big chunk of it is already stored as instant recognition.
+
+## Start Small and Stay Consistent
+
+The most common mistake is handing a child a list of fifty words and expecting progress. That overwhelms everyone. Instead:
+
+- Work on five words at a time, no more.
+- Practice for five to ten minutes a day rather than one long weekend session.
+- Only add a new word once the previous ones are solid.
+- Keep mastered words in rotation so they do not fade.
+
+Short and frequent beats long and rare every single time. A child who sees a word briefly each day for a week will remember it far better than one who stares at it for an hour once.
+
+## Games That Actually Work
+
+Drilling flashcards in silence is the fastest route to tears. Turn recognition into play instead.
+
+### Word hunt
+
+Write each target word on a sticky note and hide them around a room. Call out a word and let your child race to find it. Reading the word to confirm the find is the practice in disguise.
+
+### Swat the word
+
+Spread cards on the table and give your child a fly swatter or a spatula. Say a word and they swat it. Kids love the speed and the silliness, and the pressure of memorization disappears.
+
+### Build and read
+
+Use magnetic letters or letter tiles. Say a word, have your child build it, then read it back. Spelling and reading reinforce each other.
+
+### Spot it in the wild
+
+When you read a bedtime story together, pause and ask your child to find the word they have been learning. Seeing it in a real book proves the practice has a purpose.
+
+## Make It Multisensory
+
+Children remember more when more of the body is involved. Try having your child:
+
+- Trace the word in sand, salt, or shaving cream on a tray.
+- Clap or stomp once for each letter while spelling aloud.
+- Write the word in chalk on the driveway in giant letters.
+- Say the word, spell it, then say it again in a rhythm.
+
+These approaches help kids who struggle to sit still, and they make the practice feel like an activity rather than a test.
+
+## When a Word Just Will Not Stick
+
+Every child has a stubborn word or two. Do not panic and do not pile on pressure. Try these instead:
+
+- Connect it to something memorable. The word said can become an inside joke if you read it in a silly voice every time.
+- Highlight the tricky part. In friend, point out that it has a fri sound followed by end.
+- Take a break from it and come back in a few days. Sometimes the brain needs time to settle.
+
+Forcing a word that is not landing usually makes it worse. Move on, keep practicing the others, and circle back.
+
+## Celebrate Progress, Not Perfection
+
+Keep a simple chart of words your child has mastered and watch it grow. Seeing the list lengthen is genuinely motivating. Praise effort and persistence rather than speed, and read together every day so all those words have a place to live.
+
+With a few minutes of playful practice each day, sight words shift from a chore into a quiet win. Your child gains confidence, reading becomes smoother, and the tears stay where they belong: out of story time.`,
+  },
+  {
     slug: "how-to-build-reading-comprehension-not-just-speed",
     title: "How to Build Your Child's Reading Comprehension (Not Just Reading Speed)",
     category: "Reading",
