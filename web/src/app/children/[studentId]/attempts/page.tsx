@@ -41,7 +41,10 @@ function flatten(
       pct: pct(b.num_correct, total),
       passed: b.passed,
       threshold: b.threshold,
-      date: b.created_at,
+      // Date a try by when it was finished, not when the lesson block was first
+      // created — a child can start a lesson one day and finish it the next, and
+      // it should count (and filter) as the day they actually did the work.
+      date: b.completed_at ?? b.created_at,
     });
   }
   return rows;
@@ -71,12 +74,12 @@ export default async function AttemptsPage({
   const [{ data: pb }, { data: rb }] = await Promise.all([
     admin
       .from("path_blocks")
-      .select("skill_id, num_correct, question_ids, passed, threshold, created_at, skills(name)")
+      .select("skill_id, num_correct, question_ids, passed, threshold, created_at, completed_at, skills(name)")
       .eq("student_id", studentId)
       .order("created_at", { ascending: true }),
     admin
       .from("reading_blocks")
-      .select("passage_id, num_correct, question_ids, passed, threshold, created_at, passages(title)")
+      .select("passage_id, num_correct, question_ids, passed, threshold, created_at, completed_at, passages(title)")
       .eq("student_id", studentId)
       .order("created_at", { ascending: true }),
   ]);
