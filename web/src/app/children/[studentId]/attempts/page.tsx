@@ -2,29 +2,12 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { Check, Cross } from "@/components/icons";
+import { AttemptsExplorer, type TryRow } from "@/components/AttemptsExplorer";
 
 export const dynamic = "force-dynamic";
 
 function pct(correct: number, total: number) {
   return total ? Math.round((100 * correct) / total) : 0;
-}
-function dateLabel(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
-}
-
-interface Attempt {
-  n: number;
-  pct: number;
-  passed: boolean | null;
-  threshold: number;
-  date: string;
-}
-interface Group {
-  name: string;
-  refId: string;
-  attempts: Attempt[];
-  best: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,69 +16,35 @@ function embedName(v: any): string {
   return e?.name ?? e?.title ?? "";
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function groupBlocks(blocks: any[], embedKey: string, idField: string): Group[] {
-  const by = new Map<string, Group>();
+// Flatten path/reading blocks into one row per try, numbering the tries per
+// lesson in date order (blocks come ordered by created_at ascending).
+function flatten(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  blocks: any[],
+  embedKey: string,
+  idField: string,
+  subject: "math" | "reading",
+): TryRow[] {
+  const counts = new Map<string, number>();
+  const rows: TryRow[] = [];
   for (const b of blocks ?? []) {
     const refId = b[idField] as string;
     if (!refId) continue;
-    if (!by.has(refId)) by.set(refId, { name: embedName(b[embedKey]) || "Untitled", refId, attempts: [], best: 0 });
-    const g = by.get(refId)!;
+    const n = (counts.get(refId) ?? 0) + 1;
+    counts.set(refId, n);
     const total = (b.question_ids as string[]).length;
-    const p = pct(b.num_correct, total);
-    g.attempts.push({ n: g.attempts.length + 1, pct: p, passed: b.passed, threshold: b.threshold, date: b.created_at });
-    if (b.passed !== null && p > g.best) g.best = p;
+    rows.push({
+      subject,
+      lessonName: embedName(b[embedKey]) || "Untitled",
+      refId,
+      n,
+      pct: pct(b.num_correct, total),
+      passed: b.passed,
+      threshold: b.threshold,
+      date: b.created_at,
+    });
   }
-  return [...by.values()];
-}
-
-function Attempts({
-  groups,
-  unit,
-  studentId,
-  kind,
-}: {
-  groups: Group[];
-  unit: string;
-  studentId: string;
-  kind: string;
-}) {
-  if (groups.length === 0)
-    return <p className="muted" style={{ marginTop: "0.5rem" }}>No {unit} attempts yet.</p>;
-  return (
-    <div className="attempt-list">
-      {groups.map((g) => (
-        <Link key={g.refId} href={`/children/${studentId}/attempts/${kind}/${g.refId}`} className="attempt-group link">
-          <div className="attempt-group-head">
-            <span className="attempt-name">{g.name}</span>
-            <span className="muted" style={{ fontSize: "0.8rem" }}>
-              {g.attempts.length} {g.attempts.length === 1 ? "try" : "tries"}
-              {g.best > 0 ? ` · best ${g.best}%` : ""}
-            </span>
-          </div>
-          <div className="attempt-chips">
-            {g.attempts.map((a) => {
-              const cls = a.passed === null ? "wip" : a.passed ? "pass" : "fail";
-              return (
-                <span key={a.n} className={"attempt-chip " + cls} title={`${dateLabel(a.date)} · pass mark ${a.threshold}%`}>
-                  <span className="attempt-n">Try {a.n}</span>
-                  {a.passed === null ? (
-                    <span className="attempt-pct">in progress</span>
-                  ) : (
-                    <>
-                      <span className="attempt-pct">{a.pct}%</span>
-                      {a.passed ? <Check size={13} /> : <Cross size={13} />}
-                    </>
-                  )}
-                </span>
-              );
-            })}
-          </div>
-          <div className="attempt-more">See their answers →</div>
-        </Link>
-      ))}
-    </div>
-  );
+  return rows;
 }
 
 export default async function AttemptsPage({
@@ -132,8 +81,10 @@ export default async function AttemptsPage({
       .order("created_at", { ascending: true }),
   ]);
 
-  const math = groupBlocks(pb ?? [], "skills", "skill_id");
-  const reading = groupBlocks(rb ?? [], "passages", "passage_id");
+  const rows = [
+    ...flatten(pb ?? [], "skills", "skill_id", "math"),
+    ...flatten(rb ?? [], "passages", "passage_id", "reading"),
+  ];
 
   return (
     <div className="wrap">
@@ -146,11 +97,13 @@ export default async function AttemptsPage({
         </div>
         <p className="sub">Every try on each lesson, with the score they got.</p>
 
-        <h2 style={{ fontSize: "1.1rem", marginTop: "1rem" }}>Math</h2>
-        <Attempts groups={math} unit="math" studentId={studentId} kind="math" />
-
-        <h2 style={{ fontSize: "1.1rem", marginTop: "1.5rem" }}>Reading</h2>
-        <Attempts groups={reading} unit="reading" studentId={studentId} kind="reading" />
+        {rows.length === 0 ? (
+          <p className="muted" style={{ marginTop: "1rem" }}>
+            No attempts yet.
+          </p>
+        ) : (
+          <AttemptsExplorer rows={rows} studentId={studentId} />
+        )}
       </div>
     </div>
   );
