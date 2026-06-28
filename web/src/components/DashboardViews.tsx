@@ -19,6 +19,8 @@ export interface Kid {
   username: string | null;
   math: { passed: number; total: number } | null;
   reading: { passed: number; total: number };
+  /** AI 7 progress — null means no AI passages published yet. */
+  ai7: { passed: number; total: number } | null;
 }
 
 type View = "all" | "grade" | "subject" | "progress";
@@ -58,6 +60,9 @@ function SubjectButtons({ k }: { k: Kid }) {
       <Link href={`/reading/${k.id}`} className="subject-btn reading">
         Reading →
       </Link>
+      <Link href={`/ai/${k.id}`} className="subject-btn ai">
+        AI 7 →
+      </Link>
       <Link href={`/practice/${k.id}/topics`} className="subject-btn topics">
         Topics
       </Link>
@@ -84,6 +89,14 @@ function FullCard({ k }: { k: Kid }) {
               <span style={{ whiteSpace: "nowrap" }}>
                 Reading: {k.reading.passed}/{k.reading.total} passages
               </span>
+              {k.ai7 && k.ai7.total > 0 && (
+                <>
+                  {" · "}
+                  <span style={{ whiteSpace: "nowrap" }}>
+                    AI 7: {k.ai7.passed}/{k.ai7.total} lessons
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -127,6 +140,7 @@ function Tile({ k }: { k: Kid }) {
       <div className="kid-tile-stats muted">
         {k.math ? `Math ${k.math.passed}/${k.math.total}` : "Math —"} · Reading {k.reading.passed}/
         {k.reading.total}
+        {k.ai7 && k.ai7.total > 0 ? ` · AI7 ${k.ai7.passed}/${k.ai7.total}` : ""}
       </div>
       {k.placement ? (
         <div className="kid-tile-actions">
@@ -135,6 +149,9 @@ function Tile({ k }: { k: Kid }) {
           </Link>
           <Link href={`/reading/${k.id}`} className="subject-btn reading">
             Reading
+          </Link>
+          <Link href={`/ai/${k.id}`} className="subject-btn ai">
+            AI 7
           </Link>
         </div>
       ) : (

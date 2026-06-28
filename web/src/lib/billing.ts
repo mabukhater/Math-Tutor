@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-export type Subject = "math" | "reading";
+export type Subject = "math" | "reading" | "ai";
 
 // Free taster: a capped subject gets this many completed lessons per day, then
 // the parent is prompted to upgrade.
@@ -43,6 +43,18 @@ export function hasFullAccess(b: ParentBilling, subject: Subject): boolean {
 export interface GateResult {
   locked: boolean;
   plan?: string | null;
+}
+
+/**
+ * AI subject gate — always unlocked while pricing is undecided (OQ-6).
+ *
+ * TODO(billing): replace with checkSubjectGate(admin, student, "ai") once AI
+ * pricing tier is decided (one plan? bundled in all? new tier?). The call-site
+ * is the block route's AI path; the swap is one line.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function checkAiGate(): GateResult {
+  return { locked: false };
 }
 
 /**

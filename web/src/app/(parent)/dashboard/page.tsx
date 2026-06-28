@@ -4,7 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { isAdminEmail } from "@/lib/adminAuth";
 import { gradeLabel } from "@/lib/curriculum";
 import { getPathForStudent } from "@/lib/pathServer";
-import { getReadingPath } from "@/lib/readingServer";
+import { getReadingPath, getAICoursePath } from "@/lib/readingServer";
 import { DashboardViews, type Kid } from "@/components/DashboardViews";
 
 export const dynamic = "force-dynamic";
@@ -80,7 +80,11 @@ export default async function Dashboard() {
 
   const summaries = new Map<
     string,
-    { math: { passed: number; total: number } | null; reading: { passed: number; total: number } }
+    {
+      math: { passed: number; total: number } | null;
+      reading: { passed: number; total: number };
+      ai7: { passed: number; total: number } | null;
+    }
   >();
   for (const s of list) {
     const stud = {
@@ -97,7 +101,15 @@ export default async function Dashboard() {
       math = { passed: weeks.filter((w) => w.status === "passed").length, total: weeks.length };
     }
     const rp = await getReadingPath(admin, stud);
-    summaries.set(s.id, { math, reading: { passed: rp.passedPassages, total: rp.totalPassages } });
+    const ai7p = await getAICoursePath(admin, stud, "ai7");
+    const ai7 = ai7p.totalPassages > 0
+      ? { passed: ai7p.passedPassages, total: ai7p.totalPassages }
+      : null;
+    summaries.set(s.id, {
+      math,
+      reading: { passed: rp.passedPassages, total: rp.totalPassages },
+      ai7,
+    });
   }
 
   const kids: Kid[] = list.map((s) => ({
@@ -117,6 +129,7 @@ export default async function Dashboard() {
     username: usernameBy.get(s.id) ?? null,
     math: summaries.get(s.id)?.math ?? null,
     reading: summaries.get(s.id)?.reading ?? { passed: 0, total: 0 },
+    ai7: summaries.get(s.id)?.ai7 ?? null,
   }));
 
   const plan = billing?.subscription_plan ?? "free";

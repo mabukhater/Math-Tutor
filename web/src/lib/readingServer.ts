@@ -31,26 +31,34 @@ export interface ReadingPath {
   totalPassages: number;
 }
 
-/** The reading ladder for a student's grade: passages grouped into weeks (3-4
- * each) that get harder week over week. Passages unlock in order across the whole
- * sequence — the first not-passed one is active, the rest locked — so finishing a
- * week unlocks the next. */
-export async function getReadingPath(
+/** Extended path returned by AI course endpoints — adds unlock metadata. */
+export interface AICoursePath extends ReadingPath {
+  course: "ai7" | "ai8";
+  unlocked: boolean;
+  prereqMessage?: string;
+}
+
+// ---------------------------------------------------------------------------
+// Private core — builds a ReadingPath from an already-fetched list of
+// published passages (already ordered by week, level_order). Shared between
+// getReadingPath and getAICoursePath so the algorithm lives in one place.
+// ---------------------------------------------------------------------------
+async function buildPathFromPassages(
   admin: SupabaseClient,
   student: ReadingStudent,
+  all: { id: string; title: string; week: number; level_order: number }[],
 ): Promise<ReadingPath> {
-  const { data: passages } = await admin
-    .from("passages")
-    .select("id, title, week, level_order")
-    .eq("grade", student.nominal_grade)
-    .eq("status", "published")
-    .order("week", { ascending: true })
-    .order("level_order", { ascending: true });
-  const all = (passages ?? []) as { id: string; title: string; week: number; level_order: number }[];
-  const base = { weeks: [], activePassageId: null, threshold: student.pass_threshold, passedPassages: 0, totalPassages: 0 };
+  const base: ReadingPath = {
+    weeks: [],
+    activePassageId: null,
+    threshold: student.pass_threshold,
+    passedPassages: 0,
+    totalPassages: 0,
+  };
   if (all.length === 0) return base;
 
   const ids = all.map((p) => p.id);
+
   const { data: vq } = await admin
     .from("reading_questions")
     .select("passage_id")
@@ -112,6 +120,100 @@ export async function getReadingPath(
     passedPassages,
     totalPassages,
   };
+}
+
+/** The reading ladder for a student's grade: passages grouped into weeks (3-4
+ * each) that get harder week over week. Passages unlock in order across the whole
+ * sequence — the first not-passed one is active, the rest locked — so finishing a
+ * week unlocks the next. */
+export async function getReadingPath(
+  admin: SupabaseClient,
+  student: ReadingStudent,
+): Promise<ReadingPath> {
+  const { data: passages } = await admin
+    .from("passages")
+    .select("id, title, week, level_order")
+    .eq("grade", student.nominal_grade)
+    .eq("status", "published")
+    .order("week", { ascending: true })
+    .order("level_order", { ascending: true });
+  const all = (passages ?? []) as { id: string; title: string; week: number; level_order: number }[];
+  return buildPathFromPassages(admin, student, all);
+}
+
+/**
+ * The AI course ladder for ai7 or ai8. Filters passages by subject instead of
+ * grade. For ai8, first evaluates the AI-7 prerequisite and returns an
+ * empty/locked path when AI-7 is not yet complete (AC-3.1, AC-3.2).
+ */
+export async function getAICoursePath(
+  admin: SupabaseClient,
+  student: ReadingStudent,
+  course: "ai7" | "ai8",
+): Promise<AICoursePath> {
+  // For ai8, gate on ai7 completion before fetching ai8 passages (OQ-2).
+  if (course === "ai8") {
+    const unlocked = await isAi8Unlocked(admin, student);
+    if (!unlocked) {
+      return {
+        weeks: [],
+        activePassageId: null,
+        threshold: student.pass_threshold,
+        passedPassages: 0,
+        totalPassages: 0,
+        course: "ai8",
+        unlocked: false,
+        prereqMessage: "Complete AI 7: Foundations first.",
+      };
+    }
+  }
+
+  const { data: passages } = await admin
+    .from("passages")
+    .select("id, title, week, level_order")
+    .eq("subject", course)
+    .eq("status", "published")
+    .order("week", { ascending: true })
+    .order("level_order", { ascending: true });
+  const all = (passages ?? []) as { id: string; title: string; week: number; level_order: number }[];
+  const base = await buildPathFromPassages(admin, student, all);
+  return { ...base, course, unlocked: true };
+}
+
+/**
+ * True iff every published + vetted ai7 passage has a reading_progress.passed_at
+ * for this student. Evaluated at request time — no background job, no stored
+ * timestamp (OQ-2, AC-3.2). Used to gate AI 8 and the L8 capstone.
+ */
+export async function isAi8Unlocked(
+  admin: SupabaseClient,
+  student: ReadingStudent,
+): Promise<boolean> {
+  const { data: passages } = await admin
+    .from("passages")
+    .select("id")
+    .eq("subject", "ai7")
+    .eq("status", "published");
+  const ai7Ids = (passages ?? []).map((p) => p.id as string);
+  if (ai7Ids.length === 0) return false; // no content published yet → not unlocked
+
+  const { data: vq } = await admin
+    .from("reading_questions")
+    .select("passage_id")
+    .in("passage_id", ai7Ids)
+    .eq("status", "vetted");
+  const vettedIds = new Set((vq ?? []).map((r) => r.passage_id as string));
+  const requiredIds = ai7Ids.filter((id) => vettedIds.has(id));
+  if (requiredIds.length === 0) return false;
+
+  const { data: prog } = await admin
+    .from("reading_progress")
+    .select("passage_id, passed_at")
+    .eq("student_id", student.id)
+    .in("passage_id", requiredIds)
+    .not("passed_at", "is", null);
+  const passedCount = (prog ?? []).length;
+  return passedCount >= requiredIds.length;
 }
 
 export interface ReadingBlock {
