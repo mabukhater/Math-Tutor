@@ -42,8 +42,10 @@ function levelInt(level: CapstoneLevel): 7 | 8 {
  *
  * A milestone is "complete" when submitted_at IS NOT NULL AND the artifact set
  * satisfies its requirement. Status is computed, never stored.
+ *
+ * Exported so it can be unit-tested without a DB.
  */
-function computeMilestoneStatus(
+export function computeMilestoneStatus(
   m: CapstoneMilestoneRow,
   artifacts: CapstoneArtifactRow[],
   req: CapstoneRequirement,

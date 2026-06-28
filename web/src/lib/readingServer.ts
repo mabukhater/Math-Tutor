@@ -39,44 +39,27 @@ export interface AICoursePath extends ReadingPath {
 }
 
 // ---------------------------------------------------------------------------
-// Private core — builds a ReadingPath from an already-fetched list of
-// published passages (already ordered by week, level_order). Shared between
-// getReadingPath and getAICoursePath so the algorithm lives in one place.
+// Pure helpers — exported for unit tests; no DB calls.
 // ---------------------------------------------------------------------------
-async function buildPathFromPassages(
-  admin: SupabaseClient,
-  student: ReadingStudent,
+
+/**
+ * Given a sorted passage list with pre-resolved "has vetted questions" and
+ * "progress" data, compute the ReadingPath. Extracted from buildPathFromPassages
+ * so it can be unit-tested without a Supabase client.
+ *
+ * @param all      - passages sorted by week/level_order, published only
+ * @param withQ    - set of passage IDs that have at least one vetted question
+ * @param progBy   - map of passage_id → progress row (may be absent if never attempted)
+ * @param threshold - student.pass_threshold
+ */
+export function computeReadingPath(
   all: { id: string; title: string; week: number; level_order: number }[],
-): Promise<ReadingPath> {
-  const base: ReadingPath = {
-    weeks: [],
-    activePassageId: null,
-    threshold: student.pass_threshold,
-    passedPassages: 0,
-    totalPassages: 0,
-  };
-  if (all.length === 0) return base;
-
-  const ids = all.map((p) => p.id);
-
-  const { data: vq } = await admin
-    .from("reading_questions")
-    .select("passage_id")
-    .in("passage_id", ids)
-    .eq("status", "vetted");
-  const withQ = new Set((vq ?? []).map((r) => r.passage_id as string));
-
-  const { data: prog } = await admin
-    .from("reading_progress")
-    .select("passage_id, passed_at, total_attempts, total_correct")
-    .eq("student_id", student.id)
-    .in("passage_id", ids);
-  const progBy = new Map(
-    (prog ?? []).map((p) => [
-      p.passage_id as string,
-      p as { passed_at: string | null; total_attempts: number; total_correct: number },
-    ]),
-  );
+  withQ: Set<string>,
+  progBy: Map<string, { passed_at: string | null; total_attempts: number; total_correct: number }>,
+  threshold: number,
+): ReadingPath {
+  if (all.length === 0)
+    return { weeks: [], activePassageId: null, threshold, passedPassages: 0, totalPassages: 0 };
 
   let activeFound = false;
   let activePassageId: string | null = null;
@@ -116,10 +99,59 @@ async function buildPathFromPassages(
   return {
     weeks: order.map((w) => weekMap.get(w)!),
     activePassageId,
-    threshold: student.pass_threshold,
+    threshold,
     passedPassages,
     totalPassages,
   };
+}
+
+/**
+ * Pure unlock check for AI 8: given the set of published+vetted ai7 passage IDs
+ * and the set of those that the student has passed, returns true iff every
+ * required passage is passed.
+ *
+ * Extracted from isAi8Unlocked for unit testing without a Supabase client.
+ */
+export function computeAi8Unlocked(requiredIds: string[], passedIds: Set<string>): boolean {
+  if (requiredIds.length === 0) return false;
+  return requiredIds.every((id) => passedIds.has(id));
+}
+
+// ---------------------------------------------------------------------------
+// Private core — builds a ReadingPath from an already-fetched list of
+// published passages (already ordered by week, level_order). Shared between
+// getReadingPath and getAICoursePath so the algorithm lives in one place.
+// ---------------------------------------------------------------------------
+async function buildPathFromPassages(
+  admin: SupabaseClient,
+  student: ReadingStudent,
+  all: { id: string; title: string; week: number; level_order: number }[],
+): Promise<ReadingPath> {
+  if (all.length === 0)
+    return { weeks: [], activePassageId: null, threshold: student.pass_threshold, passedPassages: 0, totalPassages: 0 };
+
+  const ids = all.map((p) => p.id);
+
+  const { data: vq } = await admin
+    .from("reading_questions")
+    .select("passage_id")
+    .in("passage_id", ids)
+    .eq("status", "vetted");
+  const withQ = new Set((vq ?? []).map((r) => r.passage_id as string));
+
+  const { data: prog } = await admin
+    .from("reading_progress")
+    .select("passage_id, passed_at, total_attempts, total_correct")
+    .eq("student_id", student.id)
+    .in("passage_id", ids);
+  const progBy = new Map(
+    (prog ?? []).map((p) => [
+      p.passage_id as string,
+      p as { passed_at: string | null; total_attempts: number; total_correct: number },
+    ]),
+  );
+
+  return computeReadingPath(all, withQ, progBy, student.pass_threshold);
 }
 
 /** The reading ladder for a student's grade: passages grouped into weeks (3-4
@@ -212,8 +244,8 @@ export async function isAi8Unlocked(
     .eq("student_id", student.id)
     .in("passage_id", requiredIds)
     .not("passed_at", "is", null);
-  const passedCount = (prog ?? []).length;
-  return passedCount >= requiredIds.length;
+  const passedSet = new Set((prog ?? []).map((p) => p.passage_id as string));
+  return computeAi8Unlocked(requiredIds, passedSet);
 }
 
 export interface ReadingBlock {
