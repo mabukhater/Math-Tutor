@@ -11,6 +11,81 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-read-more-fluently-at-home",
+    title: "How to Help Your Child Read More Fluently at Home",
+    category: "Reading",
+    readMinutes: 4,
+    date: "2026-06-28",
+    excerpt:
+      "Simple, science-backed ways to build your child's reading fluency at home so words flow smoothly and meaning sticks.",
+    body: `## What Reading Fluency Really Means
+
+When we say a child reads fluently, we do not just mean they read fast. Fluency has three parts working together:
+
+- Accuracy: reading the words correctly
+- Rate: reading at a comfortable, natural pace
+- Expression: grouping words into phrases and reading with feeling
+
+A fluent reader sounds like they are talking, not labouring over each word. This matters because the brain has limited attention. When a child spends all their energy sounding out words, there is little left for understanding the story. Fluency is the bridge between decoding and comprehension.
+
+## How to Spot a Fluency Problem
+
+Fluency struggles often hide behind a child who can technically read. Watch for these signs:
+
+- Reading word by word in a choppy, robotic voice
+- Ignoring punctuation, so questions and statements sound the same
+- Frequent stops and re-starts on the same line
+- Understanding very little of what was just read aloud
+- Avoiding reading out loud altogether
+
+If you notice these, the answer is not pushing for speed. Rushing usually makes accuracy worse. The fix is gentle, repeated practice with the right level of text.
+
+## The Single Best Strategy: Repeated Reading
+
+The most proven home technique is having your child read the same short passage several times. It feels almost too simple, but the research is clear: each repetition builds smoothness, confidence, and expression.
+
+Here is how to do it in about ten minutes:
+
+- Pick a passage of 50 to 150 words at a level where your child misses only a few words.
+- Read it aloud to them first while they follow along, so they hear what fluent reading sounds like.
+- Have them read it aloud. Stay calm and supply tricky words quickly rather than making them struggle.
+- Read it a second and third time over the next day or two.
+- Notice the improvement together: It sounded so much smoother that time.
+
+Three readings is usually the sweet spot. By the third pass, most children sound noticeably more confident, and that success feeds their motivation.
+
+## Pick Books at the Right Level
+
+Fluency grows fastest with text that is challenging but not frustrating. A quick test: have your child read a page of about 100 words. If they miss more than five words, the book is too hard for fluency practice right now. Save it for reading aloud together instead.
+
+For independent fluency work, slightly easy books are wonderful. Re-reading a favourite they already know lets them focus on phrasing and expression instead of decoding. Comic books, joke books, and poems are all excellent because they invite expressive reading.
+
+## Read It Like the Character
+
+Expression is the part parents forget, yet it carries a lot of meaning. Turn it into play:
+
+- Take turns reading dialogue in silly voices for each character.
+- Pause at full stops and let your voice drop, then lift it at question marks.
+- Read a sentence flatly, then with feeling, and ask which one helps the story make sense.
+
+When children read with expression, it shows they are paying attention to punctuation and meaning, not just chasing words.
+
+## Try Echo and Paired Reading
+
+Two quick partner techniques work well at home:
+
+- Echo reading: You read a sentence with good expression, then your child echoes it back. Great for younger or hesitant readers.
+- Paired reading: You both read aloud together at the same time, with you slowing down to match them. When they feel ready, they tap the table and you go quiet, letting them continue solo.
+
+Both give your child a steady model to lean on while they build their own pace.
+
+## Keep It Short and Positive
+
+Fluency is built in small, regular doses. Ten focused minutes a day beats one long, tiring session on the weekend. End before your child gets frustrated, and always close on a passage they read well.
+
+Avoid timing them with a stopwatch in a way that creates pressure. The goal is reading that sounds natural and means something, not a race. With short daily practice, the right books, and plenty of encouragement, you will hear the choppiness fade and a real reader emerge.`,
+  },
+  {
     slug: "how-to-help-your-child-memorize-sight-words-without-the-tears",
     title: "How to Help Your Child Memorize Sight Words Without the Tears",
     category: "Reading",
