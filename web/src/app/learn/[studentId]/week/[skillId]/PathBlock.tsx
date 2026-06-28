@@ -93,6 +93,11 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   const [reviewIndex, setReviewIndex] = useState<number | null>(null);
   const [limited, setLimited] = useState(false);
   const shownAt = useRef(0);
+  // Guards against a second answer firing while the first is still in flight.
+  // Without it, a slow request leaves the options interactive (phase stays
+  // "question"), so a second confirm sends a duplicate POST — the server has
+  // already advanced, so the duplicate 409s and surfaces as a scoring error.
+  const submitting = useRef(false);
 
   useEffect(() => {
     shownAt.current = Date.now();
@@ -151,23 +156,31 @@ export default function PathBlock({ studentId, skillId }: { studentId: string; s
   }, [start]);
 
   async function answer(i: number) {
-    if (phase !== "question" || !question) return;
+    if (phase !== "question" || !question || submitting.current) return;
+    submitting.current = true;
     setSelected(i);
     const responseTimeMs = shownAt.current ? Date.now() - shownAt.current : null;
-    const r = await fetch("/api/path/answer", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId, blockId, questionId: question.id, selectedIndex: i, responseTimeMs }),
-    });
-    const d: Resp = await r.json();
-    if (!r.ok) {
-      setErrMsg("Something went wrong scoring that answer.");
-      return setPhase("error");
+    try {
+      const r = await fetch("/api/path/answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ studentId, blockId, questionId: question.id, selectedIndex: i, responseTimeMs }),
+      });
+      const d: Resp = await r.json().catch(() => ({}) as Resp);
+      if (!r.ok) {
+        // Surface the real status/code so a recurrence is diagnosable rather
+        // than collapsing every failure into one opaque message.
+        console.error("path/answer failed", { status: r.status, error: d.error });
+        setErrMsg("Something went wrong scoring that answer.");
+        return setPhase("error");
+      }
+      setFeedback(d);
+      setNumCompleted(d.numCompleted);
+      setNumCorrect(d.numCorrect);
+      setPhase("feedback");
+    } finally {
+      submitting.current = false;
     }
-    setFeedback(d);
-    setNumCompleted(d.numCompleted);
-    setNumCorrect(d.numCorrect);
-    setPhase("feedback");
   }
 
   function next() {

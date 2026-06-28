@@ -102,10 +102,16 @@ export async function POST(req: Request) {
   if (!blockDone) {
     const { data: nq } = await admin
       .from("questions")
-      .select("id, stem, options, visual")
+      .select("id, stem, options, visual, difficulty")
       .eq("id", ids[numCompleted])
       .single();
-    if (nq) next = toPublic({ id: nq.id, stem: nq.stem, options: nq.options, visual: nq.visual });
+    // Carry `difficulty` through so the chip stays put across questions — the
+    // block (start/resume) route includes it, so the "next" payload must too.
+    if (nq)
+      next = {
+        ...toPublic({ id: nq.id, stem: nq.stem, options: nq.options, visual: nq.visual }),
+        difficulty: (nq.difficulty as number) ?? null,
+      };
   }
 
   return NextResponse.json({
