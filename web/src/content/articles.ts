@@ -11,6 +11,65 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-master-number-bonds",
+    title: "How to Help Your Child Master Number Bonds (and Why They Matter)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-06-29",
+    excerpt:
+      "Number bonds are the quiet foundation of mental math. Here is what they are and how to practice them with your child at home.",
+    body: `## What Are Number Bonds?
+
+A number bond is simply a pair of numbers that join together to make a larger number. For example, 7 and 3 make 10. So do 6 and 4, and 9 and 1. If your child can recall these pairs instantly, they have a number bond memorized.
+
+Number bonds show up early in Singapore Math, but the idea lives in every curriculum. You may have seen them drawn as a small diagram: one circle on top holding the whole, with two circles below holding the parts. That picture helps children see that addition and subtraction are two sides of the same coin.
+
+If 7 and 3 make 10, then 10 minus 3 must be 7. Children who truly understand this stop counting on their fingers and start reasoning.
+
+## Why They Matter More Than You Think
+
+Number bonds are the hidden engine behind faster, more confident arithmetic. Here is what fluent bonds unlock:
+
+- Bonds to 10 make adding and subtracting larger numbers far easier. To solve 8 plus 5, a child who knows that 8 needs 2 to reach 10 can split the 5 into 2 and 3, making 10 plus 3.
+- They build the foundation for regrouping, also called carrying and borrowing.
+- They make mental math feel like recall instead of effort, which lowers anxiety.
+- They prepare the ground for multiplication, division, and later fractions.
+
+A child who pauses to count up from 6 every single time is spending energy that a fluent child spends on the harder part of the problem. That difference compounds across the years.
+
+## Where to Start by Age
+
+### Grades 1 and 2
+
+Focus on bonds within 10 first, then bonds to 10, and finally bonds to 20. Most children find bonds to 10 the most useful milestone, so spend the most time there. Aim for instant recall, not just correct answers.
+
+### Grades 3 and up
+
+Extend the same thinking to bonds to 100, such as 70 and 30, or 65 and 35. These speed up money math, time, and column arithmetic. You can also practice bonds to the next ten, like 47 needing 3 to reach 50.
+
+## Five Ways to Practice at Home
+
+Keep sessions short and playful. Three to five minutes a day beats a long weekly drill.
+
+- The make ten game. Say a number under 10 and have your child shout the partner that completes 10. Take turns so they hear you answer too.
+- Hands and fingers. Hold up some fingers and ask how many more are needed to reach ten. The visual helps younger children.
+- Dot cards. Draw ten dots in two rows, cover some, and ask how many are hidden. This builds the part and whole picture.
+- Snack math. Start with ten crackers, eat some, and ask how many are left. Real objects make the bond concrete.
+- Bond of the day. Pick one bond, such as 6 and 4, and notice it everywhere during the day, on a clock, in a recipe, on a license plate.
+
+## Common Sticking Points
+
+Watch for a child who keeps counting on their fingers for the same bonds. That is a sign the fact has not yet moved into memory. Slow down, return to objects or dot pictures, and rebuild the picture before pushing for speed.
+
+Avoid timed pressure too early. Speed comes after understanding, not before it. If your child freezes when you add a timer, drop it and go back to relaxed practice.
+
+If bonds to 10 feel solid but bonds to 20 wobble, link them. Knowing that 6 and 4 make 10 helps a child see that 16 and 4 make 20.
+
+## Building It Into Daily Practice
+
+Number bonds reward little and often. A few minutes most days, mixed into games and meals, will do more than an occasional worksheet marathon. Within a few weeks of steady practice, most children stop counting and start knowing, and that quiet shift makes everything that follows in math feel lighter.`,
+  },
+  {
     slug: "how-to-help-your-child-read-more-fluently-at-home",
     title: "How to Help Your Child Read More Fluently at Home",
     category: "Reading",
