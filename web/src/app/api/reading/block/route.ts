@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
-import { getReadingPath, getOrCreateReadingBlock } from "@/lib/readingServer";
-import { checkSubjectGate } from "@/lib/billing";
+import { getReadingPath, getAICoursePath, getOrCreateReadingBlock } from "@/lib/readingServer";
+import { checkSubjectGate, checkAiGate } from "@/lib/billing";
 
 // Already-answered questions in this block, with their real result so a resumed
 // block shows each prior question's green/red (not a neutral grey). Pulls the
@@ -56,8 +56,19 @@ async function answeredReadingHistory(
 // Start (or resume) the comprehension block for a passage. Returns the passage
 // text so the child can read it; only the active passage is playable. Parent or
 // the linked kid may play.
+//
+// The optional `subject` param ("ai7" | "ai8") routes AI passages through
+// getAICoursePath for the membership check, keeping correct_index server-side
+// for AI questions (AC-2.4 / AC-8.5). Defaults to "reading".
 export async function POST(req: Request) {
-  const { studentId, passageId } = await req.json();
+  const body = await req.json();
+  const { studentId, passageId } = body as {
+    studentId: string;
+    passageId: string;
+    subject?: "ai7" | "ai8";
+  };
+  const subject: "reading" | "ai7" | "ai8" = body.subject ?? "reading";
+
   if (!studentId || !passageId)
     return NextResponse.json({ error: "bad request" }, { status: 400 });
 
@@ -67,13 +78,24 @@ export async function POST(req: Request) {
   if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
   const student = access.student;
 
-  const path = await getReadingPath(admin, student);
-  // Any passage in this student's path is playable (revisit or jump ahead).
-  const inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
-  if (!inPath) return NextResponse.json({ error: "locked" }, { status: 409 });
+  // Membership check: the passage must be in the student's active path.
+  let inPath = false;
+  if (subject === "ai7" || subject === "ai8") {
+    const path = await getAICoursePath(admin, student, subject);
+    inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
 
-  const gate = await checkSubjectGate(admin, student, "reading");
-  if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
+    // AI billing gate (always unlocked — OQ-6; TODO: wire once pricing decided).
+    const gate = checkAiGate();
+    if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
+  } else {
+    const path = await getReadingPath(admin, student);
+    inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
+
+    const gate = await checkSubjectGate(admin, student, "reading");
+    if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
+  }
+
+  if (!inPath) return NextResponse.json({ error: "locked" }, { status: 409 });
 
   let block;
   try {
@@ -84,7 +106,7 @@ export async function POST(req: Request) {
 
   const { data: passage } = await admin
     .from("passages")
-    .select("title, paragraphs, grade")
+    .select("title, paragraphs, grade, subject")
     .eq("id", passageId)
     .single();
 
@@ -110,15 +132,24 @@ export async function POST(req: Request) {
 
   const answered = await answeredReadingHistory(admin, student.id, block.question_ids.slice(0, idx));
 
+  // Tag label: show subject for AI passages, "Reading" for everything else.
+  const subjectLabel =
+    subject === "ai7"
+      ? "AI 7: Foundations"
+      : subject === "ai8"
+        ? "AI 8: Builds On"
+        : "Reading";
+
   return NextResponse.json({
     blockId: block.id,
     title: passage?.title ?? "",
     paragraphs: passage?.paragraphs ?? [],
     tags: {
       grade: passage?.grade != null ? `Grade ${passage.grade}` : "",
-      curriculum: "Reading",
+      curriculum: subjectLabel,
       topic: "",
     },
+    subject,
     threshold: block.threshold,
     total,
     numCompleted: block.num_completed,
