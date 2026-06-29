@@ -10,7 +10,7 @@ import Link from "next/link";
 import { MilestoneStepper } from "@/components/capstone/MilestoneStepper";
 import { MilestonePanel } from "@/components/capstone/MilestonePanel";
 import { ParentAttestPanel } from "@/components/capstone/ParentAttestPanel";
-import type { Milestone, Attestation } from "@/lib/capstoneTypes";
+import type { Milestone, Attestation, Rubric } from "@/lib/capstoneTypes";
 
 interface CapstoneState {
   capstone: { id: string; level: string; completedAt: string | null };
@@ -88,14 +88,20 @@ export default function CapstoneClient({
     [state, studentId, levelNum, load],
   );
 
-  const complete = useCallback(async () => {
+  const complete = useCallback(async (rubric?: Rubric) => {
     if (!state) return;
     const activeMilestone = state.milestones.find((m) => m.status === "active");
     if (!activeMilestone) return;
     const r = await fetch("/api/capstone/milestone", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId, level: levelNum, slug: activeMilestone.slug }),
+      body: JSON.stringify({
+        studentId,
+        level: levelNum,
+        slug: activeMilestone.slug,
+        // Only include rubric when provided (reflect milestone only — AC-4.5).
+        ...(rubric !== undefined ? { rubric } : {}),
+      }),
     });
     if (!r.ok) {
       const d = await r.json().catch(() => ({})) as { error?: string };

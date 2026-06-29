@@ -2,11 +2,13 @@
 
 import { useRef, useState } from "react";
 import { Check } from "@/components/icons";
+import { RubricForm } from "@/components/capstone/RubricForm";
 import type {
   Milestone,
   Artifact,
   KitContent,
   CapstoneRequirement,
+  Rubric,
 } from "@/lib/capstoneTypes";
 
 // ---------------------------------------------------------------------------
@@ -202,19 +204,23 @@ function ArtifactGallery({ artifacts }: { artifacts: Artifact[] }) {
       {artifacts.map((art) => (
         <li key={art.id} className="cs-artifact-item">
           {art.kind === "url" && art.url && (
-            <a
-              href={art.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cs-artifact-link"
-            >
-              {/* Link icon inline SVG */}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-              </svg>
-              {art.url}
-            </a>
+            /^https?:\/\//i.test(art.url) ? (
+              <a
+                href={art.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cs-artifact-link"
+              >
+                {/* Link icon inline SVG */}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                {art.url}
+              </a>
+            ) : (
+              <span className="cs-artifact-link">{art.url}</span>
+            )
           )}
           {art.kind === "text" && art.bodyText && (
             <blockquote className="cs-artifact-text">
@@ -559,12 +565,16 @@ interface Props {
   milestone: Milestone;
   isParent: boolean;
   onAddArtifact: (input: MilestonePanelAddInput) => Promise<void>;
-  onComplete: () => Promise<void>;
+  onComplete: (rubric?: Rubric) => Promise<void>;
 }
 
 export function MilestonePanel({ milestone, isParent, onAddArtifact, onComplete }: Props) {
   const [completing, setCompleting] = useState(false);
   const [completeError, setCompleteError] = useState("");
+  // Rubric state for the "reflect" milestone (AC-4.5). Does not block completion.
+  const [rubric, setRubric] = useState<Rubric>({ shipped: false, works: false, documented: false });
+
+  const isReflect = milestone.slug === "reflect";
 
   const isActive = milestone.status === "active";
   const isComplete = milestone.status === "complete";
@@ -575,10 +585,12 @@ export function MilestonePanel({ milestone, isParent, onAddArtifact, onComplete 
   const artifacts = milestone.artifacts ?? [];
 
   // Determine whether the "Complete" button should be enabled.
-  // Mirror the server validation in the UI — the engineer enforces server-side too.
+  // Mirror the server validation (validateArtifactRequirement) — filter by
+  // allowedKinds before counting, so only qualifying artifact types count.
   const meetsRequirement = (() => {
     if (!req.requiresArtifact) return true;
-    return artifacts.length >= req.minCount;
+    const qualifying = artifacts.filter((a) => req.allowedKinds.includes(a.kind));
+    return qualifying.length >= req.minCount;
   })();
 
   const canComplete = isActive && meetsRequirement;
@@ -588,7 +600,8 @@ export function MilestonePanel({ milestone, isParent, onAddArtifact, onComplete 
     setCompleteError("");
     setCompleting(true);
     try {
-      await onComplete();
+      // Pass rubric for the reflect milestone; undefined for all others (AC-4.5).
+      await onComplete(isReflect ? rubric : undefined);
     } catch {
       setCompleteError("Something went wrong. Please try again.");
     } finally {
@@ -659,6 +672,11 @@ export function MilestonePanel({ milestone, isParent, onAddArtifact, onComplete 
             </p>
           )}
 
+          {/* Self-assessment rubric for the reflect milestone (AC-4.5) */}
+          {isActive && isReflect && (
+            <RubricForm value={rubric} onChange={setRubric} />
+          )}
+
           {/* Complete milestone action */}
           {isActive && (
             <div style={{ marginTop: "1.25rem" }}>
@@ -668,9 +686,13 @@ export function MilestonePanel({ milestone, isParent, onAddArtifact, onComplete 
                   role="status"
                   aria-live="polite"
                 >
-                  Add {req.minCount - artifacts.length} more{" "}
-                  {req.minCount - artifacts.length === 1 ? "item" : "items"} to
-                  unlock completion.
+                  {(() => {
+                    const qualifyingCount = artifacts.filter((a) =>
+                      req.allowedKinds.includes(a.kind),
+                    ).length;
+                    const remaining = req.minCount - qualifyingCount;
+                    return `Add ${remaining} more ${remaining === 1 ? "item" : "items"} to unlock completion.`;
+                  })()}
                 </p>
               )}
               <button

@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { getOrCreateCapstone } from "@/lib/capstoneServer";
-import { isAi8Unlocked, getAICoursePath } from "@/lib/readingServer";
+import { isAi7Complete, getAICoursePath } from "@/lib/readingServer";
 import type { CapstoneLevel } from "@/lib/capstoneTypes";
 
 // POST /api/capstone
@@ -29,8 +29,8 @@ export async function POST(req: Request) {
   // Gate: capstone availability requires completing the corresponding AI course.
   const capstoneLevel: CapstoneLevel = level === 7 ? "l7" : "l8";
   if (level === 7) {
-    // L7 capstone gates on AI-7 completion (same check as AI-8 unlock).
-    const ai7Done = await isAi8Unlocked(admin, student);
+    // L7 capstone gates on AI-7 completion.
+    const ai7Done = await isAi7Complete(admin, student);
     if (!ai7Done)
       return NextResponse.json(
         { error: "prereq", prereqMessage: "Complete AI 7: Foundations first." },

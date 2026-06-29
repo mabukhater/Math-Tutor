@@ -215,9 +215,9 @@ export async function getAICoursePath(
 /**
  * True iff every published + vetted ai7 passage has a reading_progress.passed_at
  * for this student. Evaluated at request time — no background job, no stored
- * timestamp (OQ-2, AC-3.2). Used to gate AI 8 and the L8 capstone.
+ * timestamp (OQ-2, AC-3.2). Used to gate the L7 capstone and AI-8 unlock.
  */
-export async function isAi8Unlocked(
+export async function isAi7Complete(
   admin: SupabaseClient,
   student: ReadingStudent,
 ): Promise<boolean> {
@@ -227,7 +227,7 @@ export async function isAi8Unlocked(
     .eq("subject", "ai7")
     .eq("status", "published");
   const ai7Ids = (passages ?? []).map((p) => p.id as string);
-  if (ai7Ids.length === 0) return false; // no content published yet → not unlocked
+  if (ai7Ids.length === 0) return false; // no content published yet → not complete
 
   const { data: vq } = await admin
     .from("reading_questions")
@@ -246,6 +246,18 @@ export async function isAi8Unlocked(
     .not("passed_at", "is", null);
   const passedSet = new Set((prog ?? []).map((p) => p.passage_id as string));
   return computeAi8Unlocked(requiredIds, passedSet);
+}
+
+/**
+ * True iff AI-7 is complete for this student.
+ * Used to gate AI-8 unlock (OQ-2, AC-3.2).
+ * Delegates to isAi7Complete so the logic lives in one place.
+ */
+export async function isAi8Unlocked(
+  admin: SupabaseClient,
+  student: ReadingStudent,
+): Promise<boolean> {
+  return isAi7Complete(admin, student);
 }
 
 export interface ReadingBlock {

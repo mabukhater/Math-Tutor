@@ -96,20 +96,24 @@ function ArtifactGallery({ milestones }: { milestones: Milestone[] }) {
       {allArtifacts.map((art) => (
         <li key={art.id} className="cs-port-artifact">
           {art.kind === "url" && art.url && (
-            <a
-              href={art.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cs-port-artifact-link"
-              aria-label={`${art.milestoneTitle}: open project link`}
-            >
-              {/* Link icon */}
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-              </svg>
-              {art.milestoneTitle}
-            </a>
+            /^https?:\/\//i.test(art.url) ? (
+              <a
+                href={art.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cs-port-artifact-link"
+                aria-label={`${art.milestoneTitle}: open project link`}
+              >
+                {/* Link icon */}
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                {art.milestoneTitle}
+              </a>
+            ) : (
+              <span className="cs-port-artifact-link">{art.milestoneTitle}</span>
+            )
           )}
 
           {art.kind === "text" && art.bodyText && (
@@ -160,14 +164,10 @@ function ArtifactGallery({ milestones }: { milestones: Milestone[] }) {
 export function PortfolioCapstoneCard({ capstone, milestones, attestation }: Props) {
   const sorted = [...milestones].sort((a, b) => a.position - b.position);
 
-  // Find the rubric — it lives on the "reflect" milestone.
-  // NOTE: Milestone type from capstoneTypes.ts does not currently include a `rubric` field.
-  // The engineer must extend Milestone (or create a MilestoneWithRubric type) to include
-  //   rubric?: Rubric | null
-  // This cast will resolve once that is in place. Flag to orchestrator: prop-shape mismatch risk.
+  // Find the rubric — it lives on the "reflect" milestone (Milestone.rubric: Rubric | null).
   const reflectMilestone = sorted.find((m) => m.slug === "reflect");
   const rubric = reflectMilestone?.status === "complete"
-    ? ((reflectMilestone as Milestone & { rubric?: Rubric | null }).rubric ?? null)
+    ? (reflectMilestone.rubric ?? null)
     : null;
 
   const levelLabel = `AI ${capstone.level}: ${capstone.level === 7 ? "Foundations" : "Builds On"}`;

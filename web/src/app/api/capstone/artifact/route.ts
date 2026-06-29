@@ -71,7 +71,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "bad request" }, { status: 400 });
     if (kind === "url") {
       try {
-        new URL(value);
+        const parsed = new URL(value);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+          return NextResponse.json({ error: "bad request" }, { status: 400 });
+        }
       } catch {
         return NextResponse.json({ error: "bad request" }, { status: 400 });
       }

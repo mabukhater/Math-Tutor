@@ -126,13 +126,31 @@ export async function getOrCreateCapstone(
     if (existing) {
       capstone = existing as CapstoneRow;
     } else {
-      const { data: created, error } = await admin
+      // Upsert handles concurrent first-opens: if two requests race, the second
+      // will hit the capstones_student_level unique constraint and return the
+      // existing row instead of throwing (ignoreDuplicates:false ensures the row
+      // is returned on conflict).
+      const { data: upserted, error: upsertErr } = await admin
         .from("capstones")
-        .insert({ student_id: studentId, level: dbLevel })
+        .upsert(
+          { student_id: studentId, level: dbLevel },
+          { onConflict: "student_id,level", ignoreDuplicates: false },
+        )
         .select("id, student_id, level, created_at, completed_at")
         .single();
-      if (error || !created) throw new Error(error?.message ?? "capstone_create_failed");
-      capstone = created as CapstoneRow;
+      if (upsertErr || !upserted) {
+        // Fallback: concurrent request already committed — re-select.
+        const { data: fallback, error: selErr } = await admin
+          .from("capstones")
+          .select("id, student_id, level, created_at, completed_at")
+          .eq("student_id", studentId)
+          .eq("level", dbLevel)
+          .single();
+        if (selErr || !fallback) throw new Error(selErr?.message ?? "capstone_create_failed");
+        capstone = fallback as CapstoneRow;
+      } else {
+        capstone = upserted as CapstoneRow;
+      }
     }
   }
 
@@ -164,7 +182,11 @@ export async function getOrCreateCapstone(
         position: t.position,
       }));
     if (toInsert.length > 0) {
-      await admin.from("capstone_milestones").insert(toInsert);
+      // Use upsert with ignoreDuplicates so concurrent first-opens don't throw
+      // on the capstone_milestones_capstone_slug unique constraint.
+      await admin
+        .from("capstone_milestones")
+        .upsert(toInsert, { onConflict: "capstone_id,slug", ignoreDuplicates: true });
     }
     const { data: allMs } = await admin
       .from("capstone_milestones")
