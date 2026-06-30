@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "greater-than-less-than-help-child",
+    title: "How to Help Your Child Tell the Difference Between Greater Than and Less Than",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-06-30",
+    excerpt:
+      "Does the alligator mouth trick confuse your child? Here are clearer ways to teach greater than and less than that actually stick.",
+    body: `## Why the Alligator Trick Often Backfires
+
+If you grew up being told the greater than sign is a hungry alligator that eats the bigger number, you are not alone. It is one of the most common ways comparison symbols get taught. The trouble is, many children remember the alligator but forget which way it opens, or they focus so hard on the story that they stop thinking about the actual numbers.
+
+Comparing numbers is a foundational skill. It shows up in place value, ordering, rounding, measurement, and later in inequalities through algebra. So it is worth helping your child build real understanding, not just a memorized cartoon.
+
+Here are approaches that tend to work better at the kitchen table.
+
+## Start With the Quantity, Not the Symbol
+
+Before touching the signs, make sure your child can confidently say which number is bigger. This sounds obvious, but the symbol is only the last step. The thinking happens first.
+
+Try this order every time:
+
+- Look at the two numbers.
+- Decide out loud which is greater and why.
+- Then choose the symbol that matches.
+
+When a child rushes straight to the symbol, errors multiply. Slowing down to name the larger number first removes most of the guessing.
+
+## A Cleaner Way to Read the Symbols
+
+Instead of an animal, teach the shape directly. The symbol always opens toward the bigger number and points to the smaller one. The narrow point is like an arrow aiming at the little quantity.
+
+So with 8 and 3, the wide opening faces the 8 and the point aims at the 3. Read left to right: eight is greater than three.
+
+A helpful habit is to read the whole statement aloud as a sentence. Children who only scan symbols silently tend to flip them. Saying greater than or less than out loud reinforces direction and meaning at once.
+
+## Make It Physical
+
+Young children understand comparison best when they can see and touch unequal amounts.
+
+- Build two towers of blocks and compare heights.
+- Pour two glasses of water to different levels.
+- Make two piles of coins or dried beans and count each.
+
+Then have your child form the symbol with their hands or arms, opening wide toward the larger pile. Connecting the body to the idea gives it staying power that a worksheet alone cannot.
+
+## Practice With Numbers That Look Tricky
+
+Once single digits are easy, move to the cases that trip kids up:
+
+- Numbers with more digits, like 9 and 21. Some children assume single digits are always smaller, which is true here, but they need to reason it out rather than guess.
+- Numbers that start the same, like 47 and 41. Here the comparison hinges on the second digit, which is great practice for place value.
+- Numbers with zeros, like 105 and 150. These look similar at a glance and reward careful reading.
+
+Ask your child to explain their choice each time. The explanation is where the learning lives.
+
+## Turn It Into a Quick Game
+
+Comparison practice fits into spare minutes anywhere.
+
+- Write two numbers on a sticky note and ask your child to place the symbol between them.
+- Use playing cards: each of you flips a card and the higher card wins, while your child names the symbol.
+- During a drive, compare house numbers or speed limits and prices.
+
+Keep rounds short and frequent. A handful of comparisons each day does far more than a long session once a week.
+
+## What to Watch For
+
+If your child keeps reversing the symbols, pause the symbols entirely for a few days. Go back to just saying which number is greater and which is less, using objects. The symbol confusion almost always clears up once the underlying comparison feels automatic.
+
+Also notice whether the issue is direction or actual number sense. A child who cannot tell which number is bigger needs place value support first, not more symbol drills.
+
+## The Long View
+
+Greater than and less than seem like a small topic, but they teach your child to compare, justify, and reason about quantity. Those are the same habits that power estimation, problem solving, and confidence with bigger numbers down the road. A little steady practice now pays off for years.`,
+  },
+  {
     slug: "how-to-help-your-child-master-number-bonds",
     title: "How to Help Your Child Master Number Bonds (and Why They Matter)",
     category: "Math Tips",
