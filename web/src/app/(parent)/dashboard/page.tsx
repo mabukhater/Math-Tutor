@@ -101,10 +101,14 @@ export default async function Dashboard() {
       math = { passed: weeks.filter((w) => w.status === "passed").length, total: weeks.length };
     }
     const rp = await getReadingPath(admin, stud);
-    const ai7p = await getAICoursePath(admin, stud, "ai7");
-    const ai7 = ai7p.totalPassages > 0
-      ? { passed: ai7p.passedPassages, total: ai7p.totalPassages }
-      : null;
+    // AI 7/8 is a grade 7–8 course only — skip the query (and the entry) for others.
+    let ai7: { passed: number; total: number } | null = null;
+    if (s.nominal_grade === 7 || s.nominal_grade === 8) {
+      const ai7p = await getAICoursePath(admin, stud, "ai7");
+      ai7 = ai7p.totalPassages > 0
+        ? { passed: ai7p.passedPassages, total: ai7p.totalPassages }
+        : null;
+    }
     summaries.set(s.id, {
       math,
       reading: { passed: rp.passedPassages, total: rp.totalPassages },

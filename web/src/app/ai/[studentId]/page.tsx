@@ -23,6 +23,11 @@ export default async function AI7Page({
   const student = access.student;
   const isKid = access.role === "kid";
 
+  // AI 7/8 is a grade 7–8 course only — block direct access for other grades.
+  if (student.nominal_grade !== 7 && student.nominal_grade !== 8) {
+    redirect(isKid ? "/me" : "/dashboard");
+  }
+
   const path = await getAICoursePath(admin, student, "ai7");
 
   const ai7Done =
