@@ -60,9 +60,11 @@ function SubjectButtons({ k }: { k: Kid }) {
       <Link href={`/reading/${k.id}`} className="subject-btn reading">
         Reading →
       </Link>
-      <Link href={`/ai/${k.id}`} className="subject-btn ai">
-        AI 7 →
-      </Link>
+      {(k.grade === 7 || k.grade === 8) && (
+        <Link href={`/ai/${k.id}`} className="subject-btn ai">
+          AI 7 →
+        </Link>
+      )}
       <Link href={`/practice/${k.id}/topics`} className="subject-btn topics">
         Topics
       </Link>
@@ -150,9 +152,11 @@ function Tile({ k }: { k: Kid }) {
           <Link href={`/reading/${k.id}`} className="subject-btn reading">
             Reading
           </Link>
-          <Link href={`/ai/${k.id}`} className="subject-btn ai">
-            AI 7
-          </Link>
+          {(k.grade === 7 || k.grade === 8) && (
+            <Link href={`/ai/${k.id}`} className="subject-btn ai">
+              AI 7
+            </Link>
+          )}
         </div>
       ) : (
         <Link href={`/placement/${k.id}`} className="subject-btn math">

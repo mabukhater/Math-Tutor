@@ -81,6 +81,9 @@ export async function POST(req: Request) {
   // Membership check: the passage must be in the student's active path.
   let inPath = false;
   if (subject === "ai7" || subject === "ai8") {
+    // AI 7/8 is a grade 7–8 course only — reject AI block requests for others.
+    if (student.nominal_grade !== 7 && student.nominal_grade !== 8)
+      return NextResponse.json({ error: "grade_locked" }, { status: 403 });
     const path = await getAICoursePath(admin, student, subject);
     inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
 
