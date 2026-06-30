@@ -26,7 +26,7 @@ export default async function BillingPage() {
       />
       <p className="muted" style={{ marginTop: "1.5rem" }}>
         Your first child is included on any paid plan; each additional child is{" "}
-        <strong>$2/month</strong>. Manage or cancel anytime via Manage billing above.
+        <strong>$3/month</strong>. Manage or cancel anytime via Manage billing above.
       </p>
     </>
   );
