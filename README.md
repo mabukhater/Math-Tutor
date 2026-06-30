@@ -1,14 +1,21 @@
-# Math Tutor MVP
+# Math Tutor
 
-Cross-curriculum math practice for globally-mobile families, grades 3–5.
-Two surfaces over one Supabase backend:
+Cross-curriculum math (and reading) practice for globally-mobile families.
+Originally grades 3–5; content now spans grades 1–8 across four curricula
+(US Common Core, UK, Singapore, Ontario). One Supabase backend, multiple surfaces:
 
-- **Web app** (`web/`, Next.js → Replit) — parent signup, add child, adaptive
-  placement, parent dashboard.
-- **Telegram bot** (`bot/`, Python + python-telegram-bot → Railway) — daily MCQ
-  practice with instant feedback, streaks, and Leitner spaced repetition.
+- **Web app** (`web/`, Next.js 15 / React 19 → Railway) — parent signup, add
+  child, adaptive placement, daily practice, parent dashboard, reading
+  comprehension, lessons/learning path, AI-literacy course + capstone, Stripe
+  billing, and a marketing site. This is the primary surface today.
 - **Question generator** (`generator/`, Anthropic API) — **offline, batch only.**
-  Produces draft questions that a human vets before they are ever served.
+  Produces draft questions/passages/lessons that a human vets before serving.
+- **Telegram bot** (`bot/`, Python + python-telegram-bot) — **planned, not yet
+  built.** The web practice backend is intentionally surface-agnostic so the bot
+  (and a future native app) can reuse the same endpoints.
+
+> Current status, live DB snapshot, and open security items live in
+> [`docs/STATUS.md`](docs/STATUS.md).
 
 **Hard rule:** no live LLM in the child-facing path. The bot serves only
 `questions.status = 'vetted'`. The Anthropic API is used solely by the offline
@@ -19,13 +26,13 @@ RLS on every table, minimal child PII).
 
 ```
 supabase/
-  migrations/0001_init.sql           schema + RLS + indexes + curricula seed
-  seed/skills_common_core_3_5.json   the skill ladder (source of truth)
-  seed/seed_skills.py                loads the ladder into the skills table
-web/                                 Next.js web app            (M2, M4)
-bot/                                 Telegram worker            (M3)
-generator/                           offline question pipeline  (M1)
-docs/STATUS.md                       milestone status & decisions log
+  migrations/                        22 migrations (0001_init → 0022_ai_course)
+  seed/                              skill ladders per curriculum (source of truth)
+  apply_migrations.py                applies migrations over the session pooler
+web/                                 Next.js web app — the primary surface
+generator/                           offline question/passage/lesson pipeline
+bot/                                 Telegram worker            (planned, M3)
+docs/STATUS.md                       live status & decisions log
 ```
 
 ## Setup (once a DEDICATED Supabase project exists)
