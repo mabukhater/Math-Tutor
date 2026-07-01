@@ -11,6 +11,66 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-regrouping-in-subtraction",
+    title: "How to Help Your Child Understand Regrouping in Subtraction (Borrowing Made Clear)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-01",
+    excerpt:
+      "Borrowing in subtraction trips up so many kids. Here is how to make regrouping click at home, step by step.",
+    body: `## Why Regrouping Confuses So Many Kids
+
+Your child can subtract 8 minus 3 in a heartbeat. Then they meet a problem like 52 minus 27, and suddenly everything falls apart. They might write 35 (subtracting the smaller digit from the larger one no matter where it sits), or freeze completely.
+
+This is one of the most common stumbling blocks in early math, and it almost always comes down to one idea: regrouping, the process older textbooks call borrowing. Once regrouping makes sense, a whole world of multi-digit subtraction opens up.
+
+The good news is that regrouping is not a trick to memorize. It is a logical move, and when children see the logic, they stop making careless errors.
+
+## What Regrouping Actually Means
+
+Regrouping is trading. When the top digit in a column is too small to subtract from, your child trades one unit from the next column over.
+
+Take 52 minus 27. In the ones column, 2 minus 7 is not possible with whole numbers a child knows yet. So they take one ten from the 5 tens, leaving 4 tens, and add that ten to the 2 ones to make 12 ones. Now 12 minus 7 is 5, and 4 tens minus 2 tens is 2 tens. The answer is 25.
+
+The number 52 has not changed. We have simply renamed it: instead of 5 tens and 2 ones, we call it 4 tens and 12 ones. Same value, more useful shape.
+
+## Start With Real Objects Before Symbols
+
+Regrouping lives in place value, so anchor it in things your child can touch.
+
+- Use bundles of ten straws held with a rubber band, plus loose straws for the ones.
+- To subtract, ask your child to remove the ones first. When there are not enough, they unwrap a bundle of ten and add those straws to the ones pile.
+- Coins work too: trade one dime for ten pennies before taking pennies away.
+
+Doing the physical trade a dozen times builds the intuition that the written procedure only records. Children who skip this step often follow the steps without understanding, which is exactly why errors creep back in later.
+
+## Move to Drawings, Then to Numbers
+
+Once the objects make sense, draw them. Sketch tens as sticks and ones as dots. Cross out a ten stick and draw ten dots to show the trade. This bridges the gap between hands-on and abstract.
+
+Only then write the standard vertical algorithm. When your child crosses out the 5 and writes a small 4, ask them to say out loud what just happened: one ten moved over and became ten ones. Narrating the trade keeps the meaning attached to the marks on the page.
+
+## Common Mistakes and Gentle Fixes
+
+- Subtracting the smaller from the larger in each column. Fix it by returning to straws so they feel that you cannot take 7 from 2 without trading.
+- Forgetting to reduce the column they borrowed from. Have them touch and read the crossed-out number aloud every time.
+- Trouble with zeros, as in 300 minus 148. This needs a double trade. Slow it right down with objects, since a hundred becomes ten tens, then one ten becomes ten ones.
+
+## Quick Practice That Sticks
+
+Keep sessions short and frequent rather than long and rare.
+
+- Play store: your child is the cashier making change from a set amount.
+- Ask them to teach you a problem while pretending you have forgotten how.
+- Mix easy no-regrouping problems with harder ones so they learn to check when trading is needed.
+
+If your child practices a few regrouping problems most days, the procedure becomes automatic within a couple of weeks. Aim for understanding first and speed second.
+
+## The Takeaway
+
+Regrouping is not borrowing something you never give back. It is trading one form of a number for a more convenient one. Give your child straws, coins, and time to see the trade happen, then connect it to the written steps. When the logic is clear, the confidence follows, and multi-digit subtraction stops being scary.`,
+  },
+  {
     slug: "greater-than-less-than-help-child",
     title: "How to Help Your Child Tell the Difference Between Greater Than and Less Than",
     category: "Math Tips",
