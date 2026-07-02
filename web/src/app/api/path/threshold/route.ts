@@ -14,12 +14,16 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  // RLS ensures the parent can only update their own child.
-  const { error } = await supabase
+  // RLS ensures the parent can only update their own child. A .select() lets us
+  // detect a 0-row update (kid session, or someone else's studentId): without it
+  // supabase-js returns error=null and we'd falsely report the save succeeded.
+  const { data, error } = await supabase
     .from("students")
     .update({ pass_threshold: t })
-    .eq("id", studentId);
-  if (error) return NextResponse.json({ error: "not found" }, { status: 404 });
+    .eq("id", studentId)
+    .select("id");
+  if (error || !data || data.length === 0)
+    return NextResponse.json({ error: "not found" }, { status: 404 });
 
   return NextResponse.json({ ok: true, threshold: t });
 }
