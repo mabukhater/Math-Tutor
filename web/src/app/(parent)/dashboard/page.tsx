@@ -51,32 +51,38 @@ export default async function Dashboard() {
   // Reused in the per-child loop below so we don't re-run the heavy
   // skills_with_vetted RPC once per child for the same curriculum.
   const vetByCur = new Map<string, Set<string>>();
-  for (const cur of curIds) {
-    const sample = list.find((s) => s.curriculum_id === cur);
-    const { data: cs } = await admin.from("skills").select("id, grade").eq("curriculum_id", cur);
-    const { data: vet } = await admin.rpc("skills_with_vetted", { cur });
-    const vetSet = new Set(((vet ?? []) as { skill_id: string }[]).map((r) => r.skill_id));
-    vetByCur.set(cur, vetSet);
-    const grades = [
-      ...new Set(
-        ((cs ?? []) as { id: string; grade: number }[])
-          .filter((r) => vetSet.has(r.id))
-          .map((r) => r.grade),
-      ),
-    ].sort((a, b) => a - b);
-    gradeOptsByCur.set(
-      cur,
-      grades.map((g) => ({
-        grade: g,
-        label: gradeLabel(
-          curField(sample?.curricula, "grade_noun"),
-          curField(sample?.curricula, "grade_offset"),
-          g,
-          curField(sample?.curricula, "code"),
+  // Curricula are independent — resolve them in parallel (and the two queries
+  // per curriculum concurrently) rather than serially.
+  await Promise.all(
+    curIds.map(async (cur) => {
+      const sample = list.find((s) => s.curriculum_id === cur);
+      const [{ data: cs }, { data: vet }] = await Promise.all([
+        admin.from("skills").select("id, grade").eq("curriculum_id", cur),
+        admin.rpc("skills_with_vetted", { cur }),
+      ]);
+      const vetSet = new Set(((vet ?? []) as { skill_id: string }[]).map((r) => r.skill_id));
+      vetByCur.set(cur, vetSet);
+      const grades = [
+        ...new Set(
+          ((cs ?? []) as { id: string; grade: number }[])
+            .filter((r) => vetSet.has(r.id))
+            .map((r) => r.grade),
         ),
-      })),
-    );
-  }
+      ].sort((a, b) => a - b);
+      gradeOptsByCur.set(
+        cur,
+        grades.map((g) => ({
+          grade: g,
+          label: gradeLabel(
+            curField(sample?.curricula, "grade_noun"),
+            curField(sample?.curricula, "grade_offset"),
+            g,
+            curField(sample?.curricula, "code"),
+          ),
+        })),
+      );
+    }),
+  );
 
   const summaries = new Map<
     string,
@@ -86,35 +92,46 @@ export default async function Dashboard() {
       ai7: { passed: number; total: number } | null;
     }
   >();
-  for (const s of list) {
-    const stud = {
-      id: s.id,
-      curriculum_id: s.curriculum_id,
-      nominal_grade: s.nominal_grade,
-      current_skill_index: s.current_skill_index,
-      pass_threshold: s.pass_threshold,
-    };
-    let math: { passed: number; total: number } | null = null;
-    if (s.placement_completed) {
-      const path = await getPathForStudent(admin, stud, { vetted: vetByCur.get(s.curriculum_id as string) });
-      const weeks = path.months.flatMap((m) => m.weeks);
-      math = { passed: weeks.filter((w) => w.status === "passed").length, total: weeks.length };
-    }
-    const rp = await getReadingPath(admin, stud);
-    // AI 7/8 is a grade 7–8 course only — skip the query (and the entry) for others.
-    let ai7: { passed: number; total: number } | null = null;
-    if (s.nominal_grade === 7 || s.nominal_grade === 8) {
-      const ai7p = await getAICoursePath(admin, stud, "ai7");
-      ai7 = ai7p.totalPassages > 0
-        ? { passed: ai7p.passedPassages, total: ai7p.totalPassages }
-        : null;
-    }
-    summaries.set(s.id, {
-      math,
-      reading: { passed: rp.passedPassages, total: rp.totalPassages },
-      ai7,
-    });
-  }
+  // Children are independent, and each child's math / reading / AI paths are
+  // independent of each other — fan them all out instead of awaiting serially
+  // (a 4-child family was ~40 sequential round-trips on the most-visited page).
+  await Promise.all(
+    list.map(async (s) => {
+      const stud = {
+        id: s.id,
+        curriculum_id: s.curriculum_id,
+        nominal_grade: s.nominal_grade,
+        current_skill_index: s.current_skill_index,
+        pass_threshold: s.pass_threshold,
+      };
+      const [math, reading, ai7] = await Promise.all([
+        s.placement_completed
+          ? getPathForStudent(admin, stud, {
+              vetted: vetByCur.get(s.curriculum_id as string),
+            }).then((path) => {
+              const weeks = path.months.flatMap((m) => m.weeks);
+              return {
+                passed: weeks.filter((w) => w.status === "passed").length,
+                total: weeks.length,
+              };
+            })
+          : Promise.resolve(null as { passed: number; total: number } | null),
+        getReadingPath(admin, stud).then((rp) => ({
+          passed: rp.passedPassages,
+          total: rp.totalPassages,
+        })),
+        // AI 7/8 is a grade 7–8 course only — skip the query for others.
+        s.nominal_grade === 7 || s.nominal_grade === 8
+          ? getAICoursePath(admin, stud, "ai7").then((p) =>
+              p.totalPassages > 0
+                ? { passed: p.passedPassages, total: p.totalPassages }
+                : null,
+            )
+          : Promise.resolve(null as { passed: number; total: number } | null),
+      ]);
+      summaries.set(s.id, { math, reading, ai7 });
+    }),
+  );
 
   const kids: Kid[] = list.map((s) => ({
     id: s.id,
