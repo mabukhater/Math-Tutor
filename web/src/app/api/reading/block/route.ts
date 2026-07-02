@@ -94,7 +94,7 @@ export async function POST(req: Request) {
     const path = await getReadingPath(admin, student);
     inPath = path.weeks.some((wk) => wk.passages.some((p) => p.passageId === passageId));
 
-    const gate = await checkSubjectGate(admin, student, "reading");
+    const gate = await checkSubjectGate(admin, student, "reading", passageId);
     if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
   }
 

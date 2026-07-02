@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 
   // Free-taster gate: a capped subject allows finishing an open lesson + a small
   // number of new lessons per day, then prompts to upgrade.
-  const gate = await checkSubjectGate(admin, student, "math");
+  const gate = await checkSubjectGate(admin, student, "math", skillId);
   if (gate.locked) return NextResponse.json({ error: "limit", plan: gate.plan }, { status: 402 });
 
   let block;
