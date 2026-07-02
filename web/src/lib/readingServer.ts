@@ -1,5 +1,37 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
+/** The only reading-question fields safe to send to the browser. */
+export interface PublicReadingQuestion {
+  id: string;
+  stem: string;
+  options: string[];
+  difficulty: number | null;
+  /** Which paragraph to re-read for a hint (from the locator), if any. */
+  hintParagraph: number | null;
+}
+
+/**
+ * Strip a reading question down to the browser-safe fields — the reading analog
+ * of placementServer.toPublic. Route every served reading question through this
+ * so correct_index / explanations can never leak, even if a caller's select
+ * over-fetches. Accepts extra fields and simply drops them.
+ */
+export function toPublicReadingQuestion(q: {
+  id: string;
+  stem: string;
+  options: string[];
+  difficulty?: number | null;
+  locator?: { paragraph?: number | null } | null;
+}): PublicReadingQuestion {
+  return {
+    id: q.id,
+    stem: q.stem,
+    options: q.options,
+    difficulty: q.difficulty ?? null,
+    hintParagraph: q.locator?.paragraph ?? null,
+  };
+}
+
 export interface ReadingStudent {
   id: string;
   nominal_grade: number;

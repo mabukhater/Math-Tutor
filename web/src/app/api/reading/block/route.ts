@@ -3,7 +3,12 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
-import { getReadingPath, getAICoursePath, getOrCreateReadingBlock } from "@/lib/readingServer";
+import {
+  getReadingPath,
+  getAICoursePath,
+  getOrCreateReadingBlock,
+  toPublicReadingQuestion,
+} from "@/lib/readingServer";
 import { checkSubjectGate, checkAiGate } from "@/lib/billing";
 
 // Already-answered questions in this block, with their real result so a resumed
@@ -122,15 +127,7 @@ export async function POST(req: Request) {
       .select("id, stem, options, difficulty, locator")
       .eq("id", block.question_ids[idx])
       .single();
-    if (q)
-      question = {
-        id: q.id,
-        stem: q.stem,
-        options: q.options,
-        difficulty: (q.difficulty as number) ?? null,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        hintParagraph: (q.locator as any)?.paragraph ?? null,
-      };
+    if (q) question = toPublicReadingQuestion(q);
   }
 
   const answered = await answeredReadingHistory(admin, student.id, block.question_ids.slice(0, idx));

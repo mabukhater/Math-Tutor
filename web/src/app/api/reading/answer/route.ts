@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
-import { markPassagePassed } from "@/lib/readingServer";
+import { markPassagePassed, toPublicReadingQuestion } from "@/lib/readingServer";
 
 // Grade one comprehension answer. On a wrong answer, return the LOCATOR (the
 // paragraph + hint) so the child is sent back into the text. When the block
@@ -101,19 +101,10 @@ export async function POST(req: Request) {
       .select("id, stem, options, difficulty, locator")
       .eq("id", ids[numCompleted])
       .single();
-    // Carry `difficulty` AND `hintParagraph` through so they stay put across
-    // questions — the block (start/resume) route includes both, and the client
-    // gates the hint button on hintParagraph, so the "next" payload must too
-    // (else the hint button vanishes for questions 2..N).
-    if (nq)
-      next = {
-        id: nq.id,
-        stem: nq.stem,
-        options: nq.options,
-        difficulty: (nq.difficulty as number) ?? null,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        hintParagraph: (nq.locator as any)?.paragraph ?? null,
-      };
+    // Route through the shared sanitizer so difficulty + hintParagraph carry
+    // through (the client gates the hint button on hintParagraph) and the
+    // answer key can never leak, matching the block route.
+    if (nq) next = toPublicReadingQuestion(nq);
   }
 
   return NextResponse.json({
