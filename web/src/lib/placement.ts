@@ -45,23 +45,28 @@ export function gradeRange(ladder: LadderSkill[], grade: number): [number, numbe
 }
 
 /**
- * Start a placement run for a child in `nominalGrade`. Begins mid-difficulty at
- * the first rung of the stated grade; the search window spans from there up
- * through the end of the next grade (so a strong child can be placed ahead).
+ * Start a placement run for a child in `nominalGrade`. `low` is the grade floor
+ * (placement never drops below the stated grade — the parent owns the grade),
+ * and the window spans up through the end of the next grade (so a strong child
+ * can be placed ahead). The first question opens at the MIDDLE of the stated
+ * grade: opening at the floor made a single wrong answer collapse the window
+ * (high := low) and finish placement after one question, stranding a struggling
+ * child at the floor with no real diagnostic. A mid-grade opener lets the binary
+ * search probe both up and down before converging.
  */
 export function initPlacement(ladder: LadderSkill[], nominalGrade: number): PlacementState {
   if (ladder.length === 0) throw new Error("empty ladder");
   const n = ladder.length - 1;
   const nom = gradeRange(ladder, nominalGrade);
   if (!nom) throw new Error(`grade ${nominalGrade} not in ladder`);
-  const [firstNom] = nom;
+  const [firstNom, lastNom] = nom;
   const up = gradeRange(ladder, nominalGrade + 1);
   const high = up ? up[1] : nom[1]; // one grade up, or end of this grade if none
   return {
     low: firstNom,
     high,
     n,
-    estimate: firstNom,
+    estimate: clamp(Math.round((firstNom + lastNom) / 2), firstNom, high),
     asked: [],
     done: false,
     estimatedIndex: null,
