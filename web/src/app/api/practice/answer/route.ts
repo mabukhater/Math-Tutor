@@ -5,15 +5,13 @@ import { getOrCreateDailySet, streakForStudent } from "@/lib/practiceServer";
 import { toPublic } from "@/lib/placementServer";
 import { applyAnswer, type ProgressState } from "@/lib/practice";
 import { resolveStudent } from "@/lib/access";
+import { clampResponseTime, gradeMcqAnswer } from "@/lib/grading";
 
 export async function POST(req: Request) {
   const { studentId, questionId, selectedIndex, responseTimeMs } = await req.json();
   if (!studentId || !questionId || typeof selectedIndex !== "number")
     return NextResponse.json({ error: "bad request" }, { status: 400 });
-  const rt =
-    typeof responseTimeMs === "number" && isFinite(responseTimeMs) && responseTimeMs >= 0
-      ? Math.min(Math.round(responseTimeMs), 3_600_000)
-      : null;
+  const rt = clampResponseTime(responseTimeMs);
 
   const supabase = await createClient();
   const {
@@ -43,13 +41,7 @@ export async function POST(req: Request) {
     .eq("id", questionId)
     .single();
   if (!q) return NextResponse.json({ error: "no question" }, { status: 404 });
-  const correct = selectedIndex === q.correct_index;
-
-  // Kid-friendly per-option detail (falls back to the single explanation).
-  const oe = (q.option_explanations as string[] | null) ?? null;
-  const correctIndex = q.correct_index as number;
-  const whyWrong = !correct ? (oe?.[selectedIndex] ?? null) : null;
-  const correctExplanation = oe?.[correctIndex] ?? q.explanation;
+  const { correct, correctIndex, whyWrong, correctExplanation } = gradeMcqAnswer(q, selectedIndex);
 
   // Telemetry.
   await admin.from("attempts").insert({
