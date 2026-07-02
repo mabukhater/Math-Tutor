@@ -21,3 +21,6 @@ yarn-error.log*
 
 # os
 .DS_Store
+
+# personal, machine-specific onboarding prompt (not project docs — see docs/STATUS.md)
+HANDOVER.md
