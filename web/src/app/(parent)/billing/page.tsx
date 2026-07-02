@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { BillingControl } from "@/components/BillingControl";
+import { PRICING } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +27,7 @@ export default async function BillingPage() {
       />
       <p className="muted" style={{ marginTop: "1.5rem" }}>
         Your first child is included on any paid plan; each additional child is{" "}
-        <strong>$3/month</strong>. Manage or cancel anytime via Manage billing above.
+        <strong>{PRICING.perChild}</strong>. Manage or cancel anytime via Manage billing above.
       </p>
     </>
   );
