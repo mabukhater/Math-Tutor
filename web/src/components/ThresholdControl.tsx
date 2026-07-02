@@ -11,15 +11,25 @@ export function ThresholdControl({ studentId, value }: { studentId: string; valu
   const [busy, setBusy] = useState(false);
 
   async function change(t: number) {
-    setVal(t);
+    const prev = val;
+    setVal(t); // optimistic
     setBusy(true);
-    await fetch("/api/path/threshold", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId, threshold: t }),
-    });
-    setBusy(false);
-    router.refresh();
+    try {
+      const res = await fetch("/api/path/threshold", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ studentId, threshold: t }),
+      });
+      if (!res.ok) {
+        setVal(prev); // save didn't stick — don't show an unsaved value
+        return;
+      }
+      router.refresh();
+    } catch {
+      setVal(prev);
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (

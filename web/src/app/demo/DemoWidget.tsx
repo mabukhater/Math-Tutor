@@ -9,12 +9,17 @@ interface DemoQ {
   id: string;
   stem: string;
   options: string[];
-  correctIndex: number;
-  explanation: string;
-  optionExplanations: string[] | null;
   visual: Visual | null;
   skillCode: string;
   curriculum: string;
+}
+// Server grades and returns the answer only after the visitor picks — the
+// answer key is never shipped to the browser up front.
+interface DemoResult {
+  correct: boolean;
+  correctIndex: number;
+  whyWrong: string | null;
+  correctExplanation: string | null;
 }
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -22,6 +27,7 @@ export default function DemoWidget() {
   const [questions, setQuestions] = useState<DemoQ[]>([]);
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const [result, setResult] = useState<DemoResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [correctCount, setCorrectCount] = useState(0);
 
@@ -29,6 +35,7 @@ export default function DemoWidget() {
     setLoading(true);
     setIdx(0);
     setSelected(null);
+    setResult(null);
     setCorrectCount(0);
     const r = await fetch("/api/demo");
     const d = await r.json();
@@ -67,15 +74,26 @@ export default function DemoWidget() {
     );
 
   const q = questions[idx];
-  const answered = selected !== null;
 
-  function choose(i: number) {
-    if (answered) return;
+  async function choose(i: number) {
+    if (selected !== null) return; // lock once a choice is made / grading in flight
     setSelected(i);
-    if (i === q.correctIndex) setCorrectCount((c) => c + 1);
+    const r = await fetch("/api/demo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: q.id, selectedIndex: i }),
+    });
+    if (!r.ok) {
+      setSelected(null); // let them try again
+      return;
+    }
+    const d: DemoResult = await r.json();
+    setResult(d);
+    if (d.correct) setCorrectCount((c) => c + 1);
   }
   function next() {
     setSelected(null);
+    setResult(null);
     setIdx((i) => i + 1);
   }
 
@@ -91,18 +109,23 @@ export default function DemoWidget() {
       {q.visual && <QuestionVisual visual={q.visual} />}
       {q.options.map((opt, i) => {
         let cls = "opt";
-        if (answered && i === q.correctIndex) cls += " correct";
-        else if (answered && i === selected) cls += " wrong";
+        if (result && i === result.correctIndex) cls += " correct";
+        else if (result && i === selected) cls += " wrong";
         return (
-          <button key={i} className={cls} disabled={answered} onClick={() => choose(i)}>
+          <button
+            key={i}
+            className={cls}
+            disabled={selected !== null}
+            onClick={() => choose(i)}
+          >
             <span className="opt-letter">{LETTERS[i]}</span>
             {opt}
-            {answered && i === q.correctIndex && (
+            {result && i === result.correctIndex && (
               <span className="opt-mark">
                 <Check size={20} />
               </span>
             )}
-            {answered && i === selected && i !== q.correctIndex && (
+            {result && i === selected && i !== result.correctIndex && (
               <span className="opt-mark">
                 <Cross size={20} />
               </span>
@@ -110,23 +133,25 @@ export default function DemoWidget() {
           </button>
         );
       })}
-      {answered && (
+      {result && (
         <div className="feedback-box">
-          <div className={"feedback-line " + (selected === q.correctIndex ? "ok" : "no")}>
-            {selected === q.correctIndex ? <Check size={20} /> : <Cross size={20} />}
-            {selected === q.correctIndex ? "Correct!" : "Not quite"}
+          <div className={"feedback-line " + (result.correct ? "ok" : "no")}>
+            {result.correct ? <Check size={20} /> : <Cross size={20} />}
+            {result.correct ? "Correct!" : "Not quite"}
           </div>
-          {selected !== q.correctIndex && q.optionExplanations?.[selected as number] && (
-            <p className="why-wrong">{q.optionExplanations[selected as number]}</p>
+          {!result.correct && result.whyWrong && (
+            <p className="why-wrong">{result.whyWrong}</p>
           )}
-          {selected !== q.correctIndex && (
+          {!result.correct && (
             <p style={{ marginTop: "0.5rem", fontWeight: 700 }}>
-              The answer is {LETTERS[q.correctIndex]}: {q.options[q.correctIndex]}
+              The answer is {LETTERS[result.correctIndex]}: {q.options[result.correctIndex]}
             </p>
           )}
-          <p className="muted" style={{ marginTop: "0.3rem" }}>
-            {q.optionExplanations?.[q.correctIndex] ?? q.explanation}
-          </p>
+          {result.correctExplanation && (
+            <p className="muted" style={{ marginTop: "0.3rem" }}>
+              {result.correctExplanation}
+            </p>
+          )}
           <button className="btn" onClick={next}>
             {idx + 1 >= questions.length ? "See result" : "Next question"}
           </button>

@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
   const { data: session, error } = await admin
     .from("placement_sessions")
-    .insert({ student_id: studentId, asked: [] })
+    .insert({ student_id: studentId, asked: [], pending_question_id: q.id })
     .select("id")
     .single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });

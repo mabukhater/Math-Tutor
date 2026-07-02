@@ -29,12 +29,18 @@ export async function POST(req: Request) {
   const admin = createAdminClient();
   const { data: session } = await admin
     .from("placement_sessions")
-    .select("id, student_id, asked, completed_at")
+    .select("id, student_id, asked, completed_at, pending_question_id")
     .eq("id", sessionId)
     .single();
   if (!session) return NextResponse.json({ error: "no session" }, { status: 404 });
   if (session.completed_at)
     return NextResponse.json({ error: "already completed" }, { status: 409 });
+  // Only grade the exact question the server last served for THIS session.
+  // Without this, a caller could POST any questionId from the bank and read back
+  // its correct_index — an answer-key oracle. Mirrors the ordering guard in
+  // /api/practice/answer.
+  if (session.pending_question_id !== questionId)
+    return NextResponse.json({ error: "out of order" }, { status: 409 });
 
   // Ownership check through RLS.
   const { data: student } = await supabase
@@ -118,6 +124,7 @@ export async function POST(req: Request) {
         asked: asked2,
         completed_at: new Date().toISOString(),
         estimated_index: estimatedIndex,
+        pending_question_id: null,
       })
       .eq("id", sessionId);
     await admin
@@ -160,8 +167,12 @@ export async function POST(req: Request) {
     });
   }
 
-  // Continue — record progress and serve the next question.
-  await admin.from("placement_sessions").update({ asked: asked2 }).eq("id", sessionId);
+  // Continue — record progress and serve the next question. Pin the served id so
+  // the next answer can only grade this exact question.
+  await admin
+    .from("placement_sessions")
+    .update({ asked: asked2, pending_question_id: nextQ!.id })
+    .eq("id", sessionId);
   return NextResponse.json({
     done: false,
     correct,
