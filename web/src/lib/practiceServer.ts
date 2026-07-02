@@ -24,9 +24,9 @@ const todayUtc = (now: Date) => now.toISOString().slice(0, 10);
 
 /**
  * Get or build today's daily set (Section 6):
- *  1. review: skills due now (most overdue first), up to ~7 slots
- *  2. fill remaining slots with the next NEW skills (cap 3/day), seeding their
- *     progress rows and advancing current_skill_index
+ *  1. review: skills due now (most overdue first), up to the daily target
+ *  2. fill remaining slots with the next NEW skills (cap 3/day) that have a
+ *     vetted question, seeding their progress rows and advancing the cursor
  *  3. one vetted question per chosen skill
  * Idempotent per (student, date) via the daily_sessions unique constraint.
  */
@@ -48,20 +48,35 @@ export async function getOrCreateDailySet(
   const qpd = student.questions_per_day || 10;
   const nowIso = now.toISOString();
 
-  // 1. Review items due now.
+  // 1. Review items due now, capped at the daily target (not a fixed 7, so a
+  //    parent who sets questions_per_day below 7 isn't served extra).
   const { data: dueRows } = await admin
     .from("student_skill_progress")
     .select("skill_id, next_due_at")
     .eq("student_id", student.id)
     .lte("next_due_at", nowIso)
     .order("next_due_at", { ascending: true })
-    .limit(7);
+    .limit(qpd);
   const reviewSkillIds: string[] = (dueRows ?? []).map((r) => r.skill_id as string);
 
-  // 2. New skills to introduce.
-  const remaining = Math.max(0, qpd - reviewSkillIds.length);
+  // 3a. One vetted question per REVIEW skill. A due skill with no vetted
+  //     question simply yields nothing this round.
+  const questionIds: string[] = [];
+  for (const skillId of reviewSkillIds) {
+    const q = await pickQuestion(admin, skillId, questionIds);
+    if (q) questionIds.push(q.id);
+  }
+
+  // 2/3b. New skills to introduce. Only skills that actually have a vetted
+  //       question are seeded and counted — otherwise a content gap would seed a
+  //       progress row that never yields a question yet permanently occupies a
+  //       review slot (silently shrinking every future daily set). We still
+  //       advance the cursor past any skipped (unvetted) skill so the path
+  //       doesn't stall on the gap.
+  const remaining = Math.max(0, qpd - questionIds.length);
   const newCap = Math.min(NEW_SKILLS_CAP, remaining);
-  const newSkills: { id: string; seq: number }[] = [];
+  const seededNew: string[] = [];
+  let scannedMaxSeq = -1;
   if (newCap > 0) {
     const { data: progRows } = await admin
       .from("student_skill_progress")
@@ -75,34 +90,34 @@ export async function getOrCreateDailySet(
       .gte("sequence_position", student.current_skill_index ?? 0)
       .order("sequence_position", { ascending: true });
     for (const s of ladder ?? []) {
-      if (newSkills.length >= newCap) break;
-      if (!haveProgress.has(s.id as string)) {
-        newSkills.push({ id: s.id as string, seq: s.sequence_position as number });
-      }
+      if (seededNew.length >= newCap) break;
+      if (haveProgress.has(s.id as string)) continue;
+      scannedMaxSeq = Math.max(scannedMaxSeq, s.sequence_position as number);
+      const q = await pickQuestion(admin, s.id as string, questionIds);
+      if (!q) continue; // no vetted question yet — skip, don't seed a dead slot
+      questionIds.push(q.id);
+      seededNew.push(s.id as string);
     }
   }
 
-  // 3. One vetted question per selected skill.
-  const selectedSkillIds = [...reviewSkillIds, ...newSkills.map((s) => s.id)];
-  const questionIds: string[] = [];
-  for (const skillId of selectedSkillIds) {
-    const q = await pickQuestion(admin, skillId, questionIds);
-    if (q) questionIds.push(q.id);
-  }
-
-  // Seed new-skill progress rows + advance the cursor.
-  if (newSkills.length) {
+  // Seed the introduced skills' progress rows + advance the cursor past every
+  // skill we scanned (including skipped content gaps).
+  if (seededNew.length) {
     await admin.from("student_skill_progress").upsert(
-      newSkills.map((s) => ({
+      seededNew.map((id) => ({
         student_id: student.id,
-        skill_id: s.id,
+        skill_id: id,
         box: 0,
         next_due_at: nowIso,
       })),
       { onConflict: "student_id,skill_id", ignoreDuplicates: true },
     );
-    const maxNew = Math.max(...newSkills.map((s) => s.seq));
-    await admin.from("students").update({ current_skill_index: maxNew + 1 }).eq("id", student.id);
+  }
+  if (scannedMaxSeq >= 0) {
+    await admin
+      .from("students")
+      .update({ current_skill_index: scannedMaxSeq + 1 })
+      .eq("id", student.id);
   }
 
   const { data: session, error } = await admin
@@ -117,7 +132,21 @@ export async function getOrCreateDailySet(
     })
     .select("id, session_date, question_ids, num_completed, num_correct, completed_at")
     .single();
-  if (error) throw new Error(error.message);
+  if (error) {
+    // A concurrent request (two tabs / double-tap) may have inserted today's
+    // session first, tripping the unique (student_id, session_date) constraint.
+    // Return that row instead of surfacing a 500.
+    if ((error as { code?: string }).code === "23505") {
+      const { data: raced } = await admin
+        .from("daily_sessions")
+        .select("id, session_date, question_ids, num_completed, num_correct, completed_at")
+        .eq("student_id", student.id)
+        .eq("session_date", date)
+        .single();
+      if (raced) return raced as DailySession;
+    }
+    throw new Error(error.message);
+  }
   return session as DailySession;
 }
 
