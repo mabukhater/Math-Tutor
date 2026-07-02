@@ -6,7 +6,7 @@ export interface StudentRow {
   id: string;
   curriculum_id: string;
   nominal_grade: number;
-  display_name?: string;
+  display_name?: string | null;
 }
 
 export interface TopicCard {

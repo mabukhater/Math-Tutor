@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { toPublic } from "@/lib/placementServer";
 import { applyAnswer, type ProgressState } from "@/lib/practice";
+import { resolveStudent } from "@/lib/access";
 
 // Grade one answer inside a topic-practice set. Updates mastery (same Leitner
 // state as daily) and the topic session, but never touches streaks/daily feed.
@@ -21,14 +22,12 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  const { data: student } = await supabase
-    .from("students")
-    .select("id")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
-
+  // Parent who owns the student, OR the kid whose login is linked to them.
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
+
   const { data: session } = await admin
     .from("topic_sessions")
     .select("id, student_id, question_ids, num_completed, num_correct, completed_at")

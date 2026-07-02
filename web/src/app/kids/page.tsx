@@ -20,7 +20,11 @@ export default function KidSignIn() {
       body: JSON.stringify({ username: username.trim().toLowerCase(), pin: pin.trim() }),
     });
     setBusy(false);
-    if (!r.ok) return setErr("That username or PIN isn’t right. Ask your parent to check it.");
+    if (!r.ok) {
+      if (r.status === 429)
+        return setErr("Too many tries. Please wait a few minutes, then ask your parent for help.");
+      return setErr("That username or PIN isn’t right. Ask your parent to check it.");
+    }
     router.refresh();
     router.push("/me");
   }

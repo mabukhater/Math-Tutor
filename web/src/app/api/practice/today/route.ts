@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getOrCreateDailySet, streakForStudent } from "@/lib/practiceServer";
 import { toPublic } from "@/lib/placementServer";
+import { resolveStudent } from "@/lib/access";
 
 export async function POST(req: Request) {
   const { studentId } = await req.json();
@@ -14,16 +15,14 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, display_name, curriculum_id, current_skill_index, questions_per_day, placement_completed")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
+  // Parent who owns the student, OR the kid whose login is linked to them.
+  const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
   if (!student.placement_completed)
     return NextResponse.json({ error: "placement_required" }, { status: 409 });
 
-  const admin = createAdminClient();
   const now = new Date();
   const session = await getOrCreateDailySet(admin, student, now);
   const total = session.question_ids.length;

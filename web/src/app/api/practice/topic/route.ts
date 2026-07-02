@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { getOrCreateTopicSession } from "@/lib/topicsServer";
 import { getLesson } from "@/lib/lessonsServer";
 import { toPublic } from "@/lib/placementServer";
+import { resolveStudent } from "@/lib/access";
 
 // Start (or resume) a focused topic-practice set. Isolated from the daily feed.
 export async function POST(req: Request) {
@@ -17,14 +18,12 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  const { data: student } = await supabase
-    .from("students")
-    .select("id, curriculum_id, nominal_grade, display_name")
-    .eq("id", studentId)
-    .single();
-  if (!student) return NextResponse.json({ error: "not found" }, { status: 404 });
-
+  // Parent who owns the student, OR the kid whose login is linked to them.
   const admin = createAdminClient();
+  const access = await resolveStudent(supabase, admin, studentId);
+  if (!access) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const student = access.student;
+
   const { data: topic } = await admin
     .from("topics")
     .select("id, name")
