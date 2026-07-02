@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { markPassagePassed, toPublicReadingQuestion } from "@/lib/readingServer";
+import { clampResponseTime } from "@/lib/grading";
 
 // Grade one comprehension answer. On a wrong answer, return the LOCATOR (the
 // paragraph + hint) so the child is sent back into the text. When the block
@@ -11,10 +12,7 @@ export async function POST(req: Request) {
   const { studentId, blockId, questionId, selectedIndex, responseTimeMs, hintUsed } = await req.json();
   if (!studentId || !blockId || !questionId || typeof selectedIndex !== "number")
     return NextResponse.json({ error: "bad request" }, { status: 400 });
-  const rt =
-    typeof responseTimeMs === "number" && isFinite(responseTimeMs) && responseTimeMs >= 0
-      ? Math.min(Math.round(responseTimeMs), 3_600_000)
-      : null;
+  const rt = clampResponseTime(responseTimeMs);
 
   const supabase = await createClient();
   const admin = createAdminClient();

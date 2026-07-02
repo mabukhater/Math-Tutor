@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { resolveStudent } from "@/lib/access";
 import { toPublic } from "@/lib/placementServer";
 import { markSkillPassed, type PathStudent } from "@/lib/pathServer";
+import { clampResponseTime, gradeMcqAnswer } from "@/lib/grading";
 
 // Grade one answer in a path block. When the block finishes, decide pass/fail
 // against the snapshotted threshold; passing marks the week complete and
@@ -12,10 +13,7 @@ export async function POST(req: Request) {
   const { studentId, blockId, questionId, selectedIndex, responseTimeMs } = await req.json();
   if (!studentId || !blockId || !questionId || typeof selectedIndex !== "number")
     return NextResponse.json({ error: "bad request" }, { status: 400 });
-  const rt =
-    typeof responseTimeMs === "number" && isFinite(responseTimeMs) && responseTimeMs >= 0
-      ? Math.min(Math.round(responseTimeMs), 3_600_000)
-      : null;
+  const rt = clampResponseTime(responseTimeMs);
 
   const supabase = await createClient();
   const admin = createAdminClient();
@@ -44,12 +42,7 @@ export async function POST(req: Request) {
     .eq("id", questionId)
     .single();
   if (!q) return NextResponse.json({ error: "no question" }, { status: 404 });
-  const correct = selectedIndex === q.correct_index;
-
-  const oe = (q.option_explanations as string[] | null) ?? null;
-  const correctIndex = q.correct_index as number;
-  const whyWrong = !correct ? (oe?.[selectedIndex] ?? null) : null;
-  const correctExplanation = oe?.[correctIndex] ?? q.explanation;
+  const { correct, correctIndex, whyWrong, correctExplanation } = gradeMcqAnswer(q, selectedIndex);
 
   const now = new Date();
   await admin.from("attempts").insert({
