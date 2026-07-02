@@ -44,10 +44,10 @@ test("gradeRange returns contiguous bounds", () => {
   assert.equal(gradeRange(LADDER, 6), null);
 });
 
-test("initPlacement starts at grade floor, window spans into next grade", () => {
+test("initPlacement floors at the grade start, opens mid-grade, window spans into next grade", () => {
   const st = initPlacement(LADDER, 4);
-  assert.equal(st.low, 24); // start of grade 4
-  assert.equal(st.estimate, 24);
+  assert.equal(st.low, 24); // floor = start of grade 4 (placement won't go below the stated grade)
+  assert.equal(st.estimate, 37); // opens at the middle of grade 4 [24, 50]
   assert.equal(st.high, 74); // end of grade 5 (one grade up)
   assert.equal(st.n, 74);
 });
@@ -89,6 +89,18 @@ test("a child below their nominal grade lands at/under the grade floor", () => {
   assert.ok((st.estimatedIndex as number) <= 24);
 });
 
+test("a single wrong answer does not instantly converge (regression: first-wrong)", () => {
+  // Opening at the floor used to collapse the window on one miss and finish
+  // after a single question. A mid-grade opener must keep probing.
+  let st = initPlacement(LADDER, 4);
+  st = recordAnswer(st, false); // miss the opener
+  assert.equal(st.done, false, "must keep probing, not place after one question");
+  assert.ok(st.asked.length === 1);
+  // ...and once the search does finish (all wrong), it still lands at/under floor.
+  while (!st.done) st = recordAnswer(st, false);
+  assert.ok((st.estimatedIndex as number) <= 24);
+});
+
 test("a child far ahead lands near the top of the window", () => {
   const st = simulate(4, 74);
   assert.ok((st.estimatedIndex as number) >= 72);
@@ -96,11 +108,11 @@ test("a child far ahead lands near the top of the window", () => {
 
 test("two trailing wrong answers nudge the placement down one", () => {
   // Hand-drive: correct once (low moves up), then two wrongs to force the nudge.
-  let st = initPlacement(LADDER, 4); // low24 est24 high74
-  st = recordAnswer(st, true); // low->24, est->round((24+74)/2)=49
+  let st = initPlacement(LADDER, 4); // low24 est37 high74
+  st = recordAnswer(st, true); // low->37, est->round((37+74)/2)=56
   const beforeLow = st.low;
-  st = recordAnswer(st, false); // high->49, est->round((24+49)/2)=37
-  st = recordAnswer(st, false); // high->37, est->round((24+37)/2)=31...
+  st = recordAnswer(st, false); // high->56
+  st = recordAnswer(st, false); // high keeps shrinking...
   // keep failing to convergence
   while (!st.done) st = recordAnswer(st, false);
   // last two answers were wrong -> estimatedIndex nudged below `low`
