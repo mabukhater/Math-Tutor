@@ -167,6 +167,10 @@ export async function getReadingPath(
     .select("id, title, week, level_order")
     .eq("grade", student.nominal_grade)
     .eq("status", "published")
+    // Only plain reading passages — AI-course passages (subject ai7/ai8) also
+    // carry a grade, so without this they'd leak into the reading ladder for
+    // grade 7-8 students (getAICoursePath filters by subject; this must too).
+    .eq("subject", "reading")
     .order("week", { ascending: true })
     .order("level_order", { ascending: true });
   const all = (passages ?? []) as { id: string; title: string; week: number; level_order: number }[];

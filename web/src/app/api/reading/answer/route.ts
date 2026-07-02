@@ -98,13 +98,22 @@ export async function POST(req: Request) {
   if (!blockDone) {
     const { data: nq } = await admin
       .from("reading_questions")
-      .select("id, stem, options, difficulty")
+      .select("id, stem, options, difficulty, locator")
       .eq("id", ids[numCompleted])
       .single();
-    // Carry `difficulty` through so the chip stays put across questions — the
-    // block (start/resume) route includes it, so the "next" payload must too.
+    // Carry `difficulty` AND `hintParagraph` through so they stay put across
+    // questions — the block (start/resume) route includes both, and the client
+    // gates the hint button on hintParagraph, so the "next" payload must too
+    // (else the hint button vanishes for questions 2..N).
     if (nq)
-      next = { id: nq.id, stem: nq.stem, options: nq.options, difficulty: (nq.difficulty as number) ?? null };
+      next = {
+        id: nq.id,
+        stem: nq.stem,
+        options: nq.options,
+        difficulty: (nq.difficulty as number) ?? null,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        hintParagraph: (nq.locator as any)?.paragraph ?? null,
+      };
   }
 
   return NextResponse.json({
