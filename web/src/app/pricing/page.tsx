@@ -3,10 +3,11 @@ import Link from "next/link";
 import { MarketingShell } from "@/components/MarketingShell";
 import { CheckoutButton } from "@/components/CheckoutButton";
 import { Check } from "@/components/icons";
+import { PRICING } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Pricing — Astute Academy",
-  description: "Simple plans: a free taste, one subject for $4.99/mo, or every subject for $7.99/mo.",
+  description: `Simple plans: a free taste, one subject for ${PRICING.one.price}/mo, or every subject for ${PRICING.all.price}/mo.`,
 };
 
 interface Tier {
@@ -22,17 +23,17 @@ interface Tier {
 
 const TIERS: Tier[] = [
   {
-    name: "Free",
-    price: "$0",
-    cadence: "",
+    name: PRICING.free.label,
+    price: PRICING.free.price,
+    cadence: PRICING.free.cadence,
     blurb: "Get a feel for it.",
     features: ["10 practice questions", "Adaptive placement check", "One child profile"],
     cta: "Start free",
   },
   {
-    name: "One Subject",
-    price: "$4.99",
-    cadence: "/month",
+    name: PRICING.one.label,
+    price: PRICING.one.price,
+    cadence: PRICING.one.cadence,
     blurb: "Daily practice in one subject.",
     features: [
       "Unlimited daily practice in one subject",
@@ -40,15 +41,15 @@ const TIERS: Tier[] = [
       "Full adaptive placement",
       "Spaced-repetition review",
       "Parent dashboard & mastery map",
-      "First child included · add a child for $3/mo each",
+      `First child included · add a child for ${PRICING.perChild} each`,
     ],
     cta: "Choose One Subject",
     plan: "one",
   },
   {
-    name: "All Subjects",
-    price: "$7.99",
-    cadence: "/month",
+    name: PRICING.all.label,
+    price: PRICING.all.price,
+    cadence: PRICING.all.cadence,
     blurb: "Everything, every subject.",
     features: [
       "Everything in One Subject",
@@ -58,7 +59,7 @@ const TIERS: Tier[] = [
       "Switch between subjects anytime",
       "Spaced-repetition review across subjects",
       "Priority access to new features",
-      "First child included · add a child for $3/mo each",
+      `First child included · add a child for ${PRICING.perChild} each`,
     ],
     cta: "Choose All Subjects",
     plan: "all",
@@ -114,7 +115,7 @@ export default function Pricing() {
 
         <p className="muted" style={{ marginTop: "1.5rem" }}>
           Got more than one child? Your first child is included on any paid plan, and each
-          additional child is just <strong>$3/month</strong> — on either One Subject or All Subjects.
+          additional child is just <strong>{PRICING.perChild}</strong> — on either One Subject or All Subjects.
         </p>
         <p className="muted" style={{ marginTop: "0.75rem" }}>
           We&apos;re in early access, so plans and billing may evolve. Early families keep
