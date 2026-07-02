@@ -11,6 +11,76 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "area-vs-perimeter-help-your-child-understand",
+    title: "How to Help Your Child Understand the Difference Between Area and Perimeter",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-02",
+    excerpt:
+      "Area and perimeter confuse many kids. Here are simple, hands-on ways to teach the difference at home so it finally sticks.",
+    body: `## Why Area and Perimeter Trip Kids Up
+
+Ask a child to find the perimeter of a rectangle and they might multiply. Ask for the area and they might add. The words sound similar, the shapes look the same, and both involve measuring. It is one of the most common mix-ups in elementary and middle school math.
+
+The good news: once your child connects each idea to a real picture in their mind, the confusion tends to disappear. Here is how to build that mental picture at home.
+
+## Start With What Each One Means
+
+Before any formulas, make sure your child understands the plain-language meaning.
+
+- Perimeter is the distance all the way around the edge of a shape. Think of walking around the outside of a garden.
+- Area is the amount of space inside the shape. Think of the grass that fills the garden, or the tiles that cover a floor.
+
+A phrase that helps many kids: perimeter is the fence, area is the field.
+
+## Make It Physical
+
+Math sticks better when children touch it. Try these:
+
+- Trace a rectangle on paper and have your child run a finger around the edge. That path is the perimeter.
+- Fill the same rectangle with square tiles, buttons, or one-centimeter grid squares. The number of squares that fit inside is the area.
+- Use painters tape to mark a rectangle on the kitchen floor. Have your child count steps around the outside, then count how many floor tiles fit inside.
+
+When a child physically walks the edge and then counts the space inside, the two ideas become clearly separate.
+
+## Connect It to the Units
+
+Units are a quiet clue that many kids overlook.
+
+- Perimeter is a length, so it is measured in single units: centimeters, meters, inches, feet.
+- Area is measured in square units: square centimeters, square meters, square inches.
+
+When your child sees square in the answer, they should picture the little squares filling the shape. Point this out every time. It gives them a way to check their own work: if the question asks for area and their answer is not in square units, something went wrong.
+
+## Introduce the Formulas Only After the Idea Is Clear
+
+Once the concept is solid, the formulas feel like shortcuts rather than mysterious rules.
+
+- Perimeter of a rectangle: add up all four sides, or add length and width and double it.
+- Area of a rectangle: length times width, because you are counting rows of squares.
+
+Help your child see why area is multiplication. If a rectangle is 4 squares wide and 3 rows tall, there are 3 groups of 4, which is 12 squares. Drawing the grid once makes the multiplication feel obvious instead of memorized.
+
+## Practice With Real Life
+
+Everyday questions turn practice into something meaningful:
+
+- How much ribbon do we need to wrap around this box? That is perimeter.
+- How much wrapping paper covers the top? That is area.
+- How much fencing for the dog run? Perimeter.
+- How much carpet for the bedroom? Area.
+
+Walk your child through choosing which one the situation needs. Deciding whether a problem is about the edge or the inside is often the real skill being tested.
+
+## A Quick Game to Cement It
+
+Draw several rectangles with different side lengths on grid paper. For each one, race to find both the perimeter and the area. Then try this twist: draw two rectangles with the same perimeter but different areas, such as a long thin one and a nearly square one. Kids are usually surprised that the shapes going around are equal while the space inside is not. That single discovery deepens their understanding more than a page of drills.
+
+## Keep It Low-Pressure
+
+If your child mixes the two up again next week, that is normal. Gently ask, are we measuring the fence or the field, and let them self-correct. With a few hands-on sessions and steady daily practice, area and perimeter stop being confusing words and become tools your child reaches for with confidence.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-regrouping-in-subtraction",
     title: "How to Help Your Child Understand Regrouping in Subtraction (Borrowing Made Clear)",
     category: "Math Tips",
