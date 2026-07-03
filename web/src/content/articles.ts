@@ -11,6 +11,69 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "rounding-numbers-made-simple-parents-guide",
+    title: "Rounding Numbers Made Simple: A Parent's Step-by-Step Guide",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-03",
+    excerpt:
+      "Teach your child to round numbers with confidence using clear steps, a friendly rule, and everyday practice ideas.",
+    body: `## Why Rounding Trips Kids Up
+
+Rounding looks simple to adults, but for children it packs in several ideas at once: place value, comparing digits, and deciding which way a number leans. When your child rounds 47 to 50 one minute and to 40 the next, it usually is not carelessness. It is that the underlying steps have not become automatic yet.
+
+The good news is that rounding is one of the most learnable skills in the whole primary curriculum. With a clear routine and a little daily practice, most children go from guessing to confident in a couple of weeks.
+
+## The Three-Step Routine
+
+Give your child the same steps every single time. Consistency is what turns a shaky skill into a habit.
+
+- Step one: Find the place you are rounding to and underline that digit.
+- Step two: Look at the digit just to its right. That is the only digit that decides the answer.
+- Step three: If that digit is 5 or more, round up. If it is 4 or less, keep the underlined digit the same. Everything after it becomes zero.
+
+Try it with 47 rounded to the nearest ten. Underline the 4 in the tens place. Look right at the 7. Seven is 5 or more, so round up: 47 becomes 50. Say the steps out loud together until your child can repeat them without you.
+
+## The Number Line Trick
+
+Some children need to see rounding before the rule makes sense. A number line does this beautifully.
+
+Draw a line with 40 on the left and 50 on the right. Mark the halfway point at 45. Now ask your child to plot 47. Is it closer to 40 or 50? It sits past the middle, so it rolls toward 50.
+
+This picture answers the question every child eventually asks: why does 5 round up when it is exactly in the middle? The honest answer is that 5 is the agreed tie-breaker, and the rule sends it up so everyone gets the same result. Once children see the halfway mark, the 5-or-more rule stops feeling random.
+
+## Common Mistakes and Quick Fixes
+
+### Looking at the wrong digit
+
+Children often glance at all the digits and average them in their head. Reinforce that only one digit matters: the one immediately to the right of the place you are rounding to. Cover the rest with a finger if it helps.
+
+### Forgetting the zeros
+
+When rounding 462 to the nearest hundred, some children write 500 correctly but leave 462 half-changed as 460 or 46. Remind them that after the rounded digit, everything becomes zero. So 462 to the nearest hundred is 500.
+
+### The chain reaction
+
+Rounding 298 to the nearest ten gives 300, not 290 or 2100. When rounding up pushes a 9 to a 10, it carries over like in addition. Practice a few of these on purpose so the surprise does not throw them.
+
+## Everyday Practice That Sticks
+
+Rounding lives in real life, which makes it easy to practice without worksheets.
+
+- At the shop, ask your child to round each price to the nearest pound or dollar to estimate the total.
+- On a drive, round the distance on road signs to the nearest ten miles or kilometers.
+- Reading a sports score or a page count, ask what it is to the nearest ten or hundred.
+- Cooking together, round ingredient amounts and talk about why a recipe might use a tidy number.
+
+Keep sessions short. Three or four numbers a day, done consistently, beats a long weekend cram.
+
+## When to Move On
+
+Your child is ready for the next step when they can round to tens, hundreds, and thousands without pausing on the rule, and when they can explain why using the halfway idea. From there, rounding decimals and estimating in word problems will feel like familiar territory rather than a brand new challenge.
+
+Rounding is not just a school exercise. It is the foundation of estimation, mental math, and the everyday sense of whether an answer is reasonable. A few minutes a day now pays off for years.`,
+  },
+  {
     slug: "area-vs-perimeter-help-your-child-understand",
     title: "How to Help Your Child Understand the Difference Between Area and Perimeter",
     category: "Math Tips",
