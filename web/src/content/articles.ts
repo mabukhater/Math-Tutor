@@ -11,6 +11,71 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-carrying-in-addition",
+    title: "How to Help Your Child Understand Carrying in Addition",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-04",
+    excerpt:
+      "Carrying in addition confuses many kids. Here is a clear, patient way to teach it at home using place value and everyday examples.",
+    body: `## What Carrying Actually Means
+
+When your child adds two numbers and a column adds up to more than nine, something has to happen with the extra. That something is carrying, sometimes called regrouping. It is one of the first moments in math where children have to hold an idea in their head and act on it, and it trips up a lot of kids.
+
+Here is the good news: carrying makes total sense once your child understands place value. If they know that the number 23 means two tens and three ones, they already have everything they need. The struggle usually is not about addition at all. It is about seeing why a ten suddenly appears in the next column.
+
+## Start With What Is Really Happening
+
+Take a simple problem like 27 plus 15.
+
+- Add the ones first: 7 plus 5 equals 12.
+- But we cannot write 12 in the ones column. A single column only holds one digit.
+- So we split 12 into one ten and two ones.
+- The two ones stay. The one ten travels over to the tens column.
+- Now add the tens: 2 plus 1 plus the carried 1 equals 4.
+- The answer is 42.
+
+Say it out loud this way the first few times. Instead of the quiet phrase carry the one, tell your child we are moving a ten to where the tens live. Naming what the digit means keeps the whole thing from feeling like a magic trick.
+
+## Make It Physical First
+
+Before your child works on paper, let them build the idea with objects. This step is worth the extra minutes.
+
+- Use coins, buttons, or dried beans grouped into piles of ten.
+- Have your child count out the ones for each number.
+- When the ones pile reaches ten, bundle it up and move it to the tens area.
+- Watch their face when the connection clicks.
+
+Base ten blocks work beautifully here, but you do not need to buy anything. Ten paperclips linked into a chain is a perfectly good ten. The point is that your child physically trades ten ones for one ten, which is exactly what the little carried digit represents.
+
+## A Neat Trick for the Written Method
+
+Once your child gets the concept, the layout on paper matters. Messy columns cause more errors than misunderstanding does.
+
+- Use graph paper or draw boxes so each digit sits in its own square.
+- Write the carried digit small, above the next column, not squeezed into the answer.
+- Add the carried number first when moving to the next column, so it does not get forgotten.
+- Keep the plus sign and the line tidy.
+
+Many children get the right idea but line up their digits crookedly, so tens and ones get added together by accident. Straight columns fix a surprising number of wrong answers.
+
+## Common Mistakes and Gentle Fixes
+
+Watch for these patterns and respond with a question rather than a correction.
+
+- Forgetting to add the carried digit. Ask, did anything travel over to this column?
+- Writing the full two digit total in one column. Ask, how many can fit in one box?
+- Carrying when it is not needed. Remind them we only move a ten when the ones reach ten or more.
+
+If your child slips, resist jumping in with the answer. A calm question keeps them thinking and protects their confidence.
+
+## Keep the Practice Short and Steady
+
+Carrying becomes automatic through repetition, but ten focused minutes beats a long frustrating session. Try a few problems while dinner cooks, or add up prices at the shop together.
+
+Mix in problems that do not require carrying so your child learns to notice when it is needed rather than doing it out of habit. Over a couple of weeks, the small carried digit will stop feeling mysterious and start feeling obvious. That quiet confidence is exactly what you are building, one tidy column at a time.`,
+  },
+  {
     slug: "rounding-numbers-made-simple-parents-guide",
     title: "Rounding Numbers Made Simple: A Parent's Step-by-Step Guide",
     category: "Math Tips",
