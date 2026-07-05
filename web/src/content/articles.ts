@@ -11,6 +11,81 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-odd-and-even-numbers",
+    title: "How to Help Your Child Understand Odd and Even Numbers",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-05",
+    excerpt:
+      "A simple, hands-on guide to teaching odd and even numbers so the idea sticks — with pairing tricks, games, and gentle mistakes to expect.",
+    body: `## Why Odd and Even Matter More Than You Think
+
+Odd and even numbers seem like a tiny topic. Your child learns to say the twos, and that is that. But this idea quietly supports a lot of later math: skip counting, multiplication, division, fractions, and even spotting patterns in algebra. When children truly understand what makes a number even, they build a feel for how numbers split and share.
+
+The good news is that this is one of the easiest concepts to teach at the kitchen table, because it is all about pairing things up.
+
+## The Core Idea: Can Everyone Have a Partner?
+
+The cleanest way to explain even is this: a number is even if you can split it into two equal groups with nothing left over. A number is odd if there is always one left standing alone.
+
+Try it with real objects. Grab a small pile of buttons, coins, or dried pasta.
+
+- Give your child 8 items and ask them to make pairs.
+- Every item finds a partner, so 8 is even.
+- Now hand them 7 items and pair those up.
+- One is left with no partner, so 7 is odd.
+
+Let them discover the rule themselves. After a few rounds, ask what they notice. Children remember ideas they figure out far better than rules they are told.
+
+## The Shortcut Every Child Should Learn
+
+Once the pairing idea makes sense, teach the fast trick: you only need to look at the last digit.
+
+- Numbers ending in 0, 2, 4, 6, or 8 are even.
+- Numbers ending in 1, 3, 5, 7, or 9 are odd.
+
+This works for any size number. 3,472 is even because it ends in 2. 1,655 is odd because it ends in 5. Point out that they do not need to check the whole number, which feels like a shortcut and keeps confidence high.
+
+## Everyday Ways to Practice
+
+You do not need worksheets to reinforce this. The world is full of numbers.
+
+- House numbers: on a walk, guess whether the next house is odd or even.
+- Snacks: split grapes or crackers and ask if they share evenly.
+- Stairs: call out odd, even, odd, even as you climb.
+- Car games: read the last digit of licence plates and shout the answer.
+- Egg cartons: a carton holds 12, an even number, so pairs always work.
+
+Keep these moments short and playful. Thirty seconds counts.
+
+## A Quick Game to Cement It
+
+Try Odd One Out. Take turns saying a number. If it is even, you both clap. If it is odd, you both freeze. Speed it up gradually. The pause to decide is exactly the mental work you want, and the silliness keeps it fun.
+
+For older children, add a twist: what happens when you add two even numbers, two odd numbers, or one of each? Let them test with objects.
+
+- Even plus even is always even.
+- Odd plus odd is always even.
+- Odd plus even is always odd.
+
+Discovering these patterns feels like unlocking a secret code.
+
+## Common Mix-Ups to Watch For
+
+A few stumbles show up again and again, and none of them mean your child is behind.
+
+- Confusing odd with unusual. The math meaning is different from the everyday meaning, so name that directly.
+- Thinking zero is odd. Zero is even, because zero items split into two equal empty groups.
+- Looking at the first digit instead of the last. Gently redirect them to the final digit.
+- Guessing based on size. Big numbers are not automatically even. Point back to the last digit.
+
+When a mistake happens, hand over the buttons again. Returning to real objects clears up confusion faster than any explanation.
+
+## Keep It Light
+
+Odd and even is a concept most children grasp within a week or two of casual practice. Aim for little bursts rather than long sessions, celebrate the shortcut, and let everyday numbers do the teaching. Before long, your child will be spotting odd house numbers on your street without a second thought.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-carrying-in-addition",
     title: "How to Help Your Child Understand Carrying in Addition",
     category: "Math Tips",
