@@ -11,6 +11,78 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-money-and-making-change",
+    title: "How to Help Your Child Understand Money and Making Change",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-06",
+    excerpt:
+      "Simple, hands-on ways to teach kids coins, counting up, and making change so money math finally clicks at home.",
+    body: `## Why Money Math Feels Tricky
+
+Money seems like it should be easy. We use it every day, after all. But for children, money combines several skills at once: recognizing coins that do not match their size to their value, counting by fives and tens, adding mixed amounts, and subtracting to find change. A nickel is bigger than a dime but worth less. A quarter is worth twenty-five of something that looks nothing like it. No wonder kids get confused.
+
+The good news is that money is one of the most concrete topics in all of math. You can hold it, sort it, and spend it. That makes it perfect for hands-on learning at the kitchen table.
+
+## Start With Coin Recognition
+
+Before your child can make change, they need to know what each coin is worth. Skip the worksheets at first and pull out real coins.
+
+- Sort a pile of coins into groups: all the pennies together, all the nickels, and so on.
+- Say the name and value out loud each time: this is a dime, it is worth ten cents.
+- Play a matching game where you name a value and your child grabs the right coin.
+
+Once they know the coins, connect the values to skip counting. Counting nickels is counting by fives. Counting dimes is counting by tens. This links money to number patterns your child may already know.
+
+## Practice Counting Mixed Coins
+
+Real money comes in messy handfuls, so children need to count different coins together. Teach them to start with the largest values first.
+
+- Line up the coins from most valuable to least: quarters, then dimes, then nickels, then pennies.
+- Count on from the running total: twenty-five, fifty, sixty, seventy, seventy-one, seventy-two.
+- Keep a small notepad handy so they can jot the total if it helps.
+
+Starting with the biggest coins reduces mistakes, because your child adds the hard values while their attention is freshest.
+
+## Making Change: The Counting-Up Method
+
+Many adults learned to make change by subtracting, but the method cashiers actually use is easier for kids: counting up from the price to the amount paid.
+
+Suppose an item costs sixty-eight cents and your child pays with one dollar. Instead of subtracting, count up:
+
+- Start at sixty-eight cents.
+- Add two pennies to reach seventy.
+- Add a nickel to reach seventy-five.
+- Add a quarter to reach one dollar.
+
+The change is two pennies, a nickel, and a quarter. Counting up turns a subtraction problem into simple addition with real coins in hand. Children find it far less intimidating.
+
+## Turn Your Home Into a Shop
+
+The fastest way to build confidence is to play store. Grab items from the pantry, write price tags on sticky notes, and hand your child a small tray of coins.
+
+- Take turns being the shopper and the shopkeeper.
+- Ask your child to pay the exact amount, then next time overpay so they must give change.
+- Raise the challenge slowly, moving from single coins to amounts that cross a dollar.
+
+Role play works because it gives money a purpose. Your child is not doing a math drill; they are running a store, and the math comes along for the ride.
+
+## Bring It Into Real Life
+
+Everyday moments are full of money practice, and they cost you nothing extra.
+
+- At the grocery store, ask how much two items cost together.
+- Let your child pay the cashier and check the change.
+- Give a small allowance in coins so they physically count and save.
+- Estimate first: will ten dollars be enough for these three things?
+
+These quick questions add up over weeks and months. They show your child that money math is not just schoolwork but a genuinely useful life skill.
+
+## Keep It Light and Frequent
+
+A few minutes of coin play several times a week beats a long, tiring session. Celebrate correct change, gently model the counting-up method when they get stuck, and let them handle real coins as often as possible. With steady, cheerful practice, making change will soon feel like second nature.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-odd-and-even-numbers",
     title: "How to Help Your Child Understand Odd and Even Numbers",
     category: "Math Tips",
