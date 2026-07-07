@@ -11,6 +11,79 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-multiplication-as-repeated-addition",
+    title: "How to Help Your Child Understand Multiplication as Repeated Addition",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-07",
+    excerpt:
+      "A simple, hands-on way to help your child see what multiplication really means before they memorize any facts.",
+    body: `## Why This Idea Matters
+
+Before your child memorizes times tables, they need to understand what multiplication actually is. Many kids can chant 3 times 4 equals 12 without knowing that it means three groups of four. When that meaning is missing, math later becomes a memory game instead of something that makes sense.
+
+Seeing multiplication as repeated addition gives your child a mental picture. It turns an abstract symbol into something they can count, draw, and check on their own. This foundation makes division, fractions, and area far easier down the road.
+
+## What Repeated Addition Really Means
+
+Multiplication is a shortcut for adding the same number several times. When we write 4 times 3, we mean four groups of three, or 3 plus 3 plus 3 plus 3.
+
+Here is the language that helps kids most:
+
+- The first number tells you how many groups you have.
+- The second number tells you how many are in each group.
+- Multiplication counts the total across all the groups.
+
+Say it out loud together: four groups of three is twelve. Hearing the words groups of connects the symbol to a real idea.
+
+## Start With Things You Can Touch
+
+Children understand multiplication faster when they can move objects with their hands. Reach for whatever is nearby.
+
+- Line up buttons, coins, or dried pasta into equal rows.
+- Make three plates with two crackers each, then count the total.
+- Use an egg carton and drop the same number of beans into each cup.
+
+Ask your child to build the groups themselves, then count everything. After a few tries, pause and ask how they could find the total without counting every single piece. This is the moment repeated addition clicks.
+
+## Draw It Out
+
+Once hands-on grouping feels comfortable, move to paper. Drawing bridges the gap between real objects and written numbers.
+
+Try the array. An array is a neat grid of dots arranged in rows and columns. For 3 times 5, draw three rows with five dots in each. Your child can count the rows, add 5 plus 5 plus 5, and see the answer is 15. Arrays are powerful because they show why 3 times 5 equals 5 times 3. The grid is the same whether you turn it sideways or not.
+
+Number lines work well too. To show 4 times 2, start at zero and make four jumps of two. Landing on 8 shows the connection between counting, adding, and multiplying.
+
+## Everyday Moments to Practice
+
+You do not need worksheets to build this skill. Real life is full of equal groups.
+
+- Setting the table: how many forks if each of five people gets one, then a spoon each?
+- Snack time: three bags with four grapes each means how many grapes?
+- Shoes by the door: how many shoes for four people?
+- Stairs: count by twos as you climb, noticing the pattern.
+
+Ask the question, then let your child choose whether to add or multiply. Both are correct. The goal is for them to notice that multiplying is the faster path.
+
+## Gentle Ways to Handle Mistakes
+
+When your child gets stuck, resist jumping to the answer. Instead, guide them back to the groups.
+
+- If they mix up the numbers, rebuild the groups with objects.
+- If they add wrong, count the total together slowly.
+- If they guess, ask them to show you the picture behind the number.
+
+Praise the thinking, not just the correct answer. Saying you explained that clearly encourages your child to keep reasoning.
+
+## When to Move Toward Memorizing
+
+Repeated addition is the bridge, not the destination. Once your child can explain what a multiplication fact means and build it with objects or drawings, they are ready to start committing facts to memory. That transition feels natural rather than forced, because the numbers now stand for something real.
+
+Give it time. Spend a couple of weeks on groups, arrays, and everyday counting before pushing speed. Children who understand the why remember the facts longer and recover faster when they forget one.
+
+Keep sessions short and playful. A few minutes of grouping crackers or drawing dot arrays each day will do more than a long, tense lesson ever could.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-money-and-making-change",
     title: "How to Help Your Child Understand Money and Making Change",
     category: "Math Tips",
