@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-place-value-with-decimals",
+    title: "How to Help Your Child Understand Place Value with Decimals",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-08",
+    excerpt:
+      "Decimals confuse a lot of kids at first. Here is a clear, hands-on way to help your child understand tenths, hundredths, and the point.",
+    body: `## Why Decimals Trip Kids Up
+
+By the time decimals arrive, usually around Year 4 or fourth grade, your child already understands whole-number place value. Then a small dot appears, and suddenly the rules seem to flip. Numbers to the right of the point get smaller instead of bigger, and 0.5 turns out to be larger than 0.25 even though 25 looks like a bigger number than 5.
+
+The good news is that decimals are not a new topic at all. They are place value extended in the other direction. Once your child sees that, the confusion usually clears up fast.
+
+## Start With What They Already Know
+
+Remind your child how whole-number place value works. Each spot to the left is ten times bigger: ones, tens, hundreds, thousands. Ask them what happens as you move right instead of left. Each spot gets ten times smaller.
+
+So after the ones place, the next spots are:
+
+- Tenths: one whole split into 10 equal parts
+- Hundredths: one whole split into 100 equal parts
+- Thousandths: one whole split into 1,000 equal parts
+
+The decimal point is just the marker that says: whole numbers stop here, and the parts smaller than one begin.
+
+## Make It Physical
+
+Abstract explanations rarely land. Give your child something to hold and see.
+
+- Money is the easiest entry point. A dollar or pound is one whole. Ten dimes make up the tenths, and one hundred pennies make up the hundredths. Ask your child to build 1.45 using coins.
+- A ruler works too. Ten millimetres make one centimetre, so 3.7 cm is three whole centimetres and seven tenths.
+- Cut paper into ten equal strips. Colouring in four strips shows 0.4. Then cut one strip into ten smaller pieces to reach hundredths.
+
+The aim is for your child to feel that 0.4 and four tenths and four out of ten are three names for the same thing.
+
+## The 0.5 Versus 0.25 Problem
+
+This is the classic mistake, and it deserves its own moment. Many children say 0.25 is bigger because 25 is bigger than 5.
+
+Try this. Have your child add a zero to make the digits line up: 0.50 and 0.25. Now they can compare fifty hundredths to twenty-five hundredths, and 0.5 clearly wins. Adding zeros to the right of a decimal does not change its value, and that trick removes a lot of guessing.
+
+Money helps here too. Fifty cents versus twenty-five cents settles the argument instantly.
+
+## Reading Decimals Correctly
+
+How your child says a decimal shapes how they understand it. Encourage place-value language rather than just naming digits.
+
+- Say 0.6 as six tenths, not zero point six, at least while learning.
+- Say 2.34 as two and thirty-four hundredths.
+- The word and marks where the decimal point sits.
+
+Once the meaning is solid, the casual point six reading is fine.
+
+## Quick Everyday Practice
+
+Decimals are all around you, so you rarely need worksheets.
+
+- At the shop, ask which item is cheaper and by how much.
+- Reading a thermometer or a sports score gives real decimals to interpret.
+- Cooking with measuring jugs shows tenths of a litre.
+- Ask your child to order a short list of prices from smallest to largest.
+
+Keep sessions to a few minutes. Little and often beats one long, tiring push.
+
+## Watch for These Signs of Progress
+
+Your child is genuinely getting it when they can do these things:
+
+- Explain that the first spot after the point is tenths, not ones
+- Compare two decimals by lining up the places
+- Connect a decimal to its fraction, such as 0.75 being three quarters
+- Read a number using and for the decimal point
+
+If your child can do all four, they are ready for adding, subtracting, and later multiplying decimals. And when they reach those steps, the same lining-up habit you built here will carry them through.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-multiplication-as-repeated-addition",
     title: "How to Help Your Child Understand Multiplication as Repeated Addition",
     category: "Math Tips",
