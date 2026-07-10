@@ -11,6 +11,77 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-fact-families",
+    title: "How to Help Your Child Understand Fact Families",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-10",
+    excerpt:
+      "Fact families help kids see how addition and subtraction connect. Here is a simple, hands-on way to teach them at home.",
+    body: `## What Is a Fact Family?
+
+A fact family is a group of related number facts that use the same three numbers. Take 3, 5, and 8. From those three numbers you can build four true equations:
+
+- 3 + 5 = 8
+- 5 + 3 = 8
+- 8 - 3 = 5
+- 8 - 5 = 3
+
+The big idea is that addition and subtraction are two sides of the same coin. Once your child truly gets this, they stop seeing math as a huge list of facts to memorize and start seeing patterns they can reason through.
+
+Fact families usually show up around first and second grade in most curricula, and the same concept later stretches to multiplication and division. Getting the foundation solid now saves a lot of struggle later.
+
+## Why Fact Families Matter
+
+When a child knows that 8 - 5 = 3, they should also instantly know that 3 + 5 = 8. But many kids treat each of these as a separate, unrelated problem. That doubles or triples the amount they think they have to learn.
+
+Fact families teach flexibility. A child who understands them can:
+
+- Check their own subtraction by adding
+- Solve missing-number problems like 3 + blank = 8
+- Build number sense instead of relying on counting on fingers
+
+This flexible thinking is exactly what makes mental math faster and more accurate down the road.
+
+## A Simple Way to Teach It at Home
+
+### Start with objects
+
+Grab eight buttons, coins, or grapes. Split them into a group of 3 and a group of 5. Ask your child how many there are altogether. Then push them back together and pull them apart a different way. Let them see that the total never changes, only how the parts are arranged.
+
+Say it out loud together: three and five make eight, eight take away five leaves three. Hearing the language matters as much as seeing the numbers.
+
+### Draw the house
+
+Many teachers use a fact family house. Draw a simple house shape. In the triangle roof, write the three numbers of the family, with the largest one at the top point. In the rectangular body, write the four equations.
+
+The roof is a helpful reminder: the biggest number always sits at the top, and it is the one you add up to or subtract from. Let your child fill in the four equations themselves.
+
+### Play the missing member game
+
+Write an equation but leave one number blank:
+
+- blank + 4 = 9
+- 7 - blank = 2
+- 6 + 3 = blank
+
+Ask your child to find the missing number and then name the rest of the family. This is where the real understanding shows. If they can move comfortably between addition and subtraction to fill the gap, they have got it.
+
+## Common Sticking Points
+
+A few things trip kids up, and knowing them helps you respond calmly.
+
+- Doubles families are shorter. The family for 4, 4, and 8 only has two facts: 4 + 4 = 8 and 8 - 4 = 4. This is normal, not a mistake.
+- Some children put the numbers in the wrong spots. Keep pointing back to the total being the biggest number and where it lives.
+- They may know the addition facts but freeze on subtraction. Encourage them to think here is the whole, here is one part, so the other part must be the rest.
+
+## Keep It Short and Frequent
+
+Five minutes at breakfast beats a long, tiring session. Pick one fact family a day, build it with objects, draw the house, and play one round of the missing member game. Over a couple of weeks your child will start recognizing families on sight.
+
+The goal is not speed at first. It is the click of understanding that these numbers belong together. Once that lands, fluency follows naturally, and your child gains a tool they will reuse when multiplication and division arrive.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-place-value-with-decimals",
     title: "How to Help Your Child Understand Place Value with Decimals",
     category: "Math Tips",
