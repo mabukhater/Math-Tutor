@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import random
 import sys
 from typing import Optional
 
@@ -142,6 +143,19 @@ def valid(q: GeneratedQuestion) -> Optional[str]:
     return None
 
 
+def shuffle_options(item: GeneratedQuestion) -> tuple[list[str], list[str], int]:
+    """Randomize the answer position. LLMs strongly bias the correct answer to
+    A/B, which lets a child pass by always picking A. Apply ONE permutation to
+    both options and option_explanations (so each option keeps its own note) and
+    recompute correct_index. Mirrors the reading generator's fix (e752049)."""
+    order = list(range(4))
+    random.shuffle(order)
+    options = [item.options[i] for i in order]
+    option_explanations = [item.option_explanations[i] for i in order]
+    correct_index = order.index(item.correct_index)
+    return options, option_explanations, correct_index
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--target", type=int, default=12, help="questions per skill (default 12)")
@@ -229,15 +243,16 @@ def main() -> None:
                 if reason:
                     skipped += 1
                     continue
+                options, option_explanations, correct_index = shuffle_options(item)
                 rows.append(
                     {
                         "skill_id": s["id"],
                         "stem": item.stem.strip(),
-                        "options": item.options,
-                        "correct_index": item.correct_index,
+                        "options": options,
+                        "correct_index": correct_index,
                         "explanation": item.explanation.strip(),
                         "difficulty": item.difficulty,
-                        "option_explanations": item.option_explanations,
+                        "option_explanations": option_explanations,
                         "status": "draft",
                         "source": args.source,
                     }
