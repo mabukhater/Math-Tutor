@@ -2,9 +2,12 @@ name: Daily blog post
 
 # Writes one new blog post each morning and pushes it (deploys + refreshes the
 # sitemap). Times are UTC; GitHub may delay scheduled runs by a few minutes.
+# NOTE: scheduled off the top of the hour on purpose — top-of-hour crons hit
+# GitHub's most-contended slot, which causes long delays and "job was not
+# acquired by Runner" failures (that's what missed 2026-07-09).
 on:
   schedule:
-    - cron: "0 10 * * *" # ~6am US Eastern
+    - cron: "17 10 * * *" # ~6:17am US Eastern (off the hour to dodge runner contention)
   workflow_dispatch: {} # allow manual "Run workflow" from the Actions tab
 
 permissions:
