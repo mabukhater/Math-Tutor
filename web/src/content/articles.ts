@@ -11,6 +11,84 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-bar-models-for-word-problems",
+    title: "How to Help Your Child Understand Bar Models for Word Problems",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-11",
+    excerpt:
+      "Bar models turn confusing word problems into simple pictures. Here's how to teach this Singapore Math tool at home, step by step.",
+    body: `## What Is a Bar Model, and Why Does It Help?
+
+If your child freezes when they see a word problem, a bar model can be a lifesaver. A bar model is a simple rectangle (or set of rectangles) drawn to represent the numbers in a problem. It comes from Singapore Math, but it works with any curriculum because it does one powerful thing: it turns a tangle of words into a picture your child can actually see.
+
+Many kids get stuck not because they cannot add or subtract, but because they cannot tell what the problem is asking. A bar model bridges that gap. It sits between the words and the math, giving your child a place to think before they reach for a number.
+
+## The Two Main Types
+
+There are two basic models that cover most problems your child will meet in grades 1 through 6.
+
+### The Part-Whole Model
+
+This is one long bar split into pieces. The whole bar is the total; the pieces are the parts.
+
+Try this problem: Maya has 8 red apples and 5 green apples. How many apples does she have in all?
+
+- Draw one bar and split it into two sections.
+- Label the first section 8 and the second section 5.
+- Draw a bracket under the whole bar with a question mark.
+
+Your child can now see that the two parts join to make the whole. The picture says: add.
+
+### The Comparison Model
+
+This uses two bars stacked one above the other, so your child can compare sizes.
+
+Try this: Sam has 12 stickers. Ben has 7 stickers. How many more does Sam have?
+
+- Draw a longer bar for Sam, labeled 12.
+- Draw a shorter bar for Ben underneath, labeled 7.
+- The extra bit of Sam's bar sticking out is the answer.
+
+Seeing that leftover strip makes the phrase how many more finally click.
+
+## How to Teach It at Home
+
+Start with numbers your child already finds easy. The goal right now is the drawing, not the arithmetic. If the math is simple, they can focus on turning words into a picture.
+
+- Read the problem together twice. The first time for the story, the second time for the numbers.
+- Ask: What do we know, and what are we trying to find?
+- Decide together: are we joining parts, or comparing two amounts?
+- Draw the bar, label what you know, and mark the unknown with a question mark.
+- Only then work out the number sentence.
+
+Keep the bars rough. They do not need to be to scale or neatly ruled. A quick sketch on scrap paper is exactly right.
+
+## Growing With the Model
+
+One reason bar models are worth learning early is that they keep working as the math gets harder.
+
+- In younger grades they handle simple addition and subtraction.
+- Later they stretch to multiplication and division, where each equal section stands for the same amount.
+- By upper primary they even help with fractions and ratios, where a bar is split into equal parts and some are shaded.
+
+Because the tool stays the same while the problems grow, your child builds confidence instead of starting from scratch every year.
+
+## Common Sticking Points
+
+A few gentle fixes for the wobbles you may notice.
+
+- If your child draws the bars but cannot decide which operation to use, point back to the picture and ask what the question mark is standing for.
+- If they rush to guess an answer, cover the numbers with your hand and rebuild the model first.
+- If comparison problems confuse them, physically line up two strips of paper of different lengths so the difference is real and touchable.
+
+## The Bigger Payoff
+
+Bar models teach something deeper than any single problem: they teach children to pause, picture, and plan before calculating. That habit carries into algebra, where drawing to make sense of a problem is a genuine skill.
+
+Practice a few together each week, celebrate the drawings as much as the answers, and word problems will slowly stop being the scary part of the page.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-fact-families",
     title: "How to Help Your Child Understand Fact Families",
     category: "Math Tips",
