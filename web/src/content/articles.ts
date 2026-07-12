@@ -11,6 +11,66 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-fractions-on-a-number-line",
+    title: "How to Help Your Child Understand Fractions on a Number Line",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-12",
+    excerpt:
+      "Fractions on a number line confuse many kids. Here's a simple, hands-on way to help your child see fractions as real numbers.",
+    body: `## Why the Number Line Trips Kids Up
+
+Most children first meet fractions as slices of pizza or parts of a chocolate bar. That picture works well until a teacher draws a number line and asks them to plot three-quarters. Suddenly the pizza is gone, and the child has to see a fraction as a single point sitting between whole numbers.
+
+This shift matters. In the US Common Core, plotting fractions on a number line begins in Grade 3, and it reappears in the UK National Curriculum, Singapore Math, and Ontario. Getting comfortable with it early makes later topics, like comparing fractions, adding them, and understanding decimals, far smoother.
+
+Here is how to help at home without any special materials.
+
+## Start With the Big Idea
+
+The key insight your child needs is this: a fraction is a number, and every number has a home on the number line.
+
+Before any fractions, remind your child what the number line already does. Point out that the space between 0 and 1 is one whole unit, the same size as the space between 1 and 2. Fractions simply help us name the points hiding inside those gaps.
+
+## Build It Step by Step
+
+Draw a line and mark 0 at one end and 1 at the other. Then guide your child through three questions every single time:
+
+- What is the bottom number telling us? The denominator tells us how many equal pieces to cut the gap into.
+- Cut the gap. If the denominator is 4, fold or split the space between 0 and 1 into four equal parts.
+- What is the top number telling us? The numerator tells us how many jumps to take, starting from 0.
+
+So for three-quarters, cut the gap into 4 equal parts and hop 3 times. Land, and mark the point. Say it out loud together: three jumps of one-quarter each.
+
+Repeating this routine, denominator cuts, numerator jumps, gives your child a reliable method instead of a guess.
+
+### A Folding Trick That Makes It Click
+
+Grab a strip of paper the same length as the gap from 0 to 1. To show quarters, fold it in half, then in half again. Unfold it and you have four equal sections. Lay it under your number line and mark each crease. Children who fold their own strips understand equal parts in a way that a printed worksheet rarely delivers, because they can feel that the pieces are the same size.
+
+## Push Past One Whole
+
+Once your child is confident between 0 and 1, extend the line to 2 and 3. Ask them to plot five-quarters. Many kids freeze here, so remind them the rule has not changed: keep cutting each whole into quarters, and keep hopping. Five jumps of one-quarter lands them just past 1. This quietly introduces improper fractions and mixed numbers without the scary vocabulary.
+
+## Turn It Into a Game
+
+Practice sticks better when it feels playful. Try these:
+
+- Mystery point. You mark a point on the line and your child names the fraction. Then swap roles.
+- Fraction hopscotch. Chalk a number line on the pavement with fractions on it and call out a fraction to jump to.
+- Closer to which? Plot a fraction and ask whether it is closer to 0, to one-half, or to 1. This builds estimation and number sense at the same time.
+
+## Watch for These Common Mix-Ups
+
+- Unequal pieces. If the sections are not the same size, the fraction is wrong. Gently check with the folded strip.
+- Counting marks instead of spaces. Remind your child we count the jumps, not the tick marks.
+- Starting from 1 instead of 0. Every journey begins at 0.
+
+## Keep It Short and Steady
+
+A few minutes of number line practice a few times a week beats a long, frustrating session. Celebrate the moment your child stops counting slices and starts saying that a fraction is just a number with an address. That mental shift is the real win, and it will serve them well through every grade of math ahead.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-bar-models-for-word-problems",
     title: "How to Help Your Child Understand Bar Models for Word Problems",
     category: "Math Tips",
