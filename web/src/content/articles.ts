@@ -11,6 +11,86 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "help-child-understand-arrays-multiplication-division",
+    title: "How to Help Your Child Understand Rounding to Estimate Sums and Differences",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-13",
+    excerpt:
+      "Arrays turn abstract multiplication and division into something your child can see, count, and truly understand at home.",
+    body: `## Why Arrays Are Worth Your Time
+
+If your child is starting multiplication or division, you may have seen the word array in their homework and wondered what it means. An array is simply a set of objects arranged in equal rows and columns, like eggs in a carton or windows on a building.
+
+Arrays matter because they make multiplication and division visible. Instead of memorizing that four times three equals twelve, your child can see four rows of three and count the total. That picture builds real understanding, not just recall.
+
+This skill shows up across every curriculum we support, from US Common Core in second and third grade to Singapore Math and the UK National Curriculum. Getting it right early makes later topics like area and factors far easier.
+
+## What an Array Actually Looks Like
+
+Picture buttons laid out neatly:
+
+- 3 rows with 5 buttons in each row
+- That is 3 times 5, which equals 15 buttons total
+- It is also 5 times 3 if you count the columns instead
+
+This is a powerful moment. When your child sees that 3 rows of 5 and 5 rows of 3 both make 15, they have discovered the commutative property without needing the fancy name. Multiplication works the same in either direction.
+
+## A Simple Kitchen-Table Activity
+
+You do not need worksheets to teach arrays. You need small objects and a few minutes.
+
+### Step one: build it together
+
+Grab pasta pieces, coins, cereal, or dried beans. Ask your child to make 4 rows with 2 items in each row. Have them say it out loud: four rows of two.
+
+### Step two: count and connect
+
+Ask how many there are in total. Let them count if they need to, then write the matching number sentence: 4 times 2 equals 8. Seeing the objects and the numbers side by side is what makes it click.
+
+### Step three: flip it
+
+Turn the whole array a quarter turn. Now it is 2 rows of 4. Ask if the total changed. When they realize it is still 8, celebrate it. This is the kind of insight that sticks.
+
+## Using Arrays for Division Too
+
+Here is the part many parents miss: arrays teach division just as well as multiplication.
+
+Give your child 12 items and ask them to share them into equal rows. If they make 3 equal rows, they will find 4 in each row. That is 12 divided by 3 equals 4.
+
+Try these together:
+
+- 12 items into 4 equal rows
+- 15 items into 5 equal rows
+- 10 items into 2 equal rows
+
+When your child sees that multiplication builds an array and division breaks one apart, they understand that the two operations are connected. This is one of the biggest ideas in elementary math.
+
+## Spotting Arrays in Real Life
+
+Once your child knows what to look for, arrays are everywhere. Point them out during the day.
+
+- The squares in a chocolate bar
+- Muffins in a baking tray
+- Panes in a window
+- Cans stacked on a shelf
+- Tiles on the bathroom floor
+
+Ask a quick question when you spot one: how many rows, how many in each, how many altogether. These tiny moments reinforce the concept without feeling like a lesson.
+
+## Gentle Ways to Support Without Pressure
+
+Keep sessions short and playful. Five focused minutes beats a long, tense stretch. If your child gets stuck, go back to counting the objects one by one. There is no shame in counting; it is how understanding grows into confidence.
+
+Avoid rushing to memorized facts before the picture makes sense. A child who understands why 6 times 4 equals 24 will remember it far longer than one who only chanted it.
+
+## Bringing It Together
+
+Arrays give your child a mental image to hold onto long after the objects are put away. That image supports multiplication facts, division, factors, and eventually area. Start with objects on the table, connect them to number sentences, and point out arrays in the world around you.
+
+A little practice each day, kept light and hands-on, turns a tricky topic into one your child genuinely enjoys.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-fractions-on-a-number-line",
     title: "How to Help Your Child Understand Fractions on a Number Line",
     category: "Math Tips",
