@@ -11,6 +11,77 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-arrays",
+    title: "How to Help Your Child Understand Arrays (and Why They Make Multiplication Click)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-14",
+    excerpt:
+      "Arrays turn multiplication from a mystery into something your child can see and count. Here is how to teach them at home.",
+    body: `## What Is an Array, Exactly?
+
+An array is simply a group of objects arranged in equal rows and columns. Think of a carton of eggs, a chocolate bar with its neat squares, or a window with rows of panes. Each of these shows a quantity organized into a tidy grid.
+
+In the classroom your child will meet arrays around grade 2 or 3, right when multiplication is being introduced. The reason teachers reach for arrays is beautifully practical: they let a child see multiplication instead of just memorizing it.
+
+## Why Arrays Help Multiplication Make Sense
+
+Before arrays, many children treat multiplication as a string of facts to be recited. Arrays give those facts a picture. When your child looks at 3 rows of 4 dots, they can count 12 and connect it to 3 times 4.
+
+Here is what an array quietly teaches:
+
+- Multiplication is repeated equal groups, not random memorizing
+- The order does not change the answer, since 3 rows of 4 has the same dots as 4 rows of 3
+- Rows and columns give two ways to read the same total
+
+That last point is the seed of the commutative property, and your child grasps it without needing the vocabulary.
+
+## A Simple Way to Start at Home
+
+You do not need worksheets. You need small objects your child can push around: coins, buttons, cereal, or building blocks.
+
+Try this short routine:
+
+- Ask your child to make 2 rows with 5 objects in each row
+- Count the total together and say it aloud as 2 rows of 5 makes 10
+- Write it as 2 times 5 equals 10 so the picture links to the symbols
+- Now turn the array a quarter turn and count again as 5 rows of 2
+
+Watching the same objects become both 2 times 5 and 5 times 2 is often the moment it clicks. Let your child discover that the total stayed the same. That surprise does more teaching than any explanation from you.
+
+## Everyday Arrays Are Everywhere
+
+Once you start looking, arrays hide all over the house. Point them out during ordinary moments so multiplication feels connected to real life rather than trapped in a book.
+
+- The muffin tin with rows of cups
+- Tiles on the kitchen or bathroom floor
+- A carton of eggs
+- Rows of seats or fence posts
+- Squares in a chocolate bar
+
+Ask a quick question: How many muffins fit in this tin? Let your child count the rows, count the columns, and predict before counting them all one by one. This builds the habit of using structure instead of counting by ones.
+
+## Growing the Idea Toward Bigger Math
+
+Arrays are not just a beginner trick. They carry your child forward into harder concepts, which is why the extra time is worth it now.
+
+- Splitting an array into smaller parts shows the distributive property, so 7 times 6 becomes 5 times 6 plus 2 times 6
+- Area of a rectangle is really an array of unit squares, linking multiplication to geometry
+- Division becomes clearer too, since sharing 12 into 3 equal rows shows 12 divided by 3 is 4
+
+When your child later meets area or long multiplication, the array will already feel familiar.
+
+## Gentle Tips to Keep It Positive
+
+Keep sessions short and playful, five to ten minutes at most. If your child guesses a total before counting, celebrate the thinking even when the number is off.
+
+- Let them build the arrays themselves rather than watching you
+- Use the words rows and columns often so the language sticks
+- Move from real objects to drawn dots only when they feel ready
+
+Arrays reward patience. Give your child the chance to see the pattern for themselves, and multiplication stops being a wall of facts and becomes something they can picture, rotate, and trust.`,
+  },
+  {
     slug: "help-child-understand-arrays-multiplication-division",
     title: "How to Help Your Child Understand Rounding to Estimate Sums and Differences",
     category: "Math Tips",
