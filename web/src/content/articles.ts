@@ -11,6 +11,77 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-skip-counting",
+    title: "How to Help Your Child Understand Skip Counting (and Why It Matters)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-15",
+    excerpt:
+      "Skip counting builds the foundation for multiplication, patterns, and money math. Here is how to teach it at home, step by step.",
+    body: `## What Skip Counting Really Is
+
+Skip counting means counting forward by a number larger than one: 2, 4, 6, 8, or 5, 10, 15, 20. It sounds simple, but it quietly does a lot of heavy lifting in your child's math journey.
+
+When a child skip counts, they are noticing patterns, building fluency with number relationships, and laying the groundwork for multiplication, division, telling time, and counting money. A child who can rattle off 5, 10, 15, 20 is already halfway to understanding the five times table.
+
+Most curricula introduce skip counting by 2s, 5s, and 10s in first grade, then extend to 3s, 4s, and beyond in second and third grade. If your child is stuck on times tables later, weak skip counting is often the hidden reason.
+
+## Start With What They Can See and Touch
+
+Skip counting sticks best when it starts with real objects. Abstract chanting can come later.
+
+- Count pairs of socks or shoes to practice 2s.
+- Count fingers across the family to practice 5s (each hand is five).
+- Stack coins: nickels for 5s, dimes for 10s.
+- Group buttons, beads, or dried pasta into equal piles and count the groups.
+
+The goal is for your child to feel that skip counting is just a faster way to count things that come in equal groups. Ask questions like, "There are four hands here. How many fingers without counting one by one?"
+
+### Use a Hundred Chart
+
+A hundred chart, the grid of numbers from 1 to 100, is one of the best tools for this. Give your child a crayon and have them color every number they land on while counting by 5s. A clear pattern appears down two columns. Do the same for 2s and 10s.
+
+Seeing the pattern is powerful. Children stop memorizing blindly and start predicting the next number, which is a big step toward real number sense.
+
+## Make It Rhythmic and Playful
+
+Skip counting has a natural beat, so lean into it.
+
+- Clap or stomp on each number: whisper the numbers you skip, shout the ones you land on.
+- Bounce a ball and count by 2s or 5s with each bounce.
+- Sing counting songs; the melody helps the sequence stick.
+- Take turns: you say 5, your child says 10, you say 15, back and forth.
+
+Short and frequent beats long and rare. Three minutes on the stairs while brushing up before school does more than a twenty-minute drill once a week.
+
+## Connect It to the Real World
+
+Children remember what feels useful. Point out skip counting wherever it hides.
+
+- Telling time: the clock counts by 5s around the face.
+- Money: coins practically demand skip counting.
+- Setting the table: two forks per person, count by 2s.
+- Snacks: crackers arranged in rows of 3 or 4.
+
+When your child sees the same skill show up in a dozen everyday places, it stops being a school chore and starts being a tool.
+
+## Common Sticking Points
+
+A few patterns trip children up, and knowing them helps you respond calmly.
+
+- Counting by 3s and 4s is harder because the pattern is less obvious. Slow down and use objects grouped in threes or fours.
+- Some children can go forward but freeze going backward. Practice counting down too: 20, 15, 10, 5. This supports subtraction and division later.
+- Losing track mid-sequence usually means they are memorizing sounds, not understanding groups. Return to the hundred chart and the physical objects.
+
+Resist correcting every stumble. Let your child catch and fix their own mistakes when you can. That builds confidence.
+
+## Bringing It Together
+
+Skip counting is a small skill with an outsized payoff. Aim for a few minutes most days, mix hands-on grouping with rhythm and real-life examples, and let the hundred chart reveal the patterns.
+
+Once your child can skip count smoothly by 2s, 5s, and 10s, multiplication will feel far less like memorizing a mysterious list and far more like something they already know how to do. That quiet confidence is exactly what you are building.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-arrays",
     title: "How to Help Your Child Understand Arrays (and Why They Make Multiplication Click)",
     category: "Math Tips",
