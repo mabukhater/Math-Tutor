@@ -1,11 +1,16 @@
 name: Daily question top-up
 
-# Each night tops up the next (curriculum, grade) in rotation with curriculum-
-# authentic questions, then verifies them. Writes straight to the DB (no commit).
-# Times are UTC; GitHub may delay scheduled runs by a few minutes.
+# Tops up the next (curriculum, grade) in rotation with curriculum-authentic
+# questions, then verifies them. Writes straight to the DB (no commit).
+#
+# PAUSED 2026-07-11 (board review — CFO): the bank already holds ~13.5k vetted
+# questions against a handful of active learners, so nightly generation was
+# manufacturing inventory nobody consumes (~65% of monthly burn) at zero revenue.
+# The schedule below is commented out; re-enable it once there is real demand.
+# Still runnable on demand from the Actions tab (workflow_dispatch).
 on:
-  schedule:
-    - cron: "0 8 * * *" # ~4am US Eastern (before the blog run)
+  # schedule:
+  #   - cron: "0 8 * * *" # ~4am US Eastern (before the blog run)
   workflow_dispatch: {}
 
 jobs:
