@@ -11,6 +11,74 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-the-order-of-operations",
+    title: "How to Help Your Child Understand the Order of Operations",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-16",
+    excerpt:
+      "Confused by PEMDAS? Here is a clear, parent-friendly way to help your child solve multi-step problems in the right order.",
+    body: `## Why the Order of Operations Trips Kids Up
+
+Somewhere around grades 5 and 6, your child will meet a problem like 3 plus 4 times 2. It looks simple, but it has a trap. Do you add first and get 14, or multiply first and get 11? Only one answer is correct, and getting there depends on a set of rules called the order of operations.
+
+The reason children struggle is not the arithmetic itself. It is that they have spent years reading left to right and now must learn that math does not always work that way. This shift feels unnatural, so a little patience goes a long way.
+
+## What the Rules Actually Say
+
+The order tells us which parts of a calculation to do first. Many US classrooms use the word PEMDAS, while UK schools often say BODMAS. They mean the same thing:
+
+- First, anything inside brackets or parentheses
+- Then exponents or powers (numbers raised to a power)
+- Then multiplication and division, working left to right
+- Finally addition and subtraction, working left to right
+
+Here is the detail most kids miss: multiplication and division rank equally. You do not always multiply before dividing. You simply work through them left to right as they appear. The same is true for addition and subtraction.
+
+So in 12 divided by 3 times 2, you do not do the multiplication first. You go left to right: 12 divided by 3 is 4, then 4 times 2 is 8.
+
+## A Simple Way to Explain It at Home
+
+Try framing it as a set of priorities, like getting ready in the morning. Some things simply have to happen before others. You put on socks before shoes. In math, you handle brackets before you handle addition.
+
+Walk through 3 plus 4 times 2 together:
+
+- Look for brackets. None here.
+- Look for powers. None here.
+- Do multiplication and division. 4 times 2 is 8.
+- Now the problem is 3 plus 8, which is 11.
+
+Saying the steps out loud helps your child slow down instead of grabbing the first two numbers they see.
+
+### Use Brackets as a Highlighter
+
+A great habit is to have your child circle or underline the part they will do first. For 20 minus 3 times 4, they underline the 3 times 4, solve it to 12, then rewrite the problem as 20 minus 12. Rewriting the whole expression after each step prevents the messy errors that come from trying to do everything in their head.
+
+## Practice That Builds Real Understanding
+
+Once your child knows the sequence, give them pairs of problems that use the same numbers in different orders. This shows them why the rules matter:
+
+- 2 plus 3 times 4 gives 14
+- Open bracket 2 plus 3 close bracket times 4 gives 20
+
+Same digits, very different answers. When a child sees that the brackets changed everything, the rules stop feeling arbitrary.
+
+You can also turn it into a checking game. Write an answer that is wrong because you added before multiplying, and ask your child to be the detective who finds your mistake. Kids love catching a grown-up in an error, and spotting mistakes deepens their grasp faster than only solving fresh problems.
+
+## Common Mistakes to Watch For
+
+- Working strictly left to right and ignoring the priorities
+- Thinking multiplication always beats division rather than going left to right
+- Forgetting that a number just outside brackets means multiply
+- Rushing through instead of rewriting the expression after each step
+
+If your child makes these slips, they are in good company. Gently point to the step that was skipped rather than just marking the answer wrong.
+
+## Keep It Short and Steady
+
+A few carefully chosen problems each day beat a long, frustrating session. Five minutes of focused practice, with your child explaining each move aloud, will cement the habit within a couple of weeks. The goal is not speed but a calm, orderly approach they can trust on any multi-step problem, from homework tonight to algebra down the road.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-skip-counting",
     title: "How to Help Your Child Understand Skip Counting (and Why It Matters)",
     category: "Math Tips",
