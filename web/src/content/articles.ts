@@ -11,6 +11,70 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-perpendicular-and-parallel-lines",
+    title: "How to Help Your Child Understand Perpendicular and Parallel Lines",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-17",
+    excerpt:
+      "A simple, hands-on guide to helping your child tell parallel and perpendicular lines apart using everyday objects at home.",
+    body: `## What These Words Actually Mean
+
+Geometry vocabulary can sound intimidating, but the ideas behind parallel and perpendicular lines are things your child already sees every day. The words just give those familiar patterns a name.
+
+Here is the plain-English version to share with your child:
+
+- Parallel lines run side by side and never meet, no matter how far they stretch. Think of the two long rails of a train track.
+- Perpendicular lines cross each other and make a perfect square corner where they meet. Think of the corner of a book or a window frame.
+
+That square corner is the key. When two lines meet at a right angle, which is a corner like the letter L, they are perpendicular. If they never touch at all, they are parallel.
+
+## Start With a Hunt Around the House
+
+Before any worksheet, go on a line hunt. This turns an abstract idea into something your child can point at and touch.
+
+Walk through a few rooms and look for examples together:
+
+- Parallel: the two sides of a door frame, the shelves in a bookcase, the stripes on a shirt, the lines on ruled paper.
+- Perpendicular: where a wall meets the floor, the corner of a photo frame, the cross of a window pane, the hands of a clock at three o'clock.
+
+Ask your child to say the word out loud each time they find an example. Naming things builds ownership, and repetition here does the quiet work of memory.
+
+## Use Your Hands and Simple Objects
+
+Children remember what they do far better than what they hear. A few props make these concepts stick.
+
+Try these quick activities:
+
+- Lay two pencils flat on the table. Slide them so they point the same way and stay the same distance apart. That is parallel. Now cross one over the other to make an L corner. That is perpendicular.
+- Use the corner of an index card or a book as a right-angle checker. If two lines fit snugly into that corner, they are perpendicular. This gives your child a physical test instead of a guess.
+- Make the shapes with your arms. Hold both arms straight out to the sides for parallel. Then make an L with one arm up and one arm across for perpendicular.
+
+## Clear Up the Common Mix-Ups
+
+A few sticking points trip up most children. Knowing them in advance saves frustration.
+
+- Lines can be perpendicular even if one is slanted. What matters is the right angle where they cross, not whether the lines are straight up and down.
+- Two lines that cross at a slanted, non-square corner are called intersecting, but they are not perpendicular. Only a true square corner counts.
+- Parallel lines do not have to be horizontal. Two lines leaning at the same slant, staying equally apart, are still parallel.
+
+A good memory trick: the two letter Ls in parallel look like two lines standing side by side. And perpendicular has to do with a proper corner, like the ones you find on a piece of paper.
+
+## Turn It Into a Game
+
+Once your child gets the idea, keep it playful and low-pressure.
+
+- Play I Spy with a twist: I spy something with parallel lines. Take turns finding matches.
+- Draw a simple house or robot together, then label every set of parallel and perpendicular lines you can spot.
+- Give a spontaneous challenge during the day: point at the ladder, the fence, or the tiled floor and ask which kind of lines those are.
+
+## Why It Matters Later
+
+These ideas are the foundation for shapes, angles, coordinate grids, and area work in the years ahead. A child who can confidently spot a right angle is well prepared for rectangles, squares, and the more formal geometry of upper grades.
+
+Keep sessions short and cheerful. A few minutes of line-spotting on the way to school does more good than a long, tiring drill. Regular, bite-sized practice is what turns a new word into knowledge your child truly owns.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-the-order-of-operations",
     title: "How to Help Your Child Understand the Order of Operations",
     category: "Math Tips",
