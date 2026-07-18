@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-to-nearest-10-100",
+    title: "How to Help Your Child Understand Rounding to the Nearest 10 and 100",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-18",
+    excerpt:
+      "A clear, hands-on way to teach rounding to the nearest 10 and 100 at home, with a simple number line trick kids actually remember.",
+    body: `## Why Rounding to 10 and 100 Trips Kids Up
+
+Rounding sounds simple to adults, but for a child it packs several tricky ideas into one small task. They have to spot the right digit, decide whether a number is closer to one landmark or another, and then rewrite the whole number. When any of those steps is fuzzy, the answer comes out wrong even though your child understands the general idea.
+
+The good news is that rounding to the nearest 10 and 100 becomes almost automatic once your child can picture where a number sits between two round numbers. Here is a way to build that picture at home without worksheets full of rules to memorize.
+
+## Start With the Number Line, Not the Rule
+
+Many children are taught a phrase like five or more, round up. That rule works, but if they do not understand why, it collapses the moment a problem looks unusual. A number line fixes this.
+
+Draw a simple line for rounding to the nearest 10. Put 40 on the left and 50 on the right, then mark the halfway point at 45.
+
+- Ask your child to place a number like 43 on the line.
+- Ask which end it is closer to, 40 or 50.
+- Let them see that 43 leans toward 40, so it rounds to 40.
+
+Do the same with 47 and they will see it leans toward 50. When you reach 45, explain that it sits exactly in the middle, and mathematicians have agreed to round it up to 50 so everyone gets the same answer.
+
+Repeat this a handful of times and your child stops guessing. They are reading the picture, not reciting a rule.
+
+### Moving to the Nearest 100
+
+The same drawing works for hundreds. Put 300 on the left, 400 on the right, and 350 in the middle. Place 328 and let your child decide. Because 328 is below the halfway mark, it rounds to 300. Try 372 and it rounds to 400.
+
+The key habit is always asking which two landmarks the number falls between before doing anything else.
+
+## The Underline Trick
+
+Once your child gets the idea, give them a quick routine for problems without a drawing.
+
+- Underline the digit in the place you are rounding to. For the nearest 10, underline the tens digit.
+- Look only at the digit to its right.
+- If that digit is 5 or more, the underlined digit goes up by one. If it is 4 or less, it stays the same.
+- Change every digit to the right into a zero.
+
+For 267 rounded to the nearest 10, underline the 6, look at the 7, round up to get 270. For 267 rounded to the nearest 100, underline the 2, look at the 6, round up to get 300.
+
+This trick and the number line reinforce each other. The line explains why, and the trick makes it fast.
+
+## Everyday Practice That Sticks
+
+Rounding lives all around your home, so you rarely need a workbook.
+
+- At the shop, ask your child to round prices to the nearest ten so they can estimate the total.
+- On a drive, round the number of miles or minutes left to the nearest ten.
+- Read a house number or page number aloud and ask for the nearest hundred.
+- Round the number of steps on a fitness tracker or the score in a game.
+
+Keep these moments light and quick. Thirty seconds of real-world rounding beats a page of drills for building instinct.
+
+## Watch for These Common Slips
+
+- Rounding the wrong digit. Remind your child to look at the digit immediately to the right, not the last digit in the number.
+- Forgetting to zero out. A rounded number to the nearest 10 must end in zero.
+- Panicking at a 9. When rounding up bumps a 9, such as 397 to the nearest 10, the whole number shifts to 400. Practice a few of these on the number line so it does not feel like a mistake.
+
+With a picture to lean on and a few daily moments of practice, rounding to 10 and 100 turns from a confusing rule into a tool your child reaches for on their own.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-perpendicular-and-parallel-lines",
     title: "How to Help Your Child Understand Perpendicular and Parallel Lines",
     category: "Math Tips",
