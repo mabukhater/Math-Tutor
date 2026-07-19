@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-prime-and-composite-numbers",
+    title: "How to Help Your Child Understand Prime and Composite Numbers",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-19",
+    excerpt:
+      "A clear, hands-on parent's guide to teaching prime and composite numbers so the idea finally clicks at home.",
+    body: `## What Prime and Composite Numbers Actually Mean
+
+Somewhere around grades 4 and 5, children meet a new idea that can feel surprisingly abstract: prime and composite numbers. If your child has come home puzzled, you are not alone. The vocabulary sounds technical, but the concept underneath is friendly once you connect it to something they already know.
+
+Here is the plain-language version:
+
+- A prime number can only be made by multiplying 1 and itself. Examples are 2, 3, 5, 7, and 11.
+- A composite number can be made by multiplying smaller whole numbers in more than one way. Examples are 4, 6, 8, 9, and 12.
+- The number 1 is neither prime nor composite. It has only one factor, itself, so it sits in its own special category.
+
+The key word to keep coming back to is factors. Factors are the whole numbers that divide evenly into a number. Prime numbers have exactly two factors. Composite numbers have three or more.
+
+## Start With Something They Can Touch
+
+Before any worksheet, reach for a handful of small objects. Coins, dried beans, buttons, or crackers all work well.
+
+Give your child a set number of items, say 12, and ask them to arrange the items into equal rows.
+
+- With 12, they can make rows of 2, 3, 4, or 6. Lots of options means 12 is composite.
+- Now try 7. No matter how they push the objects around, the only tidy arrangement is a single row of 7 or 7 rows of 1. That stubbornness is exactly what makes 7 prime.
+
+Let your child discover this by trying, not by being told. When they say something like these ones just will not split up, you can name it: that is what prime means.
+
+## Connect It to Multiplication They Already Know
+
+Children who are comfortable with times tables have a head start here. Ask a simple question: can you find two numbers that multiply to make this one?
+
+- For 15, they might say 3 times 5. So 15 is composite.
+- For 13, they will hunt and come up empty except for 1 times 13. So 13 is prime.
+
+This is why practising multiplication facts pays off far beyond memorisation. Solid recall makes spotting factors quick, and quick factor-spotting makes primes and composites feel manageable rather than mysterious.
+
+## A Few Handy Shortcuts
+
+Once the concept is understood, a few checks help your child work faster:
+
+- Any even number bigger than 2 is composite, because it can always be divided by 2.
+- If the digits add up to a multiple of 3, the number is divisible by 3 and therefore composite. For 27, the digits 2 and 7 add to 9, which is a multiple of 3.
+- Numbers ending in 0 or 5 are divisible by 5, so any number bigger than 5 ending that way is composite.
+
+Encourage your child to test only a few small primes, 2, 3, 5, and 7, when checking numbers under 100. If none of them divide in, the number is prime.
+
+## Make It a Game
+
+Turn practice into a quick daily challenge instead of a chore.
+
+- Play prime or composite ping-pong. You call a number, they call the answer, then they call one back to you.
+- Hunt for primes on a hundred chart. Colouring in the composites reveals the primes scattered like stepping stones.
+- Race to break a number apart. Give them 24 and ask how many multiplication pairs they can list before a timer runs out.
+
+Keeping sessions short and playful builds confidence far better than long drills.
+
+## Why This Matters Later
+
+Prime numbers are the building blocks of every other whole number. Understanding them prepares your child for finding common factors, simplifying fractions, and later work with prime factorisation. A child who genuinely gets the idea now will find those future topics much smoother.
+
+With a few beans, some multiplication practice, and a little play, prime and composite numbers stop being jargon and start being something your child can see, touch, and explain back to you.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rounding-to-nearest-10-100",
     title: "How to Help Your Child Understand Rounding to the Nearest 10 and 100",
     category: "Math Tips",
