@@ -11,6 +11,66 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-equivalent-fractions",
+    title: "How to Help Your Child Understand Equivalent Fractions",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-20",
+    excerpt:
+      "See why one-half and two-quarters are the same amount, with hands-on ways to make equivalent fractions click at home.",
+    body: `## What Equivalent Fractions Really Mean
+
+Equivalent fractions are different-looking fractions that name the same amount. One-half, two-quarters, and four-eighths all point to the exact same spot on a number line. The numbers on top and bottom change, but the size of the piece you end up with does not.
+
+This idea trips up a lot of children because the fractions look completely different. Two-quarters seems bigger than one-half simply because it uses larger numbers. Helping your child see past the numbers to the actual quantity is the whole game.
+
+## Start With Something They Can Touch
+
+Before any rules or shortcuts, let your child feel that these fractions are equal. Abstract ideas stick when they begin with real objects.
+
+- Fold a piece of paper in half, then in half again. Show that half the paper and two of the four sections cover the same space.
+- Cut a sandwich into two pieces, then cut those into four. The amount of sandwich did not change.
+- Use a chocolate bar with segments. Two of four rows equals one of two halves.
+
+Say it out loud as you go: the pieces got smaller, but there are more of them, so the total is the same. That sentence is the heart of the concept.
+
+## Connect It to Multiplying and Dividing
+
+Once your child believes the amounts are equal, show them the pattern that makes new equivalent fractions. To find one, you multiply the top and bottom by the same number.
+
+For example, one-half becomes two-quarters when you multiply both parts by two. It becomes three-sixths when you multiply both by three. The key rule to repeat often is that whatever you do to the top, you must do to the bottom.
+
+Going the other direction, dividing top and bottom by the same number simplifies a fraction. Four-eighths divided by four on both parts becomes one-half. This is how children learn to reduce fractions to simplest form later.
+
+## A Quick Way to Check
+
+When your child wonders whether two fractions are equal, teach them to cross-multiply. Multiply the top of one by the bottom of the other, then swap and do it again. If both answers match, the fractions are equivalent.
+
+Try it with two-thirds and four-sixths. Two times six is twelve, and three times four is twelve. The numbers match, so the fractions are equal. This trick feels like magic to kids and builds confidence when they are unsure.
+
+## Common Mistakes to Watch For
+
+- Adding instead of multiplying. Some children turn one-half into two-thirds by adding one to each part. Remind them the operation must be multiplication or division applied to both.
+- Changing only the top or only the bottom. This changes the amount entirely, so stress the both parts rule.
+- Assuming bigger numbers mean a bigger fraction. Use the number line to show that three-sixths sits in the same place as one-half.
+
+## Make It Part of Everyday Life
+
+Equivalent fractions show up constantly once you start looking.
+
+- Cooking gives easy practice. Ask whether two-quarters of a cup is the same as half a cup, then measure to prove it.
+- Time works too. Thirty minutes is half an hour and also thirty-sixtieths of an hour.
+- Sharing snacks fairly opens natural conversations about splitting things into equal parts.
+
+Keep these moments light. A single question at the dinner table does more than a worksheet when your child is tired.
+
+## Practice a Little, Often
+
+Short, regular sessions beat long ones. Five focused minutes a few times a week lets the idea settle without frustration. Start with pictures, move to the multiply-and-divide rule, and finish with a quick real-world example so the learning feels useful.
+
+When your child can look at one-half and two-quarters and say with certainty that they are the same amount, you have built a foundation that supports comparing, adding, and simplifying fractions for years to come. That confidence is worth far more than a memorized rule.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-prime-and-composite-numbers",
     title: "How to Help Your Child Understand Prime and Composite Numbers",
     category: "Math Tips",
