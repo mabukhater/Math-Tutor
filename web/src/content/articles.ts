@@ -11,6 +11,77 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-decimals",
+    title: "How to Help Your Child Understand Rounding Decimals",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-21",
+    excerpt:
+      "A calm, step-by-step way to help your child round decimals confidently, with everyday examples and gentle practice ideas.",
+    body: `## Why Rounding Decimals Trips Kids Up
+
+By the time children meet rounding decimals, usually around grades 4 and 5, they already know how to round whole numbers. So why does rounding 3.47 to one decimal place cause so many puzzled faces?
+
+The problem is that decimals feel smaller and less familiar. A child who happily rounds 47 to 50 can freeze at 4.7 because the decimal point makes them doubt everything they know. The good news: the rule is exactly the same. Once your child sees that, most of the confusion melts away.
+
+## Start With What Rounding Actually Means
+
+Before any rules, make sure your child understands the point of rounding. We round to get a number that is close enough and easier to work with.
+
+Try asking questions like:
+
+- If a snack costs 2.89, is that closer to 2 or to 3?
+- If your water bottle holds 1.4 litres, is that nearer 1 or 2?
+
+Let your child answer using their gut. Most children instinctively know 2.89 is nearly 3. That instinct is rounding. Naming it afterward helps them trust their own thinking.
+
+## The One Question That Guides Every Decision
+
+Rounding always comes down to a single question: which digit are we rounding to, and what is the digit right after it?
+
+Teach this simple routine:
+
+- Underline the digit in the place you are rounding to.
+- Look only at the digit immediately to its right.
+- If that digit is 5 or more, round up. If it is 4 or less, keep the underlined digit the same.
+- Drop everything after the underlined digit.
+
+So to round 3.47 to one decimal place, underline the 4, look at the 7, and since 7 is 5 or more, round up to 3.5.
+
+## Use a Number Line to Make It Visible
+
+Many children round wrong because it stays abstract. A number line fixes that fast.
+
+Draw a line from 3.4 to 3.5 and mark the halfway point at 3.45. Now place 3.47 on it. Your child can see it sits past the middle, closer to 3.5. This shows them why we round up, rather than asking them to memorize a rule they do not believe.
+
+Do this a few times with different numbers. Once they picture the number line, they can eventually round without drawing it.
+
+## Watch for the Common Slip-Ups
+
+A few predictable mistakes come up again and again:
+
+- Looking at too many digits. When rounding 3.482 to one decimal place, only the 8 matters, not the 2. Remind them to check just the next digit.
+- Rounding up and forgetting to drop the rest. The answer to rounding 3.482 to one decimal place is 3.5, not 3.582.
+- The tricky carry. Rounding 3.96 to one decimal place gives 4.0, because the 9 rounds up to 10 and carries. Practice a couple of these on purpose so they are not scary.
+- Dropping the zero. In money especially, 4.0 should often stay as 4.00. Talk about when the zeros matter.
+
+## Practice That Feels Like Real Life
+
+Decimals live everywhere, so you rarely need a worksheet.
+
+- Grocery prices: round each item to the nearest dollar or pound and estimate the total before you pay.
+- Sports and weather: round race times, temperatures, or rainfall amounts.
+- Cooking: round 2.75 cups to the nearest half or whole and talk about why exact amounts sometimes matter more.
+
+Keep these moments short and low pressure. Two or three quick questions during a shop is plenty.
+
+## Keep It Short, Keep It Regular
+
+Rounding decimals is a skill that rewards little and often rather than one long session. Five minutes a few times a week beats a stressful half hour on Sunday. Praise the thinking, not just the correct answer, and let the number line do the heavy lifting whenever doubt creeps in.
+
+With a clear routine and everyday practice, your child will soon round decimals as naturally as they round whole numbers, and that confidence carries straight into estimation, money, and measurement work down the road.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-equivalent-fractions",
     title: "How to Help Your Child Understand Equivalent Fractions",
     category: "Math Tips",
