@@ -11,6 +11,73 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-ratios-and-proportions",
+    title: "How to Help Your Child Understand Ratios and Proportions",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-22",
+    excerpt:
+      "A clear, practical guide for parents on teaching ratios and proportions using everyday examples your child already understands.",
+    body: `## What a Ratio Really Is
+
+When ratios first appear, usually around grades 5 and 6, they can feel like a brand-new language. But your child has been using ratio thinking for years without a name for it. A ratio is simply a way of comparing two amounts: two cups of flour for every one cup of sugar, three red beads for every five blue ones.
+
+The trick is helping your child see that a ratio is not about the total. It is about the relationship between the parts. Two apples to three oranges tells you nothing about how many pieces of fruit there are altogether. It only tells you how they compare.
+
+## Start in the Kitchen
+
+Cooking is the most natural place to meet ratios, because recipes are ratios in disguise.
+
+Suppose a pancake recipe uses one egg for every cup of flour. Ask your child what happens if you want to make double the batch. This is where proportion sneaks in: keeping the same relationship while changing the amounts. Two eggs, two cups of flour. The ratio stays the same even though the numbers grow.
+
+Try these hands-on questions at the counter:
+
+- If one cup of rice serves two people, how much rice for six people?
+- We have three eggs but the recipe wants one egg per cup of flour. How many cups can we make?
+- This juice is two parts water to one part concentrate. How much of each do we need for a big jug?
+
+Because the result is something they can taste, mistakes become obvious and memorable. Too much concentrate and the juice is too strong. That feedback teaches proportion better than any worksheet.
+
+## The Difference Between a Ratio and a Proportion
+
+Children often blur these two words, so it helps to be precise.
+
+- A ratio compares two quantities, such as three to four.
+- A proportion is a statement that two ratios are equal, such as three to four is the same as six to eight.
+
+When your child scales a recipe up or down, they are solving a proportion. When they read a map scale or shrink a photo, same idea. Naming the concept clearly gives your child a hook to hang new problems on.
+
+### A Simple Way to Check
+
+Teach your child to ask one question: did both numbers change by the same multiple? If you doubled the flour, did you double the sugar? If yes, the ratio held and the proportion is true. If only one number changed, the relationship broke.
+
+## Everyday Practice Beyond the Kitchen
+
+Once your child spots ratios in cooking, they start appearing everywhere. Point them out during ordinary moments.
+
+- Speed: if the car travels sixty miles in one hour, how far in three hours?
+- Money: if two pencils cost fifty cents, what do six cost?
+- Mixing paint or plant food, where the label gives parts per amount of water.
+- Maps and models, where one inch stands for a set number of miles.
+- Sports statistics, like goals per game or the win-to-loss record.
+
+These are not extra homework. They are quick, thirty-second conversations that build number sense over time.
+
+## Common Stumbling Blocks
+
+A few predictable snags trip children up. Watch for these.
+
+- Adding instead of multiplying. If a child turns three to four into four to five by adding one, remind them that proportions grow by multiplying, not by tacking on the same amount.
+- Flipping the order. Two dogs to five cats is not the same as five dogs to two cats. Order matters, so keep the labels attached.
+- Ignoring units. Comparing miles to hours or cups to servings only works when your child keeps track of what each number describes.
+
+## Keep It Low-Pressure
+
+Ratios reward curiosity more than speed. When your child gets a proportion wrong, resist correcting immediately. Ask them to explain their thinking out loud, and the error often reveals itself. Short, regular practice with real objects will do far more than a long, frustrating session at the table.
+
+With a little kitchen time and a few well-timed questions on car rides, proportional thinking becomes second nature, setting your child up beautifully for percentages, rates, and algebra in the years ahead.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rounding-decimals",
     title: "How to Help Your Child Understand Rounding Decimals",
     category: "Math Tips",
