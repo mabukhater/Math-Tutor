@@ -11,6 +11,76 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "rounding-vs-estimating-for-kids",
+    title: "How to Help Your Child Understand Rounding vs. Estimating (They're Not the Same)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-23",
+    excerpt:
+      "Rounding and estimating sound alike but do different jobs. Here's how to explain the difference so your child uses each one confidently.",
+    body: `## Why This Confuses So Many Kids
+
+Rounding and estimating show up in the same lessons, use the same friendly numbers, and often appear in the same word problems. No wonder children mix them up. But they answer two different questions, and once your child sees that, both suddenly get easier.
+
+Here is the simplest way to hold them apart:
+
+- Rounding is a rule. You follow steps to turn one exact number into a tidier one.
+- Estimating is a decision. You choose numbers that are close enough to get a quick, useful answer.
+
+Rounding is a tool. Estimating is often the job the tool is used for.
+
+## Rounding: Following the Rule
+
+Rounding takes a single number and reshapes it to the nearest ten, hundred, tenth, or whatever place you choose. There is a right answer.
+
+Ask your child: what are we rounding to? Then look at the digit just to the right.
+
+- 4 or less, round down (keep the digit the same).
+- 5 or more, round up (add one).
+
+So 47 rounded to the nearest ten is 50. There is one correct result. If your child rounds 47 to 40, that is simply wrong, not just a different opinion.
+
+Try this at home. Write a number on paper and ask your child to round it three ways: to the nearest ten, hundred, and thousand. Doing all three back to back shows that the rule stays the same even when the target changes.
+
+## Estimating: Making a Smart Guess
+
+Estimating is about getting close fast, usually because an exact answer is more work than the situation needs. Here there is no single correct answer, only reasonable and unreasonable ones.
+
+Imagine you are at the shop with three items costing 3.89, 5.15, and 2.05. Nobody adds those in their head to the penny. Instead your child thinks about 4 plus 5 plus 2, which is 11. That is an estimate, and it tells you whether a 20 pound note will cover it. It will.
+
+Notice the trick in that example. To estimate, your child rounded each number first. That is the relationship worth teaching directly:
+
+- Estimating usually starts with rounding.
+- Rounding does not always lead to estimating (sometimes you just need a tidier number).
+
+## A Conversation That Makes It Stick
+
+Use everyday moments to ask which one is needed.
+
+- Reading a clock and saying it is about half past: that is estimating.
+- A worksheet that says round 362 to the nearest hundred: that is rounding.
+- Guessing how many minutes until dinner: estimating.
+- Turning 4.7 into 5 by the rule: rounding.
+
+When your child asks a math question, reply with a question of your own: do we need the exact answer here, or is close enough good enough? That single habit builds real number sense.
+
+## Common Mistakes to Watch For
+
+- Rounding the answer instead of the numbers. In estimation, round first, then calculate. Kids often solve exactly and then tidy up, which defeats the purpose.
+- Treating an estimate as wrong. If your child estimates 11 and the exact total is 11.09, that estimate did its job perfectly.
+- Forgetting the target place. Ask nearest what before every rounding problem.
+
+## A Quick Game to Try Tonight
+
+Grab a receipt or a handful of prices from an online basket. Cover the total. Ask your child to estimate it by rounding each price to the nearest pound or dollar. Then reveal the real total and compare. Was the estimate close? Was it a bit over or under? Talking about why builds judgment, which is the whole point.
+
+Keep sessions to five minutes. Short and regular beats long and rare.
+
+## The Takeaway
+
+Rounding gives your child a reliable rule for one number. Estimating gives them the confidence to answer close enough when speed matters more than precision. Teach the rule first, then show how it powers quick thinking in real life, and your child will reach for the right skill without hesitating.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-ratios-and-proportions",
     title: "How to Help Your Child Understand Ratios and Proportions",
     category: "Math Tips",
