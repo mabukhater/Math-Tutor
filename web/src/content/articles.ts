@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "help-your-child-understand-line-plots-and-simple-graphs",
+    title: "How to Help Your Child Understand Line Plots and Simple Graphs",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-24",
+    excerpt:
+      "A friendly guide to helping your child read and build line plots, bar graphs, and pictographs using everyday moments at home.",
+    body: `## Why Graphs Trip Kids Up
+
+Graphs feel like they should be easy. They are colorful, visual, and often show up as the fun part of a math worksheet. But reading a graph asks a child to do several things at once: understand what the axes mean, count carefully, compare quantities, and then answer a question about it all. When any one of those steps wobbles, the whole thing feels confusing.
+
+The good news is that graphs are one of the most natural math topics to teach at home, because you can build one out of almost anything.
+
+## Start With Data Your Child Cares About
+
+Before drawing a single axis, help your child see that a graph is just a picture of information. The information matters more than the picture at first.
+
+Try collecting real data together:
+
+- Count how many of each color candy or bead are in a bag.
+- Tally how many cars, trucks, and bikes pass the window in ten minutes.
+- Record how many books each family member read this month.
+- Track the daily weather for a week: sunny, cloudy, or rainy.
+
+When the numbers come from something your child chose, they stay interested long enough to actually learn the graphing part.
+
+## Build Up Slowly: Pictographs to Bar Graphs
+
+Start with the simplest form and add complexity only when your child is ready.
+
+### Pictographs
+
+Use one picture to stand for one thing. If you counted four rainy days, draw four raindrops. This connects directly to counting, which your child already knows. Later, introduce a key, where one symbol stands for two or five, and ask what half a symbol would mean.
+
+### Bar Graphs
+
+Move to bars once counting one-to-one feels comfortable. Draw the axes together and talk through them out loud. Ask questions like these:
+
+- What does the bottom row tell us?
+- What do the numbers going up the side count?
+- Which bar is tallest, and what does that mean?
+
+Coloring in each square as you count keeps young children engaged and accurate.
+
+### Line Plots
+
+A line plot marks each piece of data with an X above a number line. These are wonderful for showing repeated measurements, like the length of several leaves or the number of goals scored in each game. Kids often find them easier than bar graphs because they build on the number line, which they have already met in earlier math.
+
+## The Questions That Build Real Understanding
+
+Reading a graph is more than naming the tallest bar. The skill worth developing is interpreting the data. After making any graph, ask a mix of questions:
+
+- How many more sunny days than rainy days were there?
+- How many days did we record in total?
+- Which two categories added together equal the largest one?
+- What would the graph look like if we counted again next week?
+
+That last question is powerful. It moves your child from reading a fixed picture to imagining how data changes, which is the heart of statistics in later grades.
+
+## Watch for These Common Mix-Ups
+
+A few stumbling points come up again and again:
+
+- Miscounting the scale. If the side of a bar graph counts by twos, children often read each line as one. Point to the numbers and count together.
+- Ignoring the key on a pictograph. Remind your child that one picture might mean more than one thing.
+- Confusing the two axes. A quick habit helps: always read the bottom first, then the side.
+
+Go slowly and let your child self-correct. Catching their own counting error teaches more than being told the answer.
+
+## Keep It Short and Regular
+
+Graphing does not need a long sitting. Ten focused minutes with real data beats a full page of worksheet boxes. Over a few weeks, rotate through pictographs, bar graphs, and line plots so all three feel familiar.
+
+When your child can collect information, choose a way to show it, and then answer a question about their own graph, they have genuinely understood the topic. Practice inside Astute Academy reinforces the same skills with curriculum-aligned questions, so the ideas you build at the kitchen table carry straight into schoolwork.`,
+  },
+  {
     slug: "rounding-vs-estimating-for-kids",
     title: "How to Help Your Child Understand Rounding vs. Estimating (They're Not the Same)",
     category: "Math Tips",
