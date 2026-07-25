@@ -11,6 +11,80 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-angles",
+    title: "How to Help Your Child Understand Angles (Acute, Right, and Obtuse)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-25",
+    excerpt:
+      "A friendly parent's guide to teaching acute, right, and obtuse angles using everyday objects your child already knows.",
+    body: `## Why Angles Trip Kids Up
+
+Angles are one of those math topics that look simple on paper but feel abstract to children. Your child can see a corner or a bend, but the idea that an angle measures a turn or an opening is a leap. Add words like acute, right, and obtuse, and suddenly a friendly shape becomes vocabulary homework.
+
+The good news is that angles are everywhere. Once your child starts noticing them, the concept clicks fast. Here is how to make that happen at home.
+
+## Start With the Big Idea
+
+Before any labels, help your child understand what an angle actually is: the amount of opening between two lines that meet at a point. A helpful image is a door. When the door is closed, there is no opening. As it swings open, the angle grows.
+
+Try this with your child:
+
+- Open a book slowly and watch the angle between the covers get bigger.
+- Spread two pencils apart from a shared tip and talk about the space widening.
+- Use their arm as a hinge, bending at the elbow to make small and large openings.
+
+The key insight is that a longer set of lines does not mean a bigger angle. Only the opening matters. Kids often think a bigger drawing equals a bigger angle, so gently correct this early.
+
+## Meet the Three Angles
+
+Once your child feels comfortable with openings, introduce the three types using the right angle as the anchor.
+
+### The Right Angle
+
+A right angle is a perfect corner, exactly 90 degrees. The corner of a piece of paper, a book, a window, or a picture frame is a right angle. Have your child collect five right angles around the house. This becomes their measuring tool.
+
+### The Acute Angle
+
+An acute angle is smaller than a right angle. It looks pinched or narrow, like a slice of pizza or the hands of a clock at ten past twelve. A memory trick many kids enjoy: acute angles are cute and small.
+
+### The Obtuse Angle
+
+An obtuse angle is wider than a right angle but still not a straight line. Think of a reclining chair leaned back or an open laptop. It looks lazy and stretched out.
+
+Teach these in the order right, acute, obtuse. The right angle is the reference point, and the other two are simply smaller or larger.
+
+## A Simple Test Your Child Can Use
+
+Give your child the corner of an index card or a folded paper as a right-angle checker. To classify any angle, they line up the corner:
+
+- If the angle matches the corner exactly, it is a right angle.
+- If the angle is smaller and hides behind the corner, it is acute.
+- If the angle is bigger and spills past the corner, it is obtuse.
+
+This turns an abstract judgment into a hands-on comparison, and it removes the guesswork.
+
+## Turn It Into a Game
+
+Practice sticks best when it feels like play. Try an angle hunt around your home or on a walk.
+
+- Point at rooftops, road signs, scissors, and clock hands, and ask what type each angle is.
+- Have your child make angles with their arms while you call out a type to match.
+- Draw three quick angles and ask them to sort the pile.
+
+Keep sessions short, around ten minutes, and celebrate the noticing rather than perfect answers.
+
+## Common Mix-Ups to Watch For
+
+- Confusing acute and obtuse. Remind them acute is smaller and cute.
+- Thinking line length changes the angle. Redraw the same angle with longer lines to prove it stays the same.
+- Forgetting the right angle is exactly 90 degrees, not just any neat-looking corner.
+
+## Keeping the Momentum
+
+A few minutes of daily noticing beats a long weekend session. In our app, angle practice builds from spotting types to measuring with a protractor, matched to your child's grade and curriculum. Pair those short exercises with real-world angle hunts, and your child will move from memorizing words to truly seeing how angles shape the world around them.`,
+  },
+  {
     slug: "help-your-child-understand-line-plots-and-simple-graphs",
     title: "How to Help Your Child Understand Line Plots and Simple Graphs",
     category: "Math Tips",
