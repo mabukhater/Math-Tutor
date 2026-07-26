@@ -11,6 +11,69 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-symmetry",
+    title: "How to Help Your Child Understand Symmetry (Lines of Symmetry Made Simple)",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-26",
+    excerpt:
+      "A friendly parent's guide to teaching lines of symmetry with everyday objects, folding tricks, and simple practice at home.",
+    body: `## What Symmetry Really Means
+
+Symmetry is one of those math ideas that feels obvious once it clicks — and confusing until it does. When a shape has a line of symmetry, you can fold it along that line and both halves match perfectly. One side is a mirror image of the other.
+
+Children usually meet symmetry somewhere around grades 2 to 4, depending on the curriculum. It shows up in geometry units, but it also connects to art, nature, and even reading letters. The good news is that you do not need worksheets to make it stick. You need a few household objects and a couple of minutes.
+
+## Start With the Fold Test
+
+The fastest way to make symmetry real is to fold something.
+
+- Cut a heart out of paper by folding the paper first, then cutting half a heart. Open it up and show your child how both sides match. That fold line is a line of symmetry.
+- Fold a square in different ways. It matches when folded top to bottom, side to side, and along both diagonals. A square has four lines of symmetry.
+- Fold a rectangle. It matches top to bottom and side to side, but not along the diagonals. That surprises kids and gets them thinking.
+
+The key phrase to repeat: if both halves match exactly when folded, the fold is a line of symmetry.
+
+## Hunt for Symmetry Around the House
+
+Once your child understands the fold test, turn it into a game. Symmetry is everywhere.
+
+- A butterfly, a leaf, or a flower
+- A fork, a plate, or a drinking glass
+- Letters like A, H, M, T, and O
+- Their own face in the mirror
+
+Ask questions instead of giving answers. Where could you fold this so both sides match? Does it have more than one line? Some objects, like a starfish or a snowflake, have several. Others, like a hand or the letter R, have none. Letting your child discover that some shapes have zero lines of symmetry is just as valuable as finding ones that do.
+
+## Try the Mirror Trick
+
+A small mirror is a wonderful symmetry tool. Stand it upright on a drawing and slide it around. When the reflection in the mirror completes the picture so it looks whole and natural, you have found a line of symmetry.
+
+This is especially helpful for children who struggle to picture the fold in their heads. The mirror does the imagining for them and turns an abstract idea into something they can see instantly.
+
+## Draw the Other Half
+
+Once your child can spot lines of symmetry, flip the task around. Draw half of a simple shape on grid paper, add a vertical line down the middle, and ask your child to complete the mirror image on the other side.
+
+Grid paper matters here. Counting squares helps your child place each point the same distance from the line. Start with easy shapes like a house or a tree, then move to trickier ones with diagonal edges. This activity builds spatial reasoning that pays off later in coordinate geometry.
+
+## Common Mix-Ups to Watch For
+
+A few misunderstandings come up again and again.
+
+- Thinking every line that splits a shape in half is a line of symmetry. Cutting a shape into two equal areas is not the same as making two matching mirror halves.
+- Assuming all shapes have symmetry. Many everyday objects have none, and that is perfectly fine.
+- Forgetting diagonal lines. Kids often check only up-and-down and side-to-side folds and miss the diagonals.
+
+Gently point these out with the fold test or mirror, and let the object prove the answer rather than you.
+
+## Keep It Light and Frequent
+
+Symmetry sticks best with short, playful bursts rather than long sessions. Fold a napkin at dinner. Spot a symmetrical sign on a walk. Draw half a face and finish it together. A few minutes here and there builds a solid, lasting understanding.
+
+On Astute Academy, symmetry practice is woven into the geometry strand for your child's grade and curriculum, so the examples they see at home line up with what they meet at school. A little noticing goes a long way — soon your child will be pointing out lines of symmetry everywhere they look.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-angles",
     title: "How to Help Your Child Understand Angles (Acute, Right, and Obtuse)",
     category: "Math Tips",
