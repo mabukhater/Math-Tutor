@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-multiplication-facts",
+    title: "How to Help Your Child Understand Multiplication Facts (Times Tables Without the Grind)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-27",
+    excerpt:
+      "Practical, low-stress ways to help your child truly learn their times tables — understanding first, then quick recall.",
+    body: `## Why Times Tables Still Matter
+
+If your child stalls halfway through a long division problem or a fraction question, the culprit is often the same: shaky multiplication facts. When recall is slow, every bigger problem becomes a traffic jam. Fluent times tables free up mental space for the actual thinking.
+
+But fluency does not mean drilling until tears appear. The goal is understanding first, then speed. A child who knows that 6 times 4 is a real quantity of things will remember it far longer than one who memorized a sound with no meaning behind it.
+
+## Start With Understanding, Not Memorizing
+
+Before your child memorizes anything, make sure they know what multiplication is: equal groups added together. Six groups of four. Four rows of six. Show it with real objects — buttons, grapes, LEGO bricks arranged in rows.
+
+This matters because it gives your child a way back when they forget. If they blank on 7 times 3, they can rebuild it: three groups of seven, or count up 7, 14, 21. A fact they can reconstruct is a fact they will eventually just know.
+
+## Learn Them in a Smart Order
+
+Do not start at 1 and march to 12. Start with the easy anchors, because each one you master shrinks the pile that is left.
+
+- The 2s: doubling, which most kids already feel comfortable with.
+- The 10s: just add a zero.
+- The 5s: count by fives, and they always end in 0 or 5.
+- The 1s and 0s: quick rules to tuck away.
+
+After those, you have already covered a huge chunk of the grid. Then tackle the 4s (double the 2s), the 9s (a finger trick and a neat pattern), and the 3s. This leaves only a small stubborn set: mostly 6, 7, and 8 times each other.
+
+## Use the Tricks That Actually Help
+
+### The commutative shortcut
+
+Teach your child that 8 times 3 is the same as 3 times 8. This instantly halves the number of facts to learn. If they know the easier version, they know both.
+
+### The 9s finger method
+
+Hold up ten fingers. For 9 times 4, fold down the fourth finger. Fingers to the left of the fold are tens (3), fingers to the right are ones (6): the answer is 36. Kids love this one.
+
+### Build from a known fact
+
+Stuck on 7 times 6? If they know 7 times 5 is 35, just add one more 7 to get 42. Anchoring new facts to known ones is far kinder than starting from nothing.
+
+## Practice in Short, Frequent Bursts
+
+Five focused minutes a day beats a dreaded thirty-minute Sunday session. Rotate through the facts your child finds hardest, and keep the tone light. A few ideas:
+
+- Call out facts during car rides or while waiting in line.
+- Play with dice or cards: flip two and multiply.
+- Post a small grid on the fridge and shade in each fact as it is mastered.
+- Revisit tricky facts a day or two later, then a few days after that.
+
+That spacing is what moves a fact from I just saw it to I know it cold.
+
+## Keep It Positive
+
+Speed will come, but chase it gently. If your child freezes under a timer, drop the timer for a while and rebuild confidence first. Celebrate the facts they own rather than circling the ones they miss.
+
+A short daily practice app can carry a lot of this load, mixing new facts with review and adjusting to the ones your child needs most. Astute Academy is built around exactly that rhythm — small, curriculum-aligned sessions that turn wobbly recall into steady confidence.
+
+## The Takeaway
+
+Understanding first, then a smart order, then a few clever tricks, then short and regular practice. Follow that path and times tables stop being a battle and start becoming something your child simply knows — ready to power everything that comes next.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-symmetry",
     title: "How to Help Your Child Understand Symmetry (Lines of Symmetry Made Simple)",
     category: "Math Tips",
