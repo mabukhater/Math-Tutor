@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-to-estimate-products",
+    title: "How to Help Your Child Understand Rounding to Estimate Products (Multiplication Made Manageable)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-28",
+    excerpt:
+      "Teach your child to estimate multiplication answers with rounding, so they can check their work and spot mistakes before they happen.",
+    body: `## Why Estimating Products Matters
+
+Your child works out 38 times 21 and writes 158. Is that right? A child who can estimate will pause and think: 38 is close to 40, 21 is close to 20, and 40 times 20 is 800. So an answer of 158 must be wrong somewhere.
+
+That quick mental check is one of the most useful habits in math. Estimating products helps children catch mistakes, build number sense, and feel more confident with larger multiplication. It is not about being lazy or skipping the real answer. It is about knowing roughly where the answer should land before diving in.
+
+## The Core Idea in Plain Words
+
+To estimate a product, you round each number to something easy to multiply, then multiply the rounded numbers.
+
+- Round each factor to the nearest ten, hundred, or a friendly number.
+- Multiply the rounded numbers instead of the exact ones.
+- Use that estimate as a sanity check against the real calculation.
+
+The magic is that estimates use round numbers, and round numbers are easy to multiply in your head.
+
+## A Simple Walkthrough
+
+Let us estimate 47 times 62.
+
+- Round 47 to 50.
+- Round 62 to 60.
+- Multiply 50 times 60. Think 5 times 6 is 30, then add the two zeros to get 3,000.
+
+So 47 times 62 is roughly 3,000. When your child does the full calculation and gets 2,914, that estimate confirms the answer is reasonable.
+
+Try another: estimate 8 times 213.
+
+- Round 213 to 200.
+- Multiply 8 times 200, which is 1,600.
+
+The estimate is 1,600, and the exact answer, 1,704, sits comfortably near it.
+
+## Kitchen-Table Activities
+
+You do not need worksheets to practice this. Real life is full of chances to estimate.
+
+- At the store, ask: if one pack costs 4 dollars and we grab 19 packs, roughly how much? Round 19 to 20 and get about 80 dollars.
+- Count seats: if a room has 18 rows with 22 chairs each, about how many seats? Round to 20 times 20 for roughly 400.
+- Reading time: if a book has 28 pages per chapter and 11 chapters, that is about 30 times 10, or 300 pages.
+
+Say the rounding out loud together. Hearing the thinking process helps far more than silently getting an answer.
+
+## Watch Out for These Stumbles
+
+### Rounding both numbers up too far
+
+When a child rounds 44 to 50 and 46 to 50, the estimate drifts high. Remind them that estimates are close, not exact, and that is fine. If they want a tighter estimate, they can round to the nearest ten more carefully.
+
+### Losing track of zeros
+
+Many errors come from the zeros, not the multiplication. Encourage the habit of multiplying the front digits first, then attaching the zeros. For 300 times 40, think 3 times 4 is 12, then add three zeros for 12,000.
+
+### Treating the estimate as the answer
+
+An estimate is a check, not a substitute. Make it clear that the goal is to compare: does the real answer sit near the estimate? If not, something needs a second look.
+
+## Making It Stick
+
+Turn estimation into a two-step routine your child does every time:
+
+- Before solving, estimate and say the rough answer.
+- After solving, compare the real answer to the estimate.
+
+When the two are close, your child gets a little jolt of confidence. When they are far apart, they have caught a mistake early. Either way, they win.
+
+Short, regular practice beats long sessions. A few estimation questions during errands or over breakfast keeps the skill fresh without feeling like homework. Over time, your child will estimate almost automatically, and that quiet confidence carries into every multiplication problem they meet.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-multiplication-facts",
     title: "How to Help Your Child Understand Multiplication Facts (Times Tables Without the Grind)",
     category: "Math Tips",
