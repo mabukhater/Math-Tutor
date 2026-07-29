@@ -11,6 +11,86 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-to-the-nearest-whole-number",
+    title: "How to Help Your Child Understand Rounding to the Nearest Whole Number",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-07-29",
+    excerpt:
+      "A simple, jargon-free guide to helping your child round decimals to the nearest whole number with confidence.",
+    body: `## Why Rounding to the Nearest Whole Number Trips Kids Up
+
+By the time children meet decimals, they have usually rounded whole numbers to the nearest 10 or 100. Rounding to the nearest whole number feels similar, but the direction reverses. Instead of looking at the numbers to the right of the ones place inside a big number, your child now looks at the tiny piece after the decimal point.
+
+That small shift causes big confusion. A child who happily rounds 47 to 50 may freeze when asked to round 4.7. The good news is that the underlying idea is exactly the same, and once you show the connection, it clicks.
+
+## The One Question That Does All the Work
+
+Every rounding problem, at every level, comes down to a single question:
+
+- Is the number closer to the smaller value or the bigger value?
+
+For rounding to the nearest whole number, that means: is 4.7 closer to 4 or to 5?
+
+Ask your child to picture the two whole numbers on either side. The number 4.7 sits between 4 and 5. Because 7 tenths is more than halfway, 4.7 is closer to 5. That is the whole lesson in one sentence.
+
+## The Halfway Line
+
+The magic marker is the halfway point, which for whole numbers is always the .5 in the tenths place.
+
+- If the digit in the tenths place is 5 or more, round up.
+- If the digit in the tenths place is 4 or less, round down.
+
+Try these together out loud:
+
+- 3.2 rounds to 3, because 2 is less than 5.
+- 3.8 rounds to 4, because 8 is 5 or more.
+- 6.5 rounds to 7, because 5 means round up.
+- 12.49 rounds to 12, because we only look at the tenths digit, which is 4.
+
+That last example matters. Children often try to round the whole tail of digits at once. Remind them: to round to the nearest whole number, only the tenths place decides. The digits after it are along for the ride.
+
+## Draw the Number Line
+
+Abstract rules fade fast. A number line makes the idea stick because your child can see the answer instead of memorizing a rule.
+
+- Draw a line and label two whole numbers, such as 8 and 9.
+- Mark the halfway point, 8.5, in the middle.
+- Ask your child to place 8.3 on the line, then 8.7.
+- Ask which whole number each dot is nearer to.
+
+After a few of these, most children stop needing the drawing. They start picturing it in their head, which is exactly the goal.
+
+## Connect It to Real Life
+
+Rounding to whole numbers is one of the most useful math skills your child will ever practice, so anchor it to real moments.
+
+- At the store, a price of 4.79 pounds or dollars is about 5.
+- A recipe that needs 2.25 cups is roughly 2 cups.
+- A car trip of 58.6 miles is about 59.
+- A height of 1.4 metres rounds to 1 metre.
+
+When your child sees rounding as a way to make quick, sensible estimates, it stops feeling like a worksheet chore.
+
+## Common Mistakes to Watch For
+
+- Rounding down when the tenths digit is exactly 5. The convention is to round up at .5.
+- Looking at the wrong digit, such as the hundredths place, instead of the tenths.
+- Forgetting that rounding up can change the whole number and carry, so 9.6 becomes 10, not 9.
+
+Gently name these traps before they happen. Predicting a mistake takes away its power.
+
+## A Quick Daily Habit
+
+You do not need a lesson plan. Fold rounding into ordinary talk.
+
+- Read a decimal off a receipt and ask, about how much is that?
+- During cooking, ask your child to round the measurements.
+- Give one quick question at breakfast, such as does 7.4 round to 7 or 8?
+
+Three short rounds a day beats a long, tearful session once a week. With a clear halfway line, a simple number line, and a little real-world practice, your child will be rounding decimals to whole numbers without a second thought.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rounding-to-estimate-products",
     title: "How to Help Your Child Understand Rounding to Estimate Products (Multiplication Made Manageable)",
     category: "Math Tips",
