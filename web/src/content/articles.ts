@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-long-division",
+    title: "How to Help Your Child Understand Long Division (Step by Step)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-30",
+    excerpt:
+      "Long division confuses a lot of kids. Here is a calm, step-by-step way to teach it at home without the frustration.",
+    body: `## Why Long Division Feels So Hard
+
+Long division is one of the first times a child has to juggle several skills at once: dividing, multiplying, subtracting, and bringing down a new digit. If any one of those is shaky, the whole process wobbles. That is why a child who knows their times tables can still get stuck on long division.
+
+The good news is that long division is not really one big skill. It is a short list of small steps that repeat. Once your child sees the pattern, the mystery disappears.
+
+## Check the Building Blocks First
+
+Before you dive in, make sure your child is comfortable with a few things:
+
+- Multiplication facts up to the divisor you are using
+- Subtraction with regrouping
+- The idea that division means sharing into equal groups
+
+If multiplication is the weak spot, pause and shore that up first. Trying to learn long division on top of shaky facts is like building on sand.
+
+## The Four Steps That Repeat
+
+Give your child a simple rhythm to follow. Every round of long division uses the same four moves, in the same order:
+
+- Divide: How many times does the divisor fit?
+- Multiply: Multiply that answer by the divisor.
+- Subtract: Take it away to find what is left.
+- Bring down: Pull down the next digit and start again.
+
+Some families use a memory phrase to hold the order, such as Does McDonald Sell Burgers, standing for Divide, Multiply, Subtract, Bring down. Whatever phrase you pick, the point is the same: the steps loop until there are no more digits to bring down.
+
+## Walk Through One Together
+
+Try 496 divided by 4.
+
+Start with the first digit, 4. How many times does 4 go into 4? Once. Write 1 above the 4. Multiply 1 by 4 to get 4. Subtract to get 0.
+
+Bring down the 9. How many times does 4 go into 9? Twice, which is 8. Write 2 up top. Subtract 8 from 9 to get 1.
+
+Bring down the 6, making 16. How many times does 4 go into 16? Four times exactly. Write 4 up top. Subtract to get 0.
+
+The answer is 124. Notice how the same four moves repeated three times. Say each step out loud as you go so your child hears the rhythm.
+
+## Tips That Prevent Tears
+
+- Use graph paper or turn lined paper sideways. Keeping digits in neat columns fixes half of all long division mistakes.
+- Let your child write a small multiplication table for the divisor off to the side. If you are dividing by 7, listing 7, 14, 21, 28 nearby removes the guesswork.
+- Do not rush to remainders. Master problems that divide evenly first, then introduce leftovers.
+- Talk about what the answer means. If 496 cookies are shared among 4 kids, each gets 124. Real meaning keeps it from feeling like empty symbol-pushing.
+
+## Handling Remainders and Zeros
+
+Two situations trip kids up. The first is a remainder: when the last subtraction leaves a number smaller than the divisor, that leftover is the remainder. Write it clearly, such as R3.
+
+The second is when the divisor does not fit at all, and you need a zero in the answer. Children often skip that zero and shift everything over. Remind your child that every digit brought down gets a digit on top, even if that digit is zero.
+
+## Keep the Practice Short and Steady
+
+A few problems a day beats a long, tearful session once a week. Aim for three or four questions, celebrate the neat columns, and stop while your child still feels capable.
+
+With Astute Academy, long division practice is broken into small, curriculum-aligned steps that build in the right order, so your child gains confidence one repeat at a time. A little each day is all it takes for the pattern to click.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rounding-to-the-nearest-whole-number",
     title: "How to Help Your Child Understand Rounding to the Nearest Whole Number",
     category: "Math Tips",
