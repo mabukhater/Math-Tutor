@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-elapsed-time",
+    title: "How to Help Your Child Understand Elapsed Time (Without the Confusion)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-07-31",
+    excerpt:
+      "Elapsed time trips up many kids. Here are clear, practical ways to help your child figure out how much time has passed.",
+    body: `## Why Elapsed Time Is So Tricky
+
+Most math works in a base-ten world where everything counts by tens. Time does not. There are 60 minutes in an hour, not 100, and the clock resets at 12. So when a child tries to subtract 3:45 from 5:20 the way they subtract regular numbers, they get tangled up fast.
+
+Elapsed time also lives in the real world. It shows up in bus schedules, cooking, screen-time limits, and how long until dinner. That makes it worth practicing, and it also gives you plenty of natural chances to bring it up at home.
+
+## Start With the Language
+
+Before any calculating, make sure your child understands what elapsed time means. It is simply the amount of time between a start and an end.
+
+Talk it through in plain words:
+
+- The movie started at 4:00 and ended at 6:00. How long was it?
+- We left at 9:15 and arrived at 9:45. How long did the trip take?
+
+When kids hear the question a dozen times in everyday life, the idea stops feeling like a math trap and starts feeling obvious.
+
+## The Number Line Method
+
+The single most reliable strategy is a simple open number line. Instead of stacking times and subtracting, your child hops forward from the start time to the end time and adds up the jumps.
+
+Say the question is: how long from 2:40 to 4:15?
+
+- Start at 2:40. Jump 20 minutes to reach 3:00.
+- Jump 1 hour to reach 4:00.
+- Jump 15 minutes to reach 4:15.
+- Add the jumps: 20 minutes plus 1 hour plus 15 minutes equals 1 hour and 35 minutes.
+
+The trick that makes this click is jumping to the next friendly time first, usually the next whole hour. From there, big hour jumps are easy, and a small final jump lands on the end time. No borrowing across 60, no confusion.
+
+## Practice Counting Up in Chunks
+
+Children find it much easier to count forward than to subtract backward. Encourage them to move in comfortable pieces:
+
+- To the next quarter hour or half hour
+- To the next whole hour
+- In full hours
+- Then the leftover minutes
+
+This mirrors how we think about time naturally. When you tell a friend the drive took an hour and a half, you are already chunking.
+
+## Make It Real Around the House
+
+Elapsed time sticks fastest when it matters. Weave it into ordinary moments:
+
+- Cooking: The timer says the cake bakes for 35 minutes. It went in at 5:20. When will it be ready?
+- Outings: We need to leave by 3:00. It is 2:25. How many minutes do you have?
+- Screen time: You can watch for 45 minutes starting now. What time should you stop?
+- Bedtime: It is 7:50. If lights out is 8:15, how long until then?
+
+Hand the thinking to your child. Ask the question, then wait. The pause is where the learning happens.
+
+## Watch for These Common Mix-Ups
+
+A few predictable stumbles show up again and again:
+
+- Treating minutes like base ten, so 3:50 plus 20 minutes becomes 3:70 instead of 4:10.
+- Forgetting the clock resets, especially across noon or midnight.
+- Confusing morning and afternoon when a problem crosses 12:00.
+
+When your child hits one of these, resist correcting instantly. Ask what happens after 59 minutes, and let them rediscover that the hour ticks over.
+
+## Keep It Short and Frequent
+
+Five minutes of elapsed-time practice woven into daily life beats a long, frustrating worksheet session. Ask one or two questions a day, use a real clock your child can see, and celebrate the jumps they get right.
+
+With the number line as their anchor and everyday moments as practice, elapsed time shifts from a puzzle into a skill your child reaches for without thinking. That is exactly what you want, because they will use it for the rest of their lives.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-long-division",
     title: "How to Help Your Child Understand Long Division (Step by Step)",
     category: "Math Tips",
