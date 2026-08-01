@@ -11,6 +11,77 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rectangular-area",
+    title: "How to Help Your Child Understand Rectangular Area (Length Times Width Made Clear)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-01",
+    excerpt:
+      "Help your child truly understand why area means length times width, using squares, snacks, and simple everyday questions.",
+    body: `## What Area Really Means
+
+When children first meet area, they often memorize a rule: multiply length by width. That works until a problem changes shape or wording, and then the rule falls apart. The goal is not for your child to recite a formula. The goal is for them to picture what area actually is.
+
+Area is the amount of flat space something covers. We measure it by counting how many unit squares fit inside a shape. A unit square is just a square that is one unit on every side, such as one centimeter or one inch. Once your child sees area as counting squares, the formula stops being a mystery and starts being a shortcut.
+
+## Start by Counting Squares
+
+Before any multiplication, let your child count.
+
+Grab some graph paper or draw a grid together. Outline a rectangle that is 4 squares across and 3 squares down. Ask your child to count every square inside it. They will get 12. Do this several times with different rectangles.
+
+After a few rounds, ask a bigger question:
+
+- Is there a faster way than counting one by one?
+- What do you notice about the rows?
+
+Most children spot it themselves: each row has the same number of squares, and there are several identical rows. That is the moment area connects to multiplication.
+
+## Connect It to Multiplication
+
+Now show that the rectangle has 3 rows with 4 squares in each row. Three groups of four is twelve. This is the same repeated addition and array thinking your child may already know.
+
+Say it out loud together in plain language:
+
+- Length tells you how many squares are in each row.
+- Width tells you how many rows there are.
+- Multiply them and you count all the squares at once.
+
+When your child understands that length times width is simply a fast way to count squares, the formula becomes something they own rather than something they borrowed.
+
+## Why Square Units Matter
+
+A common stumbling block is the label. An answer is not just 12, it is 12 square units, or 12 square centimeters. Children often forget this, and it signals whether they really understand.
+
+Explain it simply: we are counting squares, so the answer names squares. Perimeter is a length, so it uses plain units. Area is a covered space, so it uses square units. If your child writes square centimeters without prompting, they have grasped the idea.
+
+## Practice Around the House
+
+Area is everywhere once you look for it. Try these hands-on moments:
+
+- Count floor tiles in the kitchen. How many rows, how many in each row?
+- Cover a book with sticky notes and count how many it takes.
+- Arrange crackers in neat rows on a plate and find the total.
+- Measure a picture frame in centimeters and calculate its area.
+
+These real objects turn an abstract idea into something your child can see and touch, which is exactly how understanding sticks.
+
+## Common Mistakes to Watch For
+
+A few errors show up again and again. Knowing them helps you catch confusion early.
+
+- Adding length and width instead of multiplying. Go back to counting squares to reset the picture.
+- Mixing up area and perimeter. Perimeter is the distance around the edge, like a fence. Area is the space inside, like the grass.
+- Forgetting square units in the answer.
+- Struggling when only one side is given. Remind them a square has equal sides, so one measurement is enough.
+
+## Keep It Low Pressure
+
+You do not need long sessions. Five focused minutes with graph paper or a plate of crackers does more than a worksheet full of problems your child does not yet understand. Ask questions, let them count, and let the shortcut arrive naturally.
+
+When a child builds area from counting squares up to the formula, they can handle new shapes, larger numbers, and tricky wording with confidence. That solid foundation carries them straight into multiplication of larger numbers, fractions of shapes, and the geometry they will meet in later grades.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-elapsed-time",
     title: "How to Help Your Child Understand Elapsed Time (Without the Confusion)",
     category: "Math Tips",
