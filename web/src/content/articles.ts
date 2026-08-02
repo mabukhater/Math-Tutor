@@ -11,6 +11,80 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-perimeter-of-irregular-shapes",
+    title: "How to Help Your Child Understand Perimeter of Irregular Shapes",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-02",
+    excerpt:
+      "A simple, hands-on way to teach your child how to find the perimeter of irregular shapes without losing track of a single side.",
+    body: `## Why Irregular Shapes Trip Kids Up
+
+Many children learn to find the perimeter of a square or rectangle and feel confident. Then a lopsided L-shape or a six-sided figure appears on the page, and suddenly the confidence disappears.
+
+The reason is not that the math is harder. Perimeter is always the same idea: the total distance around the outside of a shape. What changes is that irregular shapes have more sides, and some of those sides are easy to miss or count twice.
+
+If your child can add, your child can do this. The real skill is staying organized.
+
+## Start With the Big Idea
+
+Before any numbers, make perimeter feel physical. Perimeter is the fence around a yard, the trim around a picture, or the crust around the edge of a pizza slice.
+
+Try this at home:
+
+- Walk your child around the edge of a room and say you are measuring its perimeter.
+- Trace the outline of a cookie cutter and point out that the line you drew is the perimeter.
+- Run a finger all the way around a book cover, ending where you started.
+
+Once your child understands that perimeter means going all the way around and back to the start, irregular shapes stop feeling mysterious.
+
+## The One Rule That Prevents Mistakes
+
+Here is the habit that fixes most errors: touch and mark every side as you count it.
+
+Teach your child to put a small tick mark or a tiny dot on each side after writing down its length. When every side has a mark, none has been skipped and none has been counted twice.
+
+Then add all the numbers together. That total is the perimeter.
+
+Say it as a routine your child can repeat aloud:
+
+- Start at one corner.
+- Move around the shape in one direction, either clockwise or counterclockwise.
+- Write and mark each side length as you go.
+- Stop when you return to the start.
+- Add every number.
+
+## Finding the Missing Side
+
+Irregular shapes often leave one or two side lengths off the diagram on purpose. This is where children freeze, but there is a friendly trick.
+
+On an L-shape, opposite sides still relate to each other. The short pieces on one side must add up to the long piece on the other side.
+
+For example, imagine the top of a shape is 10 centimeters. The bottom is split into two pieces, and one piece is labeled 6 centimeters. The missing piece must be 10 minus 6, which is 4 centimeters.
+
+Practice this idea with a real object. Cut a rectangle of paper, then cut a small square out of one corner. Have your child measure the new edges and notice how the pieces still add up to the original full sides.
+
+## Practice That Actually Sticks
+
+Short and frequent beats long and rare. A few minutes a day builds fluency without frustration.
+
+- Draw a wobbly shape on grid paper and have your child count the units around the edge.
+- Give a shape with one missing side and ask your child to figure it out first.
+- Ask your child to design a shape for you to solve, then check your answer together.
+
+Grid paper is your best friend here. Each square is one unit, so children can count edges directly and build number sense before dealing with measured lengths.
+
+Inside Astute Academy, perimeter problems increase in difficulty gradually, moving from simple rectangles to true irregular figures with hidden sides, all matched to your child's grade level and curriculum.
+
+## Encourage the Process, Not Just the Answer
+
+When your child adds all the sides correctly but slips on one number, praise the method. The organized approach is the real win, and accuracy follows.
+
+Ask questions like, how did you keep track of the sides, or how did you find that missing length. This helps your child explain their thinking, which is exactly the reasoning skill that curricula reward.
+
+With a clear routine and a little grid paper, irregular shapes go from scary to satisfying, and your child gains a habit of careful, step by step problem solving that pays off far beyond perimeter.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rectangular-area",
     title: "How to Help Your Child Understand Rectangular Area (Length Times Width Made Clear)",
     category: "Math Tips",
