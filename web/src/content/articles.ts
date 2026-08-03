@@ -11,6 +11,83 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-mixed-numbers-and-improper-fractions",
+    title: "How to Help Your Child Understand Mixed Numbers and Improper Fractions",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-03",
+    excerpt:
+      "A clear, hands-on guide to helping your child convert between mixed numbers and improper fractions without the confusion.",
+    body: `## What Are Mixed Numbers and Improper Fractions?
+
+Somewhere around grades 3 to 5, fractions stop being simple slices of pizza and start looking a little strange. Suddenly your child sees things like seven halves, or two and three quarters. These are improper fractions and mixed numbers, and they trip up a lot of kids.
+
+Here is the plain-language version you can share with your child:
+
+- A mixed number is a whole number plus a fraction, like two and one half.
+- An improper fraction is a fraction where the top number is bigger than the bottom number, like five halves.
+
+The surprising truth is that these two things can describe the exact same amount. Two and one half and five halves are the same size. Once your child sees that, the whole topic gets a lot friendlier.
+
+## Start With Something You Can Cut
+
+Abstract numbers on a page are hard to picture. Real objects are not. Grab something you can slice into equal parts: a banana, a tortilla, a cardboard circle, or a chocolate bar with segments.
+
+Try this together:
+
+- Take three whole tortillas and cut each into four equal pieces.
+- Ask how many quarter pieces there are in total. The answer is twelve quarters, which is the improper fraction twelve fourths.
+- Now group them back into whole tortillas. You get three whole ones, or the mixed number three.
+
+Seeing the pieces move between two whole tortillas plus one extra quarter and nine loose quarters makes the idea stick far better than any rule.
+
+## Turn Mixed Numbers Into Improper Fractions
+
+Once your child gets the picture, give them a reliable method. To change a mixed number into an improper fraction:
+
+- Multiply the whole number by the denominator, which is the bottom number.
+- Add the numerator, which is the top number.
+- Keep the same denominator.
+
+For two and three fifths: multiply two by five to get ten, add three to get thirteen. The answer is thirteen fifths.
+
+A memory phrase that helps: how many pieces would we have if we chopped every whole one into fifths? That question is exactly what the multiply-and-add step answers.
+
+## Turn Improper Fractions Into Mixed Numbers
+
+Going the other way is a division problem in disguise. To change an improper fraction into a mixed number:
+
+- Divide the top number by the bottom number.
+- The whole-number answer becomes your whole number.
+- The remainder becomes the new numerator.
+- The denominator stays the same.
+
+For seventeen fourths: seventeen divided by four is four with a remainder of one. So the answer is four and one fourth.
+
+Connect this to something your child may already know. If seventeen quarters were actual coins, how many whole dollars could they make? Four dollars with one quarter left over. Same math, real money.
+
+## Common Mix-Ups to Watch For
+
+A few predictable errors show up again and again. Knowing them ahead of time lets you catch them gently.
+
+- Forgetting to keep the denominator the same. The bottom number does not change when converting.
+- Adding the whole number to the numerator without multiplying first.
+- Thinking a bigger top number means a bigger denominator. It does not.
+- Assuming improper fractions are wrong somehow. The word improper is misleading. They are perfectly correct and often easier to calculate with.
+
+## Make It Routine, Not a Lecture
+
+Short and frequent beats long and rare. A couple of minutes a few times a week keeps the skill fresh.
+
+- Ask cooking questions. If a recipe needs three half cups, how many cups is that?
+- Play a quick swap game. You say a mixed number, your child says the improper fraction, then you switch roles.
+- Draw quick sketches. A few circles cut into pieces takes seconds and rebuilds the mental picture.
+
+Inside Astute Academy, your child gets curriculum-aligned practice that steps from pictures to numbers at their own pace, with instant feedback so mistakes become learning moments instead of frustration.
+
+Stay patient and keep it visual. When your child can slide comfortably between mixed numbers and improper fractions, adding and subtracting fractions later on becomes far less scary.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-perimeter-of-irregular-shapes",
     title: "How to Help Your Child Understand Perimeter of Irregular Shapes",
     category: "Math Tips",
