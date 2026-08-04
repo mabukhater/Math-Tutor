@@ -11,6 +11,75 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "help-child-understand-rounding-to-nearest-1000",
+    title: "How to Help Your Child Understand Rounding to the Nearest 1,000 and Beyond",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-04",
+    excerpt:
+      "A clear, practical guide to helping your child round large numbers to the nearest thousand and beyond, with simple home activities.",
+    body: `## Why Rounding Big Numbers Trips Kids Up
+
+Many children get comfortable rounding two- and three-digit numbers, then hit a wall when the numbers grow. Rounding 4,782 to the nearest thousand feels different because there are more digits to track, and it is easy to lose sight of which one actually matters.
+
+The good news: the rule never changes. Once your child understands the underlying logic, rounding to the nearest 1,000, 10,000, or even 100,000 is exactly the same process applied to a bigger number.
+
+## The One Rule That Never Changes
+
+Rounding always answers a single question: which multiple of the target place is this number closest to?
+
+Here is the method your child can use every time:
+
+- Find the place you are rounding to (for example, the thousands digit).
+- Look at the digit immediately to its right.
+- If that digit is 5 or more, round up. If it is 4 or less, keep the rounding digit the same.
+- Turn every digit to the right of the rounding place into zero.
+
+That last step is the one older students forget. When rounding 4,782 to the nearest thousand, the hundreds, tens, and ones all become zero, giving 5,000.
+
+## Walk Through a Few Together
+
+Try these out loud, one at a time, and let your child explain the reasoning:
+
+- 4,782 to the nearest thousand: the digit to the right of the 4 is 7, so round up to 5,000.
+- 23,140 to the nearest thousand: the digit to the right of the 3 is 1, so it stays at 23,000.
+- 68,500 to the nearest ten thousand: the digit to the right of the 6 is 8, so round up to 70,000.
+
+Saying the reasoning aloud matters more than getting the answer fast. When your child narrates each step, you can hear exactly where a misunderstanding lives.
+
+## Use a Number Line for the Ones That Feel Hard
+
+When a number sits close to the halfway point, a quick number line clears the fog. To round 4,782 to the nearest thousand, draw a line with 4,000 on the left and 5,000 on the right. Mark 4,500 in the middle. Since 4,782 sits past the middle, it is nearer to 5,000.
+
+This visual removes the mystery from the round up or round down decision. Your child sees closeness instead of just applying a rule they might forget.
+
+## Everyday Ways to Practice
+
+Big numbers show up all around us, which makes practice easy and meaningful:
+
+- Read the price of a car or house from an advertisement and round it to the nearest thousand.
+- Look up the population of your town or a favorite sports stadium capacity and round it.
+- Check the distance between two cities in miles or kilometers and round to the nearest thousand.
+- Estimate the total number of steps in a long walk, then round it.
+
+These moments show that rounding is a tool adults actually use to make sense of large quantities quickly.
+
+## Common Mistakes to Watch For
+
+A few slip-ups appear again and again. Keep an eye out for them:
+
+- Changing the wrong digit. Remind your child to look only at the digit directly to the right of the rounding place, not at the whole number.
+- Forgetting to zero out the trailing digits, so 4,782 becomes 5,782 instead of 5,000.
+- Rounding up too early, digit by digit, which snowballs into a wrong answer.
+- Panicking at nines. When rounding 9,850 to the nearest thousand, the answer is 10,000, and that extra digit surprises kids.
+
+## Keep It Short and Steady
+
+Rounding is a skill that rewards frequent, brief practice far more than long sessions. Five minutes a few times a week keeps the method fresh without frustration.
+
+Astute Academy offers rounding practice that adjusts to your child's grade and gradually increases the size of the numbers, so they build confidence one place value at a time. Pair a few app questions with the real-world examples above, and rounding large numbers will soon feel routine rather than daunting.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-mixed-numbers-and-improper-fractions",
     title: "How to Help Your Child Understand Mixed Numbers and Improper Fractions",
     category: "Math Tips",
