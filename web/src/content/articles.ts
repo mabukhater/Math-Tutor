@@ -11,6 +11,78 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-making-ten",
+    title: "How to Help Your Child Understand Making Ten (A Foundation for Fast Mental Math)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-06",
+    excerpt:
+      "Making ten is the mental math trick that speeds up addition for years. Here is how to teach it at home with simple, hands-on steps.",
+    body: `## What Making Ten Really Means
+
+Making ten is the skill of noticing which pairs of numbers add up to ten, and then using those pairs to add faster. When a child sees 8 plus 5 and thinks, take 2 from the 5 to make the 8 into 10, then add the leftover 3 to get 13, they are making ten.
+
+It sounds small, but it is one of the most powerful strategies in early math. Ten is the anchor of our whole number system, so children who are comfortable jumping to ten add and subtract more confidently, carry with less effort, and later handle larger mental math without freezing.
+
+## Why It Matters More Than Memorizing
+
+Many children try to add by counting on their fingers one at a time. That works for small numbers but breaks down as the numbers grow. Making ten replaces slow counting with a quick, reliable move.
+
+Here is what strong ten skills set up down the road:
+
+- Faster recall of addition facts
+- Smoother regrouping in column addition
+- Easier subtraction, since children learn to count up to ten first
+- A real sense of how numbers fit together, not just memorized answers
+
+## Start With the Ten Pairs
+
+Before your child can make ten, they need to know the pairs that make ten by heart. These are:
+
+- 0 and 10
+- 1 and 9
+- 2 and 8
+- 3 and 7
+- 4 and 6
+- 5 and 5
+
+Practice these until they are automatic. A quick game works well: you say a number, your child says its partner to ten. Say 7, they say 3. Say 4, they say 6. Do this for two minutes while waiting for dinner or riding in the car.
+
+## A Hands-On Way to Show It
+
+Grab ten small objects, such as buttons, coins, or dried beans, and an egg carton with two rows of five cups.
+
+Ask your child to build 8. They fill eight cups. Now ask them to add 5 more. There are only two empty cups left, so two of the new beans fill up the carton to make ten, and three beans spill over into a second group.
+
+This makes the strategy visible. Your child sees the 8 become a full ten, and the 3 sitting beside it. Ten and three is thirteen. Repeat with 9 plus 4, then 7 plus 6, letting them narrate what they do.
+
+## Put It Into Words
+
+Once the carton makes sense, move to talking through it without objects. For 9 plus 6, guide your child with three questions:
+
+- How many more does 9 need to reach ten? One.
+- Where does that one come from? From the 6, leaving 5.
+- So what is ten and five? Fifteen.
+
+Saying the steps out loud helps the strategy stick. After a week or two, the talking speeds up and becomes silent thinking.
+
+## Practice That Feels Like Play
+
+Keep sessions short and cheerful. A few ideas:
+
+- Roll two dice and race to add them using a make-ten move when one number is close to ten.
+- Use playing cards, remove the face cards, and flip two to add. Ace counts as one.
+- Ask real questions at the store, such as we have 8 apples and want 6 more, how many is that.
+
+Grades that follow US Common Core, the UK National Curriculum, Singapore Math, and Ontario all lean on ten as a building block, so time spent here pays off across the whole math journey.
+
+## Signs It Is Clicking
+
+You will know the strategy is taking hold when your child stops counting on fingers for numbers near ten and instead pauses, then answers. They may even explain their thinking without being asked. Celebrate that moment, because it means they are reasoning about numbers rather than guessing.
+
+Go at their pace, keep it light, and revisit the ten pairs often. This one quiet skill quietly powers years of math ahead.`,
+  },
+  {
     slug: "help-child-understand-rounding-to-nearest-1000",
     title: "How to Help Your Child Understand Rounding to the Nearest 1,000 and Beyond",
     category: "Math Tips",
