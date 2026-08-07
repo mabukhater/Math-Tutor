@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "multiplying-by-multiples-of-10-100-1000",
+    title: "How to Help Your Child Understand Multiplying by Multiples of 10, 100, and 1,000",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-07",
+    excerpt:
+      "A calm, practical guide to helping your child multiply by 10, 100, and 1,000 with real understanding, not just adding zeros.",
+    body: `## Why This Skill Matters
+
+At some point your child will meet problems like 40 times 6 or 300 times 20. These feel intimidating at first, but they are actually a shortcut hiding in plain sight. Once a child truly understands multiplying by multiples of 10, 100, and 1,000, mental math gets faster, estimation gets easier, and long multiplication becomes far less scary.
+
+The trap most children fall into is the rule they hear too early: just add zeros. It works sometimes and fails often, and worse, it teaches nothing about why the answer is correct. Let us build real understanding instead.
+
+## Start With What They Already Know
+
+Begin from a fact your child is confident about, like 4 times 6 equals 24. Then show how the bigger version connects to it.
+
+- 4 times 6 equals 24
+- 40 times 6 equals 240
+- 400 times 6 equals 2,400
+- 4,000 times 6 equals 24,000
+
+Say it out loud together: 40 is 4 tens, so 40 times 6 is 24 tens, which is 240. The known fact stays the same. Only the size of the answer changes. This framing keeps your child anchored to something familiar rather than memorizing a fragile trick.
+
+## The Place Value Explanation
+
+Here is the idea beneath the shortcut. When you multiply by 10, every digit shifts one place to the left because it becomes ten times bigger. The 4 in the ones place moves to the tens place. We write a zero in the ones place as a placeholder to show nothing is left there.
+
+Try this with base ten blocks, coins, or even drawn dots:
+
+- Show 3 groups of 2 to get 6
+- Now show 3 groups of 20 and count in tens to get 60
+- Ask why the 6 turned into 60
+
+When a child can explain that each object got ten times larger, the zero stops being magic and starts being meaning.
+
+## Why Just Add Zeros Breaks Down
+
+The add a zero rule collapses with decimals and with tricky factors. Consider 5 times 4 equals 20. If your child mechanically adds a zero for 50 times 4, they might write 204 instead of 200. And with 0.5 times 10, adding a zero gives a wrong and confusing result.
+
+Teach the honest version instead: multiplying by 10 makes a number ten times bigger, so digits shift one place left. By 100, they shift two places. By 1,000, three places. Counting the zeros in the multiple tells you how many places to shift.
+
+## A Simple Two Step Method
+
+Give your child a reliable routine they can trust on any problem.
+
+- Step one: multiply the non zero digits using a known fact. For 600 times 30, that is 6 times 3 equals 18.
+- Step two: count all the zeros in both numbers and attach them. Two zeros in 600 and one in 30 make three zeros, so 18,000.
+
+Saying the steps aloud reinforces the logic and gives them something steady to fall back on during tests.
+
+## Practice That Sticks
+
+Short and frequent beats long and rare. Five minutes a few times a week is plenty.
+
+- Play a quick round of you say the fact, I say the big version at the dinner table.
+- Use real prices: if one item costs 30, how much for 4, then 40?
+- Ask estimation questions in the car, like about how far is 200 times 3.
+
+Inside Astute Academy, your child meets these problems in a curriculum aligned sequence, so multiplying by multiples grows naturally out of times tables and place value rather than arriving as a disconnected rule.
+
+## Watch For These Signs of Real Understanding
+
+You know it has clicked when your child can explain, not just answer. Ask why 70 times 8 is 560. If they say something like 7 times 8 is 56 and there is one extra zero because of the ten, they have got it. That reasoning will carry them through decimals, division, and long multiplication for years to come.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-making-ten",
     title: "How to Help Your Child Understand Making Ten (A Foundation for Fast Mental Math)",
     category: "Math Tips",
