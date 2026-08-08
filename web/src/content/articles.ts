@@ -11,6 +11,74 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-reading-comprehension",
+    title: "How to Help Your Child Understand Reading Comprehension (Beyond Just Decoding Words)",
+    category: "Reading",
+    readMinutes: 3,
+    date: "2026-08-08",
+    excerpt:
+      "Your child can read every word but still miss the meaning? Here are calm, practical ways to build real reading comprehension at home.",
+    body: `## When Reading the Words Is Not the Same as Understanding Them
+
+Many parents notice something puzzling. Their child sounds out every word on the page smoothly, yet when you ask what the story was about, you get a shrug or a blank stare. Decoding and comprehension are two different skills. One is turning letters into sounds. The other is turning those sounds into meaning that sticks.
+
+The good news is that comprehension can be taught, and you do not need special training to help. You just need a few simple habits and a little patience.
+
+## Why Comprehension Sometimes Lags Behind
+
+When a child is still working hard to sound out words, most of their mental energy goes to decoding. There is little brainpower left over to think about what the words actually mean. As decoding becomes more automatic, comprehension has room to grow.
+
+Other times, a child reads fluently but rushes through, treating reading as a race rather than a conversation with the text. They may also lack the background knowledge or vocabulary a passage assumes. All of these are normal, and all of them respond to practice.
+
+## Simple Strategies You Can Use Tonight
+
+### Pause and Predict
+
+Before turning a page, ask what your child thinks will happen next. Predicting forces them to hold the story in their head and use clues from the text. It does not matter if they guess wrong. The thinking is the point.
+
+### Ask the Right Questions
+
+Instead of only asking what happened, mix in questions that dig deeper:
+
+- Why do you think that character did that?
+- How would you feel if you were in that situation?
+- What do you think the author wants us to learn?
+- What clue in the story tells you that?
+
+These open questions invite your child to reason rather than recall a single fact.
+
+### Retell in Their Own Words
+
+After a chapter or short passage, ask your child to summarize it as if telling a friend who missed it. If they can retell the beginning, middle, and end, they understood it. If they get stuck, that is a signal to reread together.
+
+## Build Vocabulary and Background Knowledge
+
+Comprehension often breaks down over unfamiliar words. When you hit one, stop and talk about it. Guess the meaning from context first, then confirm. A child who meets a word three or four times in real conversation is far more likely to remember it.
+
+Background knowledge matters too. A story about sailing makes more sense to a child who has talked about boats, oceans, and wind. Everyday chats, documentaries, and trips to the library all quietly feed comprehension.
+
+## Make Thinking Visible
+
+Model your own thinking out loud while you read together. Say things like, I wonder why she is nervous, or This reminds me of the last book we read. When children hear you thinking, they learn that reading is an active process, not a passive one.
+
+You can also try the two-column approach. On paper, jot a short phrase from the text on the left and your child's thought about it on the right. Seeing their ideas next to the words helps make the connection concrete.
+
+## Keep It Low Pressure
+
+Comprehension grows fastest when reading feels enjoyable. A few reminders:
+
+- Choose books your child cares about, even if they seem easy.
+- Read aloud to them, above their reading level, to stretch listening comprehension.
+- Stop while it is still fun rather than pushing to exhaustion.
+- Celebrate good questions as much as correct answers.
+
+## How Astute Academy Helps
+
+Our reading passages are matched to your child's grade and curriculum, with comprehension questions that move beyond simple recall toward inference, vocabulary, and main idea. Because each session adapts to how your child answers, they get gentle practice at exactly the right level, building confidence one passage at a time.
+
+Comprehension is not a mysterious talent some children have and others do not. It is a set of habits, and every question you ask at home is a step forward. Keep the conversations going, and understanding will follow.`,
+  },
+  {
     slug: "multiplying-by-multiples-of-10-100-1000",
     title: "How to Help Your Child Understand Multiplying by Multiples of 10, 100, and 1,000",
     category: "Math Tips",
