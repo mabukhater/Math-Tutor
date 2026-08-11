@@ -11,6 +11,79 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-word-problems",
+    title: "How to Help Your Child Understand Word Problems (Turning Sentences into Math)",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-11",
+    excerpt:
+      "Word problems trip up many kids. Here is a calm, step-by-step way to help your child turn tricky sentences into solvable math.",
+    body: `## Why Word Problems Feel So Hard
+
+Your child can add, subtract, and multiply just fine on a worksheet. Then a word problem appears, and suddenly everything freezes. Sound familiar?
+
+Word problems are hard because they ask children to do two jobs at once: read carefully and think mathematically. A child has to picture a situation, decide what is being asked, and only then choose an operation. That is a lot of steps hiding behind a few short sentences.
+
+The good news is that word problems become far less scary when you give your child a repeatable routine. Here is one that works across grades and curricula.
+
+## A Simple Four-Step Routine
+
+Teach your child to slow down and move through the same four steps every time. Consistency is what builds confidence.
+
+### Step 1: Read it twice
+
+The first read is just to get the story. The second read is to hunt for details. Ask your child to tell you the situation in their own words, with the numbers left out at first. If they can retell it, they understand it.
+
+### Step 2: Find the question
+
+Many children start calculating before they know what is being asked. Have your child underline or point to the actual question. Are we looking for a total? A difference? How many groups? Naming the goal steers everything else.
+
+### Step 3: Pull out the useful numbers
+
+Not every number matters, and some problems throw in extras on purpose. Ask which numbers help answer the question. Have your child jot them down and label what each one means, such as apples in the basket or minutes spent reading.
+
+### Step 4: Choose the operation and check
+
+Now connect the story to the math. Combining amounts usually means addition. Taking away or comparing means subtraction. Equal groups point to multiplication or division. After solving, always ask: does this answer make sense?
+
+## Watch for the Keyword Trap
+
+You may have heard that certain words always signal certain operations, like more means add or left means subtract. Be careful here. Keywords are helpful hints, not rules. Consider this problem: Sam has 3 more marbles than Ben, who has 10. How many does Sam have? The word more appears, but comparisons like this can confuse a child who only pattern-matches keywords.
+
+Instead of memorizing keywords, encourage your child to picture the situation. Drawing a quick sketch or a simple bar model almost always beats guessing from a single word.
+
+## Make Practice Feel Real
+
+Word problems stick when they connect to your child's life. Try inventing problems from everyday moments:
+
+- We need 24 cookies for the party and each tray holds 6. How many trays do we bake?
+- You have 45 minutes before bedtime and reading takes 20. How much time is left to play?
+- Three friends split 18 stickers evenly. How many does each get?
+
+Because the situation is familiar, your child reasons naturally, then you name the math behind it. That link between real life and symbols is exactly what curricula are after.
+
+## Encourage Estimating First
+
+Before solving, ask your child to guess a rough answer. If the problem is about sharing 18 stickers among 3 friends, a sensible guess is around 6 each. Estimating first gives your child a way to catch big mistakes, like an answer of 54 that clearly cannot be right.
+
+## When Your Child Gets Stuck
+
+Resist the urge to jump in with the answer. Instead, ask questions that hand the thinking back:
+
+- What is the problem asking you to find?
+- Can you draw a picture of it?
+- Which numbers do you actually need?
+- Would adding make the amount bigger or smaller here?
+
+Each question nudges without rescuing, and that is how independence grows.
+
+## The Long Game
+
+Word problems are really problem-solving in disguise, and that skill matters far beyond math class. Every time your child reads carefully, plans a strategy, and checks their work, they are practicing how to tackle any challenge.
+
+Keep sessions short and calm. Celebrate the effort of reasoning through a tricky one, not just the correct answer. With a steady routine and a little everyday practice, those frozen moments will slowly turn into confident first steps.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-reading-comprehension",
     title: "How to Help Your Child Understand Reading Comprehension (Beyond Just Decoding Words)",
     category: "Reading",
