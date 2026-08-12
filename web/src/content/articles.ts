@@ -11,6 +11,85 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-telling-time-analog-clock",
+    title: "How to Help Your Child Understand Telling Time on an Analog Clock",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-12",
+    excerpt:
+      "Digital screens make analog clocks feel like a foreign language. Here is a calm, step-by-step way to help your child read the hands with confidence.",
+    body: `## Why Analog Clocks Still Matter
+
+Most of the time your child sees is on a screen, glowing in tidy digits. So when a round clock appears on a classroom wall or a math worksheet, it can feel like decoding a puzzle with two mysterious arrows.
+
+Reading an analog clock is still part of the curriculum in the US, UK, Singapore, and Ontario for good reason. It builds skip counting by fives, fraction sense (quarter past, half past), and the ability to picture time as something that moves in a circle rather than just numbers that change.
+
+The good news: with a few clear steps, this clicks faster than most parents expect.
+
+## Start With One Hand at a Time
+
+The biggest source of confusion is trying to read both hands at once. Slow down and separate them.
+
+### The hour hand
+
+The short, fatter hand tells the hour. Practice pointing to it and asking one question: which number has it just passed?
+
+- If it sits right on the 3, it is 3 o'clock.
+- If it is between the 3 and the 4, the hour is still 3 (we have not reached 4 yet).
+
+That last point trips up many children. The hour hand creeps forward slowly, so at 3:45 it is nearly touching the 4 but the hour is still three.
+
+### The minute hand
+
+The long, thin hand tells the minutes. Here is where skip counting by fives becomes your best friend. Each number on the clock is worth five minutes as you go around:
+
+- 12 is zero minutes
+- 1 is five, 2 is ten, 3 is fifteen, and so on
+
+Walk your finger around the clock counting by fives together until it feels automatic.
+
+## Teach the Landmarks Before the Details
+
+Before worrying about 3:47, anchor a few friendly positions your child will recognize instantly.
+
+- O'clock: minute hand straight up on the 12
+- Half past: minute hand straight down on the 6
+- Quarter past: minute hand on the 3
+- Quarter to: minute hand on the 9
+
+Connect these to a pizza or a pie. Half past means half the circle is filled. Quarter past means one slice out of four. This links time to the fraction work your child is already doing and makes the vocabulary stick.
+
+## Make It Real With a Homemade Clock
+
+A paper plate and two cardboard arrows fastened with a split pin beats any worksheet. Let your child move the hands themselves.
+
+Try these quick games:
+
+- You say a time out loud, your child sets the hands, then swaps roles.
+- Set the clock to show when a favorite show starts, dinner is ready, or bedtime begins.
+- Move the minute hand a full turn and watch how the hour hand nudges forward one number. This shows why the two hands work together.
+
+Physically turning the hands teaches the relationship far better than staring at a fixed picture.
+
+## Practice in Small, Frequent Doses
+
+Time-telling rewards little bursts rather than long sessions. Ask casually throughout the day.
+
+- When you walk past a wall clock, ask what it says.
+- Give a countdown in clock terms: we leave when the big hand reaches the 6.
+- Point out o'clock and half past first, then add the trickier five-minute readings once those feel easy.
+
+A short daily habit like this, or a few quick clock questions in a practice app, keeps the skill fresh without pressure.
+
+## Gentle Troubleshooting
+
+If your child keeps mixing up the hands, add color: a red sticker on the hour hand and blue on the minute hand until they learn the difference by size.
+
+If they read 3:45 as 4-something, return to the rule that the hour is the number the short hand has already passed, not the one it is heading toward.
+
+Celebrate the landmark times first. Confidence with o'clock, half past, and quarter past gives your child the footing to master the rest, one five-minute jump at a time.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-word-problems",
     title: "How to Help Your Child Understand Word Problems (Turning Sentences into Math)",
     category: "Math Tips",
