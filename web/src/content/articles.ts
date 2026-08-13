@@ -11,6 +11,72 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-negative-numbers",
+    title: "How to Help Your Child Understand Negative Numbers",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-13",
+    excerpt:
+      "Negative numbers confuse many kids at first. Here are simple, everyday ways to make the idea of numbers below zero click.",
+    body: `## Why Negative Numbers Feel So Strange
+
+For years, your child has believed that numbers start at zero and count up. Then one day school introduces the idea that there is a whole world below zero, and suddenly counting goes backward past the point where they thought numbers stopped.
+
+This is a genuine leap in thinking. Negative numbers are not something children can pick up from counting objects, because you cannot hold negative three apples. The good news is that everyday life is full of examples once you start looking for them.
+
+## Start With the Number Line
+
+The single most useful tool for negative numbers is a horizontal number line with zero in the middle.
+
+- Numbers to the right of zero are positive and get bigger as you move right.
+- Numbers to the left of zero are negative and get smaller as you move left.
+- Zero is neither positive nor negative. It is the dividing point.
+
+Draw one together and mark a few numbers. Point out that negative three sits three steps to the left of zero, just as positive three sits three steps to the right. This mirror image idea helps a lot.
+
+A common sticking point is that negative eight is smaller than negative two, even though eight is a bigger digit. On the number line this makes sense right away, because negative eight is further to the left. Whenever your child gets confused about which is smaller, send them back to the line.
+
+## Use Real Situations Children Already Know
+
+Negative numbers become friendly when they describe something familiar.
+
+- Temperature: On a cold day the thermometer might read negative five degrees. Ask what happens if it warms up by seven degrees.
+- Money: Owing three pounds or dollars is like having negative three. Spending more than you have puts your balance below zero.
+- Elevators: A basement or car park level is often labeled with a negative number, below the ground floor at zero.
+- Sea level: Some places sit below sea level, described with negative numbers.
+
+Pick the example your child connects with most and keep returning to it. Temperature works especially well because thermometers are basically vertical number lines.
+
+## Practice Moving Up and Down
+
+Once the number line makes sense, treat addition and subtraction as movement.
+
+- Adding means moving to the right, toward the positive side.
+- Subtracting means moving to the left, toward the negative side.
+
+So starting at two and subtracting five means moving five steps left, landing on negative three. Have your child put a finger on the line and physically walk it out. Saying the moves aloud, like start at two, go left five, cements the idea far better than staring at symbols.
+
+## Play a Quick Game
+
+Games turn a tricky idea into something enjoyable.
+
+- Roll a die and flip a coin. Heads means move that many steps up, tails means move that many steps down. Start at zero and track where you land after several rolls.
+- Play a temperature story. You call out changes like it dropped four degrees, then rose two, and your child tracks the thermometer.
+- Keep a pretend bank balance and add deposits and withdrawals, letting the balance dip below zero.
+
+Short sessions of five or ten minutes work best. The aim is comfort and repetition, not marathon drills.
+
+## Common Mistakes to Watch For
+
+- Thinking negative numbers with bigger digits are larger. Remind them further left means smaller.
+- Forgetting the minus sign when writing answers. Encourage a quick check of which side of zero they landed on.
+- Confusing the subtraction sign with the negative sign. Reading problems slowly helps here.
+
+## Keep It Low Pressure
+
+Negative numbers unlock big topics later, from coordinate graphs to algebra, so it is worth building a calm, solid foundation now. Celebrate small wins, keep the number line handy, and lean on real examples. With a little regular practice, the world below zero stops feeling mysterious and starts feeling obvious.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-telling-time-analog-clock",
     title: "How to Help Your Child Understand Telling Time on an Analog Clock",
     category: "Math Tips",
