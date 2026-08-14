@@ -11,6 +11,86 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-prefixes-and-suffixes",
+    title: "How to Help Your Child Understand Prefixes and Suffixes (Word Parts That Unlock Meaning)",
+    category: "Reading",
+    readMinutes: 4,
+    date: "2026-08-14",
+    excerpt:
+      "Teach your child to break big words into parts so they can figure out meaning on their own, no dictionary required.",
+    body: `## Why Word Parts Matter
+
+When your child hits an unfamiliar word like unbreakable or disagreement, the whole thing can feel like a wall. But most long words are just smaller pieces stuck together. A prefix at the front, a root in the middle, and a suffix at the end each carry a bit of meaning.
+
+Once children learn to spot these parts, they stop guessing and start reasoning. Research in reading instruction consistently shows that knowing common prefixes and suffixes helps students unlock thousands of words they have never seen before. It is one of the highest-return skills in vocabulary learning.
+
+## Start With the Idea of Building Blocks
+
+Before naming anything, show your child that words come apart and go back together. Write a base word your child already knows, like happy. Then build outward:
+
+- unhappy
+- happiness
+- unhappily
+
+Ask what changed each time and how the meaning shifted. This shows that little pieces do real work. You are not teaching a rule yet, just the idea that words are made of parts.
+
+### Name the Three Positions
+
+Keep the vocabulary simple:
+
+- A prefix goes at the front and changes the meaning.
+- A root or base is the main part that carries the core idea.
+- A suffix goes at the end and often changes the job of the word.
+
+Use a physical cue. Have your child cover the prefix with a finger, read the root, then reveal the prefix and reread. The word suddenly feels smaller.
+
+## The Highest-Value Parts to Learn First
+
+Do not try to cover everything. A handful of common prefixes and suffixes appear in a huge share of words. Start here.
+
+Prefixes worth knowing early:
+
+- un means not or the opposite, as in unlock and unkind
+- re means again, as in rewrite and rebuild
+- dis means not or away, as in disappear and dislike
+- pre means before, as in preview and preheat
+
+Suffixes worth knowing early:
+
+- ful means full of, as in joyful and helpful
+- less means without, as in fearless and hopeless
+- ly turns a word into how something is done, as in quickly and softly
+- er can mean one who does something, as in teacher and runner
+
+## A Simple Routine That Works
+
+When your child stumbles on a long word during reading, walk through three quick questions:
+
+- Do you see a prefix you know at the front?
+- What is the base word left in the middle?
+- Is there a suffix at the end that changes how it is used?
+
+For rebuilding, your child sees re meaning again, plus build. Again plus build equals build again. That reasoning is the whole point. The goal is not to memorize every word but to have a strategy for any word.
+
+## Playful Practice at Home
+
+Keep sessions short and light. Try these:
+
+- Word building race. Give a base word and take turns adding prefixes or suffixes. Whoever runs out of real words first sits out the round.
+- Prefix hunt. During a book or cereal box, spot every un, re, or pre you can find in five minutes.
+- Meaning swap. Change one part and see how the meaning flips. Careful becomes careless. Ask your child to explain the change out loud.
+
+Explaining the change out loud matters. When your child says without care instead of just reading careless, you know the meaning landed, not just the sound.
+
+## Watch for Common Traps
+
+Some words look like they have parts but do not. Uncle does not mean not cle. Ready is not the word red with a suffix. Teach your child that if pulling off the part leaves nonsense, it is probably not a real prefix or suffix. This keeps the strategy honest and stops overguessing.
+
+## Keep It Connected to Real Reading
+
+Word parts are most powerful inside actual books and passages, not on flashcards alone. When your child decodes a tough word using a prefix they learned, name it out loud: you just figured that out yourself. That feeling of independence is what turns a strategy into a habit, and it is exactly the kind of steady, curriculum-aligned practice we build into every reading level at Astute Academy.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-negative-numbers",
     title: "How to Help Your Child Understand Negative Numbers",
     category: "Math Tips",
