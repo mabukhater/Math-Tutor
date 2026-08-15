@@ -11,6 +11,71 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-borrowing-in-subtraction",
+    title: "How to Help Your Child Understand Borrowing in Subtraction",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-15",
+    excerpt:
+      "Borrowing in subtraction confuses many kids. Here are clear, hands-on ways to help your child regroup with confidence.",
+    body: `## Why Borrowing Trips Kids Up
+
+Subtraction feels easy until your child hits a problem like 52 minus 27. Suddenly they have to take 7 away from 2, and 2 is smaller. Many children respond by simply flipping the numbers and writing 5, because 7 minus 2 is 5. It looks tidy, but it is wrong, and it hides a real gap in understanding.
+
+The fix is a skill called borrowing, also known as regrouping. It is not a trick. It is a way of trading one group of ten for ten ones so you have enough to subtract. Once a child sees the trade physically, the written steps stop feeling like magic.
+
+## Start With What Regrouping Actually Means
+
+Before touching pencil and paper, make the idea concrete. The word borrowing is a little misleading, because nothing gets paid back. A better mental picture is trading.
+
+Try this with real objects:
+
+- Give your child 5 bundles of ten straws and 2 loose straws to show 52.
+- Ask them to take away 27, which means taking away 2 tens and 7 ones.
+- They will notice they cannot take 7 loose straws from only 2.
+- Have them unbundle one group of ten into ten loose straws.
+- Now there are 4 bundles and 12 loose straws, still 52, just arranged differently.
+- Taking away 7 ones and 2 tens is now possible, leaving 25.
+
+That unbundling moment is the entire lesson. Everything on paper is just a shorthand for it.
+
+## Connect It to the Written Steps
+
+Once your child has traded straws a few times, line the written problem up next to the objects. Point out how each step matches.
+
+- The number you cross out at the top is the ten you broke apart.
+- The small 1 you add to the ones column is the ten straws you unbundled.
+- The ones column now has enough to subtract from.
+
+Say the numbers as tens and ones out loud. Instead of five and two, say five tens and two ones. This keeps place value in view, which is the concept borrowing depends on.
+
+## Common Mistakes and Gentle Fixes
+
+Watch for these patterns and address them right away:
+
+- Flipping the digits to subtract the smaller from the larger. Ask, can we really take 7 from 2? Show that we cannot, so we must trade.
+- Forgetting to reduce the tens after borrowing. Remind them that the ten they broke apart is gone from the tens column now.
+- Borrowing when it is not needed. Encourage a quick check of each column first: do I have enough here, or do I need to trade?
+
+When a child makes an error, resist correcting the final answer alone. Go back to the straws or draw quick place value blocks. The goal is understanding, not a right number on one worksheet.
+
+## Practice That Builds Real Fluency
+
+Space practice out over several short sessions rather than one long push. A few problems a day, done with understanding, beats a page of guessing.
+
+- Begin with two-digit problems that need one trade, like 43 minus 18.
+- Move to problems with a zero on top, like 40 minus 16, which requires careful regrouping.
+- Progress to three-digit problems and borrowing across two columns, like 300 minus 145.
+
+The zero cases deserve extra time. When the tens digit is also zero, your child has to trade twice, and that is where confidence often wobbles. Use drawn hundreds, tens, and ones so they can watch the trades happen.
+
+## Keep It Encouraging
+
+Borrowing is one of the first times math asks a child to hold several steps in mind at once. That is genuinely demanding for a young learner, so celebrate the process, not just the answer. Praise the moment they say they need to trade, even before they finish.
+
+With a handful of hands-on sessions and steady, low-pressure practice, regrouping shifts from a mysterious rule into something your child can explain in their own words. That explanation is the surest sign it has truly clicked.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-prefixes-and-suffixes",
     title: "How to Help Your Child Understand Prefixes and Suffixes (Word Parts That Unlock Meaning)",
     category: "Reading",
