@@ -11,6 +11,74 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-volume",
+    title: "How to Help Your Child Understand Volume (Filling Up Space, Cube by Cube)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-16",
+    excerpt:
+      "A hands-on guide to helping your child grasp volume, from counting unit cubes to using length times width times height with confidence.",
+    body: `## What Volume Really Means
+
+Volume is the amount of space something takes up on the inside. It answers a simple question: how much can fit in here? A cereal box, a fish tank, a moving truck, a juice carton, all of these have a volume. Before your child ever multiplies three numbers together, they need to feel this idea in their hands.
+
+Many children learn to recite the formula for volume long before they understand what it describes. That leads to the classic mistake of memorizing steps without knowing why. Our goal is the reverse: build the picture first, then attach the numbers.
+
+## Start With Cubes, Not Formulas
+
+The building block of volume is the unit cube, a little cube that is one unit on every side. Volume is really just counting how many of these fit inside a space.
+
+If you have building blocks, sugar cubes, or dice, use them. Ask your child to build a rectangular box shape and then count the cubes.
+
+- Make a single layer that is 3 cubes long and 2 cubes wide. Count them: 6 cubes.
+- Now stack a second identical layer on top. Count again: 12 cubes.
+- Add a third layer. Now there are 18 cubes.
+
+Without saying a word about formulas, your child has just discovered that stacking layers is the whole secret to volume.
+
+## Connect the Layers to the Formula
+
+Once the layers are built, guide your child to see the shortcut.
+
+- The bottom layer had 3 times 2, which is 6 cubes. That is length times width, the area of the base.
+- There were 3 layers stacked up. That is the height.
+- So the total is 6 times 3, which equals 18.
+
+This is exactly what length times width times height means. The formula is not a magic rule; it is a fast way to count cubes without counting them one at a time. When your child sees that connection, the formula stops being something to memorize and becomes something that makes sense.
+
+## Watch the Units
+
+Volume is always measured in cubic units, and this trips up a lot of children. A length is in centimeters. An area is in square centimeters. A volume is in cubic centimeters. The little raised three, or the word cubic, tells everyone we are talking about filling space, not covering it.
+
+A gentle way to explain it:
+
+- A line has one direction, so we use plain units.
+- A flat shape has two directions, so we use square units.
+- A solid has three directions, so we use cubic units.
+
+Have your child say the full unit out loud every time. Saying cubic centimeters keeps the idea of three dimensions alive in their mind.
+
+## Real-Life Practice Around the House
+
+Volume lives everywhere in a home, so use it.
+
+- Estimate how many small boxes would fit inside a bigger box, then check by stacking.
+- Fill a measuring cup with water and pour it into different containers to compare which holds more.
+- Use interlocking bricks to build two different boxes with the same volume but different shapes, so your child sees that 2 by 3 by 4 and 1 by 4 by 6 both hold 24 cubes.
+
+That last activity is powerful. It shows that the same amount of space can look completely different, which deepens real understanding.
+
+## Common Mix-Ups to Gently Correct
+
+- Confusing volume with area. Area covers a surface; volume fills the inside. Ask often: are we covering or filling?
+- Adding the three numbers instead of multiplying. Return to the cubes and count a small example to prove multiplication is right.
+- Forgetting the height. Remind them that a flat drawing on paper still has a third measurement.
+
+## Keep It Playful
+
+Progress comes from short, hands-on moments, not long drills. A few minutes of stacking cubes, pouring water, or estimating how many oranges fit in a bowl will teach more than a worksheet full of numbers. When your child can picture the layers and explain why the formula works, volume becomes one of the easier topics in the year rather than a hurdle.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-borrowing-in-subtraction",
     title: "How to Help Your Child Understand Borrowing in Subtraction",
     category: "Math Tips",
