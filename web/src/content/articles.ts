@@ -11,6 +11,84 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-context-clues",
+    title: "How to Help Your Child Understand Context Clues (Figuring Out Words Without a Dictionary)",
+    category: "Reading",
+    readMinutes: 3,
+    date: "2026-08-17",
+    excerpt:
+      "Teach your child to guess tricky word meanings using the sentences around them, with simple clue types and easy practice at home.",
+    body: `## Why Context Clues Matter More Than a Dictionary
+
+When your child hits a word they do not know, stopping to look it up breaks the flow of reading. And by third or fourth grade, books introduce far more new words than anyone can memorize. The good news is that skilled readers rarely reach for a dictionary. Instead, they use the words around the unfamiliar one to make a smart guess.
+
+This skill is called using context clues, and it shows up across the US Common Core, the UK National Curriculum, and Ontario language expectations. It is one of the biggest predictors of a growing vocabulary, because kids who guess well learn new words simply by reading.
+
+## The Four Clue Types to Teach
+
+Most context clues fall into a few reliable patterns. Naming them gives your child a tool to reach for.
+
+### Definition clues
+
+Sometimes the sentence just tells you what a word means.
+
+- The nocturnal owl, which is active at night, hunted quietly.
+- Here the phrase active at night defines nocturnal directly.
+
+### Example clues
+
+The author gives examples that hint at the meaning.
+
+- She loved crustaceans like crabs, lobsters, and shrimp.
+- Crabs and shrimp tell your child that crustaceans are sea creatures with shells.
+
+### Contrast clues
+
+Words like but, however, and unlike signal an opposite meaning.
+
+- The path was usually barren, but today it was full of flowers.
+- Barren must mean the opposite of full of flowers, so empty or bare.
+
+### Feeling and action clues
+
+The way a character acts or feels reveals the word.
+
+- He was famished, so he ate three sandwiches in a row.
+- Eating three sandwiches tells you famished means very hungry.
+
+## A Simple Three-Step Routine
+
+When your child gets stuck, walk them through the same steps every time until it becomes automatic.
+
+- Read past the tricky word to the end of the sentence, and then read the next sentence too. Clues often come after the word.
+- Ask, what is happening here, and what would make sense in this spot?
+- Swap in your best guess and reread. Does the sentence still work?
+
+The reread step is the one kids skip most. Checking the guess against the sentence is what turns a wild guess into a good one.
+
+## Make It a Game at Home
+
+Context clue practice works best in short, low-pressure bursts.
+
+- Cover a word with your finger while reading together and ask your child to predict what it says before you reveal it.
+- Invent a nonsense word in a sentence you make up, such as, The glorp was so heavy she could barely lift it. Then ask what glorp probably means.
+- When a real unknown word appears, resist the urge to explain it right away. Ask, what clues can you find? Let them try first.
+
+Praise the reasoning, not just the right answer. Saying, I like how you used the word but to figure that out, teaches the strategy, not just the word.
+
+## When Guessing Is Not Enough
+
+Context clues are powerful, but they are not magic. Teach your child to notice when a guess is shaky, especially when the word is important to understanding the whole passage. In those cases, a dictionary or asking an adult is the right move.
+
+A good rule of thumb: if the word appears once and the story still makes sense, keep reading. If the same word keeps returning and the meaning stays fuzzy, it is worth looking up.
+
+## Keeping the Momentum
+
+The children who read the most also grow the biggest vocabularies, and context clues are the engine behind that growth. Every time your child figures out a word on their own, they gain confidence and a new word at the same time.
+
+On Astute Academy, reading passages are paired with questions that gently push children to lean on surrounding sentences, so the strategy gets reinforced across the grades. With a little practice at home and a few clue types in their toolkit, your child will start meeting new words with curiosity instead of frustration.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-volume",
     title: "How to Help Your Child Understand Volume (Filling Up Space, Cube by Cube)",
     category: "Math Tips",
