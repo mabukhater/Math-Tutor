@@ -11,6 +11,87 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-comparing-fractions",
+    title: "How to Help Your Child Understand Comparing Fractions (Which One Is Bigger?)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-18",
+    excerpt:
+      "Simple, hands-on ways to help your child figure out which fraction is bigger without memorizing tricky rules.",
+    body: `## Why Comparing Fractions Trips Kids Up
+
+With whole numbers, bigger digits mean bigger values. Fractions break that rule. A child who knows that 5 is more than 3 will often assume one-fifth is more than one-third, because 5 is the larger number. It feels logical, and that is exactly the trap.
+
+The good news: comparing fractions clicks quickly once children can picture what a fraction actually is. Here is how to build that picture at home.
+
+## Start With the Same Bottom Number
+
+When two fractions have the same denominator, comparing them is easy. Three-eighths and five-eighths are made of the same size pieces, so you just count how many pieces each has. Five pieces beat three pieces.
+
+Say it out loud together:
+
+- The bottom number tells you how big each piece is.
+- The top number tells you how many pieces you have.
+- Same bottom, so just compare the tops.
+
+Spend real time here. Once this feels obvious, everything else builds on it.
+
+## Then Try the Same Top Number
+
+This is the one that fixes the classic mistake. Compare one-third and one-fourth using something your child can see, like a chocolate bar or a pizza drawing.
+
+Split one bar into 3 pieces and another identical bar into 4 pieces. Ask which single piece is bigger. The bar cut into fewer pieces gives bigger pieces every time.
+
+The takeaway: when the tops match, the fraction with the smaller bottom number is larger, because you are cutting the whole into fewer, larger pieces. Kids remember this better after seeing it than after being told a rule.
+
+## Use a Benchmark: Compare to One Half
+
+One of the most useful real-world skills is deciding whether a fraction is more or less than one half. This lets kids compare fractions that look nothing alike.
+
+Teach them to ask one question: is the top number more or less than half of the bottom number?
+
+- Five-eighths: half of 8 is 4, and 5 is more than 4, so it is more than half.
+- Three-eighths: 3 is less than 4, so it is less than half.
+
+Now compare three-eighths and five-ninths. One is less than half, one is more than half, so five-ninths wins. No common denominators needed.
+
+## When Nothing Lines Up: Make the Pieces Match
+
+Sometimes the tops and bottoms are all different and neither is a clean half. This is when you rewrite both fractions so they share a denominator.
+
+To compare two-thirds and three-fourths:
+
+- Find a number both 3 and 4 divide into. Twelve works.
+- Two-thirds becomes eight-twelfths.
+- Three-fourths becomes nine-twelfths.
+- Now the bottoms match, so compare the tops. Nine beats eight.
+
+Frame this as making the pieces the same size so a fair comparison is possible. That phrase keeps the meaning front and center instead of it becoming blind arithmetic.
+
+## Everyday Practice That Actually Sticks
+
+You do not need worksheets to reinforce this. Try these:
+
+- At snack time, ask who has more when portions are cut differently.
+- Fold paper strips into halves, thirds, and fourths, then stack them to see which pieces are biggest.
+- While cooking, compare measuring cups. Is two-thirds of a cup more than half a cup?
+- Play a quick game: name two fractions and race to say which is bigger and why.
+
+The why matters more than the answer. A child who can explain their thinking will get the next problem right too.
+
+## Watch for These Common Mix-Ups
+
+- Assuming a bigger denominator means a bigger fraction.
+- Comparing tops and bottoms separately instead of thinking about the whole fraction.
+- Rushing to common denominators when a benchmark like one half would be faster.
+
+When a mistake happens, go back to a drawing. Seeing the pieces almost always resets the confusion.
+
+## Keep It Visual and Patient
+
+Comparing fractions is really about understanding that a fraction is one idea, not two separate numbers. Give your child plenty of chances to see and touch the pieces before leaning on procedures. Short, regular practice with real objects builds the intuition that makes the written math feel easy later on.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-context-clues",
     title: "How to Help Your Child Understand Context Clues (Figuring Out Words Without a Dictionary)",
     category: "Reading",
