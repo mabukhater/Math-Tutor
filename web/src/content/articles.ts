@@ -11,6 +11,74 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-money-to-the-nearest-dollar",
+    title: "How to Help Your Child Understand Rounding Money to the Nearest Dollar",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-19",
+    excerpt:
+      "A simple, real-world guide to helping your child round money to the nearest dollar so estimating totals finally feels easy.",
+    body: `## Why Rounding Money Trips Kids Up
+
+Rounding money to the nearest dollar sounds simple to adults, but it combines two skills that are still shaky for many children: reading decimal amounts and applying rounding rules. When a price like 4.65 shows up, your child has to notice the cents, decide whether they are closer to the next whole dollar, and let go of the exact number. That last part is surprisingly hard. Kids who love precision often resist rounding because it feels like they are being told to be wrong on purpose.
+
+The good news is that money is the friendliest place to practice rounding. Children already care about dollars and cents, and the answers connect to real life in ways that worksheets rarely do.
+
+## The One Rule That Matters
+
+Rounding to the nearest dollar comes down to a single question: are the cents 50 or more, or less than 50?
+
+- If the cents are 50 or more, round up to the next whole dollar.
+- If the cents are 49 or less, keep the dollar amount you already have.
+
+So 4.65 rounds up to 5, because 65 cents is more than half a dollar. And 4.30 rounds down to 4, because 30 cents is less than half. The exact halfway point, 50 cents, rounds up by convention.
+
+A helpful way to say this out loud: half a dollar is 50 cents, so ask whether you have half or more.
+
+## Make It Real With Coins
+
+Before any pencil work, pull out real or pretend coins. Hand your child two quarters and ask how much that is. When they say 50 cents, tell them that is the tipping point. Anything heavier than those two quarters rounds up.
+
+Try this with a small pile of coins:
+
+- Count the cents together.
+- Line up two quarters as the halfway marker.
+- Ask, is my pile more than those two quarters or less?
+- Round in the direction the answer points.
+
+Seeing 50 cents as a physical object makes the rule concrete instead of a number your child has to memorize.
+
+## Use a Number Line Between Two Dollars
+
+Draw a simple line with 4 on the left and 5 on the right. Mark the middle and label it 4.50. Now ask your child where 4.65 would sit. Since it lands to the right of the middle, it is closer to 5. Since 4.30 lands to the left, it is closer to 4.
+
+This picture answers the question your child is really asking: which whole dollar is this amount nearer to? Rounding is just choosing the closer neighbor.
+
+## Practice While You Shop
+
+The grocery store is a ready-made classroom. As you drop items in the cart, ask your child to round each price to the nearest dollar and keep a running total in their head. When you reach the register, compare their estimate to the real total. They will be delighted at how close they get, and they will start to feel why rounding is useful, not just a school task.
+
+Other quick moments to practice:
+
+- Rounding a restaurant bill before the total appears.
+- Estimating whether ten dollars covers three items.
+- Checking if their allowance is enough for something they want.
+
+## Gentle Fixes for Common Mistakes
+
+Watch for these stumbles and respond calmly.
+
+- Rounding the wrong direction: return to the two-quarters marker and ask again, more or less than half.
+- Changing the wrong digit: remind them we are only deciding the whole dollar, so the cents disappear after rounding.
+- Freezing at exactly 50 cents: teach the simple habit that 50 always goes up.
+
+Avoid correcting every slip in the moment. Let your child try a few, then talk through one together.
+
+## Keep It Light and Frequent
+
+Short, regular bursts beat long sessions. Two or three prices while walking through a store, a quick guess about a receipt, a coin question at the kitchen table. Rounding money grows stronger through repetition in real settings, and each small win builds the confidence your child needs for larger estimation skills later on.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-comparing-fractions",
     title: "How to Help Your Child Understand Comparing Fractions (Which One Is Bigger?)",
     category: "Math Tips",
