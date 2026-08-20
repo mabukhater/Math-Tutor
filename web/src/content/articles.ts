@@ -11,6 +11,71 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-main-idea-and-supporting-details",
+    title: "How to Help Your Child Understand Main Idea and Supporting Details",
+    category: "Reading",
+    readMinutes: 4,
+    date: "2026-08-20",
+    excerpt:
+      "Help your child find the main idea and supporting details with simple questions, everyday examples, and a few playful reading habits.",
+    body: `## Why Main Idea Trips Kids Up
+
+Your child can read every word on the page and still shrug when you ask, "So what was that about?" That gap is completely normal. Decoding words and understanding the big point are two different skills. Finding the main idea means stepping back from the details to see the whole picture, and that kind of thinking takes practice.
+
+The good news is that main idea is one of the most teachable reading skills. Once a child has a clear way to think about it, they start using it everywhere, from schoolbooks to the back of a cereal box.
+
+## What Main Idea Actually Means
+
+The main idea is the one thing a paragraph or passage is mostly about. Supporting details are the smaller facts, examples, and reasons that prove or explain that main idea.
+
+A helpful picture for younger children is a table. The main idea is the tabletop, and the supporting details are the legs holding it up. Without the legs, the tabletop has nothing to stand on. Without the tabletop, the legs are just scattered pieces.
+
+Another framing that works well for grades 3 and up:
+
+- Topic: the general subject in a word or two, like "penguins."
+- Main idea: the point being made about the topic, like "penguins have clever ways to stay warm."
+- Details: the how and why, like huddling together and having thick feathers.
+
+## Simple Questions That Do the Heavy Lifting
+
+You do not need a worksheet to practice this. After reading together, ask one or two of these:
+
+- If you had to tell a friend about this in one sentence, what would you say?
+- What is this mostly about?
+- Which sentence tells the big idea, and which ones just give examples?
+- Could you make up a good title for this?
+
+That last one is quietly powerful. A good title captures the main idea, so title-making turns an abstract skill into a fun challenge.
+
+## A Hands-On Way to Practice
+
+Try the highlighter game with a short article or a page from a library book. Give your child two colors. One color marks the sentence that feels like the big point. The other marks details that back it up.
+
+At first they may highlight almost everything, and that is fine. The act of choosing forces them to weigh which sentences matter most. Talk through their choices without judging. Ask, "Is this the big point, or is it an example of the big point?"
+
+For children who love to move, try the sorting version. Write the main idea on one index card and several details on others, then mix in one card that does not belong. Ask your child to build the "table" and toss out the detail that sneaked in. Spotting the odd one out sharpens their sense of what truly supports the main idea.
+
+## Use Everyday Moments
+
+Main idea is not just a reading-class skill. Practice it in tiny doses throughout the week:
+
+- After a show, ask what the whole episode was really about.
+- After a family outing, ask them to sum up the day in one sentence.
+- Read a short news headline and ask what details they would expect the article to include.
+
+These moments teach your child that summarizing is a normal part of thinking, not a test they have to pass.
+
+## Watch for the Common Mix-Up
+
+Many children grab the first sentence and assume it is always the main idea. Sometimes it is, but not always. Show them a paragraph where the big point comes at the end, or where you have to gather clues from several sentences to figure it out. This teaches them to read the whole passage before deciding.
+
+Also watch for children who pick a detail that was interesting to them rather than the point of the passage. Gently ask, "Was that the main thing, or just the part you liked best?"
+
+## Keep It Light and Keep Going
+
+Main idea grows stronger with short, frequent practice, not long drills. A few minutes of talking about what you read together, most days, will do more than an hour-long session once a month. Celebrate good summaries, laugh about the ones that miss, and keep reading side by side. Over time, finding the big point becomes second nature.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rounding-money-to-the-nearest-dollar",
     title: "How to Help Your Child Understand Rounding Money to the Nearest Dollar",
     category: "Math Tips",
