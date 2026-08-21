@@ -11,6 +11,87 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "adding-subtracting-fractions-unlike-denominators",
+    title: "How to Help Your Child Understand Adding and Subtracting Fractions with Unlike Denominators",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-21",
+    excerpt:
+      "A step-by-step guide to helping your child add and subtract fractions with different denominators, using pictures, real examples, and simple habits.",
+    body: `## Why Unlike Denominators Trip Kids Up
+
+Most children learn to add fractions like one-fourth plus two-fourths without much trouble. The pieces are the same size, so they just count them. But the moment the bottom numbers differ, confusion sets in. A child might add straight across and turn one-half plus one-third into two-fifths, which is smaller than either fraction they started with.
+
+The fix is not memorizing a rule. It is helping your child see why fractions must be the same size before you can combine them. Once that clicks, the steps make sense instead of feeling random.
+
+## Start With a Real Picture
+
+Before any numbers, make the idea physical. Grab a chocolate bar, a sandwich, or a piece of paper.
+
+- Fold one paper into halves and shade one half.
+- Fold another identical paper into thirds and shade one third.
+- Ask: can we add these pieces just by counting? They are different sizes.
+
+Now fold each paper the other way so both are divided into sixths. The half becomes three-sixths and the third becomes two-sixths. Suddenly the pieces match, and your child can count five-sixths with confidence. This single activity teaches the entire concept: we rename fractions so the pieces are equal before combining.
+
+## The Steps, In Plain Language
+
+Once the picture makes sense, connect it to a routine your child can repeat.
+
+- Look at the two denominators, the bottom numbers.
+- Find a common denominator, a number both bottoms divide into evenly.
+- Rename each fraction so they share that denominator.
+- Add or subtract the top numbers only. The denominator stays the same.
+- Simplify the answer if you can.
+
+For one-half plus one-third, both fit into six. One-half becomes three-sixths, one-third becomes two-sixths, and the answer is five-sixths.
+
+## Finding the Common Denominator Without Stress
+
+Many kids freeze at this step. Give them two reliable methods and let them choose.
+
+### Method One: Multiply the Denominators
+
+Multiplying the two bottom numbers always gives a denominator that works. For fourths and sixths, four times six is twenty-four. It may not be the smallest, but it never fails, which builds confidence.
+
+### Method Two: List the Multiples
+
+Have your child count by each denominator and stop at the first match.
+
+- Fourths: 4, 8, 12, 16
+- Sixths: 6, 12, 18
+
+Both reach twelve, so twelve is the least common denominator. This method keeps the numbers smaller and simplifies less work later.
+
+## Do Not Skip the Renaming
+
+The most common mistake is changing the denominator but forgetting the top number. Remind your child: whatever you multiply the bottom by, you multiply the top by the same amount. To turn one-fourth into twelfths, you multiply the bottom four by three, so you also multiply the top one by three, giving three-twelfths. Keeping the fraction fair means treating top and bottom the same.
+
+## Practice That Actually Sticks
+
+Short and frequent beats long and painful. Try these low-pressure ideas.
+
+- Cooking: adding one-half cup plus one-fourth cup is a genuine unlike-denominator problem.
+- Time: two-thirds of an hour plus one-sixth of an hour.
+- Quick daily reps: two or three problems, five minutes, then done.
+
+At Astute Academy, fraction practice adapts to your child's grade and curriculum, giving instant feedback so mistakes get corrected before they become habits. That immediate response is often what a busy parent cannot provide during a hectic evening.
+
+## What to Say When They Get Stuck
+
+Resist jumping in with the answer. Instead ask guiding questions.
+
+- Are the pieces the same size yet?
+- What number do both denominators fit into?
+- If you changed the bottom, did you change the top too?
+
+These questions rebuild the reasoning rather than the single answer, so your child learns to catch their own errors.
+
+## The Takeaway
+
+Adding and subtracting fractions with unlike denominators comes down to one big idea: make the pieces the same size first. Anchor that with folded paper, give your child a repeatable routine, and practice in small daily doses. When the concept is built on understanding instead of memory, the rules finally feel obvious, and your child stops guessing and starts reasoning.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-main-idea-and-supporting-details",
     title: "How to Help Your Child Understand Main Idea and Supporting Details",
     category: "Reading",
