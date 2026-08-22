@@ -11,6 +11,73 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-place-value",
+    title: "How to Help Your Child Understand Place Value (Why the Position of a Digit Matters)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-22",
+    excerpt:
+      "A clear, hands-on guide to helping your child see why 5 can mean five, fifty, or five hundred depending on where it sits.",
+    body: `## Why Place Value Trips Kids Up
+
+Ask a child what the 3 in 342 is worth, and many will confidently say three. It is a completely reasonable answer if no one has explained that the same digit changes value depending on where it lives.
+
+Place value is the quiet engine behind almost everything in math. Carrying in addition, borrowing in subtraction, lining up decimals, multiplying by ten all depend on understanding that a digit's position tells you its worth. When place value clicks, later topics stop feeling like random rules.
+
+## Start With Grouping, Not Naming
+
+Before we name hundreds, tens, and ones, children need to feel why we group at all. Our number system is built on tens because that is how many fingers we have.
+
+Try this with a handful of dried beans, buttons, or coins.
+
+- Dump out a pile and ask your child to count them.
+- Once they lose track, suggest making groups of ten.
+- Count the groups, then the leftovers. Twenty-three becomes two groups of ten and three loose ones.
+
+The insight you are after is simple: we bundle by tens so big amounts become easy to read. That bundling is exactly what place value records.
+
+## Make the Places Visible
+
+Once grouping makes sense, connect it to written numbers. A place value chart with columns labeled hundreds, tens, and ones works well.
+
+- Write a number like 156 and place a token or draw a mark in each column.
+- Say it out loud together: one hundred, five tens, six ones.
+- Then ask the big question: what is the 5 worth here? The answer is fifty, not five.
+
+Base ten blocks are ideal here, but you do not need to buy anything. Use a single bean for ones, a stick of ten beans for tens, and a flat square for hundreds. The physical size difference makes the idea stick.
+
+### The Ten Times Bigger Rule
+
+Help your child notice a pattern that will pay off for years: each place to the left is worth ten times the place to its right. A ten is ten ones. A hundred is ten tens. This is why moving a digit left makes it larger.
+
+## Everyday Practice That Actually Works
+
+Place value is easy to fold into ordinary moments.
+
+- Read numbers on receipts, house numbers, and license plates, asking what a chosen digit is worth.
+- Play a build a number game. Call out three tens, four hundreds, and two ones, and have your child write the number in the right order.
+- Try expanded form. Break 372 into 300 plus 70 plus 2, then rebuild it. This shows the number is a sum of its places.
+- Ask trick questions. Which is bigger, 89 or 91? Have them explain using tens and ones instead of guessing.
+
+Keep sessions short and playful. Five focused minutes beats a frustrating half hour.
+
+## Common Mix Ups to Watch For
+
+A few predictable stumbles are worth naming so you can gently correct them.
+
+- Reading 205 as twenty five because the zero gets skipped. Point out that the zero holds the tens place open so the 2 stays in the hundreds.
+- Writing 100 and 5 as 1005 when trying to spell out one hundred five. Return to the chart and show where the digits belong.
+- Thinking a longer number is always bigger. Compare place by place, starting from the left.
+
+## Where This Leads
+
+Once your child truly owns place value, addition with carrying makes sense because they see ten ones becoming one ten. Decimals feel natural because the same ten times pattern simply continues to the right. Big numbers stop being scary strings of digits and become organized amounts.
+
+In Astute Academy, place value activities move from grouping objects to reading and building multi digit numbers, matched to your child's grade and curriculum. Steady, curriculum aligned practice turns a shaky idea into a reliable tool.
+
+The goal is not memorizing column names. It is helping your child look at any number and instantly know what each digit is truly worth.`,
+  },
+  {
     slug: "adding-subtracting-fractions-unlike-denominators",
     title: "How to Help Your Child Understand Adding and Subtracting Fractions with Unlike Denominators",
     category: "Math Tips",
