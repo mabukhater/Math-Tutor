@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-making-inferences",
+    title: "How to Help Your Child Understand Making Inferences (Reading Between the Lines)",
+    category: "Reading",
+    readMinutes: 4,
+    date: "2026-08-23",
+    excerpt:
+      "Learn simple, everyday ways to help your child read between the lines and draw smart conclusions from what a text says and doesn't say.",
+    body: `## What Making Inferences Really Means
+
+Making an inference is when your child figures out something that a text does not say directly. The author leaves clues, and the reader combines those clues with what they already know to reach a conclusion.
+
+Here is a quick example. A story says: Maya zipped up her coat, pulled on her mittens, and watched her breath cloud in front of her face. The text never uses the word cold. But your child can infer that it is cold outside.
+
+That little leap, from clues on the page to a conclusion in the mind, is one of the most important reading skills your child will build. It shows up on nearly every reading test, and more importantly, it is how we understand people, jokes, and everyday life.
+
+## Why Inferences Are Hard for Kids
+
+Many children read every word correctly but still stop at the surface. They can tell you what happened, but not why it matters or what a character is feeling.
+
+This happens for a few reasons:
+
+- Young readers expect the text to tell them everything plainly.
+- They may not connect their own experiences to the story.
+- They rush past the small details that hold the clues.
+
+The good news is that children already make inferences all the time in real life. When a sibling slams a door, they know that person is upset without being told. Your job is to help them notice they are already doing this, then apply it to reading.
+
+## A Simple Formula to Teach
+
+Give your child an easy way to remember how inferences work:
+
+- What the text says, plus what I already know, equals what I can figure out.
+
+Write it on a sticky note near their reading spot. When they hit a tricky moment, walk through the three parts together. What clues did the author give? What do you already know about this? So what does that tell you?
+
+This keeps inferring from feeling like guessing. A good inference always points back to evidence.
+
+## Everyday Ways to Practice
+
+You do not need worksheets to build this skill. Try these during normal reading time:
+
+- Pause and ask how a character is feeling, then ask which words made you think that.
+- Cover the last line of a page and ask what will probably happen next.
+- Point out a picture and ask what is happening just outside the frame.
+- After a movie scene, ask why a character did something the story never explained.
+
+Keep the tone curious, not quiz-like. You are modeling how a thoughtful reader wonders about a text.
+
+### Use Picture Books at Any Age
+
+Wordless or nearly wordless picture books are inference gold. Because so little is stated, your child has to supply the story. Ask them to narrate what is happening and defend each idea with something they see. Older kids enjoy this too when you frame it as detective work.
+
+### Try the Because Game
+
+Read a sentence, then ask your child to finish a because statement. For example: The dog hid under the bed because. Their answer has to fit the clues. This trains them to link cause and effect, which is the backbone of inference.
+
+## Questions That Push Deeper
+
+Swap out yes or no questions for ones that require evidence:
+
+- What made you think that?
+- How do you know the character is nervous?
+- What clue in the text supports your idea?
+- What might the author want us to understand here?
+
+When your child answers, gently ask them to point to the exact words. Over time, backing up an inference with evidence becomes automatic.
+
+## Keep It Low Pressure
+
+Inferences are not about one right answer. Two readers can reach slightly different conclusions and both be reasonable, as long as the text supports them. Celebrate the thinking, not just the outcome.
+
+Astute Academy reading activities are built to grow this skill step by step, giving your child short passages and questions that reward evidence-based thinking at their exact grade level. A few minutes of guided practice, paired with the everyday conversations above, adds up quickly.
+
+With steady, gentle practice, your child will move from reading words to reading meaning, and that is a skill that serves them far beyond the classroom.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-place-value",
     title: "How to Help Your Child Understand Place Value (Why the Position of a Digit Matters)",
     category: "Math Tips",
