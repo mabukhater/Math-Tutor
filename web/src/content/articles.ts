@@ -11,6 +11,73 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-multiplying-fractions",
+    title: "How to Help Your Child Understand Multiplying Fractions (Why the Answer Gets Smaller)",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-24",
+    excerpt:
+      "Multiplying fractions confuses kids because the answer shrinks. Here is how to make it make sense at home.",
+    body: `## Why Multiplying Fractions Feels Backward
+
+For years, your child learned that multiplication makes numbers bigger. Three times four is twelve. Six times five is thirty. Then fractions arrive, and suddenly one half times one half is one quarter, which is smaller than what they started with. No wonder kids stare at the page and assume they made a mistake.
+
+The good news is that multiplying fractions is actually one of the easier fraction skills once the meaning clicks. There is no finding common denominators, no borrowing. The trick is helping your child understand what the problem is really asking before they touch the numbers.
+
+## The One Word That Unlocks It
+
+When your child sees a multiplication sign between fractions, teach them to read it as the word of.
+
+- One half times one half becomes one half of one half.
+- One third times six becomes one third of six.
+- Three quarters times twelve becomes three quarters of twelve.
+
+This small swap changes everything. Half of a half is obviously smaller than a half. Kids already know this from real life. Half of half a cookie is a small piece. Once of replaces times, the shrinking answer stops feeling wrong and starts feeling obvious.
+
+## Make It Visible With Paper
+
+Abstract rules do not stick. Pictures do. Try this with a plain sheet of paper for one half times one half.
+
+- Fold the paper in half and shade one half with a pencil.
+- Now fold it in half the other way and shade one half of that with a different color.
+- Unfold. The paper is now divided into four equal parts, and the section shaded twice is exactly one of those four.
+
+Your child can see that one half of one half is one quarter. They folded it themselves. That memory beats any rule you could recite.
+
+For a fraction times a whole number, use countable objects. One third times nine grapes means splitting nine grapes into three equal groups and taking one group. Three grapes. When they can touch the answer, the procedure that follows will make sense instead of feeling like magic.
+
+## The Actual Steps
+
+Once the meaning is solid, the method is refreshingly simple. Multiply the top numbers together, multiply the bottom numbers together, then simplify.
+
+- Two thirds times three quarters: top is two times three which is six, bottom is three times four which is twelve. Six twelfths simplifies to one half.
+- Remind your child that a whole number like five is really five over one, so it has a bottom number too.
+
+Encourage simplifying at the end rather than memorizing shortcuts too early. Getting a correct unsimplified answer and then reducing it is far better than a rushed shortcut that produces a wrong result.
+
+## Common Mistakes to Watch For
+
+A few predictable stumbles come up again and again.
+
+- Trying to find a common denominator. That rule belongs to adding and subtracting, not multiplying. Gently point out which operation they are doing.
+- Forgetting the whole number has an invisible bottom number of one.
+- Assuming the answer must be bigger. When they double check, ask whether the answer should be more or less than what they started with. This catches errors fast.
+
+## Bring It Into Everyday Life
+
+Fractions live all over your kitchen and calendar.
+
+- Halving a recipe that calls for three quarters of a cup of sugar.
+- Figuring out how much pizza is left if the family ate two thirds of it.
+- Working out how long half of a forty minute show is.
+
+Each of these is a fraction multiplication problem wearing everyday clothes. Talk through them out loud so your child hears the reasoning.
+
+## Keep Practice Short and Frequent
+
+Ten minutes a few times a week beats a long, tearful session once a week. Astute Academy builds this into short, curriculum aligned practice sets that grow with your child, so the concept stays fresh without becoming a chore. Mix a couple of picture based problems with a few procedure problems, and always end by asking whether the answer makes sense. That habit of checking is the real skill you are teaching, and it will serve your child far beyond fractions.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-making-inferences",
     title: "How to Help Your Child Understand Making Inferences (Reading Between the Lines)",
     category: "Reading",
