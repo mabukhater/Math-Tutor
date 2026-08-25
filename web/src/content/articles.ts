@@ -11,6 +11,82 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-the-number-line",
+    title: "How to Help Your Child Understand the Number Line (A Tool for Almost Everything)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-25",
+    excerpt:
+      "The number line quietly powers counting, addition, fractions, and negatives. Here is how to help your child truly get it.",
+    body: `## Why the Number Line Deserves More Attention
+
+The number line looks simple: a straight line with numbers marked along it. But it is one of the most powerful tools in all of math. It shows up in first grade counting, then in addition and subtraction, then in fractions, then in negative numbers, and later in graphing and algebra.
+
+When a child truly understands the number line, a surprising amount of math starts to feel connected instead of like a pile of separate rules. That is why it is worth slowing down and making sure the idea is solid.
+
+## The Big Idea: Numbers Have Positions and Distances
+
+A number line does two jobs at once. It shows where a number sits, and it shows how far apart numbers are.
+
+Many children think of numbers only as things you say out loud in order. The number line adds a picture: bigger numbers live to the right, smaller numbers live to the left, and the space between two numbers is a real, measurable distance.
+
+Try saying this out loud with your child while pointing:
+
+- Moving right means getting bigger.
+- Moving left means getting smaller.
+- The gaps between marks are all the same size.
+
+That last point matters more than parents expect. If the spacing is uneven, the line lies about distances, and the whole tool stops working.
+
+## Start with a Number Line You Can Walk On
+
+Before paper, use the floor. Lay down sticky notes or index cards numbered 0 through 10 in a row, evenly spaced.
+
+- Stand on 3, then take 4 steps right. Where do you land? That is 3 plus 4.
+- Stand on 8, then take 5 steps left. That is 8 minus 5.
+- Ask, how many jumps from 2 to 9? That distance is the answer to 9 minus 2.
+
+Walking the line turns addition into moving right and subtraction into moving left. Children remember what their bodies do far longer than what they copy off a worksheet.
+
+## Move to Paper, but Keep It Honest
+
+When you switch to a drawn line, insist on even spacing. A ruler helps. Draw a line, mark 0, and place each number the same distance apart.
+
+Practice locating numbers before doing any operations:
+
+- Where does 6 go?
+- Point to a spot and ask, what number lives here?
+- Which is closer to 10, the number 7 or the number 4?
+
+These pointing games build a mental map that pays off for years.
+
+## Using the Number Line for Harder Ideas
+
+### Fractions
+
+Draw a line from 0 to 1 and split it into equal parts. Now one half, one fourth, and three fourths become real places, not just numbers on top of other numbers. Children can see that three fourths sits closer to 1 than one fourth does.
+
+### Negative Numbers
+
+Extend the line to the left of 0. Now negative numbers are simply positions on the other side. Counting down past zero feels natural because you just keep walking left.
+
+### Rounding
+
+Ask which ten a number is closer to. On a line from 40 to 50, a child can literally see that 47 is nearer to 50, which makes rounding a matter of looking rather than memorizing.
+
+## Gentle Ways to Practice at Home
+
+- Turn a hallway into a number line and call out jumps.
+- Use a ruler or tape measure and ask what number is halfway between two others.
+- When reading a thermometer or a game score, point out that it is a number line in disguise.
+
+In Astute Academy, number line activities are woven through the grade levels, so the tool your child meets in early addition returns when they reach fractions and negatives. That repetition helps the idea stick.
+
+## The Takeaway
+
+The number line is not one lesson. It is a lens your child can use again and again. Spend a little time now making sure the spacing is even, the direction is clear, and the movement makes sense. That small investment quietly supports years of math ahead.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-multiplying-fractions",
     title: "How to Help Your Child Understand Multiplying Fractions (Why the Answer Gets Smaller)",
     category: "Math Tips",
