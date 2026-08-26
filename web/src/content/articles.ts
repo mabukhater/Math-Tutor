@@ -11,6 +11,77 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-coordinate-plane-graphing",
+    title: "How to Help Your Child Understand Coordinate Plane Graphing (Plotting Points with Confidence)",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-26",
+    excerpt:
+      "A simple, hands-on way to teach your child how to plot points on a coordinate plane without mixing up x and y.",
+    body: `## What Is a Coordinate Plane, Really?
+
+A coordinate plane is just a map made of numbers. Two number lines cross each other: one goes left and right, the other goes up and down. Every spot on that map has an address made of two numbers, and those two numbers tell you exactly where to stand.
+
+Children usually meet the coordinate plane in fourth or fifth grade, and it shows up again and again in later math, from geometry to algebra graphs. The good news is that the idea is genuinely friendly once you strip away the vocabulary.
+
+## Start with the Idea of an Address
+
+Before you draw a single grid, talk about how we find places in real life. To find a seat at a movie theater, you need a row and a seat number. To find a spot on a map, you might need a street going one way and an avenue going the other.
+
+The coordinate plane works the same way. A point needs two directions:
+
+- How far to go across (left or right)
+- How far to go up or down
+
+Once your child sees that two numbers pin down one exact spot, the rest is practice.
+
+## The x Comes Before the y
+
+The most common mistake children make is swapping the two numbers. The point named as three and then five is not the same as five and then three.
+
+Here is a phrase that sticks: you walk before you climb. First you walk across, then you climb up. The across number always comes first inside the parentheses.
+
+Another memory helper: the letter x comes before y in the alphabet, and the x number comes first in the pair. Say it out loud with your child a few times and it becomes automatic.
+
+### A Quick Practice Routine
+
+Draw a grid together on graph paper. Label the bottom line and the side line with numbers. Then try this:
+
+- You call out a pair of numbers, like four and two.
+- Your child puts a finger at the corner where the lines cross, walks across to four, then climbs up to two, and marks the spot.
+- Switch roles. Your child names a point and you plot it, sometimes on purpose getting it wrong so they can catch you.
+
+Catching a parent's mistake is surprisingly motivating, and it forces your child to check the order carefully.
+
+## Make It a Game
+
+Grids can feel dry, so give them a reason to matter.
+
+- Hidden treasure: You secretly pick a point and give one coordinate at a time as clues.
+- Connect the dots: Write a list of points that, when plotted in order and joined, draw a simple shape like a house or a star.
+- Battleship style: Take turns guessing coordinates to find each other's hidden squares on a grid.
+
+These games turn plotting into a habit without a worksheet in sight.
+
+## Watch for These Common Snags
+
+A few predictable trouble spots are worth naming so you can spot them early.
+
+- Starting in the wrong place. Points are measured from the corner where the two lines meet, not from the edge of the paper.
+- Counting the lines instead of the spaces. Remind your child to count the moves along the grid, landing on numbers, not counting boxes.
+- Reversing the pair. If a plotted point looks wrong, ask which number is the across number. Nine times out of ten, that is the fix.
+
+## Connect It to the Bigger Picture
+
+When your child is comfortable plotting single points, show them how connecting points reveals patterns. Plot a few pairs where the second number is always double the first, and watch the dots line up. That quiet moment of seeing a straight line appear is the seed of graphing equations later on.
+
+You do not need to rush there. For now, celebrate accurate plotting and clear reasoning about which number goes first.
+
+## Keep Sessions Short and Positive
+
+Ten focused minutes beats a long, frustrating stretch. Praise the thinking, not just the right answer. If your child explains why a point belongs in a certain spot, they understand it, and understanding is the whole goal. With a little regular practice, plotting points becomes second nature, and your child gains a tool they will use for years.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-the-number-line",
     title: "How to Help Your Child Understand the Number Line (A Tool for Almost Everything)",
     category: "Math Tips",
