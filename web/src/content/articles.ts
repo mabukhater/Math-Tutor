@@ -11,6 +11,75 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-decimals-as-parts-of-a-whole",
+    title: "How to Help Your Child Understand Decimals as Parts of a Whole",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-27",
+    excerpt:
+      "A friendly, practical guide to helping your child see decimals as pieces of a whole they already understand from money and measuring.",
+    body: `## Why Decimals Feel Tricky
+
+Many children can add and subtract whole numbers with confidence, then suddenly stumble when a tiny dot shows up. The problem is rarely the math itself. It is that decimals look like a brand new kind of number, when really they are just another way to show parts of a whole.
+
+If your child already understands that a whole can be split into pieces, they are most of the way there. The dot simply marks where the whole numbers end and the fraction pieces begin.
+
+## Start With Something They Already Know
+
+The fastest way to make decimals feel familiar is to connect them to money. A dollar is one whole. A dime is one tenth of it. A penny is one hundredth of it.
+
+Try this at the kitchen table:
+
+- Lay out one dollar and call it the whole.
+- Show that ten dimes make the dollar, so each dime is 0.1.
+- Show that one hundred pennies make the dollar, so each penny is 0.01.
+
+When your child sees 0.75, guide them to read it as three quarters or seventy five cents. That connection turns an abstract symbol into something they have handled since they were small.
+
+## Name the Places Out Loud
+
+Decimals follow the same place value logic your child already uses for whole numbers, just moving in the other direction. To the left of the dot, each place is ten times bigger. To the right of the dot, each place is ten times smaller.
+
+Practice saying the place names together:
+
+- The first spot after the dot is tenths.
+- The second spot is hundredths.
+- The third spot is thousandths.
+
+Have your child read 3.4 as three and four tenths, not three point four. Reading the place name keeps the meaning attached to the number. Once they can say what each digit is worth, comparing and ordering decimals gets much easier.
+
+### A Common Mix Up to Watch For
+
+Children often think 0.45 is bigger than 0.5 because forty five looks larger than five. This is where the place names save the day. Ask which is more, four tenths or five tenths. Framed that way, most children answer correctly right away. A quick trick is to line up the decimal points and add a zero so both numbers have the same length, turning 0.5 into 0.50 for a fair comparison.
+
+## Make It Visual
+
+A ten by ten grid is one of the best tools for decimals. The whole grid is one. Each column is one tenth. Each little square is one hundredth.
+
+Ask your child to shade in 0.3 and then 0.30 on two grids. When they see that both cover the same amount, the idea that trailing zeros do not change the value stops being a rule to memorize and becomes something they can see.
+
+You can also fold a strip of paper into ten equal parts to show tenths, then imagine each part split again for hundredths.
+
+## Practice in Everyday Moments
+
+Decimals show up constantly once you start noticing them:
+
+- Reading prices while shopping and figuring out change.
+- Measuring ingredients or checking a running distance.
+- Looking at sports statistics or a weather report.
+- Reading a body temperature or a height in meters.
+
+Point these out and ask a quick question. Which price is lower? How much taller is one than the other? Short, low pressure moments like these build fluency far better than a worksheet marathon.
+
+## Keep the Tone Encouraging
+
+When your child makes a place value slip, resist the urge to simply correct it. Instead, ask them to read the number using the place names. More often than not they will catch their own mistake, which builds real understanding and confidence.
+
+Decimals are a bridge between whole numbers and fractions, and children who grasp them early feel steadier with money, measurement, and later percentages. On Astute Academy, decimal practice is sequenced to match your child grade level, so they build the idea step by step rather than meeting it all at once.
+
+Give it a little time, keep it hands on, and the mysterious dot will soon feel like an old friend.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-coordinate-plane-graphing",
     title: "How to Help Your Child Understand Coordinate Plane Graphing (Plotting Points with Confidence)",
     category: "Math Tips",
