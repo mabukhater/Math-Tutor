@@ -11,6 +11,89 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-percentages",
+    title: "How to Help Your Child Understand Rounding to the Nearest 100,000 and Millions",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-28",
+    excerpt:
+      "Help your child see percentages as a friendly way of talking about parts of 100, with real-life examples and simple practice.",
+    body: `## What Percentages Really Mean
+
+When a shirt is 25 percent off or a test score is 90 percent, your child is meeting one of the most useful ideas in math. But the symbol and the vocabulary can make percentages feel harder than they are.
+
+Here is the secret to share with your child: percent simply means out of 100. That is the whole idea. If you can picture 100 of something, you can picture any percentage of it.
+
+## Start With a Picture of 100
+
+Before any formulas, help your child see percentages as a physical thing.
+
+- Draw a 10 by 10 grid of 100 squares. Shading 30 squares shows 30 percent.
+- Use a chocolate bar with 10 pieces, where each piece is 10 percent.
+- Point to a battery icon on a phone. A half-full battery is 50 percent.
+
+The grid is especially powerful. When your child colors in squares, they can literally count the percentage. Seeing that 50 percent fills exactly half the grid connects the number to something real.
+
+## Connect Percentages to Fractions and Decimals
+
+Percentages, fractions, and decimals are three ways of saying the same thing. Helping your child move between them builds confidence.
+
+- 50 percent is the same as one half, or 0.5.
+- 25 percent is the same as one quarter, or 0.25.
+- 10 percent is the same as one tenth, or 0.1.
+
+A good habit: whenever your child sees a percent, ask them to picture the fraction. Does 20 percent mean a big chunk or a small chunk? Estimating first prevents wild answers later.
+
+## Finding a Percentage of a Number
+
+The most common task is finding a percent of an amount, like 20 percent of 60. Two friendly methods work for most children.
+
+### The 10 Percent Method
+
+Finding 10 percent of a number is easy because you just move the decimal or divide by 10.
+
+- 10 percent of 60 is 6.
+- To get 20 percent, double it: 12.
+- To get 5 percent, take half of 10 percent: 3.
+- To get 30 percent, add three tens: 18.
+
+This building-block approach lets children solve tough-looking problems using only easy steps. Most everyday percentages can be built from 10 percent, 5 percent, and 1 percent.
+
+### The Fraction Method
+
+For friendly percentages, converting to a fraction is quick.
+
+- 50 percent of 80 means half of 80, which is 40.
+- 25 percent of 80 means a quarter of 80, which is 20.
+
+Encourage your child to notice which method fits the problem. Flexibility is a sign of real understanding.
+
+## Use Real Life Every Day
+
+Percentages are everywhere, so you rarely need worksheets to practice.
+
+- At a store, ask what a 20 percent discount saves on a marked item.
+- After a meal out, work out a tip together.
+- Check the weather app and talk about a 70 percent chance of rain.
+- Look at a game or test score and turn it into a percent.
+
+These small moments show your child that percentages are a tool adults actually use, not just a school exercise.
+
+## Common Stumbling Points
+
+A few mix-ups come up again and again. Watch for these gently.
+
+- Confusing the part and the whole. Remind them the percent is always out of the total amount.
+- Thinking a bigger percent always means a bigger number. Ten percent of 1,000 is more than 90 percent of 5.
+- Forgetting that 100 percent means all of it, and more than 100 percent is possible, like a price rising to 120 percent of the original.
+
+## Keep It Low Pressure
+
+Percentages grow across several grades, from simple parts of 100 to interest and percentage change later on. Your goal now is a solid mental picture and comfort with the 10 percent method.
+
+Celebrate quick estimates as much as exact answers. A child who can say that 48 percent is roughly half already understands the heart of percentages, and the precise math will follow with practice.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-decimals-as-parts-of-a-whole",
     title: "How to Help Your Child Understand Decimals as Parts of a Whole",
     category: "Math Tips",
