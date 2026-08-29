@@ -11,6 +11,80 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-sequencing",
+    title: "How to Help Your Child Understand Sequencing (Putting Events in the Right Order)",
+    category: "Reading",
+    readMinutes: 3,
+    date: "2026-08-29",
+    excerpt:
+      "Help your child follow and retell a story in the right order with simple everyday activities and clear signal words that make sequencing click.",
+    body: `## What Sequencing Really Means
+
+Sequencing is the ability to understand the order in which things happen. In reading, it means knowing what came first, next, and last in a story or a set of instructions. It sounds simple, but it is one of the quiet skills behind strong reading comprehension. A child who cannot track order will struggle to retell a story, follow a recipe, or answer questions about how one event led to another.
+
+The good news is that sequencing is something children already do all day long. Getting dressed, brushing teeth, and building with blocks all happen in an order. Your job is to help your child notice that order and put words to it.
+
+## Why It Matters More Than It Seems
+
+When a child can sequence, several things improve at once:
+
+- Retelling becomes clear instead of a jumble of favorite parts
+- Cause and effect starts to make sense, because order shows what led to what
+- Writing improves, since a good paragraph usually follows a logical order
+- Following multi-step directions gets easier at home and at school
+
+Sequencing shows up across every curriculum, from early reading in Grade 1 to summarizing longer texts in the upper grades. Building it early pays off for years.
+
+## Start With Everyday Routines
+
+Before you touch a book, use real life. Ask your child to describe how they made a sandwich or got ready for bed. Encourage a beginning, a middle, and an end.
+
+Try these small activities:
+
+- Ask what you do first, next, and last when baking or cooking
+- Mix up the steps on purpose and let your child correct you
+- Take three photos of a routine, print or view them, and have your child arrange them in order
+
+Getting the order wrong on purpose is powerful. Children love catching a mistake, and fixing it makes them prove they understand the sequence.
+
+## Teach the Signal Words
+
+Authors leave clues that tell readers about order. These signal words are like road signs. Point them out whenever you read together:
+
+- First, then, next, after that, finally
+- Before, during, after
+- In the morning, later, at the end
+- Meanwhile, soon, suddenly
+
+When your child reads or tells a story, gently prompt them to use these words. Instead of accepting an answer like the dog ran and the boy cried, ask what happened first, and what happened after that.
+
+## Read and Retell Together
+
+Pick a short, familiar story. After reading, close the book and ask your child to retell it using just three or four sentences. Keep the retelling anchored with a beginning, middle, and end.
+
+If your child gets stuck, use guiding questions:
+
+- How did the story start?
+- What was the problem, and what happened next?
+- How did it end?
+
+For a more active version, write three or four events from the story on separate slips of paper, scramble them, and have your child lay them out in order. This turns an abstract skill into something they can touch and move.
+
+## Match the Challenge to the Age
+
+Sequencing grows with your child.
+
+- Grades 1 to 2: Focus on three-step stories and routines. Beginning, middle, end is plenty.
+- Grades 3 to 4: Add more events and introduce cause and effect. Ask why one thing led to another.
+- Grades 5 and up: Move to summarizing longer texts and noticing when authors tell events out of order through flashbacks.
+
+## A Simple Weekly Habit
+
+You do not need a formal lesson. Once or twice a week, ask your child to retell something in order: a movie, a school day, a chapter of a book. Praise the use of signal words and clear order more than perfect details.
+
+Over time, these short conversations build a reader who can follow any story and explain it back with confidence. In Astute Academy, sequencing questions give children guided practice with stories at their exact grade level, so the skill keeps growing between your reading time together.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-percentages",
     title: "How to Help Your Child Understand Rounding to the Nearest 100,000 and Millions",
     category: "Math Tips",
