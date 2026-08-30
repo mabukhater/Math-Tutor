@@ -11,6 +11,74 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-order-of-operations-pemdas",
+    title: "How to Help Your Child Understand the Order of Operations (PEMDAS Made Clear)",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-08-30",
+    excerpt:
+      "Help your child solve multi-step problems the right way with a clear, jargon-free guide to the order of operations.",
+    body: `## Why the Order of Operations Matters
+
+Ask two people to solve 2 plus 3 times 4, and you might get two different answers: 20 or 14. Only one is correct, and the difference comes down to a rule that mathematicians agreed on long ago. The order of operations tells everyone to do the multiplication first, giving 14.
+
+Without this shared rule, math would fall apart. A single expression could mean many things. Once your child understands that the order of operations is a kind of grammar for numbers, the mystery starts to fade.
+
+## What the Letters Actually Mean
+
+Many children learn a memory phrase like PEMDAS, or BODMAS in the UK. These stand for the steps you follow in order:
+
+- Parentheses or brackets first
+- Exponents or orders next
+- Multiplication and Division after that
+- Addition and Subtraction last
+
+The letters are helpful, but they hide two important traps that trip kids up.
+
+### Trap One: Multiplication and Division Are Equal
+
+Multiplication does not always come before division. They share the same rank, so you work through them from left to right, whichever comes first. In the problem 12 divided by 3 times 2, you divide first because it appears first, giving 8, not 2.
+
+### Trap Two: Addition and Subtraction Are Equal Too
+
+The same rule applies to the last step. Addition does not beat subtraction. You simply move left to right. In 10 minus 4 plus 3, you subtract first, getting 9.
+
+Many mistakes come from children thinking the letters are a strict top-to-bottom list. Remind them that the last two pairs are tied ranks, worked left to right.
+
+## Simple Ways to Practice at Home
+
+You do not need worksheets to build this skill. Try these low-pressure activities.
+
+- Say a short expression out loud and ask your child to point to which operation happens first before solving anything.
+- Use a highlighter to circle the part of a problem that must be done first, then rewrite the shorter version step by step.
+- Give one number sentence and ask where to place parentheses to change the answer. This shows how powerful brackets are.
+
+Go slowly. The goal is not speed but the habit of pausing to plan before calculating.
+
+## Make It Visual with Rewriting
+
+Encourage your child to rewrite the whole expression after each step instead of solving it all at once in their head. For 5 plus 2 times 3 squared, the steps look like this:
+
+- Start: 5 plus 2 times 3 squared
+- Handle the exponent: 5 plus 2 times 9
+- Handle multiplication: 5 plus 18
+- Handle addition: 23
+
+Rewriting keeps the untouched parts safe and gives your child a clear record of their thinking. When an answer is wrong, you can spot exactly which line went sideways.
+
+## A Real-Life Connection
+
+Order of operations is not only a classroom rule. Imagine buying three notebooks at two dollars each plus a five dollar pen. The cost is 3 times 2 plus 5. If you added first, you would get a wrong total. Doing multiplication first gives the correct 11 dollars. Pointing out these everyday moments helps the rule feel useful rather than arbitrary.
+
+## When to Expect It
+
+Children usually meet simple two-step expressions around ages nine and ten, then move to problems with exponents and nested brackets by the middle grades. If your younger child is still shaky on multiplication facts, focus there first. The order of operations sits on top of solid arithmetic, so strong foundations make it far easier.
+
+## Gentle Encouragement Goes a Long Way
+
+Mistakes here are normal and rarely mean your child does not understand. More often they rushed or forgot the left-to-right rule for tied operations. Celebrate careful, step-by-step work over quick answers. With regular short practice, your child will start to slow down at the right moments and solve multi-step problems with real confidence.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-sequencing",
     title: "How to Help Your Child Understand Sequencing (Putting Events in the Right Order)",
     category: "Reading",
