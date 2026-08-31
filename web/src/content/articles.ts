@@ -11,6 +11,76 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-to-the-nearest-ten",
+    title: "How to Help Your Child Understand Rounding to the Nearest Ten",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-08-31",
+    excerpt:
+      "A simple, hands-on way to teach rounding to the nearest ten so your child understands why numbers snap up or down.",
+    body: `## Why Rounding to the Nearest Ten Comes First
+
+Rounding to the nearest ten is often the very first rounding skill children meet, usually in second or third grade. It sets the pattern for everything that comes later: rounding to hundreds, thousands, and even decimals all follow the same logic. If your child truly understands this early step, the harder versions feel like familiar territory instead of brand-new rules.
+
+The goal is not to memorize a trick. It is to help your child picture where a number sits and decide which ten it is closest to.
+
+## What Rounding Actually Means
+
+Rounding is a way of trading an exact number for a nearby friendlier one. When we round 27 to the nearest ten, we are asking a simple question: is 27 closer to 20 or closer to 30?
+
+Since 27 is only 3 away from 30 but 7 away from 20, we say it rounds to 30. That is the whole idea. The digit rules children eventually learn are just a shortcut for answering this question quickly.
+
+Start every lesson with the closeness question, not the rule. Children who understand closeness rarely make careless rounding mistakes.
+
+## Use the Number Line as a Picture
+
+The number line makes rounding visible. Draw a short line and mark the two tens your number falls between. For 27, mark 20 on the left and 30 on the right. Put a dot where 27 lands.
+
+Ask your child:
+
+- Which ten is our number sitting between?
+- Is the dot closer to the left ten or the right ten?
+- Which one do we round to?
+
+Do this for several numbers. The physical act of placing the dot builds intuition faster than any worksheet. Soon your child will picture the number line in their head.
+
+## The Halfway Point and the Number 5
+
+The tricky case is a number ending in 5, like 25. It sits exactly in the middle, so it is not closer to either ten. Math has a simple agreement for this: when a number ends in 5, we round up.
+
+Explain it as a fair rule everyone follows so we all get the same answer. Point out that 25 rounds to 30, 35 rounds to 40, and 45 rounds to 50. Once your child sees the pattern, the halfway rule stops feeling mysterious.
+
+## A Simple Rule to Remember
+
+After your child understands the closeness idea, give them a quick way to check their work. Have them look at the ones digit, the very last number.
+
+- If the ones digit is 0, 1, 2, 3, or 4, round down and keep the same ten.
+- If the ones digit is 5, 6, 7, 8, or 9, round up to the next ten.
+
+So 62 rounds down to 60, and 68 rounds up to 70. Practice by covering the ones digit and asking whether it is low or high. The rule and the number line should agree every time, and checking that they match reinforces both.
+
+## Practice Ideas for Everyday Moments
+
+Rounding lives all around you, so use real numbers your child already sees.
+
+- Prices at the store: about how much is a snack that costs 43 cents?
+- Ages: round a family member's age to the nearest ten.
+- Scores in a game: round the points to talk about who is roughly ahead.
+- Steps or minutes: round the time a task took to the nearest ten minutes.
+
+Keep sessions short, five minutes is plenty, and celebrate reasoning over speed. Ask your child to explain how they knew, not just what the answer was.
+
+## Common Mistakes and Gentle Fixes
+
+A few slip-ups show up again and again:
+
+- Rounding the wrong way because they guessed instead of checking closeness. Return to the number line.
+- Forgetting that 5 rounds up. Repeat the fair-rule idea with several examples.
+- Changing the tens digit when they should keep it. Remind them that rounding down means staying at the same ten.
+
+With a picture, a clear rule, and a little everyday practice, rounding to the nearest ten becomes second nature, and your child will carry that confidence into every rounding lesson that follows.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-order-of-operations-pemdas",
     title: "How to Help Your Child Understand the Order of Operations (PEMDAS Made Clear)",
     category: "Math Tips",
