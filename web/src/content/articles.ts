@@ -11,6 +11,71 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-reading-a-bar-graph-and-pictograph",
+    title: "How to Help Your Child Understand Reading a Bar Graph and Pictograph",
+    category: "Math Tips",
+    readMinutes: 4,
+    date: "2026-09-02",
+    excerpt:
+      "Simple, everyday ways to help your child read bar graphs and pictographs with confidence and answer the tricky questions that follow.",
+    body: `## Why Graphs Trip Kids Up
+
+Bar graphs and pictographs show up early in school, and they look simple. Bars of different heights, little pictures in rows. But many children can read the picture without truly reading the data. They see a tall bar and say bigger without checking the numbers, or they count pictures without noticing that one picture stands for five things.
+
+The good news is that graphs are one of the easiest math topics to practice at home, because the data can come from your own kitchen, closet, or backyard. Here is how to build real understanding, step by step.
+
+## Start With the Parts of a Graph
+
+Before your child answers any question, have them point to and name four things:
+
+- The title, which tells what the whole graph is about
+- The two labels, one for each axis, which tell what is being counted
+- The scale, meaning the numbers that climb up the side
+- The bars or pictures themselves
+
+This sounds slow, but it prevents the most common mistake. When a child skips the scale, they misread every value. Ask questions like what is this graph about and what do these numbers count. If they can answer those, the rest gets much easier.
+
+### The Scale Is the Secret
+
+Early graphs count by ones. Then suddenly the scale counts by twos, fives, or tens, and children keep reading it as ones. Practice this directly. Cover the bars and just read the scale together, tapping each line and saying the number out loud. Once they expect the scale to jump, they stop trusting their eyes and start trusting the numbers.
+
+For pictographs, the same idea appears as the key. One picture might equal two, five, or ten. Half a picture means half of that value. Always find the key first and read it aloud before counting.
+
+## Make Your Own Graph Together
+
+Nothing teaches graph reading like graph making. Pick something your child cares about and count it.
+
+- Sort a bag of colored candy or building blocks by color, then draw a bar for each color
+- Track how many minutes of reading happen each day for a week
+- Count the shoes, socks, or books in each room of the house
+
+Draw it on paper together. When your child chooses the scale and decides how tall each bar should be, the whole structure clicks. A child who has built a pictograph where one picture equals five will never again forget to check the key.
+
+## Practice the Question Types
+
+Once the graph makes sense, the test questions come in a few predictable flavors. Practice each one by name.
+
+- How many questions, which ask for a single value. Point to the bar, read across to the scale.
+- Comparison questions, such as how many more or how many fewer. This is really subtraction. Read both values, then find the difference.
+- Total questions, which ask for the sum of two or more bars. Read each value, then add.
+- Which is most or least, where your child scans for the tallest or shortest bar and then names it, not the number.
+
+Many children lose points because they give the number when the question wants the label, or the label when it wants the number. Reading the question twice fixes this. Ask your child what does this question actually want, a name or a number.
+
+## Common Mistakes to Gently Correct
+
+- Comparing bar heights by eye instead of reading actual values
+- Ignoring the scale and counting every bar as ones
+- Forgetting the pictograph key, so five pictures becomes five instead of twenty five
+- Answering how many more with a total instead of a difference
+
+When your child slips, resist the urge to correct instantly. Instead ask, can you show me where you got that number. They often catch the error themselves.
+
+## Keep It Short and Real
+
+Graphs reward small, frequent practice more than long sessions. A five minute chat about the weather chart or the sports standings in the newspaper builds the same skill the worksheet tests. In Astute Academy, graph questions grow with your child, moving from simple counts to multi step comparison problems, so the challenge stays right at the edge of what they can do. Steady, low pressure practice is what turns confusion into confidence.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-rounding-to-the-nearest-ten",
     title: "How to Help Your Child Understand Rounding to the Nearest Ten",
     category: "Math Tips",
