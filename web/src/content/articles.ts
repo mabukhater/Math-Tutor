@@ -11,6 +11,86 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "help-child-understand-gcf-and-lcm",
+    title: "How to Help Your Child Understand Greatest Common Factor and Least Common Multiple",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-09-10",
+    excerpt:
+      "A clear, friendly guide to helping your child tell GCF and LCM apart and use them with confidence.",
+    body: `## Two Ideas That Get Mixed Up
+
+Greatest Common Factor and Least Common Multiple sound almost like the same thing, and that is exactly why children muddle them. Both involve two numbers. Both use words like common. But they pull in opposite directions, and once your child sees that, the confusion melts away.
+
+Here is the short version you can share at the kitchen table:
+
+- Greatest Common Factor is the biggest number that divides evenly into both numbers. It goes down and inside.
+- Least Common Multiple is the smallest number that both numbers divide into. It goes up and beyond.
+
+Factors live below or equal to your number. Multiples live above or equal to it. That single sentence prevents most mistakes.
+
+## Start With Factors and Multiples Separately
+
+Before combining anything, make sure each idea stands on its own.
+
+To find factors of 12, ask what numbers multiply to make 12. Your child lists 1, 2, 3, 4, 6, 12. A helpful habit is to hunt in pairs: 1 and 12, 2 and 6, 3 and 4. Pairs stop the child from skipping one.
+
+To find multiples of 4, just skip count: 4, 8, 12, 16, 20. Multiples never end, which is a useful thing for a child to notice out loud.
+
+Once both lists feel comfortable, the word common simply means write two lists and circle what appears in both.
+
+## Finding GCF Together
+
+Take 18 and 24.
+
+- Factors of 18: 1, 2, 3, 6, 9, 18
+- Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24
+
+The numbers in both lists are 1, 2, 3, and 6. The greatest of those is 6. That is the GCF.
+
+For larger numbers, listing everything gets slow, so teach the prime factor method as a second tool:
+
+- 18 breaks into 2 times 3 times 3
+- 24 breaks into 2 times 2 times 2 times 3
+- They share one 2 and one 3, so multiply 2 times 3 to get 6
+
+Same answer, less writing. Let your child use whichever method they trust.
+
+## Finding LCM Together
+
+Use the same numbers so the contrast is obvious.
+
+- Multiples of 18: 18, 36, 54, 72
+- Multiples of 24: 24, 48, 72, 96
+
+The first number to appear in both lists is 72. That is the LCM. Notice it is bigger than both starting numbers, exactly what we expect from multiples.
+
+A quick check for older children: the GCF times the LCM equals the two numbers multiplied together. Here 6 times 72 is 432, and 18 times 24 is also 432. When that matches, they know they got both answers right.
+
+## Where This Actually Shows Up
+
+Children work harder when a skill has a job to do. Point out the real uses.
+
+- LCM helps when adding fractions with different denominators, because the least common denominator is just the LCM.
+- GCF helps when simplifying a fraction, since dividing top and bottom by the GCF reduces it in one clean step.
+- LCM answers puzzles like two buses leaving at different intervals and meeting again.
+- GCF answers sharing puzzles like splitting 18 apples and 24 oranges into identical baskets with nothing left over.
+
+## Simple Ways to Practice at Home
+
+Keep sessions short and playful.
+
+- Call out two numbers during a car ride and race to name the GCF.
+- Use a deck of cards; flip two number cards and find their LCM.
+- Ask your child to teach you, explaining which way the answer should go, up or down.
+
+On Astute Academy, these skills are broken into small steps that match your child's grade, so they practice factors, multiples, and then the combined problems in a sensible order.
+
+## The One Thing to Remember
+
+If your child forgets everything else, keep this: factors dive down into a number, multiples climb up from it. Anchor GCF to down and LCM to up, and the rest is just careful list making. With a few relaxed practice runs, your child will stop second guessing and start solving.`,
+  },
+  {
     slug: "how-to-help-your-child-understand-reading-a-bar-graph-and-pictograph",
     title: "How to Help Your Child Understand Reading a Bar Graph and Pictograph",
     category: "Math Tips",
