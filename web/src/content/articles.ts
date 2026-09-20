@@ -11,6 +11,87 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-help-your-child-understand-rounding-decimals-to-the-nearest-tenth-and-hundredth",
+    title: "How to Help Your Child Understand Rounding Decimals to the Nearest Tenth and Hundredth",
+    category: "Math Tips",
+    readMinutes: 3,
+    date: "2026-09-20",
+    excerpt:
+      "A clear, calm way to teach your child rounding decimals, with the digit that decides everything and plenty of everyday examples.",
+    body: `## Why Rounding Decimals Trips Kids Up
+
+Many children learn to round whole numbers just fine, then hit decimals and freeze. The rules feel the same, but the place value names get long and slippery: tenths, hundredths, thousandths. Add a decimal point that seems to move around, and it is easy to see why a confident child suddenly hesitates.
+
+The good news is that rounding decimals uses the exact same thinking as rounding whole numbers. Once your child sees that connection, the fear tends to disappear. This shows up across grades in most curricula, including US Common Core, the UK National Curriculum, Singapore Math, and Ontario.
+
+## Start With What Each Place Is Worth
+
+Before rounding anything, make sure your child can name the places to the right of the decimal point.
+
+- The first place after the point is tenths.
+- The second place is hundredths.
+- The third place is thousandths.
+
+A quick way to reinforce this is with money and measurement. In the number 3.47, the 4 is four tenths and the 7 is seven hundredths. Ask your child to point to a place and name it out loud. Spend a few minutes here. Rounding falls apart when the place names are shaky.
+
+## The One Rule That Runs Everything
+
+Rounding always comes down to a single question: what is the digit just to the right of the place you are rounding to?
+
+Teach your child this routine every time:
+
+- Underline the place you are rounding to.
+- Look at the digit immediately to its right.
+- If that digit is 5 or more, round up. If it is 4 or less, keep the underlined digit the same.
+- Drop everything after the underlined place.
+
+That last step matters. When we round to the nearest tenth, the answer stops at the tenths place. There should be nothing after it.
+
+### An Example to Nearest Tenth
+
+Round 6.83 to the nearest tenth.
+
+- Underline the tenths digit: the 8.
+- Look right: the 3.
+- 3 is 4 or less, so the 8 stays.
+- Drop the rest.
+
+The answer is 6.8.
+
+### An Example to Nearest Hundredth
+
+Round 2.457 to the nearest hundredth.
+
+- Underline the hundredths digit: the 5.
+- Look right: the 7.
+- 7 is 5 or more, so the 5 becomes a 6.
+- Drop the rest.
+
+The answer is 2.46.
+
+## Use a Number Line to Build Intuition
+
+Rules are helpful, but children remember what they can picture. Draw a short number line for one example. To round 6.83 to the nearest tenth, mark 6.8 on the left and 6.9 on the right, then put a mark for 6.83. Ask which end is closer. Your child will see it sits nearer to 6.8, which matches the rule. Doing this two or three times connects the procedure to real distance, so the rule stops feeling random.
+
+## Watch for These Common Mistakes
+
+- Chopping instead of rounding. Some kids just delete the extra digits without checking whether to round up.
+- Rounding up too far. When rounding 2.98 to the nearest tenth, the 9 becomes 10, so it carries: the answer is 3.0, not 2.10.
+- Forgetting the zero. When rounding 4.30 to the nearest tenth, the answer is 4.3, but 5.096 rounded to hundredths is 5.10, and that zero must stay to show the place.
+- Looking at the wrong digit. Remind your child to check only the single digit directly to the right.
+
+## Practice That Fits Into Daily Life
+
+You do not need a worksheet to make this stick.
+
+- Shopping receipts: round each price to the nearest dollar or nearest ten cents.
+- Sports stats: batting averages and race times are full of decimals to round.
+- Cooking: round measurements like 1.75 cups to the nearest tenth.
+- Weather: round temperatures or rainfall totals reported in decimals.
+
+Keep sessions short and steady. Five focused minutes several times a week beats one long, tiring drill. In Astute Academy, your child can practice rounding decimals at their own grade level with instant feedback, so mistakes become quick corrections rather than lasting confusion.`,
+  },
+  {
     slug: "help-child-understand-gcf-and-lcm",
     title: "How to Help Your Child Understand Greatest Common Factor and Least Common Multiple",
     category: "Math Tips",
